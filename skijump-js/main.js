@@ -11,7 +11,8 @@ let pad = null;
 let drawableObjects = [];
 
 function setup() {
-  createCanvas(1280, 720);
+  const canvas = createCanvas(1280, 720);
+  canvas.parent('skijump-game-container');
   rectMode(CENTER)
 
   engine = Matter.Engine.create();
