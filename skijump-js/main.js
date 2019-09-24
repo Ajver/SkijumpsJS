@@ -1,8 +1,14 @@
 
-let MBodies = Matter.Bodies; 
+let Bodies = Matter.Bodies; 
+let World = Matter.World;
 
 let engine = null;
 let world = null;
+
+let jumper = null;
+let pad = null;
+
+let drawableObjects = [];
 
 function setup() {
   createCanvas(1280, 720);
@@ -11,9 +17,19 @@ function setup() {
   engine = Matter.Engine.create();
   world = engine.world;
 
+  jumper = new Jumper(40, 50);
+  pad = new LaunchingPad();
+  
+  drawableObjects.push(jumper);
+  drawableObjects.push(pad);
+  
   Matter.Engine.run(engine);
 }
 
 function draw() {
   background(51);
+  
+  drawableObjects.forEach((element) => {
+    element.draw();
+  });
 }
