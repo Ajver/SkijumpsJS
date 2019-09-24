@@ -1,6 +1,6 @@
 
 function LaunchingPad() {
-  this.w = 1600; 
+  this.w = 6000; 
   this.h = 100;
   const options = {
     isStatic: true,
