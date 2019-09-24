@@ -5,6 +5,7 @@ let World = Matter.World;
 let engine = null;
 let world = null;
 
+let camera = null;
 let jumper = null;
 let pad = null;
 
@@ -21,6 +22,8 @@ function setup() {
   jumper = new Jumper(40, 50);
   pad = new LaunchingPad();
   
+  camera = new Camera(jumper, 0.5);
+
   drawableObjects.push(pad);
   drawableObjects.push(jumper);
   
@@ -29,8 +32,12 @@ function setup() {
 
 function draw() {
   background(51);
-  
+
+  push();
+  camera.transform();
   drawableObjects.forEach((element) => {
     element.draw();
   });
+  pop();
+
 }
