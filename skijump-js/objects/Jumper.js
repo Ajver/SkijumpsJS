@@ -1,14 +1,14 @@
 
 function Jumper(x, y) {
   this.w = 40;
-  this.h = 30;
+  this.h = 60;
   const options = {
     friction: 0,
   };
   this.body = Bodies.rectangle(x, y, this.w, this.h, options);
   World.add(world, this.body);
 
-  Matter.Body.setAngle(this.body, PI/4);
+  Matter.Body.setAngle(this.body, radians(40));
 
   this.draw = () => {
     const pos = this.body.position;

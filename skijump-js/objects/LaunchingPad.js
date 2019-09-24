@@ -9,9 +9,7 @@ function LaunchingPad() {
   
   World.add(world, this.body);
 
-  Matter.Body.setAngle(this.body, PI/4);
-
-  this.img = ImageLoader.load('launchpad.png');
+  Matter.Body.setAngle(this.body, radians(40));
 
   this.draw = () => {
     const pos = this.body.position;
