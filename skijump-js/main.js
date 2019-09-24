@@ -20,8 +20,8 @@ function setup() {
   jumper = new Jumper(40, 50);
   pad = new LaunchingPad();
   
-  drawableObjects.push(jumper);
   drawableObjects.push(pad);
+  drawableObjects.push(jumper);
   
   Matter.Engine.run(engine);
 }
