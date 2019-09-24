@@ -1,6 +1,7 @@
 
-let Bodies = Matter.Bodies; 
-let World = Matter.World;
+const Bodies = Matter.Bodies; 
+const World = Matter.World;
+const Body = Matter.Body;
 
 let engine = null;
 let world = null;
@@ -39,5 +40,8 @@ function draw() {
     element.draw();
   });
   pop();
+}
 
+function keyPressed(e) {
+  jumper.onKeyPressed(e.code);
 }
