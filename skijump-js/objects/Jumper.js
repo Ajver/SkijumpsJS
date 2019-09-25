@@ -29,7 +29,7 @@ function Jumper(x, y) {
   this.update = () => {
     if(this.turningMod) {
       if(this.wantTurn) {
-        this.turningMod = min(this.turningMod + 0.05, 1.0);
+        this.turningMod = min(this.turningMod + 0.005, 1.0);
       }else {
         this.turningMod = max(this.turningMod - 0.01, 0.0);
       }
