@@ -34,8 +34,6 @@ function Jumper(x, y) {
         this.turningMod = max(this.turningMod - 0.01, 0.0);
       }
 
-      print(this.turningDir, this.turningMod);
-
       this.turn();
     }
   }
@@ -64,6 +62,24 @@ function Jumper(x, y) {
       this.turningDir = 1;
       this.wantTurn = true;
       this.turningMod = 0.1;
+    }
+    
+    if(keyCode == 'CapsLock') {
+      // this.body.collisionFilter.mask = 0;
+      this.body.isStatic = !this.body.isStatic;
+    }
+
+    if(this.body.isStatic) {
+      const MOVE_SPEED = 10;
+      if(keyCode == 'KeyW') {
+        Matter.Body.setPosition(this.body, { x:this.body.position.x, y:this.body.position.y-MOVE_SPEED });
+      }else if(keyCode == 'KeyS') {
+        Matter.Body.setPosition(this.body, { x:this.body.position.x, y:this.body.position.y+MOVE_SPEED });
+      }else if(keyCode == 'KeyA') {
+        Matter.Body.setPosition(this.body, { x:this.body.position.x-MOVE_SPEED, y:this.body.position.y });
+      }else if(keyCode == 'KeyD') {
+        Matter.Body.setPosition(this.body, { x:this.body.position.x+MOVE_SPEED, y:this.body.position.y });
+      }
     }
   }
 

@@ -1,6 +1,5 @@
 
-function Camera(jumper, scaleMod) {
-  this.jumper = jumper;
+function Camera(scaleMod) {
   this.offset = createVector(
     -200,
     0
