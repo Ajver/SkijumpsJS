@@ -34,6 +34,8 @@ function setup() {
 function draw() {
   background(51);
 
+  jumper.update();
+
   push();
   camera.transform();
   drawableObjects.forEach((element) => {
@@ -44,4 +46,8 @@ function draw() {
 
 function keyPressed(e) {
   jumper.onKeyPressed(e.code);
+}
+
+function keyReleased(e) {
+  jumper.onKeyReleased(e.code);
 }

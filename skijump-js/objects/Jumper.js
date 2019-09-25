@@ -1,7 +1,7 @@
 
 function Jumper(x, y) {
   this.w = 40;
-  this.h = 60;
+  this.h = 80;
   const options = {
     friction: 0.001,
     frictionAir: 0.001
@@ -20,6 +20,25 @@ function Jumper(x, y) {
   Body.setAngle(this.body, radians(40));
 
   this.JUMP_FORCE = .1;
+  this.TURN_FORCE = .05;
+
+  this.turningDir = 0;
+  this.turningMod = 0.0;
+  this.wantTurn = false;
+
+  this.update = () => {
+    if(this.turningMod) {
+      if(this.wantTurn) {
+        this.turningMod = min(this.turningMod + 0.05, 1.0);
+      }else {
+        this.turningMod = max(this.turningMod - 0.01, 0.0);
+      }
+
+      print(this.turningDir, this.turningMod);
+
+      this.turn();
+    }
+  }
 
   this.draw = () => {
     const pos = this.body.position;
@@ -37,7 +56,23 @@ function Jumper(x, y) {
       if(this.canJump()) {
         this.jump();
       }
-    } 
+    }else if(keyCode == 'ArrowLeft') {
+      this.turningDir = -1;
+      this.wantTurn = true;
+      this.turningMod = 0.1;
+    }else if(keyCode == 'ArrowRight') {
+      this.turningDir = 1;
+      this.wantTurn = true;
+      this.turningMod = 0.1;
+    }
+  }
+
+  this.onKeyReleased = (keyCode) => {
+    if(keyCode == 'ArrowLeft') {
+      this.wantTurn = false;
+    }else if(keyCode == 'ArrowRight') {
+      this.wantTurn = false;
+    }
   }
 
   this.canJump = () => {
@@ -45,12 +80,14 @@ function Jumper(x, y) {
   }
 
   this.jump = () => {
-    const jumpAngle = this.body.angle - QUARTER_PI;
-    const jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
-    Matter.Vector.rotate(jumpVector, jumpAngle);
+    const jumpAngle = this.body.angle;
+    let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
+    jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     Body.applyForce(this.body, this.body.position, jumpVector)
+  }
 
-    print("jumped");
+  this.turn = () => {
+    Body.rotate(this.body, this.TURN_FORCE * this.turningMod * this.turningDir);
   }
 
 }
