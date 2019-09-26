@@ -3,12 +3,11 @@ const PadCreator = {
 
   SQRT_3: 1.7320508,
 
-  pointsList: [
-    { x: 0, y: 0},
-    { x: 160, y: 100 },
-    { x: 350, y: 450 },
-    { x: 500, y: 500 },
-  ],
+  padImg: null,
+  
+  loadImages: () => {
+    PadCreator.padImg = ImageLoader.load('pad.png');
+  },
 
   createPadBody: () => {
     return Body.create({
@@ -17,10 +16,10 @@ const PadCreator = {
     });
   },
 
-  createParts: () => {
+  createParts: () => {    
     let parts = [];
 
-    for(let i=1; i<PadCreator.pointsList.length; i++) {
+    for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
       parts.push(PadCreator.createOneBody(i-1, i));
     }
 
@@ -28,8 +27,8 @@ const PadCreator = {
   },
 
   createOneBody: (p1_idx, p2_idx) => {
-    const p1 = Matter.Vector.create(PadCreator.pointsList[p1_idx].x, PadCreator.pointsList[p1_idx].y);
-    const p2 = Matter.Vector.create(PadCreator.pointsList[p2_idx].x, PadCreator.pointsList[p2_idx].y);
+    const p1 = Matter.Vector.create(PAD_COLLISION_POINTS[p1_idx].x, PAD_COLLISION_POINTS[p1_idx].y);
+    const p2 = Matter.Vector.create(PAD_COLLISION_POINTS[p2_idx].x, PAD_COLLISION_POINTS[p2_idx].y);
 
     const vec = Matter.Vector.create(p2.x - p1.x, p2.y - p1.y);
     const angle = Math.atan2(vec.y, vec.x);

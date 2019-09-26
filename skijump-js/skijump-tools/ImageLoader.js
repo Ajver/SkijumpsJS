@@ -3,8 +3,11 @@
 const ImageLoader = {
   
   load: (imageName) => {
-    const path = 'graphics/' + imageName;
+    return ImageLoader.loadFromPath('skijump-js/graphics/' + imageName);
+  },
+
+  loadFromPath: (path) => {
     return loadImage(path);
-  }
+  },
 
 }

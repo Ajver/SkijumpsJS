@@ -1,26 +1,28 @@
 
 function Jumper(x, y) {
-  this.w = 40;
-  this.h = 80;
+  this.w = 10;
+  this.h = 20;
   const options = {
-    friction: 0.001,
-    frictionAir: 0.001
+    friction: 0.0,
+    frictionAir: 0.001,
+    density: 1,
+    parts: [
+      Bodies.rectangle(x, y, this.w, this.h),
+      Bodies.rectangle(x+5, y+this.h*0.5+3, this.w+15, 5),
+      Bodies.circle(x-this.w*0.5-5, y+this.h*0.5+2.5, 3),
+      Bodies.circle(x+this.w*0.5+12, y+this.h*0.5+2.5, 3),
+    ],
   };
-  this.body = Bodies.rectangle(x, y, this.w, this.h, options);
-  World.add(world, this.body);
 
-  this.footVertices = Matter.Vertices.create([
-    { x: -this.w*0.5, y: this.h*0.5 },
-    { x:  this.w*0.5, y: this.h*0.5 },
-    { x:  this.w*0.5, y: this.h*0.5+10 },
-    { x: -this.w*0.5, y: this.h*0.5+10 }
-  ]);
-  this.footBounds = Matter.Bounds.create(this.footVertices);
+  this.body = Body.create(options);
+  
+  
+  World.add(world, this.body);
 
   Body.setAngle(this.body, radians(40));
 
-  this.JUMP_FORCE = .1;
-  this.TURN_FORCE = .05;
+  this.JUMP_FORCE = .0025;
+  this.TURN_FORCE = .2;
 
   this.turningDir = 0;
   this.turningMod = 0.0;
@@ -45,8 +47,16 @@ function Jumper(x, y) {
     translate(pos.x, pos.y);
     rotate(angle);
     rect(0, 0, this.w, this.h);
-    circle(0, 0, 3);
     pop();
+
+    this.body.parts.forEach((part) => {
+      beginShape();
+      part.vertices.forEach((element) => {
+        vertex(element.x, element.y)
+        // circle(element.x, element.y, 3);
+      });
+      endShape(CLOSE);
+    });
   }
 
   this.onKeyPressed = (keyCode) => {

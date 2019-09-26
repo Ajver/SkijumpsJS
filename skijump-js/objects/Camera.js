@@ -11,8 +11,7 @@ function Camera(scaleMod) {
   this.transform = () => {
     const targetPos = jumper.body.position;
     scale(this.scale);
-    translate(500, 500);
-    //translate(-targetPos.x+this.offset.x/this.scale, -targetPos.y+this.offset.y/this.scale);
+    translate(-targetPos.x+this.offset.x/this.scale, -targetPos.y+this.offset.y/this.scale);
   }
 
 }

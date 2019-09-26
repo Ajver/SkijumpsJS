@@ -12,6 +12,10 @@ let pad = null;
 
 let drawableObjects = [];
 
+function preload() {
+  PadCreator.loadImages();
+}
+
 function setup() {
   const canvas = createCanvas(1280, 720);
   canvas.parent('skijump-game-container');
@@ -19,11 +23,12 @@ function setup() {
 
   engine = Matter.Engine.create();
   world = engine.world;
+  world.gravity.y = .2;
 
-  jumper = new Jumper(100, -100);
+  jumper = new Jumper(100, 100);
   pad = new LaunchingPad();
   
-  camera = new Camera(.5);
+  camera = new Camera(3);
 
   drawableObjects.push(pad);
   drawableObjects.push(jumper);
