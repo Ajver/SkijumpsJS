@@ -13,18 +13,30 @@ function LaunchingPad() {
   
   World.add(world, this.body);
 
+  this.tb = Matter.Bodies.fromVertices(166.7, 300, Matter.Vertices.fromPath('100 200 250 300 150 400'), {isStatic:true});
+
   this.draw = () => {
-    const pos = this.body.position;
     push();
     fill(50, 50, 255);
   
     this.body.parts.forEach((part) => {
       beginShape();
       part.vertices.forEach((element) => {
-        vertex(element.x, element.y)
+        //vertex(element.x, element.y)
       });
       endShape(CLOSE);
     });
+
+    beginShape();
+    this.tb.vertices.forEach((element) => {
+      vertex(element.x, element.y);
+    });
+    endShape(CLOSE);
+
+    fill(50, 255, 255);
+    circle(100, 200, 30);
+    circle(250, 300, 30);
+    circle(150, 400, 30);
 
     pop();
   }
