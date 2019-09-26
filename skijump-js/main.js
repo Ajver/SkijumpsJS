@@ -20,7 +20,7 @@ function setup() {
   engine = Matter.Engine.create();
   world = engine.world;
 
-  jumper = new Jumper(0, -100);
+  jumper = new Jumper(100, -100);
   pad = new LaunchingPad();
   
   camera = new Camera(.5);

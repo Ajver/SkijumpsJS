@@ -39,7 +39,6 @@ function Jumper(x, y) {
   }
 
   this.draw = () => {
-    return;
     const pos = this.body.position;
     const angle = this.body.angle;
     push();
