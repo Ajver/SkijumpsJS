@@ -4,7 +4,7 @@ function Jumper(x, y) {
   this.h = 20;
   const options = {
     friction: 0.0,
-    frictionAir: 0.001,
+    frictionAir: 0.005,
     density: 1,
     isStatic: true,
     parts: [
@@ -29,9 +29,13 @@ function Jumper(x, y) {
   this.turningMod = 0.0;
   this.wantTurn = false;
 
+  this.offsetPoint = Matter.Vector.create(0, -10);
+
   this.update = () => {
     if(this.body.isStatic) {
+      const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
       Matter.Body.translate(this.body, this.body.velocity);
+      // Matter.Body.translate(this.body, rotatedOffset);
     }
 
     if(this.turningMod) {
@@ -107,7 +111,10 @@ function Jumper(x, y) {
   }
 
   this.canJump = () => {
-    return Matter.Query.collides(this.body, [pad.body]).length > 0;
+    if(this.body.position.x <= JUMP_END_POINT) {
+      return Matter.Query.collides(this.body, [pad.body]).length > 0;
+    }
+    return false;
   }
 
   this.jump = () => {
@@ -115,6 +122,7 @@ function Jumper(x, y) {
     let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     Body.applyForce(this.body, this.body.position, jumpVector)
+    print("jumped!");
   }
 
   this.turn = () => {

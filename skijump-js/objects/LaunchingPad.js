@@ -8,6 +8,7 @@ function LaunchingPad() {
   this.img = PadCreator.padImg;
 
   this.isPullingJumper = true;
+  this.canJump = false;
   this.pullingSystem = {
     p1: PAD_PULLING_POINTS[1],
     p2: PAD_PULLING_POINTS[2],
@@ -25,6 +26,11 @@ function LaunchingPad() {
           return false;
         }
       }
+      
+      if(jumper.body.position.x >= JUMP_POINT) {
+        this.canJump = true;
+      }
+
       return true;
     },
 
@@ -59,24 +65,43 @@ function LaunchingPad() {
       if(this.pullingSystem.update()) {
         const vel = this.pullingSystem.getNewVelocity();
         jumper.body.velocity = vel;
+      }else {
+        this.setJumperDynamic();
       }
     }
+  }
+
+  this.setJumperDynamic = () => {
+    Body.setStatic(jumper.body, false);
+    Body.setVelocity(jumper.body, jumper.body.velocity);
   }
 
   this.draw = () => {
     push();
     fill(50, 50, 255);
-  
+    
+    image(this.img, 0, 0);
+    
     this.body.parts.forEach((part) => {
       beginShape();
       part.vertices.forEach((element) => {
         vertex(element.x, element.y)
-        circle(element.x, element.y, 10);
+        circle(element.x, element.y, 3);
       });
       endShape(CLOSE);
     });
 
-    image(this.img, 0, 0);
+    this.onKeyPressed = (keyCode) => {
+      if(this.isPullingJumper) {
+        if(keyCode == 'Space') {
+          if(this.canJump) {
+            this.setJumperDynamic();
+            jumper.jump();
+          }
+        }
+      }
+    }
+
 
     pop();
   }

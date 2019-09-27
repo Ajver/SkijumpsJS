@@ -53,5 +53,8 @@ const PAD_PULLING_POINTS=[
 {x:510,y:459},
 {x:523,y:463},
 {x:536,y:466},
-{x:1632,y:705},
+{x:551,y:468},
+{x:565,y:469},
 ];
+const JUMP_POINT = 522;
+const JUMP_END_POINT = 564;

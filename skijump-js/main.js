@@ -25,7 +25,7 @@ function setup() {
   world = engine.world;
   world.gravity.y = .2;
 
-  jumper = new Jumper(100, 100);
+  jumper = new Jumper(100, 95);
   pad = new LaunchingPad();
   
   camera = new Camera(3);
@@ -52,6 +52,7 @@ function draw() {
 
 function keyPressed(e) {
   jumper.onKeyPressed(e.code);
+  pad.onKeyPressed(e.code);
 }
 
 function keyReleased(e) {
