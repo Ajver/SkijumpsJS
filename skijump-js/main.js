@@ -40,6 +40,7 @@ function draw() {
   background(51);
 
   jumper.update();
+  pad.update();
 
   push();
   camera.transform();

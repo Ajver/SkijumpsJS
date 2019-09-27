@@ -6,6 +6,7 @@ function Jumper(x, y) {
     friction: 0.0,
     frictionAir: 0.001,
     density: 1,
+    isStatic: true,
     parts: [
       Bodies.rectangle(x, y, this.w, this.h),
       Bodies.rectangle(x+5, y+this.h*0.5+3, this.w+15, 5),
@@ -29,6 +30,10 @@ function Jumper(x, y) {
   this.wantTurn = false;
 
   this.update = () => {
+    if(this.body.isStatic) {
+      Matter.Body.translate(this.body, this.body.velocity);
+    }
+
     if(this.turningMod) {
       if(this.wantTurn) {
         this.turningMod = min(this.turningMod + 0.005, 1.0);
