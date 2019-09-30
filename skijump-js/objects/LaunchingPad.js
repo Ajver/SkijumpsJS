@@ -10,24 +10,37 @@ function LaunchingPad() {
   this.isPullingJumper = true;
   this.canJump = false;
   this.pullingSystem = {
-    p1: PAD_PULLING_POINTS[1],
-    p2: PAD_PULLING_POINTS[2],
+    pullingArray: PAD_PULLING_POINTS, 
+    p1: null,
+    p2: null,
     index: 2,
+    friction: jumper.friction,
+
+    setIndex: (newIndex) => {
+      const {pullingSystem} = this;
+      const {pullingArray} = pullingSystem;
+      pullingSystem.index = newIndex;
+      pullingSystem.p1 = pullingArray[newIndex-1];
+      pullingSystem.p2 = pullingArray[newIndex];    
+    },
 
     update: () => {
-      if(jumper.body.position.x >= this.pullingSystem.p2.x) {
-        this.pullingSystem.index++;
-        if(this.pullingSystem.index < PAD_PULLING_POINTS.length) {
-          this.pullingSystem.p1 = this.pullingSystem.p2;
-          this.pullingSystem.p2 = PAD_PULLING_POINTS[this.pullingSystem.index];
+      const {position} = jumper.body;
+      const {pullingSystem} = this;
+      const {pullingArray} = pullingSystem;
+      if(position.x >= pullingSystem.p2.x) {
+        pullingSystem.index++;
+        if(pullingSystem.index < pullingArray.length) {
+          pullingSystem.p1 = pullingSystem.p2;
+          pullingSystem.p2 = pullingArray[pullingSystem.index];
         }else {
-          this.pullingSystem.index = 1;
+          pullingSystem.index = 1;
           this.isPullingJumper = false;
           return false;
         }
       }
       
-      if(jumper.body.position.x >= JUMP_POINT) {
+      if(position.x >= JUMP_POINT && position.x <= JUMP_END_POINT) {
         this.canJump = true;
       }
 
@@ -56,13 +69,14 @@ function LaunchingPad() {
       accVec = Matter.Vector.rotate(accVec, alpha);   
 
       newVel = Matter.Vector.add(newVel, accVec);
-      newVel = Matter.Vector.mult(newVel, 1.0 - jumper.friction);
-      print(jumper.friction);
+      newVel = Matter.Vector.mult(newVel, 1.0 - this.pullingSystem.friction);
 
       return newVel;
     },
 
   };
+
+  this.pullingSystem.setIndex(2);
 
   this.update = () => {
     if(this.isPullingJumper) {
@@ -76,8 +90,22 @@ function LaunchingPad() {
   }
 
   this.setJumperDynamic = () => {
-    Body.setStatic(jumper.body, false);
+    jumper.letSteering();
     Body.setVelocity(jumper.body, jumper.body.velocity);
+  }
+
+  this.pullJumperOverPad = () => {
+    this.canJump = false;
+    this.isPullingJumper = true;
+    this.pullingSystem.friction = jumper.friction * 2;
+    this.pullingSystem.pullingArray = PAD_COLLISION_POINTS;
+    for(let i=0; i<PAD_COLLISION_POINTS.length; i++) {
+      const point = PAD_COLLISION_POINTS[i];
+      if(point.x >= jumper.body.position.x) {
+        this.pullingSystem.setIndex(i);
+        return;
+      }
+    }
   }
 
   this.draw = () => {

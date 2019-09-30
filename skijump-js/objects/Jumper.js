@@ -23,8 +23,10 @@ function Jumper(x, y) {
 
   Body.setAngle(this.body, radians(40));
 
-  this.JUMP_FORCE = .0025;
+  this.JUMP_FORCE = .003;
   this.TURN_FORCE = .2;
+
+  this.canSteer = false;
 
   this.turningDir = 0;
   this.turningMod = 0.0;
@@ -34,9 +36,19 @@ function Jumper(x, y) {
 
   this.update = () => {
     if(this.body.isStatic) {
-      const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
+      // const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
       Matter.Body.translate(this.body, this.body.velocity);
-      // Matter.Body.translate(this.body, rotatedOffset);
+    }
+
+    if(!this.canSteer) {
+      return;
+    }
+
+    if(Matter.Query.collides(this.body, [pad.body]).length > 0) {
+      Matter.Body.setStatic(this.body, true);
+      this.canSteer = false;
+      pad.pullJumperOverPad();
+      return;
     }
 
     if(this.turningMod) {
@@ -81,23 +93,6 @@ function Jumper(x, y) {
       this.wantTurn = true;
       this.turningMod = 0.1;
     }
-    
-    if(keyCode == 'CapsLock') {
-      this.body.isStatic = !this.body.isStatic;
-    }
-
-    if(this.body.isStatic) {
-      const MOVE_SPEED = 10;
-      if(keyCode == 'KeyW') {
-        Matter.Body.setPosition(this.body, { x:this.body.position.x, y:this.body.position.y-MOVE_SPEED });
-      }else if(keyCode == 'KeyS') {
-        Matter.Body.setPosition(this.body, { x:this.body.position.x, y:this.body.position.y+MOVE_SPEED });
-      }else if(keyCode == 'KeyA') {
-        Matter.Body.setPosition(this.body, { x:this.body.position.x-MOVE_SPEED, y:this.body.position.y });
-      }else if(keyCode == 'KeyD') {
-        Matter.Body.setPosition(this.body, { x:this.body.position.x+MOVE_SPEED, y:this.body.position.y });
-      }
-    }
   }
 
   this.onKeyReleased = (keyCode) => {
@@ -113,6 +108,11 @@ function Jumper(x, y) {
     let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     Body.applyForce(this.body, this.body.position, jumpVector)
+  }
+  
+  this.letSteering = () => {
+    Matter.Body.setStatic(this.body, false);
+    this.canSteer = true;
   }
 
   this.turn = () => {
