@@ -25,10 +25,11 @@ function setup() {
   world = engine.world;
   world.gravity.y = .2;
 
-  jumper = new Jumper(100, 95);
+  // print(JUMPER_POSITION)
+  jumper = new Jumper(290, 1040);
   pad = new LaunchingPad();
   
-  camera = new Camera(3);
+  camera = new Camera(1);
 
   drawableObjects.push(pad);
   drawableObjects.push(jumper);

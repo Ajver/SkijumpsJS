@@ -46,16 +46,20 @@ function LaunchingPad() {
       const velAlpha = Math.atan2(currVel.y, currVel.x);
       const diffAlpha = velAlpha - alpha;
       
+      Body.setAngle(jumper.body, alpha);
+
       let newVel = Matter.Vector.create(0, 0);
       newVel.x = Math.cos(diffAlpha) * currVelMag;
       newVel = Matter.Vector.rotate(newVel, alpha);
-
-      Body.setAngle(jumper.body, alpha);
       
       let accVec = Matter.Vector.create(acc, 0);
       accVec = Matter.Vector.rotate(accVec, alpha);   
 
-      return Matter.Vector.add(newVel, accVec);
+      newVel = Matter.Vector.add(newVel, accVec);
+      newVel = Matter.Vector.mult(newVel, 1.0 - jumper.friction);
+      print(jumper.friction);
+
+      return newVel;
     },
 
   };
@@ -78,10 +82,13 @@ function LaunchingPad() {
 
   this.draw = () => {
     push();
-    fill(50, 50, 255);
+    fill(50, 50, 255, 128);
     
+    push();
+    scale(PAD_SCALE);
     image(this.img, 0, 0);
-    
+    pop();
+
     this.body.parts.forEach((part) => {
       beginShape();
       part.vertices.forEach((element) => {
@@ -90,19 +97,18 @@ function LaunchingPad() {
       });
       endShape(CLOSE);
     });
+    
+    pop();
+  }
 
-    this.onKeyPressed = (keyCode) => {
-      if(this.isPullingJumper) {
-        if(keyCode == 'Space') {
-          if(this.canJump) {
-            this.setJumperDynamic();
-            jumper.jump();
-          }
+  this.onKeyPressed = (keyCode) => {
+    if(this.isPullingJumper) {
+      if(keyCode == 'Space') {
+        if(this.canJump) {
+          this.setJumperDynamic();
+          jumper.jump();
         }
       }
     }
-
-
-    pop();
   }
 }

@@ -2,6 +2,7 @@
 function Jumper(x, y) {
   this.w = 10;
   this.h = 20;
+  this.friction = 0.007;
   const options = {
     friction: 0.0,
     frictionAir: 0.005,
@@ -70,9 +71,7 @@ function Jumper(x, y) {
 
   this.onKeyPressed = (keyCode) => {
     if(keyCode == 'Space') {
-      if(this.canJump()) {
-        this.jump();
-      }
+      
     }else if(keyCode == 'ArrowLeft') {
       this.turningDir = -1;
       this.wantTurn = true;
@@ -84,7 +83,6 @@ function Jumper(x, y) {
     }
     
     if(keyCode == 'CapsLock') {
-      // this.body.collisionFilter.mask = 0;
       this.body.isStatic = !this.body.isStatic;
     }
 
@@ -110,19 +108,11 @@ function Jumper(x, y) {
     }
   }
 
-  this.canJump = () => {
-    if(this.body.position.x <= JUMP_END_POINT) {
-      return Matter.Query.collides(this.body, [pad.body]).length > 0;
-    }
-    return false;
-  }
-
   this.jump = () => {
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     Body.applyForce(this.body, this.body.position, jumpVector)
-    print("jumped!");
   }
 
   this.turn = () => {
