@@ -2,7 +2,7 @@
 function Jumper(x, y) {
   this.w = 10;
   this.h = 20;
-  this.friction = 0.007;
+  this.friction = 0.0050;
   const options = {
     friction: 0.0,
     frictionAir: 0.005,
@@ -47,6 +47,7 @@ function Jumper(x, y) {
     if(Matter.Query.collides(this.body, [pad.body]).length > 0) {
       Matter.Body.setStatic(this.body, true);
       this.canSteer = false;
+      scoreCounter.calculateDistance(this.body.position.x);
       pad.pullJumperOverPad();
       return;
     }

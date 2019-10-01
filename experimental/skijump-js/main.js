@@ -9,6 +9,7 @@ let world = null;
 let camera = null;
 let jumper = null;
 let pad = null;
+let scoreCounter = null;
 
 let drawableObjects = [];
 
@@ -25,9 +26,10 @@ function setup() {
   world = engine.world;
   world.gravity.y = .2;
 
-  // print(JUMPER_POSITION)
   jumper = new Jumper(290, 1040);
+  // jumper = new Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
   pad = new LaunchingPad();
+  scoreCounter = new ScoreCounter();
   
   camera = new Camera(1);
 
@@ -49,6 +51,8 @@ function draw() {
     element.draw();
   });
   pop();
+
+  scoreCounter.draw();
 }
 
 function keyPressed(e) {

@@ -77,3 +77,4 @@ const PAD_PULLING_POINTS=[
 ];
 const JUMP_POINT = 1272.0;
 const JUMP_END_POINT = 1404.0;
+const POINT_K=2676.0;
