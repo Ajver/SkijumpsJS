@@ -117,6 +117,7 @@ function LaunchingPad() {
     image(this.img, 0, 0);
     pop();
 
+    /*
     this.body.parts.forEach((part) => {
       beginShape();
       part.vertices.forEach((element) => {
@@ -125,7 +126,8 @@ function LaunchingPad() {
       });
       endShape(CLOSE);
     });
-    
+    */
+   
     pop();
   }
 
