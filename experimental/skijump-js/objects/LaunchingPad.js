@@ -1,13 +1,13 @@
 
 function LaunchingPad() {
   this.body = PadCreator.createPadBody();
-  print(PadCreator.pointsList);
   
   World.add(world, this.body);
 
   this.img = PadCreator.padImg;
 
-  this.isPullingJumper = true;
+  this.isWaitingForLaunch = true;
+  this.isPullingJumper = false;
   this.canJump = false;
   this.pullingSystem = {
     pullingArray: PAD_PULLING_POINTS, 
@@ -42,6 +42,17 @@ function LaunchingPad() {
       
       if(position.x >= JUMP_POINT && position.x <= JUMP_END_POINT) {
         this.canJump = true;
+      }
+      
+      if(position.x >= FALL_LINE) {
+        // this.isPullingJumper = false;
+        jumper.isSlowingDown = true;
+        camera.isFollowingJumper = false;
+
+        window.setTimeout(() => {
+          // restartGame();
+          callDeffered(restartGame);
+        }, 1000);
       }
 
       return true;
@@ -132,12 +143,14 @@ function LaunchingPad() {
   }
 
   this.onKeyPressed = (keyCode) => {
-    if(this.isPullingJumper) {
-      if(keyCode == 'Space') {
+    if(keyCode == 'Space') {
+      if(this.isPullingJumper) {
         if(this.canJump) {
           this.setJumperDynamic();
           jumper.jump();
         }
+      }else if(this.isWaitingForLaunch) {
+        this.isPullingJumper = true;
       }
     }
   }

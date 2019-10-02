@@ -18,7 +18,6 @@ function Jumper(x, y) {
 
   this.body = Body.create(options);
   
-  
   World.add(world, this.body);
 
   Body.setAngle(this.body, radians(40));
@@ -27,6 +26,9 @@ function Jumper(x, y) {
   this.TURN_FORCE = .2;
 
   this.canSteer = false;
+
+  this.isSlowingDown = false;
+  this.SLOWING_MOD = .995; 
 
   this.turningDir = 0;
   this.turningMod = 0.0;
@@ -37,6 +39,10 @@ function Jumper(x, y) {
   this.update = () => {
     if(this.body.isStatic) {
       // const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
+      if(this.isSlowingDown) {
+        this.body.velocity.x *= this.SLOWING_MOD;
+        this.body.velocity.y *= this.SLOWING_MOD;
+      }
       Matter.Body.translate(this.body, this.body.velocity);
     }
 

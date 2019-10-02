@@ -13,6 +13,8 @@ let scoreCounter = null;
 
 let drawableObjects = [];
 
+let functionsToCall = [];
+
 function preload() {
   PadCreator.loadImages();
 }
@@ -26,15 +28,7 @@ function setup() {
   world = engine.world;
   world.gravity.y = .2;
 
-  jumper = new Jumper(290, 1040);
-  // jumper = new Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
-  pad = new LaunchingPad();
-  scoreCounter = new ScoreCounter();
-  
-  camera = new Camera(1);
-
-  drawableObjects.push(pad);
-  drawableObjects.push(jumper);
+  restartGame();
   
   Matter.Engine.run(engine);
 }
@@ -45,6 +39,8 @@ function draw() {
   jumper.update();
   pad.update();
 
+  camera.update();
+
   push();
   camera.transform();
   drawableObjects.forEach((element) => {
@@ -53,6 +49,25 @@ function draw() {
   pop();
 
   scoreCounter.draw();
+
+  functionsToCall.forEach((element) => {
+    element[0](...element[1]);
+  });
+  functionsToCall = [];
+}
+
+function restartGame() {
+  drawableObjects = [];
+
+  jumper = new Jumper(290, 1040);
+  // jumper = new Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
+  pad = new LaunchingPad();
+  scoreCounter = new ScoreCounter();
+  
+  camera = new Camera(1);
+
+  drawableObjects.push(pad);
+  drawableObjects.push(jumper);
 }
 
 function keyPressed(e) {
@@ -62,4 +77,8 @@ function keyPressed(e) {
 
 function keyReleased(e) {
   jumper.onKeyReleased(e.code);
+}
+
+function callDeffered(func, parrams=[]) {
+  functionsToCall.push([func, parrams]);
 }
