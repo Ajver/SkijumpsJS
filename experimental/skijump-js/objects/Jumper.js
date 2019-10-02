@@ -87,6 +87,9 @@ function Jumper(x, y) {
       }else {
         this.offsetAngle = HALF_PI;
       }
+      MessagesManager.fail();
+    }else {
+      MessagesManager.noFail();
     }
   }
 

@@ -37,14 +37,14 @@ function LaunchingPad() {
           pullingSystem.index = 1;
           this.isPullingJumper = false;
           this.canJump = false;
-          ui.updateMessageLabel("Use ARROWS to rotate");
+          MessagesManager.isFlying();
           return false;
         }
       }
       
       if(position.x >= JUMP_POINT && position.x <= JUMP_END_POINT) {
         this.canJump = true;
-        ui.updateMessageLabel("Press SPACE to jump");
+        MessagesManager.canJump();
       }
       
       if(!jumper.isSlowingDown) {
@@ -92,6 +92,10 @@ function LaunchingPad() {
 
   this.pullingSystem.setIndex(2);
 
+  this.onReady = () => {
+    MessagesManager.waitingForLaunch();
+  }
+
   this.update = () => {
     if(this.isPullingJumper) {
       if(this.pullingSystem.update()) {
@@ -109,7 +113,7 @@ function LaunchingPad() {
   this.launch = () => {
     this.isWaitingForLaunch = false;
     this.isPullingJumper = true;
-    ui.updateMessageLabel("");
+    MessagesManager.skiingDown();
   }
 
   this.setJumperDynamic = () => {

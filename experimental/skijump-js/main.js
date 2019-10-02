@@ -71,6 +71,8 @@ function restartGame() {
 
   drawableObjects.push(pad);
   drawableObjects.push(jumper);
+
+  pad.onReady();
 }
 
 function keyPressed(e) {

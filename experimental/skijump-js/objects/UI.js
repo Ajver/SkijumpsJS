@@ -27,6 +27,5 @@ function UI() {
   }
   
   this.updateScoreLabel(0);
-  this.updateMessageLabel("Press SPACE to launch");
 
 }
