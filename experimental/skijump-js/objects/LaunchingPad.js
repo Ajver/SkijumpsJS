@@ -120,15 +120,32 @@ function LaunchingPad() {
 
   this.startPullingJumper = () => {
     this.isPullingJumper = true;
-    this.pullingSystem.friction = jumper.friction * 2;
+    this.pullingSystem.friction = jumper.friction * 3;
     this.pullingSystem.pullingArray = PAD_COLLISION_POINTS;
     for(let i=0; i<PAD_COLLISION_POINTS.length; i++) {
       const point = PAD_COLLISION_POINTS[i];
       if(point.x >= jumper.body.position.x) {
         this.pullingSystem.setIndex(i);
+        this.setJumperRightPosition();
         return;
       }
     }
+  }
+
+  this.setJumperRightPosition = () => {
+    const jumperRightPosition = this.getJumperRightPosition();
+    Body.setPosition(jumper.body, jumperRightPosition);
+  }
+
+  this.getJumperRightPosition = () => {
+    const jumperX = jumper.body.position.x;
+    const diffX = jumperX - this.pullingSystem.p1.x;
+    const pullingPointsDiffX = this.pullingSystem.p2.x - this.pullingSystem.p1.x;
+    const pullingPointsDiffY = this.pullingSystem.p2.y - this.pullingSystem.p1.y;
+    const k = diffX / pullingPointsDiffX;
+    const nextJumperY = this.pullingSystem.p1.y + pullingPointsDiffY * k;
+    const nextJumperPos = Matter.Vector.create(jumperX, nextJumperY);
+    return Matter.Vector.add(nextJumperPos, jumper.offsetPoint)
   }
 
   this.draw = () => {
