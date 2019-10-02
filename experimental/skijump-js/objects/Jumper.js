@@ -51,10 +51,7 @@ function Jumper(x, y) {
     }
 
     if(Matter.Query.collides(this.body, [pad.body]).length > 0) {
-      Matter.Body.setStatic(this.body, true);
-      this.canSteer = false;
-      scoreCounter.calculateDistance(this.body.position.x);
-      pad.pullJumperOverPad();
+      this.onPadCollide();
       return;
     }
 
@@ -67,6 +64,15 @@ function Jumper(x, y) {
 
       this.turn();
     }
+  }
+
+  this.onPadCollide = () => {
+    Matter.Body.setStatic(this.body, true);
+    this.canSteer = false;
+    scoreCounter.calculateDistance(this.body.position.x);
+    ui.updateScoreLabel(scoreCounter.score);
+    pad.startPullingJumper();
+    ui.updateMessageLabel("");
   }
 
   this.draw = () => {

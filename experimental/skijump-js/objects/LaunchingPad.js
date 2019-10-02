@@ -36,23 +36,26 @@ function LaunchingPad() {
         }else {
           pullingSystem.index = 1;
           this.isPullingJumper = false;
+          this.canJump = false;
+          ui.updateMessageLabel("Use ARROWS to rotate");
           return false;
         }
       }
       
       if(position.x >= JUMP_POINT && position.x <= JUMP_END_POINT) {
         this.canJump = true;
+        ui.updateMessageLabel("Press SPACE to jump");
       }
       
-      if(position.x >= FALL_LINE) {
-        // this.isPullingJumper = false;
-        jumper.isSlowingDown = true;
-        camera.isFollowingJumper = false;
+      if(!jumper.isSlowingDown) {
+        if(position.x >= FALL_LINE) {
+          jumper.isSlowingDown = true;
+          camera.isFollowingJumper = false;
 
-        window.setTimeout(() => {
-          // restartGame();
-          callDeffered(restartGame);
-        }, 1000);
+          window.setTimeout(() => {
+            callDeffered(restartGame);
+          }, 1000);
+        } 
       }
 
       return true;
@@ -92,12 +95,22 @@ function LaunchingPad() {
   this.update = () => {
     if(this.isPullingJumper) {
       if(this.pullingSystem.update()) {
-        const vel = this.pullingSystem.getNewVelocity();
-        jumper.body.velocity = vel;
+        this.setJumperVelocity();
       }else {
         this.setJumperDynamic();
       }
     }
+  }
+
+  this.setJumperVelocity = () => {
+    const vel = this.pullingSystem.getNewVelocity();
+    jumper.body.velocity = vel;
+  }
+
+  this.launch = () => {
+    this.isWaitingForLaunch = false;
+    this.isPullingJumper = true;
+    ui.updateMessageLabel("");
   }
 
   this.setJumperDynamic = () => {
@@ -105,8 +118,7 @@ function LaunchingPad() {
     Body.setVelocity(jumper.body, jumper.body.velocity);
   }
 
-  this.pullJumperOverPad = () => {
-    this.canJump = false;
+  this.startPullingJumper = () => {
     this.isPullingJumper = true;
     this.pullingSystem.friction = jumper.friction * 2;
     this.pullingSystem.pullingArray = PAD_COLLISION_POINTS;
@@ -144,13 +156,11 @@ function LaunchingPad() {
 
   this.onKeyPressed = (keyCode) => {
     if(keyCode == 'Space') {
-      if(this.isPullingJumper) {
-        if(this.canJump) {
-          this.setJumperDynamic();
-          jumper.jump();
-        }
+      if(this.canJump) {
+        this.setJumperDynamic();
+        jumper.jump();
       }else if(this.isWaitingForLaunch) {
-        this.isPullingJumper = true;
+        this.launch();
       }
     }
   }

@@ -10,6 +10,7 @@ let camera = null;
 let jumper = null;
 let pad = null;
 let scoreCounter = null;
+let ui = null;
 
 let drawableObjects = [];
 
@@ -48,7 +49,7 @@ function draw() {
   });
   pop();
 
-  scoreCounter.draw();
+  ui.draw();
 
   functionsToCall.forEach((element) => {
     element[0](...element[1]);
@@ -66,8 +67,12 @@ function restartGame() {
   
   camera = new Camera(1);
 
+  ui = new UI();
+
   drawableObjects.push(pad);
   drawableObjects.push(jumper);
+
+  print(drawableObjects.length);
 }
 
 function keyPressed(e) {
