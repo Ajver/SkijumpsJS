@@ -35,6 +35,7 @@ function Jumper(x, y) {
   this.wantTurn = false;
 
   this.offsetPoint = Matter.Vector.create(0, -10);
+  this.offsetAngle = 0;
 
   this.update = () => {
     if(this.body.isStatic) {
@@ -51,7 +52,7 @@ function Jumper(x, y) {
     }
 
     if(Matter.Query.collides(this.body, [pad.body]).length > 0) {
-      this.onPadCollide();
+      this.onPadHit();
       return;
     }
 
@@ -66,13 +67,34 @@ function Jumper(x, y) {
     }
   }
 
-  this.onPadCollide = () => {
+  this.onPadHit = () => {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
     scoreCounter.calculateDistance(this.body.position.x);
     ui.updateScoreLabel(scoreCounter.score);
     pad.startPullingJumper();
     ui.updateMessageLabel("");
+    this.checkIfFail();
+  }
+
+  this.checkIfFail = () => {
+    const angle = this.body.angle;
+    const padAngle = this.getPadAngle();
+    const diffAngle = angle - padAngle;
+    if(Math.abs(diffAngle) >= radians(20)) {
+      if(diffAngle < 0) {
+        this.offsetAngle = -HALF_PI;
+      }else {
+        this.offsetAngle = HALF_PI;
+      }
+    }
+  }
+
+  this.getPadAngle = () => {
+    const diffX = pad.pullingSystem.p2.x - pad.pullingSystem.p1.x; 
+    const diffY = pad.pullingSystem.p2.y - pad.pullingSystem.p1.y; 
+    const padAngle = Math.atan2(diffY, diffX);
+    return padAngle;
   }
 
   this.draw = () => {

@@ -61,7 +61,7 @@ function LaunchingPad() {
       return true;
     },
 
-    getNewVelocity: () => {
+    setNewVelocityAndAngle: () => {
       const diff_x = this.pullingSystem.p2.x - this.pullingSystem.p1.x;
       const diff_y = this.pullingSystem.p2.y - this.pullingSystem.p1.y;
       const alpha = Math.atan2(diff_y, diff_x);
@@ -73,7 +73,7 @@ function LaunchingPad() {
       const velAlpha = Math.atan2(currVel.y, currVel.x);
       const diffAlpha = velAlpha - alpha;
       
-      Body.setAngle(jumper.body, alpha);
+      Body.setAngle(jumper.body, alpha+jumper.offsetAngle);
 
       let newVel = Matter.Vector.create(0, 0);
       newVel.x = Math.cos(diffAlpha) * currVelMag;
@@ -85,7 +85,7 @@ function LaunchingPad() {
       newVel = Matter.Vector.add(newVel, accVec);
       newVel = Matter.Vector.mult(newVel, 1.0 - this.pullingSystem.friction);
 
-      return newVel;
+      jumper.body.velocity = newVel;
     },
 
   };
@@ -103,8 +103,7 @@ function LaunchingPad() {
   }
 
   this.setJumperVelocity = () => {
-    const vel = this.pullingSystem.getNewVelocity();
-    jumper.body.velocity = vel;
+    this.pullingSystem.setNewVelocityAndAngle();
   }
 
   this.launch = () => {
