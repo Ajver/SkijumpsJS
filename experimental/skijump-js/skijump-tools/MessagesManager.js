@@ -1,5 +1,5 @@
 
-const MessagesManager = {}
+const MessagesManager = {};
 
 MessagesManager.setMessage = (message) => {
   ui.updateMessageLabel(message);

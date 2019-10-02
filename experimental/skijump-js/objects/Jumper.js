@@ -73,7 +73,6 @@ function Jumper(x, y) {
     scoreCounter.calculateDistance(this.body.position.x);
     ui.updateScoreLabel(scoreCounter.score);
     pad.startPullingJumper();
-    ui.updateMessageLabel("");
     this.checkIfFail();
   }
 
