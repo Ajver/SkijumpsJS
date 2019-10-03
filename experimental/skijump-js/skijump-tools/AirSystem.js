@@ -14,6 +14,10 @@ function AirSystem() {
     const forceVector = this.calculateAerodynamicForce();
     const newVelocity = Matter.Vector.add(jumper.body.velocity, forceVector);
     Body.setVelocity(jumper.body, newVelocity);
+    
+    const rotateForce = this.calculateJumperRotateForce();
+    const newAngularVelocity = (jumper.body.angularVelocity + rotateForce) * jumper.angularFriction;
+    Body.setAngularVelocity(jumper.body, newAngularVelocity);
   }
 
   this.getAngleMod = () => {
@@ -25,7 +29,7 @@ function AirSystem() {
   }
 
   this.calculateAerodynamicForce = () => {
-    const relativeVelocity = this.getrelativeVelocity();
+    const relativeVelocity = this.getRelativeVelocity();
     const relVelSqr = Matter.Vector.magnitudeSquared(relativeVelocity);
     const liftMod = 1;
     
@@ -37,13 +41,24 @@ function AirSystem() {
     return forceVector;
   }
 
-  this.getrelativeVelocity = () => {
+  this.getRelativeVelocity = () => {
     const airVelocity = this.getAirVelocity();
     return Matter.Vector.sub(jumper.body.velocity, airVelocity);
   }
-
+  
   this.getAirVelocity = () => {
     return this.getVectorFromAngle(this.angle, this.airForce);
+  }
+
+  this.calculateJumperRotateForce = () => {
+    let relativeAngle = jumper.body.angle - this.angle;
+    while(relativeAngle > PI) {
+      relativeAngle -= PI;
+    }
+    relativeAngle /= PI;
+    const rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * this.airDensity;
+    print(relativeAngle * rotateForce);
+    return relativeAngle * rotateForce;
   }
 
   this.getVectorAngle = (vector) => {

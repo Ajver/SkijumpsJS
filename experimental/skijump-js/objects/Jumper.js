@@ -3,6 +3,7 @@ function Jumper(x, y) {
   this.w = 10;
   this.h = 20;
   this.friction = 0.0070;
+  this.angularFriction = 0.94;
 
   const options = {
     friction: 0.0,
