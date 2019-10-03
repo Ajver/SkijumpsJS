@@ -9,7 +9,7 @@ let world = null;
 let camera = null;
 let jumper = null;
 let pad = null;
-let airSpawner = null;
+let airSystem = null;
 let scoreCounter = null;
 let ui = null;
 
@@ -30,7 +30,7 @@ function setup() {
   world = engine.world;
   world.gravity.y = .2;
 
-  airSpawner = new AirSpawner();
+  airSystem = new AirSystem();
   restartGame();
   
   Matter.Engine.run(engine);
@@ -42,8 +42,6 @@ function draw() {
   jumper.update();
   pad.update();
 
-  airSpawner.update();
-
   camera.update();
 
   push();
@@ -51,6 +49,7 @@ function draw() {
   drawableObjects.forEach((element) => {
     element.draw();
   });
+  airSystem.update();
   pop();
 
   ui.draw();
@@ -75,7 +74,6 @@ function restartGame() {
 
   drawableObjects.push(pad);
   drawableObjects.push(jumper);
-  drawableObjects.push(airSpawner);
 
   pad.onReady();
 }

@@ -96,6 +96,7 @@ function LaunchingPad() {
   this.onKeyPressed = (keyCode) => {
     if(keyCode == 'Space') {
       if(this.canJump) {
+        this.isPullingJumper = false;
         this.setJumperDynamic();
         jumper.jump();
       }else if(this.isWaitingForLaunch) {

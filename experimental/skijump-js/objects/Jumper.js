@@ -2,10 +2,12 @@
 function Jumper(x, y) {
   this.w = 10;
   this.h = 20;
-  this.friction = 0.0050;
+  this.friction = 0.0070;
+  this.S = 1;
+
   const options = {
     friction: 0.0,
-    frictionAir: 0.005,
+    frictionAir: 0.0050,
     density: 1,
     isStatic: true,
     parts: [
@@ -22,7 +24,7 @@ function Jumper(x, y) {
 
   Body.setAngle(this.body, radians(40));
 
-  this.JUMP_FORCE = .003;
+  this.JUMP_FORCE = 2.9;
   this.TURN_FORCE = .2;
 
   this.canSteer = false;
@@ -144,7 +146,8 @@ function Jumper(x, y) {
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
-    Body.applyForce(this.body, this.body.position, jumpVector)
+    const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
+    Body.setVelocity(this.body, newVelocity);
   }
   
   this.letSteering = () => {
