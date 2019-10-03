@@ -2,21 +2,26 @@
 function AirSystem() {
   this.angle = Math.random() * TWO_PI;
   this.airForce = 15;
-  this.AIR_CHANGER_MOD = 0.08;
   this.airDensity = 0.0001;
 
   this.update = () => {
-    this.angle += (Math.random() - 0.5) * this.AIR_CHANGER_MOD;
+    this.angle += this.getAngleMod();
     ui.updateAirAngle(this.angle);
 
-    const forceVector = this.calculateAerodynamicForce();
-    
     if(jumper.body.isStatic) {
       return;
     }
-
+    const forceVector = this.calculateAerodynamicForce();
     const newVelocity = Matter.Vector.add(jumper.body.velocity, forceVector);
     Body.setVelocity(jumper.body, newVelocity);
+  }
+
+  this.getAngleMod = () => {
+    const changeAbout = Math.pow(Math.random(), 6) * 0.1;
+    const tempAngle = this.angle + QUARTER_PI;
+    const directionMod = Math.abs(Math.sin(tempAngle)*0.5) + 0.1;
+    const changeDir = Math.random() - directionMod;
+    return changeDir * changeAbout;
   }
 
   this.calculateAerodynamicForce = () => {
@@ -24,34 +29,10 @@ function AirSystem() {
     const relVelSqr = Matter.Vector.magnitudeSquared(relativeVelocity);
     const liftMod = 1;
     
-    let force = this.airDensity * jumper.S * relVelSqr * liftMod * 0.5;
-    // force = Math.min(force, 0.0001);
+    let force = this.airDensity * relVelSqr * liftMod * 0.5;
 
     let forceAngle = this.getVectorAngle(relativeVelocity) - HALF_PI;
     forceVector = this.getVectorFromAngle(forceAngle, force);
-
-    push();
-
-    translate(jumper.body.position.x, jumper.body.position.y);
-    strokeWeight(2);
-    fill(0);
-    let vec = jumper.body.velocity;//this.getVectorFromAngle(this.getVectorAngle(relativeVelocity), 40);
-    //line(0, 0, vec.x, vec.y);
-    
-    vec = Matter.Vector.mult(this.getAirVelocity(), 30);
-    stroke(255, 0, 0);
-    //line(0, 0, vec.x, vec.y);
-    
-    vec = Matter.Vector.mult(relativeVelocity, 5);
-    stroke(0, 0, 255);
-    //line(0, 0, vec.x, vec.y);
-
-    vec = Matter.Vector.mult(forceVector, 1000); //Matter.Vector.mult(Matter.Vector.normalise(forceVector), 50);
-    stroke(200, 108, 0);
-    line(0, 0, vec.x, vec.y);
-
-    pop()
-
 
     return forceVector;
   }
