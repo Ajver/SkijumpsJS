@@ -121,23 +121,43 @@ function Jumper(x, y) {
 
   this.onKeyPressed = () => {
     if(keyCode == LEFT_ARROW) {
-      this.turningDir = -1;
-      this.wantTurn = true;
-      this.turningMod = 0.1;
+      this.wantTurnTo(-1);
     }else if(keyCode == RIGHT_ARROW) {
-      this.turningDir = 1;
-      this.wantTurn = true;
-      this.turningMod = 0.1;
+      this.wantTurnTo(1);
     }
   }
 
   this.onKeyReleased = () => {
-    if(keyCode == LEFT_ARROW) {
-      this.wantTurn = false;
-    }else if(keyCode == RIGHT_ARROW) {
+    if(keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
       this.wantTurn = false;
     }
   }
+
+  this.onScreenTouched = () => { 
+    this.setTurnDirByTouch();
+  }
+
+  this.onScreenTouchMoved = () => {
+    this.setTurnDirByTouch();
+  }
+
+  this.setTurnDirByTouch = () => {
+    if(mouseScreenX < SCREEN_WIDTH*0.5) {
+      this.wantTurnTo(-1);
+    }else {
+      this.wantTurnTo(1);
+    }
+  }
+  
+  this.onScreenTouchEnded = () => {
+    this.wantTurn = false;
+  }
+
+  this.wantTurnTo = (dir) => {
+    this.turningDir = dir;
+    this.wantTurn = true;
+    this.turningMod = 0.1;
+  } 
 
   this.jump = () => {
     const jumpAngle = this.body.angle;

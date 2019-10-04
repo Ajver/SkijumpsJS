@@ -34,10 +34,10 @@ function preload() {
 function setup() {
   const canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
   canvas.parent('skijump-game-container');
-
+  
   canvasScaler = new CanvasScaler();
   canvasScaler.setup();
-  
+
   rectMode(CENTER)
 
   engine = Matter.Engine.create();
@@ -48,6 +48,8 @@ function setup() {
   restartGame();
   
   Matter.Engine.run(engine);
+
+  setupInputManager();
 }
 
 function draw() {
@@ -84,7 +86,6 @@ function restartGame() {
   drawableObjects = [];
 
   jumper = new Jumper(310, 1060);
-  // jumper = new Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
   pad = new LaunchingPad();
   scoreCounter = new ScoreCounter();
   

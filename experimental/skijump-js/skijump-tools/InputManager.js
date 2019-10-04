@@ -1,36 +1,64 @@
 
 const SPACE = 32;
 
-function touchStarted() {
-  if(mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height) {
-    pad.screenTouched();
-  }
-
-  return false;
-}
-
-function keyPressed() {  
+const onKeyPressed = () => {  
   jumper.onKeyPressed();
   pad.onKeyPressed();
 
   return false;
 }
 
-function keyReleased() {
+const onKeyReleased = () => {
   jumper.onKeyReleased();
   
   return false;
 }
 
-function mouseMoved() {
+const onTouchStarted = () => {
+  if(isMouseInCanvas()) {
+    jumper.onScreenTouched();
+    pad.onScreenTouched();
+  }
+
+  return false;
+}
+
+const onTouchEnded = () => {
+  if(isMouseInCanvas()) {
+    jumper.onScreenTouchEnded();
+  }
+
+  return false;
+}
+
+const onMouseMoved = () => {
   updateMouseScreenPosition()
 }
 
-function mouseDragged() {
+const onMouseDragged = () => {
   updateMouseScreenPosition()
+
+  if(isMouseInCanvas()) {
+    jumper.onScreenTouchMoved();
+  }
+
+  return false;
 }
 
-function updateMouseScreenPosition() {
+const isMouseInCanvas = () => {
+  return mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height;
+}
+
+const updateMouseScreenPosition = () => {
   mouseScreenX = floor(mouseX / canvasScaler.scale);
   mouseScreenY = floor(mouseY / canvasScaler.scale);
+}
+
+function setupInputManager() {
+  keyPressed = onKeyPressed;
+  keyReleased = onKeyReleased;
+  touchStarted = onTouchStarted;
+  touchEnded = onTouchEnded;
+  mouseMoved = onMouseMoved;
+  mouseDragged = onMouseDragged;
 }

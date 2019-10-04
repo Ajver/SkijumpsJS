@@ -95,10 +95,10 @@ function LaunchingPad() {
     }
   }
 
-  this.screenTouched = () => {
+  this.onScreenTouched = () => {
     this.onSpaceHit();
   }
-
+  
   this.onSpaceHit = () => {
     if(this.canJump) {
       this.endOfPulling();
