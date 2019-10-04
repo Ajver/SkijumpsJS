@@ -1,6 +1,6 @@
 
 function AirSystem() {
-  this.angle = Math.random() * TWO_PI;
+  this.angle = random() * TWO_PI;
   this.airForce = 15;
   this.airDensity = 0.0001;
 
@@ -21,10 +21,10 @@ function AirSystem() {
   }
 
   this.getAngleMod = () => {
-    const changeAbout = Math.pow(Math.random(), 6) * 0.1;
+    const changeAbout = pow(random(), 6) * 0.1;
     const tempAngle = this.angle + QUARTER_PI;
-    const directionMod = Math.abs(Math.sin(tempAngle)*0.5) + 0.1;
-    const changeDir = Math.random() - directionMod;
+    const directionMod = abs(sin(tempAngle)*0.5) + 0.1;
+    const changeDir = random() - directionMod;
     return changeDir * changeAbout;
   }
 
@@ -72,12 +72,12 @@ function AirSystem() {
   }
 
   this.getVectorAngle = (vector) => {
-    return Math.atan2(vector.y, vector.x);
+    return atan2(vector.y, vector.x);
   }
 
   this.getVectorFromAngle = (angle, length=1.0) => {
-    const x = Math.cos(angle) * length;
-    const y = Math.sin(angle) * length;
+    const x = cos(angle) * length;
+    const y = sin(angle) * length;
     return Matter.Vector.create(x, y);
   }
 

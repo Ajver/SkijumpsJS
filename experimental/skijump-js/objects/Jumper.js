@@ -81,7 +81,7 @@ function Jumper(x, y) {
     const angle = this.body.angle;
     const padAngle = this.getPadAngle();
     const diffAngle = angle - padAngle;
-    if(Math.abs(diffAngle) >= radians(20)) {
+    if(abs(diffAngle) >= radians(20)) {
       if(diffAngle < 0) {
         this.offsetAngle = -HALF_PI;
       }else {
@@ -96,7 +96,7 @@ function Jumper(x, y) {
   this.getPadAngle = () => {
     const diffX = pad.pullingSystem.p2.x - pad.pullingSystem.p1.x; 
     const diffY = pad.pullingSystem.p2.y - pad.pullingSystem.p1.y; 
-    const padAngle = Math.atan2(diffY, diffX);
+    const padAngle = atan2(diffY, diffX);
     return padAngle;
   }
 

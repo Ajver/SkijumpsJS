@@ -31,7 +31,7 @@ const PadCreator = {
     const p2 = Matter.Vector.create(PAD_COLLISION_POINTS[p2_idx].x, PAD_COLLISION_POINTS[p2_idx].y);
 
     const vec = Matter.Vector.create(p2.x - p1.x, p2.y - p1.y);
-    const angle = Math.atan2(vec.y, vec.x);
+    const angle = atan2(vec.y, vec.x);
 
     const mag = Matter.Vector.magnitude(vec);
     const r = mag / PadCreator.SQRT_3;

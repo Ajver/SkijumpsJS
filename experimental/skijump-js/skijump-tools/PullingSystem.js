@@ -47,19 +47,19 @@ function PullingSystem() {
   this.setNewVelocityAndAngle = () => {
     const diff_x = this.p2.x - this.p1.x;
     const diff_y = this.p2.y - this.p1.y;
-    const alpha = Math.atan2(diff_y, diff_x);
-    const acc = Math.sin(alpha) * world.gravity.y;
+    const alpha = atan2(diff_y, diff_x);
+    const acc = sin(alpha) * world.gravity.y;
 
     const currVel = jumper.body.velocity
     const currVelMag = Matter.Vector.magnitude(currVel);
     
-    const velAlpha = Math.atan2(currVel.y, currVel.x);
+    const velAlpha = atan2(currVel.y, currVel.x);
     const diffAlpha = velAlpha - alpha;
     
     Body.setAngle(jumper.body, alpha+jumper.offsetAngle);
 
     let newVel = Matter.Vector.create(0, 0);
-    newVel.x = Math.cos(diffAlpha) * currVelMag;
+    newVel.x = cos(diffAlpha) * currVelMag;
     newVel = Matter.Vector.rotate(newVel, alpha);
     
     let accVec = Matter.Vector.create(acc, 0);

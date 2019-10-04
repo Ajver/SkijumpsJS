@@ -14,7 +14,7 @@ function ScoreCounter() {
     const mettersDistTo_K = distTo_K * PIXELS_TO_METERS;
 
     let points = 60 + (mettersDistTo_K * POINT_PER_METER);
-    points = Math.round(points, 2);
+    points = round(points, 2);
 
     this.score = points;
   }

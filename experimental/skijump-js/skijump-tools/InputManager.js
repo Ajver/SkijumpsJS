@@ -31,6 +31,6 @@ function mouseDragged() {
 }
 
 function updateMouseScreenPosition() {
-  mouseScreenX = Math.floor(mouseX / canvasScaler.scale);
-  mouseScreenY = Math.floor(mouseY / canvasScaler.scale);
+  mouseScreenX = floor(mouseX / canvasScaler.scale);
+  mouseScreenY = floor(mouseY / canvasScaler.scale);
 }
