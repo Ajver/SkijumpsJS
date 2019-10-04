@@ -15,6 +15,7 @@ function UI() {
 
     textAlign(CENTER);
     text(this.messageLabel, SCREEN_WIDTH*0.5, SCREEN_HEIGHT-40);
+    text("Rotation: " + pRotationZ, SCREEN_WIDTH*0.5, 40);
 
     translate(80, 80);
     strokeWeight(4);
