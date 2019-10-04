@@ -6,6 +6,10 @@ const Bodies = Matter.Bodies;
 const World = Matter.World;
 const Body = Matter.Body;
 
+// Mouse position in scaled canvas
+let mouseScreenX = 0;
+let mouseScreenY = 0;
+
 let canvasScaler = null;
 
 let engine = null;

@@ -21,3 +21,16 @@ function keyReleased() {
   
   return false;
 }
+
+function mouseMoved() {
+  updateMouseScreenPosition()
+}
+
+function mouseDragged() {
+  updateMouseScreenPosition()
+}
+
+function updateMouseScreenPosition() {
+  mouseScreenX = Math.floor(mouseX / canvasScaler.scale);
+  mouseScreenY = Math.floor(mouseY / canvasScaler.scale);
+}
