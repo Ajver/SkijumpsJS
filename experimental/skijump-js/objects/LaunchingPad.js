@@ -89,14 +89,23 @@ function LaunchingPad() {
     pop();
   }
 
-  this.onKeyPressed = (keyCode) => {
-    if(keyCode == 'Space') {
-      if(this.canJump) {
-        this.endOfPulling();
-        jumper.jump();
-      }else if(this.isWaitingForLaunch) {
-        this.launch();
-      }
+  this.onKeyPressed = () => {
+    if(keyCode == SPACE) {
+      this.onSpaceHit();
     }
   }
+
+  this.screenTouched = () => {
+    this.onSpaceHit();
+  }
+
+  this.onSpaceHit = () => {
+    if(this.canJump) {
+      this.endOfPulling();
+      jumper.jump();
+    }else if(this.isWaitingForLaunch) {
+      this.launch();
+    }
+  }
+
 }

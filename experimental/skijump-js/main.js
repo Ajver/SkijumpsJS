@@ -94,15 +94,6 @@ function restartGame() {
   pad.onReady();
 }
 
-function keyPressed(e) {
-  jumper.onKeyPressed(e.code);
-  pad.onKeyPressed(e.code);
-}
-
-function keyReleased(e) {
-  jumper.onKeyReleased(e.code);
-}
-
 function callDeffered(func, parrams=[]) {
   functionsToCall.push([func, parrams]);
 }

@@ -119,22 +119,22 @@ function Jumper(x, y) {
     });
   }
 
-  this.onKeyPressed = (keyCode) => {
-    if(keyCode == 'ArrowLeft') {
+  this.onKeyPressed = () => {
+    if(keyCode == LEFT_ARROW) {
       this.turningDir = -1;
       this.wantTurn = true;
       this.turningMod = 0.1;
-    }else if(keyCode == 'ArrowRight') {
+    }else if(keyCode == RIGHT_ARROW) {
       this.turningDir = 1;
       this.wantTurn = true;
       this.turningMod = 0.1;
     }
   }
 
-  this.onKeyReleased = (keyCode) => {
-    if(keyCode == 'ArrowLeft') {
+  this.onKeyReleased = () => {
+    if(keyCode == LEFT_ARROW) {
       this.wantTurn = false;
-    }else if(keyCode == 'ArrowRight') {
+    }else if(keyCode == RIGHT_ARROW) {
       this.wantTurn = false;
     }
   }
