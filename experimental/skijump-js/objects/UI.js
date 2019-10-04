@@ -11,10 +11,10 @@ function UI() {
     fill(0);
     textSize(32);
     
-    text(this.scoreLabel, width-240, 40);
+    text(this.scoreLabel, SCREEN_WIDTH-240, 40);
 
     textAlign(CENTER);
-    text(this.messageLabel, width*0.5, height-40);
+    text(this.messageLabel, SCREEN_WIDTH*0.5, SCREEN_HEIGHT-40);
 
     translate(80, 80);
     strokeWeight(4);

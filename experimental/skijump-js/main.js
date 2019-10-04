@@ -1,7 +1,12 @@
 
+const SCREEN_WIDTH = 1200;
+const SCREEN_HEIGHT = 720;
+
 const Bodies = Matter.Bodies; 
 const World = Matter.World;
 const Body = Matter.Body;
+
+let canvasScaler = null;
 
 let engine = null;
 let world = null;
@@ -17,13 +22,18 @@ let drawableObjects = [];
 
 let functionsToCall = [];
 
+
 function preload() {
   PadCreator.loadImages();
 }
 
 function setup() {
-  const canvas = createCanvas(1280, 720);
+  const canvas = createCanvas(SCREEN_WIDTH, SCREEN_HEIGHT);
   canvas.parent('skijump-game-container');
+
+  canvasScaler = new CanvasScaler();
+  canvasScaler.setup();
+  
   rectMode(CENTER)
 
   engine = Matter.Engine.create();
@@ -39,20 +49,26 @@ function setup() {
 function draw() {
   background(51);
 
+  push();
+  canvasScaler.transform();
+
   jumper.update();
   pad.update();
 
   camera.update();
-
+  
   push();
   camera.transform();
   drawableObjects.forEach((element) => {
     element.draw();
   });
-  airSystem.update();
   pop();
-
+  
+  airSystem.update();
+  
   ui.draw();
+  
+  pop();
 
   functionsToCall.forEach((element) => {
     element[0](...element[1]);
@@ -63,7 +79,7 @@ function draw() {
 function restartGame() {
   drawableObjects = [];
 
-  jumper = new Jumper(290, 1040);
+  jumper = new Jumper(310, 1060);
   // jumper = new Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
   pad = new LaunchingPad();
   scoreCounter = new ScoreCounter();

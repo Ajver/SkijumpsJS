@@ -85,7 +85,7 @@ function LaunchingPad() {
     scale(PAD_SCALE);
     image(this.img, 0, 0);
     pop();
-    
+
     pop();
   }
 

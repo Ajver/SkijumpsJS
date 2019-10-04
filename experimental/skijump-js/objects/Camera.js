@@ -4,8 +4,8 @@ function Camera(scaleMod) {
     -200,
     0
   )
-  this.offset.x += width*0.5;
-  this.offset.y += height*0.5;
+  this.offset.x += SCREEN_WIDTH*0.5;
+  this.offset.y += SCREEN_HEIGHT*0.5;
   this.scale = scaleMod;
 
   this.targetPosition = createVector(0, 0);
