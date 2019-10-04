@@ -41,7 +41,6 @@ function Jumper(x, y) {
 
   this.update = () => {
     if(this.body.isStatic) {
-      // const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
       if(this.isSlowingDown) {
         this.body.velocity.x *= this.SLOWING_MOD;
         this.body.velocity.y *= this.SLOWING_MOD;
@@ -121,9 +120,7 @@ function Jumper(x, y) {
   }
 
   this.onKeyPressed = (keyCode) => {
-    if(keyCode == 'Space') {
-      
-    }else if(keyCode == 'ArrowLeft') {
+    if(keyCode == 'ArrowLeft') {
       this.turningDir = -1;
       this.wantTurn = true;
       this.turningMod = 0.1;

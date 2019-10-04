@@ -20,7 +20,7 @@ function LaunchingPad() {
       if(this.pullingSystem.update()) {
         this.setJumperVelocity();
       }else {
-        this.setJumperDynamic();
+        this.endOfPulling();
       }
     }
   }
@@ -33,6 +33,13 @@ function LaunchingPad() {
     this.isWaitingForLaunch = false;
     this.isPullingJumper = true;
     MessagesManager.skiingDown();
+  }
+
+  this.endOfPulling = () => {
+    this.isPullingJumper = false;
+    this.setJumperDynamic();
+    this.canJump = false;
+    MessagesManager.isFlying();
   }
 
   this.setJumperDynamic = () => {
@@ -78,26 +85,14 @@ function LaunchingPad() {
     scale(PAD_SCALE);
     image(this.img, 0, 0);
     pop();
-
-    /*
-    this.body.parts.forEach((part) => {
-      beginShape();
-      part.vertices.forEach((element) => {
-        vertex(element.x, element.y)
-        circle(element.x, element.y, 3);
-      });
-      endShape(CLOSE);
-    });
-    */
-   
+    
     pop();
   }
 
   this.onKeyPressed = (keyCode) => {
     if(keyCode == 'Space') {
       if(this.canJump) {
-        this.isPullingJumper = false;
-        this.setJumperDynamic();
+        this.endOfPulling();
         jumper.jump();
       }else if(this.isWaitingForLaunch) {
         this.launch();

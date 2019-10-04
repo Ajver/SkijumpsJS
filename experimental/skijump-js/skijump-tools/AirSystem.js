@@ -51,14 +51,24 @@ function AirSystem() {
   }
 
   this.calculateJumperRotateForce = () => {
-    let relativeAngle = jumper.body.angle - this.angle;
+    const relativeAngle = this.getRelativeAngle();
+    
+    let rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * this.airDensity;
+    rotateForce = min(rotateForce, 1.0);
+    rotateForce = max(rotateForce, -1.0);
+    
+    return relativeAngle * rotateForce;
+  }
+
+  this.getRelativeAngle = () => {
+    let relativeAngle = jumper.body.angle - (this.angle - HALF_PI);
+    
     while(relativeAngle > PI) {
       relativeAngle -= PI;
     }
     relativeAngle /= PI;
-    const rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * this.airDensity;
-    print(relativeAngle * rotateForce);
-    return relativeAngle * rotateForce;
+
+    return relativeAngle;
   }
 
   this.getVectorAngle = (vector) => {

@@ -21,9 +21,6 @@ function PullingSystem() {
         this.p2 = this.pullingArray[this.index];
       }else {
         this.index = 1;
-        pad.isPullingJumper = false;
-        pad.canJump = false;
-        MessagesManager.isFlying();
         return false;
       }
     }
