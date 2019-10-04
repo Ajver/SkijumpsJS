@@ -2,7 +2,9 @@
 const SPACE = 32;
 
 function touchStarted() {
-  pad.screenTouched();
+  if(mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height) {
+    pad.screenTouched();
+  }
 
   return false;
 }
