@@ -2,10 +2,12 @@
 function Jumper(x, y) {
   this.w = 10;
   this.h = 20;
-  this.friction = 0.007;
+  this.friction = 0.0070;
+  this.angularFriction = 0.94;
+
   const options = {
     friction: 0.0,
-    frictionAir: 0.005,
+    frictionAir: 0.0050,
     density: 1,
     isStatic: true,
     parts: [
@@ -18,25 +20,31 @@ function Jumper(x, y) {
 
   this.body = Body.create(options);
   
-  
   World.add(world, this.body);
 
   Body.setAngle(this.body, radians(40));
 
-  this.JUMP_FORCE = .003;
+  this.JUMP_FORCE = 2.9;
   this.TURN_FORCE = .2;
 
   this.canSteer = false;
+
+  this.isSlowingDown = false;
+  this.SLOWING_MOD = .995; 
 
   this.turningDir = 0;
   this.turningMod = 0.0;
   this.wantTurn = false;
 
   this.offsetPoint = Matter.Vector.create(0, -10);
+  this.offsetAngle = 0;
 
   this.update = () => {
     if(this.body.isStatic) {
-      // const rotatedOffset = Matter.Vector.rotate(this.offsetPoint, this.body.angle);
+      if(this.isSlowingDown) {
+        this.body.velocity.x *= this.SLOWING_MOD;
+        this.body.velocity.y *= this.SLOWING_MOD;
+      }
       Matter.Body.translate(this.body, this.body.velocity);
     }
 
@@ -45,9 +53,7 @@ function Jumper(x, y) {
     }
 
     if(Matter.Query.collides(this.body, [pad.body]).length > 0) {
-      Matter.Body.setStatic(this.body, true);
-      this.canSteer = false;
-      pad.pullJumperOverPad();
+      this.onPadHit();
       return;
     }
 
@@ -60,6 +66,38 @@ function Jumper(x, y) {
 
       this.turn();
     }
+  }
+
+  this.onPadHit = () => {
+    Matter.Body.setStatic(this.body, true);
+    this.canSteer = false;
+    scoreCounter.calculateDistance(this.body.position.x);
+    ui.updateScoreLabel(scoreCounter.score);
+    pad.startPullingJumper();
+    this.checkIfFail();
+  }
+
+  this.checkIfFail = () => {
+    const angle = this.body.angle;
+    const padAngle = this.getPadAngle();
+    const diffAngle = angle - padAngle;
+    if(abs(diffAngle) >= radians(20)) {
+      if(diffAngle < 0) {
+        this.offsetAngle = -HALF_PI;
+      }else {
+        this.offsetAngle = HALF_PI;
+      }
+      MessagesManager.fail();
+    }else {
+      MessagesManager.noFail();
+    }
+  }
+
+  this.getPadAngle = () => {
+    const diffX = pad.pullingSystem.p2.x - pad.pullingSystem.p1.x; 
+    const diffY = pad.pullingSystem.p2.y - pad.pullingSystem.p1.y; 
+    const padAngle = atan2(diffY, diffX);
+    return padAngle;
   }
 
   this.draw = () => {
@@ -81,33 +119,52 @@ function Jumper(x, y) {
     });
   }
 
-  this.onKeyPressed = (keyCode) => {
-    if(keyCode == 'Space') {
-      
-    }else if(keyCode == 'ArrowLeft') {
-      this.turningDir = -1;
-      this.wantTurn = true;
-      this.turningMod = 0.1;
-    }else if(keyCode == 'ArrowRight') {
-      this.turningDir = 1;
-      this.wantTurn = true;
-      this.turningMod = 0.1;
+  this.onKeyPressed = () => {
+    if(keyCode == LEFT_ARROW) {
+      this.wantTurnTo(-1);
+    }else if(keyCode == RIGHT_ARROW) {
+      this.wantTurnTo(1);
     }
   }
 
-  this.onKeyReleased = (keyCode) => {
-    if(keyCode == 'ArrowLeft') {
-      this.wantTurn = false;
-    }else if(keyCode == 'ArrowRight') {
+  this.onKeyReleased = () => {
+    if(keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
       this.wantTurn = false;
     }
   }
+
+  this.onScreenTouched = () => { 
+    this.setTurnDirByTouch();
+  }
+
+  this.onScreenTouchMoved = () => {
+    this.setTurnDirByTouch();
+  }
+
+  this.setTurnDirByTouch = () => {
+    if(mouseScreenX < SCREEN_WIDTH*0.5) {
+      this.wantTurnTo(-1);
+    }else {
+      this.wantTurnTo(1);
+    }
+  }
+  
+  this.onScreenTouchEnded = () => {
+    this.wantTurn = false;
+  }
+
+  this.wantTurnTo = (dir) => {
+    this.turningDir = dir;
+    this.wantTurn = true;
+    this.turningMod = 0.1;
+  } 
 
   this.jump = () => {
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
-    Body.applyForce(this.body, this.body.position, jumpVector)
+    const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
+    Body.setVelocity(this.body, newVelocity);
   }
   
   this.letSteering = () => {

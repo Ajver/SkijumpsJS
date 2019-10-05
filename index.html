@@ -8,6 +8,25 @@
 </head>
 <body>
 
+  <!-- Change style as you want -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #skijump-game-container {
+      background: #000000;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+
   <!-- Put this div inside your html code. This is where game will be created -->
   <div id="skijump-game-container"></div>
 
@@ -17,13 +36,20 @@
   <script src="skijump-js/libraries/decomp.min.js"></script>
   
   <!-- TODO: link min version of those files -->
+  <script src="skijump-js/skijump-tools/CanvasScaler.js"></script>
+  <script src="skijump-js/skijump-tools/InputManager.js"></script>
   <script src="skijump-js/skijump-tools/PadCollisionPointsList.js"></script>
   <script src="skijump-js/skijump-tools/ImageLoader.js"></script>
   <script src="skijump-js/skijump-tools/PadCreator.js"></script>
+  <script src="skijump-js/skijump-tools/ScoreCounter.js"></script>
+  <script src="skijump-js/skijump-tools/MessagesManager.js"></script>
+  <script src="skijump-js/skijump-tools/PullingSystem.js"></script>
+  <script src="skijump-js/skijump-tools/AirSystem.js"></script>
   <script src="skijump-js/main.js"></script>
   <script src="skijump-js/objects/Camera.js"></script>
   <script src="skijump-js/objects/Jumper.js"></script>
   <script src="skijump-js/objects/LaunchingPad.js"></script>
+  <script src="skijump-js/objects/UI.js"></script>
 
 </body>
 </html>

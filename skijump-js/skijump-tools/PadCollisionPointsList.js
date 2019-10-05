@@ -73,7 +73,9 @@ const PAD_PULLING_POINTS=[
 {x:1308.0,y:1698.0},
 {x:1332.0,y:1704.0},
 {x:1362.0,y:1710.0},
-{x:1398.0,y:1716.0},
+{x:1404.0,y:1716.0},
 ];
 const JUMP_POINT = 1272.0;
 const JUMP_END_POINT = 1404.0;
+const POINT_K=2676.0;
+const FALL_LINE=3594.0;
