@@ -2,11 +2,11 @@
 SJ.LaunchingPad =
 class {
   constructor() {
-    this.body = PadCreator.createPadBody();
+    this.body = SJ.PadCreator.createPadBody();
   
     Matter.World.add(SJ.world, this.body);
   
-    this._img = PadCreator.padImg;
+    this._img = SJ.PadCreator.padImg;
   
     this._isWaitingForLaunch = true;
     this._isPullingJumper = false;

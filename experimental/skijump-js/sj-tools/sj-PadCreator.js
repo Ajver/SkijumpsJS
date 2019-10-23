@@ -1,18 +1,18 @@
 
-const PadCreator = {
+SJ.PadCreator = {
 
   SQRT_3: 1.7320508,
 
   padImg: null,
   
   loadImages: () => {
-    PadCreator.padImg = SJ.ImageLoader.load('pad.png');
+    SJ.PadCreator.padImg = SJ.ImageLoader.load('pad.png');
   },
 
   createPadBody: () => {
     return Matter.Body.create({
       isStatic: true,
-      parts: PadCreator.createParts() 
+      parts: SJ.PadCreator.createParts() 
     });
   },
 
@@ -20,7 +20,7 @@ const PadCreator = {
     let parts = [];
 
     for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
-      parts.push(PadCreator.createOneBody(i-1, i));
+      parts.push(SJ.PadCreator.createOneBody(i-1, i));
     }
 
     return parts;
@@ -34,7 +34,7 @@ const PadCreator = {
     const angle = atan2(vec.y, vec.x);
 
     const mag = Matter.Vector.magnitude(vec);
-    const r = mag / PadCreator.SQRT_3;
+    const r = mag / SJ.PadCreator.SQRT_3;
 
     let body = Matter.Bodies.polygon(0, 0, 3, r);
 

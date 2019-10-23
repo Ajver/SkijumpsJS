@@ -12,7 +12,7 @@ class {
 
     this._drawableObjects = [];
     
-    PadCreator.loadImages();
+    SJ.PadCreator.loadImages();
 
     const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
     canvas.parent('skijump-game-container');
