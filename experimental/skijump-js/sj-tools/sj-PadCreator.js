@@ -6,11 +6,11 @@ const PadCreator = {
   padImg: null,
   
   loadImages: () => {
-    PadCreator.padImg = ImageLoader.load('pad.png');
+    PadCreator.padImg = SJ.ImageLoader.load('pad.png');
   },
 
   createPadBody: () => {
-    return Body.create({
+    return Matter.Body.create({
       isStatic: true,
       parts: PadCreator.createParts() 
     });

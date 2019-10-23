@@ -6,18 +6,18 @@ function AirSystem() {
 
   this.update = () => {
     this.angle += this.getAngleMod();
-    ui.updateAirAngle(this.angle);
+    SJ.ui.updateAirAngle(this.angle);
 
-    if(jumper.body.isStatic) {
+    if(SJ.jumper.body.isStatic) {
       return;
     }
     const forceVector = this.calculateAerodynamicForce();
-    const newVelocity = Matter.Vector.add(jumper.body.velocity, forceVector);
-    Body.setVelocity(jumper.body, newVelocity);
+    const newVelocity = Matter.Vector.add(SJ.jumper.body.velocity, forceVector);
+    Matter.Body.setVelocity(SJ.jumper.body, newVelocity);
     
     const rotateForce = this.calculateJumperRotateForce();
-    const newAngularVelocity = (jumper.body.angularVelocity + rotateForce) * jumper.angularFriction;
-    Body.setAngularVelocity(jumper.body, newAngularVelocity);
+    const newAngularVelocity = (SJ.jumper.body.angularVelocity + rotateForce) * SJ.jumper.angularFriction;
+    Matter.Body.setAngularVelocity(SJ.jumper.body, newAngularVelocity);
   }
 
   this.getAngleMod = () => {
@@ -43,7 +43,7 @@ function AirSystem() {
 
   this.getRelativeVelocity = () => {
     const airVelocity = this.getAirVelocity();
-    return Matter.Vector.sub(jumper.body.velocity, airVelocity);
+    return Matter.Vector.sub(SJ.jumper.body.velocity, airVelocity);
   }
   
   this.getAirVelocity = () => {
@@ -61,7 +61,7 @@ function AirSystem() {
   }
 
   this.getRelativeAngle = () => {
-    let relativeAngle = jumper.body.angle - (this.angle - HALF_PI);
+    let relativeAngle = SJ.jumper.body.angle - (this.angle - HALF_PI);
     
     while(relativeAngle > PI) {
       relativeAngle -= PI;

@@ -1,19 +1,23 @@
 
-function PullingSystem() {
-  this.pullingArray = PAD_PULLING_POINTS;
-  this.p1 = null;
-  this.p2 = null;
-  this.index = 2;
-  this.friction = jumper.friction;
+SJ.PullingSystem =
+class {
+  constructor() {
+    this.pullingArray = PAD_PULLING_POINTS;
+    this.friction = SJ.jumper.friction;
+    this.p1 = null;
+    this.p2 = null;
+    this.index = 2;
+    this.setIndex(2);
+  }
 
-  this.setIndex = (newIndex) => {
+  setIndex(newIndex) {
     this.index = newIndex;
     this.p1 = this.pullingArray[newIndex-1];
     this.p2 = this.pullingArray[newIndex];    
   }
 
-  this.update = () => {
-    const jumperPos = jumper.body.position;
+  update () {
+    const jumperPos = SJ.jumper.body.position;
     if(jumperPos.x >= this.p2.x) {
       this.index++;
       if(this.index < this.pullingArray.length) {
@@ -26,17 +30,17 @@ function PullingSystem() {
     }
     
     if(jumperPos.x >= JUMP_POINT && jumperPos.x <= JUMP_END_POINT) {
-      pad.canJump = true;
-      MessagesManager.canJump();
+      SJ.pad._canJump = true;
+      SJ.MessagesManager.canJump();
     }
     
-    if(!jumper.isSlowingDown) {
+    if(!SJ.jumper.isSlowingDown) {
       if(jumperPos.x >= FALL_LINE) {
-        jumper.isSlowingDown = true;
-        camera.isFollowingJumper = false;
+        SJ.jumper.isSlowingDown = true;
+        SJ.camera.stopFollowingJumper();
 
         window.setTimeout(() => {
-          callDeffered(restartGame);
+          SJ.restartGame();
         }, 1000);
       } 
     }
@@ -44,19 +48,19 @@ function PullingSystem() {
     return true;
   }
 
-  this.setNewVelocityAndAngle = () => {
+  setNewVelocityAndAngle () {
     const diff_x = this.p2.x - this.p1.x;
     const diff_y = this.p2.y - this.p1.y;
     const alpha = atan2(diff_y, diff_x);
-    const acc = sin(alpha) * world.gravity.y;
+    const acc = sin(alpha) * SJ.world.gravity.y;
 
-    const currVel = jumper.body.velocity
+    const currVel = SJ.jumper.body.velocity
     const currVelMag = Matter.Vector.magnitude(currVel);
     
     const velAlpha = atan2(currVel.y, currVel.x);
     const diffAlpha = velAlpha - alpha;
     
-    Body.setAngle(jumper.body, alpha+jumper.offsetAngle);
+    Matter.Body.setAngle(SJ.jumper.body, alpha+SJ.jumper.offsetAngle);
 
     let newVel = Matter.Vector.create(0, 0);
     newVel.x = cos(diffAlpha) * currVelMag;
@@ -68,10 +72,8 @@ function PullingSystem() {
     newVel = Matter.Vector.add(newVel, accVec);
     newVel = Matter.Vector.mult(newVel, 1.0 - this.friction);
 
-    jumper.body.velocity = newVel;
+    SJ.jumper.body.velocity = newVel;
   }
-
-  this.setIndex(2);
 
 }
 

@@ -2,22 +2,22 @@
 const SPACE = 32;
 
 const onKeyPressed = () => {  
-  jumper.onKeyPressed();
-  pad.onKeyPressed();
+  SJ.jumper.onKeyPressed();
+  SJ.pad.onKeyPressed();
 
   return false;
 }
 
 const onKeyReleased = () => {
-  jumper.onKeyReleased();
+  SJ.jumper.onKeyReleased();
   
   return false;
 }
 
 const onTouchStarted = () => {
   if(isMouseInCanvas()) {
-    jumper.onScreenTouched();
-    pad.onScreenTouched();
+    SJ.jumper.onScreenTouched();
+    SJ.pad.onScreenTouched();
   }
 
   return false;
@@ -25,7 +25,7 @@ const onTouchStarted = () => {
 
 const onTouchEnded = () => {
   if(isMouseInCanvas()) {
-    jumper.onScreenTouchEnded();
+    SJ.jumper.onScreenTouchEnded();
   }
 
   return false;
@@ -39,7 +39,7 @@ const onMouseDragged = () => {
   updateMouseScreenPosition()
 
   if(isMouseInCanvas()) {
-    jumper.onScreenTouchMoved();
+    SJ.jumper.onScreenTouchMoved();
   }
 
   return false;
@@ -50,8 +50,8 @@ const isMouseInCanvas = () => {
 }
 
 const updateMouseScreenPosition = () => {
-  mouseScreenX = floor(mouseX / canvasScaler.scale);
-  mouseScreenY = floor(mouseY / canvasScaler.scale);
+  SJ.mouseScreenX = floor(mouseX / SJ.canvasScaler.scale);
+  SJ.mouseScreenY = floor(mouseY / SJ.canvasScaler.scale);
 }
 
 function setupInputManager() {
