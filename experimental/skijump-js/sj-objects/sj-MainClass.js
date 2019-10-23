@@ -17,7 +17,7 @@ class {
     const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
     canvas.parent('skijump-game-container');
     
-    SJ.canvasScaler = new CanvasScaler();
+    SJ.canvasScaler = new SJ.CanvasScaler();
     SJ.canvasScaler.setup();
 
     rectMode(CENTER);

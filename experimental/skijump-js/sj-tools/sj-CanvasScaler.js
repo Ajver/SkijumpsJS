@@ -1,10 +1,13 @@
 
-function CanvasScaler() {
-  this.SCREEN_PROPORTION = SJ.SCREEN_WIDTH / SJ.SCREEN_HEIGHT;
-  this.scale;
-  this.gameContainerDiv = null;
+SJ.CanvasScaler =
+class {
+  constructor() {
+    this.SCREEN_PROPORTION = SJ.SCREEN_WIDTH / SJ.SCREEN_HEIGHT;
+    this.scale;
+    this.gameContainerDiv = null;
+  }
 
-  this.setup = () => {
+  setup() {
     this.gameContainerDiv = document.getElementById("skijump-game-container");
     window.addEventListener("resize", () => {
       this.resizeCanvas();
@@ -12,7 +15,7 @@ function CanvasScaler() {
     this.resizeCanvas();
   }
 
-  this.resizeCanvas = () => {
+  resizeCanvas() {
     const containerProportion = this.gameContainerDiv.offsetWidth / this.gameContainerDiv.offsetHeight;
 
     if(this.SCREEN_PROPORTION < containerProportion) {
@@ -24,7 +27,7 @@ function CanvasScaler() {
     resizeCanvas(SJ.SCREEN_WIDTH * this.scale, SJ.SCREEN_HEIGHT * this.scale);
   }
 
-  this.transform = () => {
+  transform() {
     scale(this.scale);
   }
 
