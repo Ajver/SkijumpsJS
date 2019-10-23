@@ -62,8 +62,10 @@ class {
 
 window.onload = () => {  
   const scriptsLoader = new SJ.ScriptsLoader(() => {
-    SJ.main = new SJ.MainClass();
-    SJ._isGameReady = true;
+    SJ.loadVariablesFromFile('sj-earth.json', () => {
+      SJ.main = new SJ.MainClass();
+      SJ._isGameReady = true;
+    });
   }); 
 
   scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');

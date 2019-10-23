@@ -3,6 +3,7 @@ SJ.AirSystem =
 class {
   constructor() {
     this.angle = random() * TWO_PI;
+    this.airForce = random(SJ.variables.airMinForce, SJ.variables.airMaxForce);
   }
 
   update() {
@@ -48,7 +49,7 @@ class {
   }
   
   getAirVelocity() {
-    return this.getVectorFromAngle(this.angle, SJ.variables.airForce);
+    return this.getVectorFromAngle(this.angle, this.airForce);
   }
 
   calculateJumperRotateForce() {
