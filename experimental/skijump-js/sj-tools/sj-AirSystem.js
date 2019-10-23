@@ -3,8 +3,6 @@ SJ.AirSystem =
 class {
   constructor() {
     this.angle = random() * TWO_PI;
-    this.airForce = 15;
-    this.airDensity = 0.0001;
   }
 
   update() {
@@ -19,7 +17,7 @@ class {
     Matter.Body.setVelocity(SJ.jumper.body, newVelocity);
     
     const rotateForce = this.calculateJumperRotateForce();
-    const newAngularVelocity = (SJ.jumper.body.angularVelocity + rotateForce) * SJ.jumper.angularFriction;
+    const newAngularVelocity = (SJ.jumper.body.angularVelocity + rotateForce) * SJ.variables.jumperAngularFriction;
     Matter.Body.setAngularVelocity(SJ.jumper.body, newAngularVelocity);
   }
 
@@ -36,7 +34,7 @@ class {
     const relVelSqr = Matter.Vector.magnitudeSquared(relativeVelocity);
     const liftMod = 1;
     
-    let force = this.airDensity * relVelSqr * liftMod * 0.5;
+    let force = SJ.variables.airDensity * relVelSqr * liftMod * 0.5;
 
     let forceAngle = this.getVectorAngle(relativeVelocity) - HALF_PI;
     const forceVector = this.getVectorFromAngle(forceAngle, force);
@@ -50,13 +48,13 @@ class {
   }
   
   getAirVelocity() {
-    return this.getVectorFromAngle(this.angle, this.airForce);
+    return this.getVectorFromAngle(this.angle, SJ.variables.airForce);
   }
 
   calculateJumperRotateForce() {
     const relativeAngle = this.getRelativeAngle();
     
-    let rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * this.airDensity;
+    let rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * SJ.variables.airDensity;
     rotateForce = min(rotateForce, 1.0);
     rotateForce = max(rotateForce, -1.0);
     

@@ -4,12 +4,10 @@ class {
   constructor(x, y) {
     this._w = 10;
     this._h = 20;
-    this.friction = 0.0070;
-    this.angularFriction = 0.94;
 
     const options = {
       friction: 0.0,
-      frictionAir: 0.0050,
+      frictionAir: SJ.variables.jumperAirFriction,
       density: 1,
       isStatic: true,
       parts: [
@@ -26,7 +24,6 @@ class {
   
     Matter.Body.setAngle(this.body, radians(40));
   
-    this.JUMP_FORCE = 2.9;
     this.TURN_FORCE = .2;
   
     this.canSteer = false;
@@ -164,7 +161,7 @@ class {
 
   jump() {
     const jumpAngle = this.body.angle;
-    let jumpVector = Matter.Vector.create(0, -this.JUMP_FORCE);
+    let jumpVector = Matter.Vector.create(0, -SJ.variables.jumperJumpForce);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
     Matter.Body.setVelocity(this.body, newVelocity);

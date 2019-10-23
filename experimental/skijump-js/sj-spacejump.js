@@ -77,6 +77,7 @@ window.onload = () => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-MessagesManager.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PullingSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-AirSystem.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-Variables.js');
 
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');

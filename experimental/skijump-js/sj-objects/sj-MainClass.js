@@ -24,7 +24,7 @@ class {
 
     this._engine = Matter.Engine.create();
     SJ.world = this._engine.world;
-    SJ.world.gravity.y = .2;
+    SJ.world.gravity.y = SJ.variables.gravity;
 
     SJ.airSystem = new SJ.AirSystem();
 
