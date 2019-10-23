@@ -26,7 +26,7 @@ class {
     SJ.world = this._engine.world;
     SJ.world.gravity.y = .2;
 
-    SJ.airSystem = new AirSystem();
+    SJ.airSystem = new SJ.AirSystem();
 
     this._restartGame();
 

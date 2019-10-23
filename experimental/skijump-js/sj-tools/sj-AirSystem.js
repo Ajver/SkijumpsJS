@@ -1,10 +1,13 @@
 
-function AirSystem() {
-  this.angle = random() * TWO_PI;
-  this.airForce = 15;
-  this.airDensity = 0.0001;
+SJ.AirSystem = 
+class {
+  constructor() {
+    this.angle = random() * TWO_PI;
+    this.airForce = 15;
+    this.airDensity = 0.0001;
+  }
 
-  this.update = () => {
+  update() {
     this.angle += this.getAngleMod();
     SJ.ui.updateAirAngle(this.angle);
 
@@ -20,7 +23,7 @@ function AirSystem() {
     Matter.Body.setAngularVelocity(SJ.jumper.body, newAngularVelocity);
   }
 
-  this.getAngleMod = () => {
+  getAngleMod() {
     const changeAbout = pow(random(), 6) * 0.1;
     const tempAngle = this.angle + QUARTER_PI;
     const directionMod = abs(sin(tempAngle)*0.5) + 0.1;
@@ -28,7 +31,7 @@ function AirSystem() {
     return changeDir * changeAbout;
   }
 
-  this.calculateAerodynamicForce = () => {
+  calculateAerodynamicForce() {
     const relativeVelocity = this.getRelativeVelocity();
     const relVelSqr = Matter.Vector.magnitudeSquared(relativeVelocity);
     const liftMod = 1;
@@ -36,21 +39,21 @@ function AirSystem() {
     let force = this.airDensity * relVelSqr * liftMod * 0.5;
 
     let forceAngle = this.getVectorAngle(relativeVelocity) - HALF_PI;
-    forceVector = this.getVectorFromAngle(forceAngle, force);
+    const forceVector = this.getVectorFromAngle(forceAngle, force);
 
     return forceVector;
   }
 
-  this.getRelativeVelocity = () => {
+  getRelativeVelocity() {
     const airVelocity = this.getAirVelocity();
     return Matter.Vector.sub(SJ.jumper.body.velocity, airVelocity);
   }
   
-  this.getAirVelocity = () => {
+  getAirVelocity() {
     return this.getVectorFromAngle(this.angle, this.airForce);
   }
 
-  this.calculateJumperRotateForce = () => {
+  calculateJumperRotateForce() {
     const relativeAngle = this.getRelativeAngle();
     
     let rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * this.airDensity;
@@ -60,7 +63,7 @@ function AirSystem() {
     return relativeAngle * rotateForce;
   }
 
-  this.getRelativeAngle = () => {
+  getRelativeAngle() {
     let relativeAngle = SJ.jumper.body.angle - (this.angle - HALF_PI);
     
     while(relativeAngle > PI) {
@@ -71,11 +74,11 @@ function AirSystem() {
     return relativeAngle;
   }
 
-  this.getVectorAngle = (vector) => {
+  getVectorAngle(vector) {
     return atan2(vector.y, vector.x);
   }
 
-  this.getVectorFromAngle = (angle, length=1.0) => {
+  getVectorFromAngle(angle, length=1.0) {
     const x = cos(angle) * length;
     const y = sin(angle) * length;
     return Matter.Vector.create(x, y);
