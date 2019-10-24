@@ -70,7 +70,7 @@ class {
 
 window.onload = () => {  
   const scriptsLoader = new SJ.ScriptsLoader(() => {
-    SJ.LocationManager.changeLocation('Moon', () => {
+    SJ.LocationManager.changeLocation('Earth', () => {
       const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
       canvas.parent('skijump-game-container');
 
