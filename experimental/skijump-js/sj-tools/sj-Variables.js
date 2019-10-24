@@ -1,4 +1,5 @@
 
+// Default values for Earth
 SJ.V = {
   jumperFriction: 0.0070,
   jumperAirFriction: 0.0050,

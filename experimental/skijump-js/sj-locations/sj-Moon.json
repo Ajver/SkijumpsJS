@@ -1,0 +1,17 @@
+{
+  "locationName": "Księżyc",
+  "padFriction": 0.00010,
+  "padSize": 65.0,
+  "airDensity": 0,
+  "airMinForce": 0,
+  "airMaxForce": 0,
+  "airDynamics": 0,
+  "gravity": 0.1,
+  "texturesNames": {
+    "pad": "moon-pad.png",
+    "background": {
+      "0": "moon-layer0.png",
+      "1": "moon-layer1.png"
+    }
+  }
+}

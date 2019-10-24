@@ -24,7 +24,7 @@ class {
   }
 
   getAngleMod() {
-    const changeAbout = pow(random(), 6) * 0.1;
+    const changeAbout = pow(random(), 6) * SJ.V.airDynamics;
     const tempAngle = this.angle + QUARTER_PI;
     const directionMod = abs(sin(tempAngle)*0.5) + 0.1;
     const changeDir = random() - directionMod;
