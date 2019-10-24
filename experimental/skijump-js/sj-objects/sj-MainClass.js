@@ -2,20 +2,9 @@
 SJ.MainClass = 
 class {
   constructor() {
-    // Screen resolution
-    SJ.SCREEN_WIDTH = 1200;
-    SJ.SCREEN_HEIGHT = 720;
-    
-    // Mouse position in scaled canvas
-    SJ.mouseScreenX = 0;
-    SJ.mouseScreenY = 0;
-
     this._drawableObjects = [];
     
     SJ.PadCreator.loadImages();
-
-    const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
-    canvas.parent('skijump-game-container');
     
     SJ.canvasScaler = new SJ.CanvasScaler();
     SJ.canvasScaler.setup();
@@ -24,9 +13,7 @@ class {
 
     this._engine = Matter.Engine.create();
     SJ.world = this._engine.world;
-    SJ.world.gravity.y = SJ.variables.gravity;
-
-    print(SJ.variables.gravity);
+    SJ.world.gravity.y = SJ.V.gravity;
 
     SJ.airSystem = new SJ.AirSystem();
 

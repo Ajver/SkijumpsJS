@@ -1,9 +1,17 @@
 {
+  "locationName": "Ziemia",
   "padFriction": 0.0010,
   "padSize": 65.0,
   "airDensity": 0.0001,
   "airMinForce": 7,
   "airMaxForce": 15,
   "airDynamics": 0.3,
-  "gravity": 0.2
+  "gravity": 0.2,
+  "texturesNames": {
+    "pad": "earth-pad.png",
+    "background": {
+      "0": "earth-layer0.png",
+      "1": "earth-layer1.png"
+    }
+  }
 }

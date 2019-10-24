@@ -52,7 +52,7 @@ class {
 
   startPullingJumper() {
     this._isPullingJumper = true;
-    this._pullingSystem.friction = SJ.variables.jumperFriction * 3;
+    this._pullingSystem.friction = SJ.V.jumperFriction * 3;
     this._pullingSystem.pullingArray = PAD_COLLISION_POINTS;
     for(let i=0; i<PAD_COLLISION_POINTS.length; i++) {
       const point = PAD_COLLISION_POINTS[i];

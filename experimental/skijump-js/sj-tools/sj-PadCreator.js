@@ -6,7 +6,7 @@ SJ.PadCreator = {
   padImg: null,
   
   loadImages: () => {
-    SJ.PadCreator.padImg = SJ.ImageLoader.load('pad.png');
+    SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
   },
 
   createPadBody: () => {

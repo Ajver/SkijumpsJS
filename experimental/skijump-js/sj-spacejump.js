@@ -1,6 +1,14 @@
 
 const SJ = {};
 
+// Screen resolution
+SJ.SCREEN_WIDTH = 1200;
+SJ.SCREEN_HEIGHT = 720;
+
+// Mouse position in scaled canvas
+SJ.mouseScreenX = 0;
+SJ.mouseScreenY = 0;
+
 SJ._wantRestartGame = false;
 
 function setup() {
@@ -62,7 +70,10 @@ class {
 
 window.onload = () => {  
   const scriptsLoader = new SJ.ScriptsLoader(() => {
-    SJ.loadVariablesFromFile('sj-earth.json', () => {
+    SJ.LocationManager.changeLocation('Earth', () => {
+      const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
+      canvas.parent('skijump-game-container');
+
       SJ.main = new SJ.MainClass();
       SJ._isGameReady = true;
     });
@@ -80,6 +91,7 @@ window.onload = () => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PullingSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-AirSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Variables.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-LocationManager.js');
 
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');

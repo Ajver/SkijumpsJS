@@ -3,7 +3,7 @@ SJ.PullingSystem =
 class {
   constructor() {
     this.pullingArray = PAD_PULLING_POINTS;
-    this.friction = SJ.variables.jumperFriction;
+    this.friction = SJ.V.jumperFriction;
     this.p1 = null;
     this.p2 = null;
     this.index = 2;
@@ -70,7 +70,7 @@ class {
     accVec = Matter.Vector.rotate(accVec, alpha);   
 
     newVel = Matter.Vector.add(newVel, accVec);
-    newVel = Matter.Vector.mult(newVel, 1.0 - this.friction - SJ.variables.padFriction);
+    newVel = Matter.Vector.mult(newVel, 1.0 - this.friction - SJ.V.padFriction);
 
     SJ.jumper.body.velocity = newVel;
   }

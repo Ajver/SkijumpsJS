@@ -7,7 +7,7 @@ class {
 
     const options = {
       friction: 0.0,
-      frictionAir: SJ.variables.jumperAirFriction,
+      frictionAir: SJ.V.jumperAirFriction,
       density: 1,
       isStatic: true,
       parts: [
@@ -161,7 +161,7 @@ class {
 
   jump() {
     const jumpAngle = this.body.angle;
-    let jumpVector = Matter.Vector.create(0, -SJ.variables.jumperJumpForce);
+    let jumpVector = Matter.Vector.create(0, -SJ.V.jumperJumpForce);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
     Matter.Body.setVelocity(this.body, newVelocity);
