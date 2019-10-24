@@ -8,6 +8,7 @@ class {
 
   update() {
     this.angle += this.getAngleMod();
+    this.airForce = this.getNextForce();
     SJ.ui.updateAirAngle(this.angle);
 
     if(SJ.jumper.body.isStatic) {
@@ -28,6 +29,11 @@ class {
     const directionMod = abs(sin(tempAngle)*0.5) + 0.1;
     const changeDir = random() - directionMod;
     return changeDir * changeAbout;
+  }
+
+  getNextForce() {
+    const newForce = this.airForce + random(-0.5, 0.5) * SJ.variables.airDynamics;
+    return constrain(newForce, SJ.variables.airMinForce, SJ.variables.airMaxForce);
   }
 
   calculateAerodynamicForce() {

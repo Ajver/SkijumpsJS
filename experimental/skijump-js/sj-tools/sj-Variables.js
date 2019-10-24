@@ -11,6 +11,7 @@ SJ.variables = {
   airDensity: 0.0001,
   airMinForce: 10,
   airMaxForce: 15,
+  airDynamics: 0.1,
   
   gravity: 0.2,
 };
@@ -22,8 +23,9 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.variables.airDensity = v.airDensity;
     SJ.variables.airMinForce = v.airMinForce;
     SJ.variables.airMaxForce = v.airMaxForce;
+    SJ.variables.airDynamics = v.airDynamics;
     SJ.variables.gravity = v.gravity;
-    
+
     callBack();
   });
 }

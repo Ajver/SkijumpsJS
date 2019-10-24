@@ -24,9 +24,14 @@ class {
     strokeWeight(4);
     fill(0);
     const vec = SJ.airSystem.getVectorFromAngle(this._airAngle, 60);
+    const force = floor(SJ.airSystem.airForce * 10) / 10;
     stroke(0);
     line(-vec.x, -vec.y, vec.x, vec.y);
     circle(vec.x, vec.y, 10);
+    
+    strokeWeight(1);
+    textSize(16);
+    text("F: "+force, 0, 80);
 
     pop()
   }

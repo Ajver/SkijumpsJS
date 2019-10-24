@@ -2,7 +2,8 @@
   "padFriction": 0.0010,
   "padSize": 65.0,
   "airDensity": 0.0001,
-  "airMinForce": 10,
+  "airMinForce": 7,
   "airMaxForce": 15,
+  "airDynamics": 0.3,
   "gravity": 0.2
 }
