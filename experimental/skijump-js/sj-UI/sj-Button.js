@@ -8,20 +8,16 @@ class {
     this.h = h;
     this.isMouseIn = false;
     this.isPress = false;
-    this.onMousePress = onMousePress;
-    this.onMouseRelease = onMouseRelease;
-    this.onMouseEnter = onMouseEnter;
-    this.onMouseLeave = onMouseLeave;
-    this.draw = draw;
+    this.onMousePress = onMousePress || (() => {});
+    this.onMouseRelease = onMouseRelease || (() => {});
+    this.onMouseEnter = onMouseEnter || (() => {});
+    this.onMouseLeave = onMouseLeave || (() => {});
+    this.draw = draw || this.draw;
   }
 
-  _draw() {
-    if(this.draw) {
-      this.draw();
-    }else {
-      fill(255);
-      rect(this.x, this.y, this.w, this.h);
-    }
+  draw() {
+    fill(255);
+    rect(this.x, this.y, this.w, this.h);
   }
 
 }

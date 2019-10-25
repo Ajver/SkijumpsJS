@@ -27,18 +27,30 @@ SJ._state = SJ._STATE.LOADING;
 function setup() {
   frameRate(60);
 
-  const scriptsLoader = new SJ.ScriptsLoader(() => {
+  SJ._loadScripts(() => {
     SJ.LocationManager.changeLocation('Earth', () => {
       const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
       canvas.parent('skijump-game-container');
 
-      // SJ.main = new SJ.MainClass();
-      // SJ._isGameReady = true;
-      SJ.ScreensManager.setup();
-      SJ._state = SJ._STATE.MENU;
+      SJ.canvasScaler = new SJ.CanvasScaler();
+      SJ.canvasScaler.setup();
+
+      setupInputManager();
+
+      SJ._enterMenu();
     });
   }); 
- 
+}
+
+function draw() {
+  SJ.draw();  
+}
+
+SJ._loadScripts = (callback) => {
+  const scriptsLoader = new SJ.ScriptsLoader(() => {
+    callback();
+  });
+
   scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');
   
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PadCollisionPointsList.js');
@@ -65,11 +77,24 @@ function setup() {
   scriptsLoader.done();
 }
 
-function draw() {
-  SJ.draw();  
+SJ._enterMenu = () => {
+  SJ.ScreensManager.setup();
+
+  SJ._state = SJ._STATE.MENU;
+}
+
+SJ._startGame = () => {
+  SJ.main = new SJ.MainClass();
+  SJ._isGameReady = true;
+
+  SJ._state = SJ._STATE.GAME;
 }
 
 SJ.draw = () => {
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+
+  SJ.canvasScaler.transform();
+
   switch(SJ._state) {
 
     case SJ._STATE.MENU:
