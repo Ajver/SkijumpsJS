@@ -15,6 +15,10 @@ const onKeyReleased = () => {
 }
 
 const onTouchStarted = () => {
+  if(SJ.ui.onMousePress()) {
+    return;
+  }
+
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouched();
     SJ.pad.onScreenTouched();
@@ -24,6 +28,10 @@ const onTouchStarted = () => {
 }
 
 const onTouchEnded = () => {
+  if(SJ.ui.onMouseRelease()) {
+    return;
+  }
+
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchEnded();
   }
@@ -32,11 +40,13 @@ const onTouchEnded = () => {
 }
 
 const onMouseMoved = () => {
-  updateMouseScreenPosition()
+  updateMouseScreenPosition();
+
+  SJ.ui.onMouseMove();
 }
 
 const onMouseDragged = () => {
-  updateMouseScreenPosition()
+  updateMouseScreenPosition();
 
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchMoved();
