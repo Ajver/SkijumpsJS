@@ -1,15 +1,22 @@
 
 const SJ = {};
 
+// Game Version
+SJ.VERSION = "0.2";
+
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
 SJ.SCREEN_HEIGHT = 720;
+
+// Screen middle point
+SJ.SCREEN_MIDDLE_X = SJ.SCREEN_WIDTH / 2;
+SJ.SCREEN_MIDDLE_Y = SJ.SCREEN_HEIGHT / 2;
 
 // Mouse position in scaled canvas
 SJ.mouseScreenX = 0;
 SJ.mouseScreenY = 0;
 
-SJ._wantRestartGame = false; 
+SJ._wantRestartGame = false;1
 
 SJ.IS_MOBILE = (function() {
   var check = false;
@@ -17,19 +24,38 @@ SJ.IS_MOBILE = (function() {
   return check;
 })();
 
+SJ._STATE = {
+  LOADING: 0,
+  MENU: 1,
+  GAME: 2,
+};
+SJ._state = SJ._STATE.LOADING;
+
 function setup() {
   frameRate(60);
 
-  const scriptsLoader = new SJ.ScriptsLoader(() => {
-    SJ.LocationManager.changeLocation('Earth', () => {
-      const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
-      canvas.parent('skijump-game-container');
+  SJ._loadScripts(() => {
+    const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
+    canvas.parent('skijump-game-container');
 
-      SJ.main = new SJ.MainClass();
-      SJ._isGameReady = true;
-    });
+    SJ.canvasScaler = new SJ.CanvasScaler();
+    SJ.canvasScaler.setup();
+
+    setupInputManager();
+
+    SJ._enterMenu();
   }); 
- 
+}
+
+function draw() {
+  SJ.draw();  
+}
+
+SJ._loadScripts = (callback) => {
+  const scriptsLoader = new SJ.ScriptsLoader(() => {
+    callback();
+  });
+
   scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');
   
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PadCollisionPointsList.js');
@@ -47,23 +73,57 @@ function setup() {
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-LaunchingPad.js');
-  scriptsLoader.loadScript('skijump-js/sj-objects/sj-UI.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-MainClass.js');
+  
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UI.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-Screen.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');
 
   scriptsLoader.done();
 }
 
-function draw() {
-  SJ.draw();  
+SJ._enterMenu = () => {
+  SJ.ScreensManager.setup();
+
+  SJ._state = SJ._STATE.MENU;
+}
+
+SJ._startGame = (locationName) => {
+  let locationFileName = '';
+
+  switch(locationName) {
+    case 'Ziemia': locationFileName = 'Ziemia'; break;
+    case 'Księżyc': locationFileName = 'Ksiezyc'; break;
+  }
+
+  SJ.LocationManager.changeLocation(locationFileName, () => {
+    SJ.main = new SJ.MainClass();
+    SJ._isGameReady = true; 
+  
+    SJ._state = SJ._STATE.GAME;
+  });
 }
 
 SJ.draw = () => {
-  if(SJ._isGameReady) {
-    SJ.main.draw();
-  }
-  if(SJ._wantRestartGame) {
-    SJ._wantRestartGame = false;
-    SJ.main._restartGame();
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+
+  SJ.canvasScaler.transform();
+
+  switch(SJ._state) {
+
+    case SJ._STATE.MENU:
+      SJ.ScreensManager.draw();
+      break;
+
+    case SJ._STATE.GAME:
+      SJ.main.draw();
+      
+      if(SJ._wantRestartGame) {
+        SJ._wantRestartGame = false;
+        SJ.main._restartGame();
+      }
+      break;
   }
 }
 

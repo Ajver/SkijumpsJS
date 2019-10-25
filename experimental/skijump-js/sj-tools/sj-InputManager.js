@@ -1,7 +1,10 @@
 
 const SPACE = 32;
 
-const onKeyPressed = () => {  
+const onKeyPressed = () => { 
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+  if(SJ._state != SJ._STATE.GAME) { return; }
+
   SJ.jumper.onKeyPressed();
   SJ.pad.onKeyPressed();
 
@@ -9,12 +12,19 @@ const onKeyPressed = () => {
 }
 
 const onKeyReleased = () => {
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+  if(SJ._state != SJ._STATE.GAME) { return; }
+
   SJ.jumper.onKeyReleased();
   
   return false;
 }
 
 const onTouchStarted = () => {
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+  if(SJ.ScreensManager.onMousePress()) { return; }
+  if(SJ._state != SJ._STATE.GAME) { return; }
+
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouched();
     SJ.pad.onScreenTouched();
@@ -24,6 +34,10 @@ const onTouchStarted = () => {
 }
 
 const onTouchEnded = () => {
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+  if(SJ.ScreensManager.onMouseRelease()) { return; }
+  if(SJ._state != SJ._STATE.GAME) { return; }
+
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchEnded();
   }
@@ -32,11 +46,19 @@ const onTouchEnded = () => {
 }
 
 const onMouseMoved = () => {
-  updateMouseScreenPosition()
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+
+  updateMouseScreenPosition();
+
+  SJ.ScreensManager.onMouseMove();
 }
 
 const onMouseDragged = () => {
-  updateMouseScreenPosition()
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+
+  updateMouseScreenPosition();
+  
+  if(SJ._state != SJ._STATE.GAME) { return; }
 
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchMoved();

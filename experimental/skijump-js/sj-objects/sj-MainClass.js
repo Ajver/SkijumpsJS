@@ -6,9 +6,6 @@ class {
     
     SJ.PadCreator.loadImages();
     
-    SJ.canvasScaler = new SJ.CanvasScaler();
-    SJ.canvasScaler.setup();
-
     rectMode(CENTER);
 
     this._engine = Matter.Engine.create();
@@ -20,32 +17,26 @@ class {
     this._restartGame();
 
     Matter.Engine.run(this._engine);
-
-    setupInputManager();
   }
 
   draw() {
     background(51);
-  
+
     push();
-    SJ.canvasScaler.transform();
-  
-    SJ.jumper.update();
-    SJ.pad.update();
-  
-    SJ.camera.update();
+      SJ.jumper.update();
+      SJ.pad.update();
     
-    push();
-    SJ.camera.transform();
-    this._drawableObjects.forEach((element) => {
-      element.draw();
-    });
-    pop();
-    
-    SJ.airSystem.update();
-    
-    SJ.ui.draw();
-    
+      push();
+        SJ.camera.update();
+        SJ.camera.transform();
+        this._drawableObjects.forEach((element) => {
+          element.draw();
+        });
+      pop();
+      
+      SJ.airSystem.update();
+
+      SJ.ui.draw();
     pop();
   }
 

@@ -104,9 +104,10 @@ class {
     const pos = this.body.position;
     const angle = this.body.angle;
     push();
-    translate(pos.x, pos.y);
-    rotate(angle);
-    rect(0, 0, this._w, this._h);
+      translate(pos.x, pos.y);
+      rotate(angle);
+      fill(255);
+      rect(0, 0, this._w, this._h);
     pop();
 
     this.body.parts.forEach((part) => {
