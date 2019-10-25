@@ -9,6 +9,7 @@ SJ.ScreensManager.screens = {
   selectLocation: {},
   shop: {},
   howToPlay: {},
+  game: {},
 };
 
 SJ.ScreensManager.setup = () => {
@@ -88,6 +89,10 @@ SJ.ScreensManager.setup = () => {
       new SJ.Label("Jak grać?", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
     );
 
+  });
+
+  SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
+    
   });
 
   SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu;
