@@ -7,29 +7,6 @@ class {
     this._airAngle;  
     this.updateScoreLabel(0);
     this.updateAirAngle(0);
-
-    this.pauseBtn = new SJ.Button(10, 10, 100, 25, 
-    () => {
-      this.pauseBtn.r = 255; 
-    }, 
-    () => {
-      this.pauseBtn.r = 128;
-    },
-    () => { 
-      this.pauseBtn.r = 128;
-    },
-    () => { 
-      this.pauseBtn.r = 0;
-    },
-    () => {
-      fill(this.pauseBtn.r, 0, 0);
-      rect(this.pauseBtn.x, this.pauseBtn.y, this.pauseBtn.w, this.pauseBtn.h);
-    });
-
-    this.pauseBtn.r = 0;
-
-    this._buttons = [];
-    this._buttons.unshift(this.pauseBtn);
   }
 
   draw() {
@@ -58,12 +35,6 @@ class {
         textSize(16);
         text("F: "+force, 0, 80);
       pop();
-
-      rectMode(CORNER);
-      this._buttons.forEach((btn) => {
-        btn._draw();
-      });
-
     pop()
   }
 

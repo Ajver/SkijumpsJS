@@ -47,3 +47,26 @@ class {
     pop();  
   }
 }
+
+SJ.createLocationButton = (locationName, x, y) => {
+  const btn = new SJ.Button(locationName, x, y, 200, 120);
+  btn.label.fontSize = 18;
+  btn.label.vAling = BOTTOM;
+
+  btn.onMouseRelease = () => {
+    SJ._startGame(locationName);
+  }
+
+  btn.draw = () => {
+    push();
+      fill(255, 128, 128);
+      rect(btn.x, btn.y, btn.w, btn.h);
+      push();
+        translate(btn.x+btn.w/2, btn.y+btn.h-2);
+        btn.label.draw();
+      pop();
+    pop();
+  }
+
+  return btn;
+}

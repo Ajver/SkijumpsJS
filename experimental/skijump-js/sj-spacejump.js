@@ -35,17 +35,15 @@ function setup() {
   frameRate(60);
 
   SJ._loadScripts(() => {
-    SJ.LocationManager.changeLocation('Earth', () => {
-      const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
-      canvas.parent('skijump-game-container');
+    const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
+    canvas.parent('skijump-game-container');
 
-      SJ.canvasScaler = new SJ.CanvasScaler();
-      SJ.canvasScaler.setup();
+    SJ.canvasScaler = new SJ.CanvasScaler();
+    SJ.canvasScaler.setup();
 
-      setupInputManager();
+    setupInputManager();
 
-      SJ._enterMenu();
-    });
+    SJ._enterMenu();
   }); 
 }
 
@@ -91,11 +89,20 @@ SJ._enterMenu = () => {
   SJ._state = SJ._STATE.MENU;
 }
 
-SJ._startGame = () => {
-  SJ.main = new SJ.MainClass();
-  SJ._isGameReady = true;
+SJ._startGame = (locationName) => {
+  let locationFileName = '';
 
-  SJ._state = SJ._STATE.GAME;
+  switch(locationName) {
+    case 'Ziemia': locationFileName = 'Ziemia'; break;
+    case 'Księżyc': locationFileName = 'Ksiezyc'; break;
+  }
+
+  SJ.LocationManager.changeLocation(locationFileName, () => {
+    SJ.main = new SJ.MainClass();
+    SJ._isGameReady = true; 
+  
+    SJ._state = SJ._STATE.GAME;
+  });
 }
 
 SJ.draw = () => {

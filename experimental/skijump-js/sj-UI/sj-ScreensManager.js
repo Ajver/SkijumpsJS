@@ -57,6 +57,11 @@ SJ.ScreensManager.setup = () => {
 
     self.appendButton(backBtn)
 
+    const xSeparation = 240;
+
+    self.appendButton(SJ.createLocationButton("Ziemia", 30, 300));
+    self.appendButton(SJ.createLocationButton("Księżyc", 30+xSeparation, 300));
+
     self.appendDrawable(
       new SJ.Label("Wybierz lokację", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
     );
