@@ -80,6 +80,8 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.howToPlay = new SJ.Screen((self) => {
 
+    self.appendDrawable(new SJ.Texture('how_to_play.png', 60, 250, 500, 500));
+
     self.appendButton(backBtn)
 
     self.appendDrawable(

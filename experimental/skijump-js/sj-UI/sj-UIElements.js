@@ -70,3 +70,20 @@ SJ.createLocationButton = (locationName, x, y) => {
 
   return btn;
 }
+
+SJ.Texture = 
+class {
+  constructor(textureName, x, y) {
+    this.x = x;
+    this.y = y;
+
+    this.texture = SJ.ImageLoader.load(textureName, () => {
+      this.w = this.texture.width; 
+      this.h = this.texture.height;
+    });
+  }
+
+  draw() {
+    image(this.texture, this.x, this.y);
+  }
+}
