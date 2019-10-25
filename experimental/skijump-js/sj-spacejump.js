@@ -1,9 +1,16 @@
 
 const SJ = {};
 
+// Game Version
+SJ.VERSION = "0.2";
+
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
 SJ.SCREEN_HEIGHT = 720;
+
+// Screen middle point
+SJ.SCREEN_MIDDLE_X = SJ.SCREEN_WIDTH / 2;
+SJ.SCREEN_MIDDLE_Y = SJ.SCREEN_HEIGHT / 2;
 
 // Mouse position in scaled canvas
 SJ.mouseScreenX = 0;
@@ -71,7 +78,8 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-MainClass.js');
   
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-UI.js');
-  scriptsLoader.loadScript('skijump-js/sj-UI/sj-Button.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-Screen.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');
 
   scriptsLoader.done();
