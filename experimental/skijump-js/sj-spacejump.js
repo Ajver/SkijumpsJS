@@ -100,9 +100,7 @@ SJ._startGame = (locationName) => {
   SJ.LocationManager.changeLocation(locationFileName, () => {
     SJ.main = new SJ.MainClass();
     SJ._isGameReady = true; 
-
-    SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);  
-
+  
     SJ._state = SJ._STATE.GAME;
   });
 }
@@ -120,7 +118,6 @@ SJ.draw = () => {
 
     case SJ._STATE.GAME:
       SJ.main.draw();
-      SJ.ScreensManager.draw();
       
       if(SJ._wantRestartGame) {
         SJ._wantRestartGame = false;
