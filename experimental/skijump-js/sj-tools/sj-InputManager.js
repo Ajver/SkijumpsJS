@@ -79,8 +79,8 @@ const updateMouseScreenPosition = () => {
 function setupInputManager() {
   keyPressed = onKeyPressed;
   keyReleased = onKeyReleased;
-  touchStarted = onTouchStarted;
-  touchEnded = onTouchEnded;
+  mousePressed = onTouchStarted;
+  mouseReleased = onTouchEnded;
   mouseMoved = onMouseMoved;
   mouseDragged = onMouseDragged;
 }

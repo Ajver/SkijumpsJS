@@ -43,7 +43,7 @@ class {
   _restartGame() {
     this._drawableObjects = [];
 
-    SJ.jumper = new SJ.Jumper(310, 1060);
+    SJ.jumper = new SJ.Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
     SJ.pad = new SJ.LaunchingPad();
     SJ.scoreCounter = new SJ.ScoreCounter();
     
