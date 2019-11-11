@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 onready var file_dialog = find_node("FileDialog")
 

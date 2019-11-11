@@ -9,7 +9,7 @@
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Workspace" type="Node" parent="."]
+[node name="Workspace" type="CanvasLayer" parent="."]
 script = ExtResource( 2 )
 scale_speed = 1.1
 margin = 100.0
@@ -22,51 +22,53 @@ script = ExtResource( 3 )
 
 [node name="PointsContainer" type="Node2D" parent="Workspace/Origin"]
 script = ExtResource( 4 )
+point_radius = 15.0
 
-[node name="UI" type="Node" parent="."]
-editor/display_folded = true
+[node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 5 )
 
 [node name="Control" type="Control" parent="UI"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+margin_top = -60.0
+rect_min_size = Vector2( 1024, 60 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 0
 custom_constants/separation = 20
 
 [node name="CenterContainer" type="CenterContainer" parent="UI/Control/VBoxContainer"]
+visible = false
 margin_right = 1024.0
-margin_bottom = 517.0
-mouse_filter = 1
+margin_bottom = 35.0
 size_flags_vertical = 3
 
 [node name="FileDialog" type="FileDialog" parent="UI/Control/VBoxContainer/CenterContainer"]
 margin_left = 212.0
-margin_top = 58.0
+margin_top = -183.0
 margin_right = 812.0
-margin_bottom = 458.0
+margin_bottom = 217.0
 rect_min_size = Vector2( 600, 400 )
-mouse_filter = 1
 window_title = "Wybierz obraz"
 mode_overrides_title = false
 mode = 0
+access = 2
 filters = PoolStringArray( "*.png" )
+current_dir = "D:/Xampp/htdocs/SpaceJump/MapGenerator"
+current_path = "D:/Xampp/htdocs/SpaceJump/MapGenerator/"
 
 [node name="Panel" type="Panel" parent="UI/Control/VBoxContainer"]
-margin_top = 537.0
 margin_right = 1024.0
-margin_bottom = 600.0
-mouse_filter = 1
+margin_bottom = 60.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.12
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control/VBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -76,7 +78,8 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 43.0
+margin_bottom = 40.0
+mouse_filter = 0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 1
@@ -84,15 +87,13 @@ alignment = 1
 [node name="OpenFileBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 margin_left = 414.0
 margin_right = 485.0
-margin_bottom = 23.0
-mouse_filter = 1
+margin_bottom = 20.0
 text = "Open file"
 
 [node name="TestBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 margin_left = 505.0
 margin_right = 569.0
-margin_bottom = 23.0
-mouse_filter = 1
+margin_bottom = 20.0
 text = "Test btn"
 [connection signal="mouse_entered" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_exited"]

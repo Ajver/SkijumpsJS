@@ -1,8 +1,11 @@
-extends Node
+extends CanvasLayer
+
+signal scale_changed
 
 export(float) var scale_speed = 1.0
 export(float) var margin = 0.0
 
+var has_texture := false
 var is_dragging := false
 var drag_point := Vector2.ZERO
 
@@ -12,12 +15,20 @@ onready var origin = find_node("Origin")
 onready var pad_sprite = find_node("PadSprite")
 onready var points_container = find_node("PointsContainer")
 
+func _ready():
+	connect("scale_changed", points_container, "_on_Origin_rescaled")
+
 func load_pad_sprite(texture_path:String) -> void:
+	has_texture = true
 	pad_sprite.load_sprite(texture_path)
 	origin.position = Vector2.ZERO
 	origin.scale = Vector2.ONE
+	emit_signal("scale_changed")
 	
 func _input(event) -> void:
+	if not has_texture:
+		return
+		
 	if ui.is_using_mouse():
 		return
 		
@@ -28,25 +39,28 @@ func _input(event) -> void:
 	elif Input.is_action_just_released("grab_image"):
 		is_dragging = false
 		
-	elif Input.is_action_just_released("zoom_in"):
-		origin.scale *= scale_speed
-#		var diff = origin.position - event.position
-#		diff *= origin.scale
-#		origin.translate(diff)
-#		origin.position = diff - event.position
+	elif Input.is_action_just_pressed("zoom_in"):
+		_mult_scale(scale_speed, event.position)
 		
-	elif Input.is_action_just_released("zoom_out"):
-		origin.scale /= scale_speed
+	elif Input.is_action_just_pressed("zoom_out"):
+		_mult_scale(1.0 / scale_speed, event.position)
 		
 	elif event is InputEventMouseMotion:
 		if is_dragging:
 			move_origin(event.position)
 			
-	if Input.is_action_just_released("new_point"):
+	elif Input.is_action_just_pressed("new_point"):
 		if not is_dragging:
+			if points_container.can_create_point():
+				points_container.new_point(event.position)
 			
-			points_container.new_point(event.position)
-			
+func _mult_scale(scale_mod:float, mouse_position:Vector2) -> void:
+	origin.scale *= scale_mod
+	var diff = origin.position - mouse_position
+	diff *= scale_mod
+	origin.position = diff + mouse_position
+	emit_signal("scale_changed")
+	
 func move_origin(mouse_position:Vector2) -> void:
 	var diff = mouse_position - drag_point
 	drag_point = mouse_position
