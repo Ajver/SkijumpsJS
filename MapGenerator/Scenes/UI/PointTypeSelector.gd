@@ -7,6 +7,8 @@ func _ready() -> void:
 		var child = get_child(i)
 		child.text += str(" [", i+1, "]")
 		child.connect("checked", self, "_on_RadioButton_checked") 
+		
+#	emit_signal("point_type_changed", PointsData.Type.PAD_COLLISION)
 
 func _input(event) -> void:
 	if event is InputEventKey and event.is_pressed():

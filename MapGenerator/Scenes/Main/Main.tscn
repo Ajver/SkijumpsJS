@@ -28,6 +28,43 @@ script = ExtResource( 4 )
 [node name="UI" type="Node" parent="."]
 script = ExtResource( 5 )
 
+[node name="DataPanel" type="Panel" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DataPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 17
+custom_constants/margin_top = 17
+custom_constants/margin_left = 17
+custom_constants/margin_bottom = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/MarginContainer"]
+margin_left = 17.0
+margin_top = 17.0
+margin_right = 83.0
+margin_bottom = 583.0
+custom_constants/separation = 40
+
+[node name="OpenBtn" type="Button" parent="UI/DataPanel/MarginContainer/VBoxContainer"]
+margin_right = 66.0
+margin_bottom = 20.0
+text = "<- Open"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/MarginContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 66.0
+margin_bottom = 80.0
+custom_constants/separation = 5
+
+[node name="ResetBtn" type="Button" parent="UI/DataPanel/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 66.0
+margin_bottom = 20.0
+text = "Reset"
+
 [node name="Control" type="Control" parent="UI"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -86,6 +123,7 @@ text = "Jumper"
 margin_left = 77.0
 margin_right = 187.0
 margin_bottom = 26.0
+pressed = true
 text = "Pad Collision"
 type = 1
 
@@ -138,5 +176,6 @@ margin_left = 251.0
 margin_right = 345.0
 margin_bottom = 26.0
 text = "Open file [O]"
+[connection signal="pressed" from="UI/DataPanel/MarginContainer/VBoxContainer/VBoxContainer/ResetBtn" to="Workspace/Origin/PointsContainer" method="_on_ResetBtn_pressed"]
 [connection signal="point_type_changed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" to="Workspace/Origin/PointsContainer" method="_on_point_type_changed"]
 [connection signal="pressed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]

@@ -54,4 +54,7 @@ func refresh_points_scale() -> void:
 	
 func _on_point_type_changed(type):
 	selected_point_type = type
-	print("t:", type)
+
+func _on_ResetBtn_pressed():
+	for c in get_children():
+		c.queue_free()
