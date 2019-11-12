@@ -9,8 +9,8 @@ onready var points_container = get_parent()
 onready var mouse_area = find_node("MouseArea")
 onready var mouse_collision = mouse_area.get_node("CollisionShape2D")
 
-var fill_color : Color = Color.red
-var border_color : Color = Color.black
+var fill_color : Color
+var border_color : Color
 
 # TODO
 var type
@@ -44,7 +44,7 @@ func _draw() -> void:
 	
 	if is_hover:
 		current_fill_color = fill_color.lightened(0.4)
-		current_border_color = border_color.darkened(0.3)
+		current_border_color = border_color
 	else:
 		current_fill_color = fill_color
 		current_border_color = border_color

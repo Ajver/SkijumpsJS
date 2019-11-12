@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Workspace/Workspace.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Workspace/PointsContainer.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Main/UI.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/UI/PointTypeSelector.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/UI/RadioBtn.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -44,8 +45,8 @@ mode_overrides_title = false
 mode = 0
 access = 2
 filters = PoolStringArray( "*.png" )
-current_dir = "D:/Xampp/htdocs/SpaceJump/MapGenerator"
-current_path = "D:/Xampp/htdocs/SpaceJump/MapGenerator/"
+current_dir = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics"
+current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/"
 
 [node name="Panel" type="Panel" parent="UI/Control"]
 margin_right = 1024.0
@@ -73,10 +74,19 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 script = ExtResource( 6 )
 
-[node name="CheckBox" type="CheckBox" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector"]
-margin_right = 67.0
-margin_bottom = 24.0
-text = "Player"
+[node name="RadioBtn" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+
+[node name="RadioBtn2" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 71.0
+margin_right = 138.0
+
+[node name="RadioBtn3" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 142.0
+margin_right = 209.0
+
+[node name="RadioBtn4" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 213.0
+margin_right = 280.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer/HBoxContainer2"]
 margin_left = 494.0

@@ -16,7 +16,8 @@ func new_point(mouse_position:Vector2) -> void:
 	point.set_scale(Vector2(
 	1.0 / origin.scale.x, 
 	1.0 / origin.scale.y))
-	point.fill_color = PointsData.POINTS_COLORS[selected_point_type]
+	point.fill_color = PointsData.POINTS_COLORS[selected_point_type][0]
+	point.border_color = PointsData.POINTS_COLORS[selected_point_type][1]
 	
 	point.connect("started_dragging", self, "_on_Point_started_dragging")
 	point.connect("stopped_dragging", self, "_on_Point_stopped_dragging")
