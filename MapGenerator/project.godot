@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Point",
 "language": "GDScript",
 "path": "res://Scenes/Workspace/Points/Point.gd"
-}, {
-"base": "Node",
-"class": "PointsData",
-"language": "GDScript",
-"path": "res://Scripts/PointsData.gd"
 } ]
 _global_script_class_icons={
-"Point": "",
-"PointsData": ""
+"Point": ""
 }
 
 [application]
@@ -32,10 +26,12 @@ run/main_scene="res://Scenes/Main/Main.tscn"
 [autoload]
 
 PointsData="*res://Scripts/PointsData.gd"
+PointsCounter="*res://Scripts/PointsCounter.gd"
 
 [display]
 
-window/size/always_on_top=true
+window/size/width=1280
+window/size/height=728
 
 [input]
 

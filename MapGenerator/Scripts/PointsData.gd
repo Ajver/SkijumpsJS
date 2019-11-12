@@ -1,5 +1,4 @@
 extends Node
-class_name PointsData
 
 enum Type {
 	JUMPER,
@@ -11,7 +10,7 @@ enum Type {
 	END_POINT
 } 
 
-var POINTS_COLORS : Dictionary = {
+var colors : Dictionary = {
 	Type.JUMPER : [Color.blue, Color.white],
 	Type.PAD_COLLISION : [Color.black, Color.white],
 	Type.JUMP_START : [Color(0, 1, 0), Color.black],

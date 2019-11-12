@@ -1,5 +1,7 @@
 extends Node
 
+signal point_added(point_type)
+
 var Point = preload("res://Scenes/Workspace/Points/Point.tscn")
 
 onready var origin = get_parent() 
@@ -16,13 +18,14 @@ func new_point(mouse_position:Vector2) -> void:
 	point.set_scale(Vector2(
 	1.0 / origin.scale.x, 
 	1.0 / origin.scale.y))
-	point.fill_color = PointsData.POINTS_COLORS[selected_point_type][0]
-	point.border_color = PointsData.POINTS_COLORS[selected_point_type][1]
+	point.fill_color = PointsData.colors[selected_point_type][0]
+	point.border_color = PointsData.colors[selected_point_type][1]
 	
 	point.connect("started_dragging", self, "_on_Point_started_dragging")
 	point.connect("stopped_dragging", self, "_on_Point_stopped_dragging")
 	
 	call_deferred("add_child", point)
+	emit_signal("point_added", selected_point_type)
 	
 func can_create_point() -> bool:
 	for p in get_children():

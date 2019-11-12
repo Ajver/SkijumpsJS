@@ -1,8 +1,12 @@
+tool
 extends CheckBox
 
 signal checked(type)
 
 export(PointsData.Type) var type
+
+func _ready() -> void:
+	$ColorRect.color = PointsData.colors[type][0]
 
 func toggle() -> void:
 	_on_RadioBtn_toggled(!pressed)
