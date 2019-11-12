@@ -18,9 +18,6 @@ var type
 var is_hover := false
 var is_dragging := true
 
-func _ready():
-	set_radius(points_container.point_radius / origin.scale.x)
-
 func _input(event) -> void:
 	if is_dragging:
 		if event is InputEventMouseMotion:
@@ -57,8 +54,8 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, radius, current_border_color)
 	draw_circle(Vector2.ZERO, radius*0.9, current_fill_color)
 
-func set_radius(radius) -> void:
-	mouse_collision.shape.radius = radius
+func set_scale(new_scale:Vector2) -> void:
+	scale = new_scale
 	update()
 
 func _on_MouseArea_mouse_entered() -> void:

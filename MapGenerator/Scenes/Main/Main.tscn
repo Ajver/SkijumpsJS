@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Workspace/Workspace.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Workspace/PadSprite.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Workspace/PointsContainer.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Main/UI.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/UI/PointTypeSelector.gd" type="Script" id=6]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -22,7 +23,6 @@ script = ExtResource( 3 )
 
 [node name="PointsContainer" type="Node2D" parent="Workspace/Origin"]
 script = ExtResource( 4 )
-point_radius = 15.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 5 )
@@ -32,7 +32,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -60.0
-rect_min_size = Vector2( 1024, 60 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
 anchor_right = 1.0
@@ -74,27 +73,37 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 40.0
+margin_bottom = 44.0
+
+[node name="PointTypeSelector" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+margin_right = 490.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+
+[node name="CheckBox" type="CheckBox" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/PointTypeSelector"]
+margin_right = 67.0
+margin_bottom = 24.0
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+margin_left = 494.0
+margin_right = 984.0
+margin_bottom = 24.0
 mouse_filter = 0
 size_flags_horizontal = 3
 custom_constants/separation = 20
-alignment = 1
+alignment = 2
 
-[node name="OpenFileBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
-margin_left = 414.0
-margin_right = 485.0
-margin_bottom = 20.0
-text = "Open file"
-
-[node name="TestBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
-margin_left = 505.0
-margin_right = 569.0
-margin_bottom = 20.0
-text = "Test btn"
+[node name="OpenFileBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 396.0
+margin_right = 490.0
+margin_bottom = 24.0
+text = "Open file [O]"
 [connection signal="mouse_entered" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_exited"]
-[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]

@@ -13,15 +13,25 @@ _global_script_classes=[ {
 "class": "Point",
 "language": "GDScript",
 "path": "res://Scenes/Workspace/Points/Point.gd"
+}, {
+"base": "Node",
+"class": "PointsData",
+"language": "GDScript",
+"path": "res://Scripts/PointsData.gd"
 } ]
 _global_script_class_icons={
-"Point": ""
+"Point": "",
+"PointsData": ""
 }
 
 [application]
 
 config/name="MapGenerator"
 run/main_scene="res://Scenes/Main/Main.tscn"
+
+[autoload]
+
+PointsData="*res://Scripts/PointsData.gd"
 
 [input]
 
