@@ -1,6 +1,8 @@
-extends CanvasLayer
+extends Node
 
 onready var file_dialog = find_node("FileDialog")
+onready var panel = find_node("Panel")
+onready var panel_rect = Rect2(panel.rect_global_position, panel.rect_size) 
 
 var _is_mouse_over_panel := false
 
@@ -11,6 +13,9 @@ func _input(event) -> void:
 	if Input.is_action_just_pressed("open_filesystem"):
 		open_file_dialog()
 		
+	if event is InputEventMouseMotion:
+		_is_mouse_over_panel = panel_rect.has_point(event.position)
+	
 func _on_OpenFileBtn_pressed():
 	open_file_dialog()
 		
@@ -19,12 +24,3 @@ func open_file_dialog() -> void:
 
 func is_using_mouse() -> bool:
 	return file_dialog.visible or _is_mouse_over_panel
-
-func _on_Panel_mouse_entered() -> void:
-	_is_mouse_over_panel = true
-	print(is_using_mouse())
-
-func _on_Panel_mouse_exited() -> void:
-	_is_mouse_over_panel = false
-	print(is_using_mouse())
-	

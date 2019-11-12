@@ -10,7 +10,7 @@
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Workspace" type="CanvasLayer" parent="."]
+[node name="Workspace" type="Node" parent="."]
 script = ExtResource( 2 )
 scale_speed = 1.1
 margin = 100.0
@@ -24,7 +24,7 @@ script = ExtResource( 3 )
 [node name="PointsContainer" type="Node2D" parent="Workspace/Origin"]
 script = ExtResource( 4 )
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="Node" parent="."]
 script = ExtResource( 5 )
 
 [node name="Control" type="Control" parent="UI"]
@@ -33,19 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -60.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 0
-custom_constants/separation = 20
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Control/VBoxContainer"]
-visible = false
-margin_right = 1024.0
-margin_bottom = 35.0
-size_flags_vertical = 3
-
-[node name="FileDialog" type="FileDialog" parent="UI/Control/VBoxContainer/CenterContainer"]
+[node name="FileDialog" type="FileDialog" parent="UI/Control"]
 margin_left = 212.0
 margin_top = -183.0
 margin_right = 812.0
@@ -59,13 +47,13 @@ filters = PoolStringArray( "*.png" )
 current_dir = "D:/Xampp/htdocs/SpaceJump/MapGenerator"
 current_path = "D:/Xampp/htdocs/SpaceJump/MapGenerator/"
 
-[node name="Panel" type="Panel" parent="UI/Control/VBoxContainer"]
+[node name="Panel" type="Panel" parent="UI/Control"]
 margin_right = 1024.0
 margin_bottom = 60.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.12
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Control/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 20
@@ -73,24 +61,24 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
 margin_bottom = 44.0
 
-[node name="PointTypeSelector" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+[node name="PointTypeSelector" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer/HBoxContainer2"]
 margin_right = 490.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 script = ExtResource( 6 )
 
-[node name="CheckBox" type="CheckBox" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/PointTypeSelector"]
+[node name="CheckBox" type="CheckBox" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector"]
 margin_right = 67.0
 margin_bottom = 24.0
 text = "Player"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer/HBoxContainer2"]
 margin_left = 494.0
 margin_right = 984.0
 margin_bottom = 24.0
@@ -99,11 +87,9 @@ size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 2
 
-[node name="OpenFileBtn" type="Button" parent="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+[node name="OpenFileBtn" type="Button" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
 margin_left = 396.0
 margin_right = 490.0
 margin_bottom = 24.0
 text = "Open file [O]"
-[connection signal="mouse_entered" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_entered"]
-[connection signal="mouse_exited" from="UI/Control/VBoxContainer/Panel" to="UI" method="_on_Panel_mouse_exited"]
-[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]
+[connection signal="pressed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]
