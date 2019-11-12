@@ -2,7 +2,8 @@ extends Node
 
 signal point_added(point_type)
 
-var Point = preload("res://Scenes/Workspace/Points/Point.tscn")
+var Point = preload("res://Scenes/Workspace/Point.tscn")
+var Line = preload("res://Scenes/Workspace/Line.tscn")
 
 onready var origin = get_parent() 
 
@@ -24,6 +25,11 @@ func new_point(mouse_position:Vector2) -> void:
 	point.connect("started_dragging", self, "_on_Point_started_dragging")
 	point.connect("stopped_dragging", self, "_on_Point_stopped_dragging")
 	
+	PointsCounter.points_amount[selected_point_type] += 1
+	
+#	if PointsCounter.points_amount[selected_point_type] > 1:
+#		create_line(pos, pos)
+	
 	call_deferred("add_child", point)
 	emit_signal("point_added", selected_point_type)
 	
@@ -33,6 +39,9 @@ func can_create_point() -> bool:
 			return false
 			
 	return true
+	
+func create_line(p1:Vector2, p2:Vector2) -> void:
+	pass
 	
 func can_grab_point() -> bool:
 	return !_is_dragging_point

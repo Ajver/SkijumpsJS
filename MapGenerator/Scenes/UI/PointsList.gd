@@ -13,5 +13,4 @@ func _ready():
 		add_child(li)
 
 func _on_new_point_added(point_type) -> void:
-	list_items[point_type].increase_amount()
-
+	list_items[point_type].refresh_amount()

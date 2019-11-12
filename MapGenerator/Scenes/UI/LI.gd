@@ -2,16 +2,14 @@ extends HBoxContainer
 
 onready var amount = find_node("Amount")
 
-var amount_num : int = 0
+var type
 
-func setup(type) -> void:
-	$ColorRect.color = PointsData.colors[PointsData.Type[type]][0]
-	$TypeName.text = type
-	call_deferred("set_amount", amount_num)
+func setup(type_name) -> void:
+	type = PointsData.Type[type_name]
+	$ColorRect.color = PointsData.colors[type][0]
+	$TypeName.text = type_name
+	call_deferred("refresh_amount")
 	
-func set_amount(am:int) -> void:
-	amount_num = am
-	amount.text = str(am)
+func refresh_amount() -> void:
+	amount.text = str(PointsCounter.points_amount[type])
 	
-func increase_amount() -> void:
-	set_amount(amount_num + 1)
