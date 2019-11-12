@@ -6,6 +6,6 @@
 margin_right = 67.0
 margin_bottom = 24.0
 action_mode = 0
-text = "Player"
+text = "Button"
 script = ExtResource( 1 )
 [connection signal="toggled" from="." to="." method="_on_RadioBtn_toggled"]

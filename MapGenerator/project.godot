@@ -33,6 +33,10 @@ run/main_scene="res://Scenes/Main/Main.tscn"
 
 PointsData="*res://Scripts/PointsData.gd"
 
+[display]
+
+window/size/always_on_top=true
+
 [input]
 
 exit={

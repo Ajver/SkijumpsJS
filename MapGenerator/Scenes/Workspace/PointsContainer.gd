@@ -52,3 +52,6 @@ func refresh_points_scale() -> void:
 	for p in get_children():
 		p.set_scale(new_scale)
 	
+func _on_point_type_changed(type):
+	selected_point_type = type
+	print("t:", type)

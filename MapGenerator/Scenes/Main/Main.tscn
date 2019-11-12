@@ -32,7 +32,7 @@ script = ExtResource( 5 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -60.0
+mouse_filter = 1
 
 [node name="FileDialog" type="FileDialog" parent="UI/Control"]
 margin_left = 212.0
@@ -49,57 +49,94 @@ current_dir = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics"
 current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/"
 
 [node name="Panel" type="Panel" parent="UI/Control"]
-margin_right = 1024.0
-margin_bottom = 60.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -60.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.12
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+size_flags_horizontal = 3
+custom_constants/margin_right = 17
+custom_constants/margin_top = 17
+custom_constants/margin_left = 17
+custom_constants/margin_bottom = 17
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 44.0
+margin_left = 17.0
+margin_top = 17.0
+margin_right = 1007.0
+margin_bottom = 43.0
 
 [node name="PointTypeSelector" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer/HBoxContainer2"]
-margin_right = 490.0
-margin_bottom = 24.0
+margin_right = 641.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 script = ExtResource( 6 )
 
 [node name="RadioBtn" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_right = 73.0
+margin_bottom = 26.0
+text = "Jumper"
 
 [node name="RadioBtn2" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
-margin_left = 71.0
-margin_right = 138.0
+margin_left = 77.0
+margin_right = 187.0
+margin_bottom = 26.0
+text = "Pad Collision"
+type = 1
 
 [node name="RadioBtn3" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
-margin_left = 142.0
-margin_right = 209.0
+margin_left = 191.0
+margin_right = 284.0
+margin_bottom = 26.0
+text = "Jump Start"
+type = 2
 
 [node name="RadioBtn4" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
-margin_left = 213.0
-margin_right = 280.0
+margin_left = 288.0
+margin_right = 375.0
+margin_bottom = 26.0
+text = "Jump End"
+type = 3
+
+[node name="RadioBtn5" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 379.0
+margin_right = 472.0
+margin_bottom = 26.0
+text = "Pulll Point"
+type = 4
+
+[node name="RadioBtn6" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 476.0
+margin_right = 549.0
+margin_bottom = 26.0
+text = "K Point"
+type = 5
+
+[node name="RadioBtn7" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 7 )]
+margin_left = 553.0
+margin_right = 641.0
+margin_bottom = 26.0
+text = "End Point"
+type = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Panel/MarginContainer/HBoxContainer2"]
-margin_left = 494.0
-margin_right = 984.0
-margin_bottom = 24.0
+margin_left = 645.0
+margin_right = 990.0
+margin_bottom = 26.0
 mouse_filter = 0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 2
 
 [node name="OpenFileBtn" type="Button" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
-margin_left = 396.0
-margin_right = 490.0
-margin_bottom = 24.0
+margin_left = 251.0
+margin_right = 345.0
+margin_bottom = 26.0
 text = "Open file [O]"
+[connection signal="point_type_changed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" to="Workspace/Origin/PointsContainer" method="_on_point_type_changed"]
 [connection signal="pressed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]

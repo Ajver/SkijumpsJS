@@ -1,5 +1,9 @@
 extends CheckBox
 
+signal checked(type)
+
+export(PointsData.Type) var type
+
 func toggle() -> void:
 	_on_RadioBtn_toggled(!pressed)
 	
@@ -11,6 +15,9 @@ func _on_RadioBtn_toggled(button_pressed:bool):
 				pressed = true
 	else:
 		pressed = true
+		
+	if pressed:
+		emit_signal("checked", type)
 
 func is_radio():
 	pass

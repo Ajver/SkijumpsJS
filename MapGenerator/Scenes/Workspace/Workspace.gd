@@ -32,6 +32,9 @@ func _input(event) -> void:
 	if ui.is_using_mouse():
 		return
 		
+	if event is InputEventKey:
+		return
+		
 	if Input.is_action_just_pressed("grab_image"):
 		drag_point = event.position
 		is_dragging = true
