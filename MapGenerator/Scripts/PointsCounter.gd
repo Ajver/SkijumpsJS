@@ -37,4 +37,4 @@ static func _sort_array(arr:Array) -> void:
 	arr.sort_custom(PointsCounter, "_should_replace")
 	
 static func _should_replace(p1, p2) -> bool:
-	return p1.position.x > p2.position.x
+	return p1.position.x < p2.position.x

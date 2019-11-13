@@ -27,6 +27,7 @@ run/main_scene="res://Scenes/Main/Main.tscn"
 
 PointsData="*res://Scripts/PointsData.gd"
 PointsCounter="*res://Scripts/PointsCounter.gd"
+SaveSystem="*res://Scripts/SaveSystem.gd"
 
 [display]
 

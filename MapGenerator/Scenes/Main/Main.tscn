@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Workspace/Workspace.gd" type="Script" id=2]
@@ -7,10 +7,12 @@
 [ext_resource path="res://Scenes/Main/UI.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/UI/DataPanel.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/UI/CustomButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/font_24.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Scenes/UI/PointsList.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/UI/PointTypeSelector.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/UI/RadioBtn.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/UI/OutputScaleSystem.gd" type="Script" id=8]
+[ext_resource path="res://Assets/font_18.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/font_24.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Scenes/UI/PointsList.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/UI/PointTypeSelector.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/UI/RadioBtn.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -37,7 +39,7 @@ script = ExtResource( 5 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -100.0
+margin_left = -150.0
 margin_right = 200.0
 script = ExtResource( 6 )
 
@@ -46,9 +48,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/DataPanel/HBoxContainer"]
-margin_right = 100.0
+margin_right = 150.0
 margin_bottom = 728.0
-rect_min_size = Vector2( 100, 0 )
+rect_min_size = Vector2( 150, 0 )
 custom_constants/margin_right = 17
 custom_constants/margin_top = 17
 custom_constants/margin_left = 17
@@ -57,30 +59,64 @@ custom_constants/margin_bottom = 17
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/MarginContainer"]
 margin_left = 17.0
 margin_top = 17.0
-margin_right = 83.0
+margin_right = 133.0
 margin_bottom = 711.0
 custom_constants/separation = 40
 
 [node name="OpenBtn" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
-margin_right = 66.0
+margin_right = 116.0
 margin_bottom = 18.0
 toggle_mode = true
 text = "Open"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 58.0
-margin_right = 66.0
+margin_right = 116.0
 margin_bottom = 76.0
 custom_constants/separation = 5
 
 [node name="ResetBtn" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 7 )]
-margin_right = 66.0
+margin_right = 116.0
 margin_bottom = 18.0
 text = "Reset"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 116.0
+margin_bottom = 170.0
+
+[node name="OutputScaleSystem" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 116.0
+margin_bottom = 54.0
+custom_constants/separation = 5
+script = ExtResource( 8 )
+
+[node name="Header" type="Label" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem"]
+margin_right = 116.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 9 )
+text = "Output scale"
+
+[node name="ScaleValue" type="Label" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem"]
+margin_top = 17.0
+margin_right = 116.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 10 )
+text = "1"
+align = 1
+
+[node name="ScaleSlider" type="HSlider" parent="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem"]
+margin_top = 38.0
+margin_right = 116.0
+margin_bottom = 54.0
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
 [node name="PointsListContainer" type="MarginContainer" parent="UI/DataPanel/HBoxContainer"]
-margin_left = 104.0
-margin_right = 304.0
+margin_left = 154.0
+margin_right = 570.0
 margin_bottom = 728.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -90,22 +126,22 @@ custom_constants/margin_bottom = 17
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer"]
 margin_top = 17.0
-margin_right = 183.0
+margin_right = 399.0
 margin_bottom = 711.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
-margin_right = 183.0
+margin_right = 399.0
 margin_bottom = 16.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 10 )
 text = "Points:"
 align = 1
 
 [node name="PointsList" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 183.0
+margin_right = 399.0
 margin_bottom = 36.0
-script = ExtResource( 9 )
+script = ExtResource( 11 )
 
 [node name="Control" type="Control" parent="UI"]
 anchor_top = 1.0
@@ -140,49 +176,49 @@ margin_bottom = 43.0
 margin_right = 787.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
-script = ExtResource( 10 )
+script = ExtResource( 12 )
 
-[node name="RadioBtn" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_right = 82.0
 margin_bottom = 26.0
 text = "Jumper"
 
-[node name="RadioBtn2" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn2" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 86.0
 margin_right = 231.0
 margin_bottom = 26.0
 text = "Pad Collision"
 type = 1
 
-[node name="RadioBtn3" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn3" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 235.0
 margin_right = 353.0
 margin_bottom = 26.0
 text = "Jump Start"
 type = 2
 
-[node name="RadioBtn4" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn4" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 357.0
 margin_right = 457.0
 margin_bottom = 26.0
 text = "Jump End"
 type = 3
 
-[node name="RadioBtn5" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn5" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 461.0
 margin_right = 579.0
 margin_bottom = 26.0
 text = "Pull Point"
 type = 4
 
-[node name="RadioBtn6" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn6" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 583.0
 margin_right = 674.0
 margin_bottom = 26.0
 text = "K Point"
 type = 5
 
-[node name="RadioBtn7" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 11 )]
+[node name="RadioBtn7" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 678.0
 margin_right = 787.0
 margin_bottom = 26.0
@@ -221,5 +257,6 @@ current_file = "earth-pad.png"
 current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/earth-pad.png"
 [connection signal="toggled" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/OpenBtn" to="UI/DataPanel" method="_on_OpenBtn_toggled"]
 [connection signal="pressed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetBtn" to="Workspace/Origin/PointsContainer" method="_on_ResetBtn_pressed"]
+[connection signal="value_changed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem/ScaleSlider" to="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem" method="_on_ScaleSlider_value_changed"]
 [connection signal="point_type_changed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" to="Workspace/Origin/PointsContainer" method="_on_point_type_changed"]
 [connection signal="pressed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/HBoxContainer/OpenFileBtn" to="UI" method="_on_OpenFileBtn_pressed"]
