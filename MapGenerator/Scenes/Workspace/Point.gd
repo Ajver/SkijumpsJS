@@ -3,6 +3,8 @@ class_name Point
 
 signal started_dragging(point)
 signal stopped_dragging
+signal dragged(point)
+signal removed(point)
 
 onready var origin = get_node("/root/Main").find_node("Origin")
 onready var points_container = get_parent()
@@ -12,7 +14,6 @@ onready var mouse_collision = mouse_area.get_node("CollisionShape2D")
 var fill_color : Color
 var border_color : Color
 
-# TODO
 var type
 
 var is_hover := false
@@ -22,6 +23,7 @@ func _input(event) -> void:
 	if is_dragging:
 		if event is InputEventMouseMotion:
 			position = (event.position - origin.position) / origin.scale
+			emit_signal("dragged", self)
 		elif Input.is_action_just_released("grab_point"):
 			is_dragging = false
 			emit_signal("stopped_dragging")
@@ -36,6 +38,7 @@ func _input(event) -> void:
 			is_dragging = true
 			emit_signal("started_dragging", self)
 	elif Input.is_action_just_pressed("remove_point"):
+		emit_signal("removed", self)
 		queue_free()
 
 func _draw() -> void:

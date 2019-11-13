@@ -28,6 +28,7 @@ script = ExtResource( 3 )
 
 [node name="PointsContainer" type="Node2D" parent="Workspace/Origin"]
 script = ExtResource( 4 )
+line_color = Color( 0.321569, 0.690196, 0.909804, 0.760784 )
 
 [node name="UI" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -45,7 +46,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/DataPanel/HBoxContainer"]
-editor/display_folded = true
 margin_right = 100.0
 margin_bottom = 728.0
 rect_min_size = Vector2( 100, 0 )
@@ -219,7 +219,6 @@ filters = PoolStringArray( "*.png" )
 current_dir = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics"
 current_file = "earth-pad.png"
 current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/earth-pad.png"
-[connection signal="point_added" from="Workspace/Origin/PointsContainer" to="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer/PointsList" method="_on_new_point_added"]
 [connection signal="toggled" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/OpenBtn" to="UI/DataPanel" method="_on_OpenBtn_toggled"]
 [connection signal="pressed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetBtn" to="Workspace/Origin/PointsContainer" method="_on_ResetBtn_pressed"]
 [connection signal="point_type_changed" from="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" to="Workspace/Origin/PointsContainer" method="_on_point_type_changed"]

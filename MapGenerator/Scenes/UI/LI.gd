@@ -11,5 +11,5 @@ func setup(type_name) -> void:
 	call_deferred("refresh_amount")
 	
 func refresh_amount() -> void:
-	amount.text = str(PointsCounter.points_amount[type])
+	amount.text = str(PointsCounter.points[type].size())
 	
