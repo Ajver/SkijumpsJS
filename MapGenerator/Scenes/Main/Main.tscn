@@ -116,7 +116,7 @@ value = 1.0
 
 [node name="PointsListContainer" type="MarginContainer" parent="UI/DataPanel/HBoxContainer"]
 margin_left = 154.0
-margin_right = 570.0
+margin_right = 354.0
 margin_bottom = 728.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -126,12 +126,12 @@ custom_constants/margin_bottom = 17
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer"]
 margin_top = 17.0
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 711.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 10 )
 text = "Points:"
@@ -139,7 +139,7 @@ align = 1
 
 [node name="PointsList" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 36.0
 script = ExtResource( 11 )
 
@@ -185,31 +185,31 @@ text = "Jumper"
 
 [node name="RadioBtn2" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 86.0
-margin_right = 231.0
+margin_right = 204.0
 margin_bottom = 26.0
-text = "Pad Collision"
-type = 1
+text = "Pull Point"
+type = 4
 
 [node name="RadioBtn3" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
-margin_left = 235.0
-margin_right = 353.0
+margin_left = 208.0
+margin_right = 326.0
 margin_bottom = 26.0
 text = "Jump Start"
 type = 2
 
 [node name="RadioBtn4" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
-margin_left = 357.0
-margin_right = 457.0
+margin_left = 330.0
+margin_right = 430.0
 margin_bottom = 26.0
 text = "Jump End"
 type = 3
 
 [node name="RadioBtn5" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
-margin_left = 461.0
+margin_left = 434.0
 margin_right = 579.0
 margin_bottom = 26.0
-text = "Pull Point"
-type = 4
+text = "Pad Collision"
+type = 1
 
 [node name="RadioBtn6" parent="UI/Control/Panel/MarginContainer/HBoxContainer2/PointTypeSelector" instance=ExtResource( 13 )]
 margin_left = 583.0
@@ -255,6 +255,7 @@ filters = PoolStringArray( "*.png" )
 current_dir = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics"
 current_file = "earth-pad.png"
 current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/earth-pad.png"
+
 [connection signal="toggled" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/OpenBtn" to="UI/DataPanel" method="_on_OpenBtn_toggled"]
 [connection signal="pressed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetBtn" to="Workspace/Origin/PointsContainer" method="_on_ResetBtn_pressed"]
 [connection signal="value_changed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem/ScaleSlider" to="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem" method="_on_ScaleSlider_value_changed"]
