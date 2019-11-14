@@ -1,5 +1,5 @@
 const PAD_SCALE=2.0;
-const JUMPER_POSITION={x:426.0,y:668.0};
+const JUMPER_POSITION={x:426.0,y:699.0};
 const PAD_COLLISION_POINTS=[
 {x:1786.0,y:1530.0},
 {x:2128.0,y:1654.0},

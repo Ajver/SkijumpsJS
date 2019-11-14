@@ -91,17 +91,21 @@ class {
         image(this._img, 0, 0);
       pop();
       
-      this.body.parts.forEach((part) => {
-        beginShape();
-        part.vertices.forEach((element) => {
-          vertex(element.x, element.y);
-        });
-        endShape();
-      });
+      // this._drawCollisionBoxes();
 
     pop();
   }
 
+  _drawCollisionBoxes() {
+    this.body.parts.forEach((part) => {
+      beginShape();
+      part.vertices.forEach((element) => {
+        vertex(element.x, element.y);
+      });
+      endShape();
+    });
+  }
+ 
   onKeyPressed() {
     if(keyCode == SPACE) {
       this.onSpaceHit();

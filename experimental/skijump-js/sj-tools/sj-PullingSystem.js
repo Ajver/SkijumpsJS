@@ -6,8 +6,8 @@ class {
     this.friction = SJ.V.jumperFriction;
     this.p1 = null;
     this.p2 = null;
-    this.index = 2;
-    this.setIndex(2);
+    this.index = 1;
+    this.setIndex(1);
   }
 
   setIndex(newIndex) {
