@@ -1,4 +1,3 @@
-tool
 extends CheckBox
 
 signal checked(type)
