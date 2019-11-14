@@ -82,16 +82,30 @@ class {
 
   draw() {
     push();
-    fill(50, 50, 255, 128);
-    
-    push();
-    scale(PAD_SCALE);
-    image(this._img, 0, 0);
-    pop();
+      stroke(0);
+      strokeWeight(4);
+      fill(50, 50, 255, 64);
+      
+      push();
+        scale(PAD_SCALE);
+        image(this._img, 0, 0);
+      pop();
+      
+      // this._drawCollisionBoxes();
 
     pop();
   }
 
+  _drawCollisionBoxes() {
+    this.body.parts.forEach((part) => {
+      beginShape();
+      part.vertices.forEach((element) => {
+        vertex(element.x, element.y);
+      });
+      endShape();
+    });
+  }
+ 
   onKeyPressed() {
     if(keyCode == SPACE) {
       this.onSpaceHit();
