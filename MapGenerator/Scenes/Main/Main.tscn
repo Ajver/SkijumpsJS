@@ -116,7 +116,7 @@ value = 1.0
 
 [node name="PointsListContainer" type="MarginContainer" parent="UI/DataPanel/HBoxContainer"]
 margin_left = 154.0
-margin_right = 570.0
+margin_right = 354.0
 margin_bottom = 728.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -126,12 +126,12 @@ custom_constants/margin_bottom = 17
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer"]
 margin_top = 17.0
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 711.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 10 )
 text = "Points:"
@@ -139,7 +139,7 @@ align = 1
 
 [node name="PointsList" type="VBoxContainer" parent="UI/DataPanel/HBoxContainer/PointsListContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 399.0
+margin_right = 183.0
 margin_bottom = 36.0
 script = ExtResource( 11 )
 
@@ -255,6 +255,7 @@ filters = PoolStringArray( "*.png" )
 current_dir = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics"
 current_file = "earth-pad.png"
 current_path = "D:/Xampp/htdocs/SpaceJump/experimental/skijump-js/sj-graphics/earth-pad.png"
+
 [connection signal="toggled" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/OpenBtn" to="UI/DataPanel" method="_on_OpenBtn_toggled"]
 [connection signal="pressed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/ResetBtn" to="Workspace/Origin/PointsContainer" method="_on_ResetBtn_pressed"]
 [connection signal="value_changed" from="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem/ScaleSlider" to="UI/DataPanel/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/OutputScaleSystem" method="_on_ScaleSlider_value_changed"]
