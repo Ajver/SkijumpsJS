@@ -9,6 +9,7 @@ SJ.ScreensManager.screens = {
   selectLocation: {},
   shop: {},
   howToPlay: {},
+  game: {},
 };
 
 SJ.ScreensManager.setup = () => {
@@ -90,12 +91,22 @@ SJ.ScreensManager.setup = () => {
 
   });
 
+  SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
+
+    self.appendDrawable(
+      new SJ.Label("gra", SJ.SCREEN_MIDDLE_X, 30, CENTER, TOP, 16)
+    );
+
+    self.setBackgroundColor(color(0, 0, 0, 0));
+
+  });
+
   SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu;
 
   SJ.ScreensManager._isSetupped = true;
 }
 
-SJ.ScreensManager.currentScreen = { draw: () => { console.log('...!...!'); }};
+SJ.ScreensManager.currentScreen = { draw: () => { console.log('No Screen selected!'); }};
 
 SJ.ScreensManager.changeScreen = (screen) => {
   SJ.ScreensManager.currentScreen = screen;

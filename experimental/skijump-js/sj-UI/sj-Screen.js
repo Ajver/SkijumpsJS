@@ -4,12 +4,18 @@ class {
   constructor(setup, draw) {
     this._drawable = [];
     this._buttons = [];
-    setup(this);
     this.draw = draw || this.draw;
+    this.setBackgroundColor(color(10, 10, 50));
+    setup(this);
   } 
 
+  setBackgroundColor(bgColor) {
+    this.backgroundColor = bgColor;
+    print(bgColor);
+  }
+
   draw() {
-    background(0, 20, 50);
+    background(this.backgroundColor);
 
     this._drawable.forEach((obj) => {
       obj.draw();
