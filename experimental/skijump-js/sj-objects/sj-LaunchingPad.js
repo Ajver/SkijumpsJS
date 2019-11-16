@@ -3,10 +3,11 @@ SJ.LaunchingPad =
 class {
   constructor() {
     this.body = SJ.PadCreator.createPadBody();
-  
     Matter.World.add(SJ.world, this.body);
   
     this._img = SJ.PadCreator.padImg;
+
+    this._parts = SJ.PadCreator.createPadParts();
   
     this._isWaitingForLaunch = true;
     this._isPullingJumper = false;
@@ -90,7 +91,11 @@ class {
         scale(PAD_SCALE);
         image(this._img, 0, 0);
       pop();
-      
+
+      this._parts.forEach(part => {
+        part.draw();
+      });
+            
       this._drawCollisionBoxes();
 
     pop();

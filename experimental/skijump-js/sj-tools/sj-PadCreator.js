@@ -1,4 +1,26 @@
 
+SJ.PadPart = 
+class {
+
+  constructor(p1, p2) {
+    this.x = p1.x;
+    this.y = p1.y;  
+    this.scale = 1.2;
+    this.rotate = 1.0;
+    this.offset = { x: 0, y: -26};
+  }
+
+  draw() {
+    push();
+      translate(this.x+this.offset.x, this.y+this.offset.y);
+      rotate(this.rotate);
+      scale(this.scale);
+      image(SJ.PadCreator.padPartImg, 0, 0);
+    pop();
+  }
+
+}
+
 SJ.PadCreator = {
 
   SQRT_3: 1.7320508,
@@ -7,6 +29,7 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
+    SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
   },
 
   createPadBody: () => {
@@ -20,7 +43,7 @@ SJ.PadCreator = {
 
   generatePadCollisionPoints: () => {
     const scales = [
-      { x: 3000, y: 2000}
+      { x: 3500, y: 3000}
     ];
     
     const scaleParts = scales.length
@@ -30,7 +53,6 @@ SJ.PadCreator = {
     const step = 0.05;
     
     const offsetPoint = PAD_COLLISION_POINTS[0];
-    offsetPoint.y += 50;
 
     for(let x=0; x<=1.0; x+=step) {
       const alpha = x * PI;
@@ -84,6 +106,19 @@ SJ.PadCreator = {
     Matter.Body.translate(body, translateVec);
 
     return body;
+  },
+
+  createPadParts: () => {
+    let parts = [];
+
+    for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
+      const p1 = PAD_COLLISION_POINTS[i-1];
+      const p2 = PAD_COLLISION_POINTS[i];
+      const part = new SJ.PadPart(p1, p2);
+      parts.push(part);
+    }
+
+    return parts;
   },
 
 }
