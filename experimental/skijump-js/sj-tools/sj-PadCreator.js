@@ -10,10 +10,51 @@ SJ.PadCreator = {
   },
 
   createPadBody: () => {
+    PAD_COLLISION_POINTS = SJ.PadCreator.generatePadCollisionPoints();
+
     return Matter.Body.create({
       isStatic: true,
       parts: SJ.PadCreator.createParts() 
     });
+  },
+
+  generatePadCollisionPoints: () => {
+    const scales = [
+      { x: 3000, y: 2000}
+    ];
+    
+    const scaleParts = scales.length
+
+    let points = [];
+
+    const step = 0.05;
+    
+    const offsetPoint = PAD_COLLISION_POINTS[0];
+    offsetPoint.y += 50;
+
+    for(let x=0; x<=1.0; x+=step) {
+      const alpha = x * PI;
+      const y = 1.0 - ((cos(alpha) + 1.0) / 2.0);
+      const p = SJ.PadCreator._getPartIdx(x, scaleParts);
+      const mx = x * scales[p].x + offsetPoint.x;
+      const my = y * scales[p].y + offsetPoint.y;
+      points.push({ x: mx, y: my });
+    }
+
+    return points;
+  },
+
+  _getPartIdx: (x, partsCount) => {
+    let dp = 1.0 / partsCount;
+    let p = dp;
+    for(let i=0; i<partsCount; i++) {
+      if(x <= p) {
+        return i;
+      }
+      p += dp;
+    }
+
+    return partsCount;
   },
 
   createParts: () => {    

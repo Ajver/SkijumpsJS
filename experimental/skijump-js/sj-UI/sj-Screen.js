@@ -11,7 +11,6 @@ class {
 
   setBackgroundColor(bgColor) {
     this.backgroundColor = bgColor;
-    print(bgColor);
   }
 
   draw() {

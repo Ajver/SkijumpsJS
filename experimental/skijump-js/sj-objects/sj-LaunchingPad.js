@@ -91,7 +91,7 @@ class {
         image(this._img, 0, 0);
       pop();
       
-      // this._drawCollisionBoxes();
+      this._drawCollisionBoxes();
 
     pop();
   }
