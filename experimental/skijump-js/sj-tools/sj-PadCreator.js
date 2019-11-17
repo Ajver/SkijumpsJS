@@ -5,15 +5,24 @@ class {
   constructor(p1, p2) {
     this.x = p1.x;
     this.y = p1.y;  
-    this.scale = 1.2;
-    this.rotate = 1.0;
-    this.offset = { x: 0, y: -26};
+
+    const distance = dist(p1.x, p1.y, p2.x, p2.y);
+    
+    this.scale = 1.7;
+    this.scale = distance / 100;
+    
+    const diffX = p2.x - p1.x;
+    const diffY = p2.y - p1.y;
+    this.rotate = atan2(diffY, diffX);
+    
+    this.offset = { x: -10, y: -26};
   }
 
   draw() {
     push();
-      translate(this.x+this.offset.x, this.y+this.offset.y);
+      translate(this.x, this.y);
       rotate(this.rotate);
+      translate(this.offset.x, this.offset.y)
       scale(this.scale);
       image(SJ.PadCreator.padPartImg, 0, 0);
     pop();

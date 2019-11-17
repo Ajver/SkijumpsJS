@@ -96,7 +96,7 @@ class {
         part.draw();
       });
             
-      this._drawCollisionBoxes();
+      // this._drawCollisionBoxes();
 
     pop();
   }
