@@ -91,11 +91,7 @@ class {
         scale(PAD_SCALE);
         image(this._img, 0, 0);
       pop();
-
-      this._parts.forEach(part => {
-        part.draw();
-      });
-            
+      
       // this._drawCollisionBoxes();
 
     pop();
