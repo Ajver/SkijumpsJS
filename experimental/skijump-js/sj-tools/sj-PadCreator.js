@@ -15,7 +15,7 @@ class {
     const diffY = p2.y - p1.y;
     this.rotate = atan2(diffY, diffX);
     
-    this.offset = { x: -10, y: -26};
+    this.offset = { x: -15, y: -20};
   }
 
   draw() {
@@ -51,11 +51,14 @@ SJ.PadCreator = {
   },
 
   generatePadCollisionPoints: () => {
+    // const scales = [
+    //   { x: 1500, y: 1000},
+    //   { x: 800, y: 1000},
+    //   { x: 1500, y: 800},
+    // ];
     const scales = [
-      { x: 3500, y: 3000}
+      { x: 3500, y: 3000},
     ];
-    
-    const scaleParts = scales.length
 
     let points = [];
 
@@ -66,26 +69,30 @@ SJ.PadCreator = {
     for(let x=0; x<=1.0; x+=step) {
       const alpha = x * PI;
       const y = 1.0 - ((cos(alpha) + 1.0) / 2.0);
-      const p = SJ.PadCreator._getPartIdx(x, scaleParts);
-      const mx = x * scales[p].x + offsetPoint.x;
-      const my = y * scales[p].y + offsetPoint.y;
+      const scalePart = SJ.PadCreator._getScalePart(x, scales);
+      const mx = x * scalePart.x + offsetPoint.x;
+      const my = y * scalePart.y + offsetPoint.y;
       points.push({ x: mx, y: my });
     }
 
     return points;
   },
 
-  _getPartIdx: (x, partsCount) => {
-    let dp = 1.0 / partsCount;
+  _getScalePart: (x, scales) => {
+    let dp = 1.0 / scales.length;
     let p = dp;
-    for(let i=0; i<partsCount; i++) {
+    let i = 0;
+    let scale = { x:0, y:0 };
+    for(i=0; i<scales.length; i++) {
+      scale.x += scales[i].x;
+      scale.y += scales[i].y;
       if(x <= p) {
-        return i;
+        break;
       }
       p += dp;
     }
 
-    return partsCount;
+    return scale;
   },
 
   createParts: () => {    

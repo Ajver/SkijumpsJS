@@ -6,7 +6,7 @@
   "airMinForce": 7,
   "airMaxForce": 15,
   "airDynamics": 0.3,
-  "gravity": 0.2,
+  "gravity": 0.25,
   "texturesNames": {
     "pad": "earth-pad.png",
     "background": {

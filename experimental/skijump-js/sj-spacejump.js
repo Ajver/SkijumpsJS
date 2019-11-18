@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.2";
+SJ.VERSION = "0.3";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -16,7 +16,7 @@ SJ.SCREEN_MIDDLE_Y = SJ.SCREEN_HEIGHT / 2;
 SJ.mouseScreenX = 0;
 SJ.mouseScreenY = 0;
 
-SJ._wantRestartGame = false;1
+SJ._wantRestartGame = false;
 
 SJ.IS_MOBILE = (function() {
   var check = false;
