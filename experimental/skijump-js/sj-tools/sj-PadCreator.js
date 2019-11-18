@@ -2,20 +2,21 @@
 SJ.PadPart = 
 class {
 
-  constructor(p1, p2) {
+  constructor(p1, p2, img, imgWidth) {
     this.x = p1.x;
     this.y = p1.y;  
+    this.img = img;
 
     const distance = dist(p1.x, p1.y, p2.x, p2.y);
     
     this.scale = 1.7;
-    this.scale = distance / 100;
-    
+    this.scale = distance / imgWidth;
+
     const diffX = p2.x - p1.x;
     const diffY = p2.y - p1.y;
     this.rotate = atan2(diffY, diffX);
     
-    this.offset = { x: -15, y: -20};
+    this.offset = { x: -10, y: -40};
   }
 
   draw() {
@@ -24,7 +25,7 @@ class {
       rotate(this.rotate);
       translate(this.offset.x, this.offset.y)
       scale(this.scale);
-      image(SJ.PadCreator.padPartImg, 0, 0);
+      image(this.img, 0, 0);
     pop();
   }
 
@@ -39,10 +40,12 @@ SJ.PadCreator = {
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
     SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
+    SJ.PadCreator.padEndImg = SJ.ImageLoader.load("pad-end.png");
   },
 
   createPadBody: () => {
     PAD_COLLISION_POINTS = SJ.PadCreator.generatePadCollisionPoints();
+    FALL_LINE = PAD_COLLISION_POINTS[PAD_COLLISION_POINTS.length-2].x;
 
     return Matter.Body.create({
       isStatic: true,
@@ -74,6 +77,37 @@ SJ.PadCreator = {
       const my = y * scalePart.y + offsetPoint.y;
       points.push({ x: mx, y: my });
     }
+
+    {
+      const p1 = points[points.length-2];
+      const p2 = points[points.length-1];
+      const diffX = p2.x - p1.x;
+      const diffY = p2.y - p1.y;
+
+      var distance = dist(p1.x, p1.y, p2.x, p2.y);
+      var angle = atan2(diffY, diffX);
+    }
+
+    while(angle > 0.2) {
+      angle = max(angle*0.4, 0.15);
+
+      const p1 = points[points.length-1];
+      const p2 = {
+        x: cos(angle) * distance + p1.x,
+        y: sin(angle) * distance + p1.y
+      };
+      points.push(p2);
+    }
+
+    angle = 0.07;
+    distance = 375 * PAD_SCALE;
+    
+    const p1 = points[points.length-1];
+    const p2 = {
+      x: cos(angle) * distance + p1.x,
+      y: sin(angle) * distance + p1.y
+    };
+    points.push(p2);
 
     return points;
   },
@@ -127,12 +161,18 @@ SJ.PadCreator = {
   createPadParts: () => {
     let parts = [];
 
-    for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
+    for(let i=1; i<PAD_COLLISION_POINTS.length-1; i++) {
       const p1 = PAD_COLLISION_POINTS[i-1];
       const p2 = PAD_COLLISION_POINTS[i];
-      const part = new SJ.PadPart(p1, p2);
+      const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padPartImg, 130);
       parts.push(part);
     }
+    
+    const i = PAD_COLLISION_POINTS.length-1;
+    const p1 = PAD_COLLISION_POINTS[i-1];
+    const p2 = PAD_COLLISION_POINTS[i];
+    const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padEndImg, 375);
+    parts.push(part);
 
     return parts;
   },
