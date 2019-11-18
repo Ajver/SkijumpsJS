@@ -16,7 +16,7 @@ class {
     const diffY = p2.y - p1.y;
     this.rotate = atan2(diffY, diffX);
     
-    this.offset = { x: -10, y: -40};
+    this.offset = { x: -10, y: -26*this.scale};
   }
 
   draw() {
@@ -172,6 +172,7 @@ SJ.PadCreator = {
     const p1 = PAD_COLLISION_POINTS[i-1];
     const p2 = PAD_COLLISION_POINTS[i];
     const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padEndImg, 375);
+    part.offset.y = -20 * part.scale;
     parts.push(part);
 
     return parts;

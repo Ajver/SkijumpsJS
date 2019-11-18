@@ -34,9 +34,7 @@ class {
 
   getAngleMod() {
     const changeAbout = pow(random(), 6) * SJ.V.airDynamics;
-    const tempAngle = this.angle + QUARTER_PI;
-    const directionMod = abs(sin(tempAngle)*0.5) + 0.1;
-    const changeDir = random() - directionMod;
+    const changeDir = random(-1, 1);
     return changeDir * changeAbout;
   }
 
@@ -75,8 +73,9 @@ class {
 
     const relativeVelocityMagnitude = Matter.Vector.magnitude(this.getRelativeVelocity())
     let rotateForce = relativeVelocityMagnitude * SJ.V.airDensity * 1.1;
-    rotateForce = min(rotateForce, 1);
-    rotateForce = max(rotateForce, -1);
+    const MAX_ROTATE_FORCE = 0.5;
+    rotateForce = min(rotateForce, MAX_ROTATE_FORCE);
+    rotateForce = max(rotateForce, -MAX_ROTATE_FORCE);
     
     return relativeAngle * rotateForce;
   }
