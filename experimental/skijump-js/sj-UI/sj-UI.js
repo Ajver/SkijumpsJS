@@ -4,7 +4,6 @@ class {
   constructor() {
     this._scoreLabel = "";
     this._messageLabel = "";
-    this._airForce = 0;
     this._airAngle = 0;  
     this.updateScoreLabel(0);
     this.updateAirAngle(0);
