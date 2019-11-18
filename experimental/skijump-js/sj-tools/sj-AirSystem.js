@@ -8,12 +8,21 @@ class {
 
   update() {
     this.angle += this.getAngleMod();
+
+    while(this.angle < -PI) {
+      this.angle += TWO_PI;
+    }
+    while(this.angle > PI) {
+      this.angle -= TWO_PI;
+    }
+    
     this.airForce = this.getNextForce();
     SJ.ui.updateAirAngle(this.angle);
 
     if(SJ.jumper.body.isStatic) {
       return;
     }
+
     const forceVector = this.calculateAerodynamicForce();
     const newVelocity = Matter.Vector.add(SJ.jumper.body.velocity, forceVector);
     Matter.Body.setVelocity(SJ.jumper.body, newVelocity);
@@ -59,24 +68,37 @@ class {
   }
 
   calculateJumperRotateForce() {
-    const relativeAngle = this.getRelativeAngle();
-    
-    let rotateForce = Matter.Vector.magnitude(this.getRelativeVelocity()) * SJ.V.airDensity;
-    rotateForce = min(rotateForce, 1.0);
-    rotateForce = max(rotateForce, -1.0);
+    let relativeAngle = this.getRelativeAngle();
+    if(abs(relativeAngle) < 0.07) {
+      relativeAngle = 0;
+    }
+
+    const relativeVelocityMagnitude = Matter.Vector.magnitude(this.getRelativeVelocity())
+    let rotateForce = relativeVelocityMagnitude * SJ.V.airDensity * 1.1;
+    rotateForce = min(rotateForce, 1);
+    rotateForce = max(rotateForce, -1);
     
     return relativeAngle * rotateForce;
   }
 
   getRelativeAngle() {
-    let relativeAngle = SJ.jumper.body.angle - (this.angle - HALF_PI);
-    
-    while(relativeAngle > PI) {
-      relativeAngle -= PI;
-    }
-    relativeAngle /= PI;
+    let jumperAngle = SJ.jumper.body.angle;
 
-    return relativeAngle;
+    if(this.isWindFacingRight()) {
+      return jumperAngle - this.angle;
+    }else {
+      let angle = 0;
+      if(this.angle > 0) {
+        angle = this.angle - PI;
+      }else {
+        angle = this.angle + PI;
+      }
+      return jumperAngle - angle;
+    }
+  }
+
+  isWindFacingRight() {
+    return abs(this.angle) < HALF_PI;
   }
 
   getVectorAngle(vector) {

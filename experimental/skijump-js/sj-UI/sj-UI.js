@@ -34,6 +34,9 @@ class {
         strokeWeight(1);
         textSize(16);
         text("F: "+force, 0, 80);
+        text("A: "+ceil(SJ.airSystem.angle*100)/100, 0, 100);
+        text("R: "+SJ.airSystem.isWindFacingRight(), 0, 120);
+        text("RA: "+ceil(SJ.airSystem.getRelativeAngle()*100)/100, 0, 140);
       pop();
     pop()
   }

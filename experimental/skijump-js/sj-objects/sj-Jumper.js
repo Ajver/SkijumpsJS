@@ -161,6 +161,7 @@ class {
   } 
 
   jump() {
+    this.setAngle(this.body.angle);
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -SJ.V.jumperJumpForce);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
@@ -174,7 +175,20 @@ class {
   }
 
   turn() {
-    Matter.Body.rotate(this.body, this.TURN_FORCE * this.turningMod * this.turningDir);
+    let deltaAngle = this.TURN_FORCE * this.turningMod * this.turningDir
+    let angle = this.body.angle + deltaAngle;
+    this.setAngle(angle);
+  }
+
+  setAngle(angle) {
+    while(angle < -PI) {
+      angle += TWO_PI;
+    }
+    while(angle > PI) {
+      angle -= TWO_PI;
+    }
+    
+    Matter.Body.setAngle(this.body, angle);
   }
 
 }
