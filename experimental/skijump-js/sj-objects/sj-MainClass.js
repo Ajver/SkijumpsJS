@@ -47,7 +47,7 @@ class {
     SJ.pad = new SJ.LaunchingPad();
     SJ.scoreCounter = new SJ.ScoreCounter();
     
-    SJ.camera = new SJ.Camera(1.2);
+    SJ.camera = new SJ.Camera(1);
 
     SJ.ui = new SJ.UI();
   

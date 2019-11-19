@@ -33,7 +33,7 @@ class {
   }
 
   getAngleMod() {
-    const changeAbout = pow(random(), 6) * SJ.V.airDynamics;
+    const changeAbout = pow(random(), 2) * SJ.V.airDynamics;
     const changeDir = random(-1, 1);
     return changeDir * changeAbout;
   }
