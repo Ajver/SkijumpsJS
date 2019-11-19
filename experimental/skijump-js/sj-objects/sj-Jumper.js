@@ -119,6 +119,10 @@ class {
       endShape(CLOSE);
     });
 
+    // this._drawVelocityVector();
+  }
+
+  _drawVelocityVector() {
     push();
       translate(pos.x, pos.y);
       scale(3.0);
