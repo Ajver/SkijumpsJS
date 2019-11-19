@@ -2,7 +2,7 @@
 SJ.AirSystem = 
 class {
   constructor() {
-    this.angle = random() * TWO_PI;
+    this.angle = random(TWO_PI);
     this.airForce = random(SJ.V.airMinForce, SJ.V.airMaxForce);
   }
 
@@ -72,8 +72,8 @@ class {
     }
 
     const relativeVelocityMagnitude = Matter.Vector.magnitude(this.getRelativeVelocity())
-    let rotateForce = relativeVelocityMagnitude * SJ.V.airDensity * 1.1;
-    const MAX_ROTATE_FORCE = 0.5;
+    let rotateForce = relativeVelocityMagnitude * SJ.V.airDensity;
+    const MAX_ROTATE_FORCE = 0.1;
     rotateForce = min(rotateForce, MAX_ROTATE_FORCE);
     rotateForce = max(rotateForce, -MAX_ROTATE_FORCE);
     

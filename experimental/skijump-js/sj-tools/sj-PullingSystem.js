@@ -60,10 +60,10 @@ class {
     const velAlpha = atan2(currVel.y, currVel.x);
     const diffAlpha = velAlpha - alpha;
     
-    Matter.Body.setAngle(SJ.jumper.body, alpha+SJ.jumper.offsetAngle);
+    SJ.jumper.setAngle(alpha+SJ.jumper.offsetAngle);
 
     let newVel = Matter.Vector.create(0, 0);
-    newVel.x = cos(diffAlpha) * currVelMag;
+    newVel.x = currVelMag;//cos(diffAlpha) * currVelMag;
     newVel = Matter.Vector.rotate(newVel, alpha);
     
     let accVec = Matter.Vector.create(acc, 0);

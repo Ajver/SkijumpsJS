@@ -59,7 +59,7 @@ class {
 
     if(this.turningMod) {
       if(this.wantTurn) {
-        this.turningMod = min(this.turningMod + 0.005, 1.0);
+        this.turningMod = min(this.turningMod + 0.02, 0.5);
       }else {
         this.turningMod = max(this.turningMod - 0.01, 0.0);
       }
@@ -118,6 +118,12 @@ class {
       });
       endShape(CLOSE);
     });
+
+    push();
+      translate(pos.x, pos.y);
+      scale(3.0);
+      line(0, 0, this.body.velocity.x, this.body.velocity.y);
+    pop();
   }
 
   onKeyPressed() {

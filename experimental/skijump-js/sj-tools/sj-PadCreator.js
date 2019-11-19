@@ -60,7 +60,7 @@ SJ.PadCreator = {
     //   { x: 1500, y: 800},
     // ];
     const scales = [
-      { x: 3500, y: 3000},
+      { x: 5000, y: 2500},
     ];
 
     let points = [];
