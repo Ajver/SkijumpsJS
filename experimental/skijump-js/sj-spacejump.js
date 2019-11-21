@@ -41,6 +41,7 @@ function setup() {
     SJ.canvasScaler = new SJ.CanvasScaler();
     SJ.canvasScaler.setup();
 
+    SJ.slidersManager = new SJ.VariableSlidersManager();
     setupInputManager();
 
     SJ._enterMenu();
@@ -69,6 +70,8 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-AirSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Variables.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-LocationManager.js');
+
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
 
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');
@@ -110,6 +113,7 @@ SJ.draw = () => {
   if(SJ._state == SJ._STATE.LOADING) { return; }
 
   SJ.canvasScaler.transform();
+  SJ.slidersManager.update()
 
   switch(SJ._state) {
 

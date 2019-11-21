@@ -20,15 +20,48 @@
     #skijump-game-container {
       background: #000000;
       width: 100%;
-      height: 100%;
+      height: calc(100vh - 200px);
+      /* height: 100%; */
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
+    #sliders-container {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+    }
+
+    .slider-wrap {
+      width: 100px;
+      margin: 10px;
+    }
+    
+    .slider-wrap input {
+      width: 100%;
+    }
+
   </style>
 
   <!-- Put this div anywhere inside your website structure. This is where game will be created -->
   <div id="skijump-game-container"></div>
+
+  <div id="sliders-container">
+    <div class="slider-wrap">
+      <h3>Grawitacja</h3>
+      <input type="range" name="" id="gravity-sl">
+    </div>
+    <div class="slider-wrap">
+      <h3>Siła tarcia</h3>
+      <input type="range" name="" id="pad-friction-sl">
+    </div>
+    <div class="slider-wrap">
+      <h3>Opór powietrza</h3>
+      <input type="range" name="" id="air-friction-sl">
+    </div>
+  </div>
 
   <!-- Linkt those files to load the game -->
   <script src="skijump-js/sj-libraries/p5.min.js"></script>
