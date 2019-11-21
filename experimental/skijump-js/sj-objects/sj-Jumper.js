@@ -24,8 +24,6 @@ class {
   
     Matter.Body.setAngle(this.body, radians(40));
   
-    this.TURN_FORCE = .2;
-  
     this.canSteer = false;
   
     this.isSlowingDown = false;
@@ -185,7 +183,7 @@ class {
   }
 
   turn() {
-    let deltaAngle = this.TURN_FORCE * this.turningMod * this.turningDir
+    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir
     let angle = this.body.angle + deltaAngle;
     this.setAngle(angle);
   }

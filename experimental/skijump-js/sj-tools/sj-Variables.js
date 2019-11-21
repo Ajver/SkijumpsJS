@@ -4,6 +4,7 @@ SJ.V = {
   jumperFriction: 0.0065,
   jumperAngularFriction: 0.96,
   jumperJumpForce: 5.1,
+  jumperTurnForce: 0.2,
 
   padFriction: 0.0010,
   padSize: 65.0,

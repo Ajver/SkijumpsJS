@@ -9,6 +9,8 @@ class {
         this.airRotateForce = select('#air-rotate-force');
         this.airMinForce = select('#air-min-force');
         this.airMaxForce = select('#air-max-force');
+        this.jumpForce = select('#jump-force');
+        this.jumperTurnForce = select('#jumper-turn-force');
     }
 
     setDefaultValues() {
@@ -19,6 +21,8 @@ class {
         this.airRotateForce.value(SJ.V.airRotateForce);
         this.airMinForce.value(SJ.V.airMinForce);
         this.airMaxForce.value(SJ.V.airMaxForce);
+        this.jumpForce.value(SJ.V.jumperJumpForce);
+        this.jumperTurnForce.value(SJ.V.jumperTurnForce);
     }
 
     update() {
@@ -28,6 +32,7 @@ class {
         SJ.V.airDensity = this.airDensity.value();
         SJ.V.airRotateForce = this.airRotateForce.value();
         SJ.V.airMinForce = this.airMinForce.value();
-        SJ.V.airMaxForce = this.airMaxForce.value();
+        SJ.V.jumperJumpForce = this.jumpForce.value();
+        SJ.V.jumperTurnForce = this.jumperTurnForce.value();
     }
 }
