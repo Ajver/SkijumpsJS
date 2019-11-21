@@ -2,14 +2,15 @@
 // Default values for Earth
 SJ.V = {
   jumperFriction: 0.0065,
-  jumperAirFriction: 0.0035,
   jumperAngularFriction: 0.96,
   jumperJumpForce: 5.1,
 
   padFriction: 0.0010,
   padSize: 65.0,
   
+  airFriction: 0.0035,
   airDensity: 0.0001,
+  airRotateForce: 0.0001,
   airMinForce: 10,
   airMaxForce: 15,
   airDynamics: 0.1,
@@ -27,9 +28,11 @@ SJ.V = {
 
 SJ.loadVariablesFromFile = (fileName, callBack) => {
   loadJSON(document.URL + 'skijump-js/sj-locations/' + fileName, (v) => {
-    SJ.V.padFriction = v.padFriction;
     SJ.V.padSize = v.padSize;
+    SJ.V.airFriction = v.airFriction;
+    SJ.V.padFriction = v.padFriction;
     SJ.V.airDensity = v.airDensity;
+    SJ.V.airRotateForce = v.airRotateForce;
     SJ.V.airMinForce = v.airMinForce;
     SJ.V.airMaxForce = v.airMaxForce;
     SJ.V.airDynamics = v.airDynamics;

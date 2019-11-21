@@ -7,7 +7,7 @@ class {
 
     const options = {
       friction: 0.0,
-      frictionAir: SJ.V.jumperAirFriction,
+      frictionAir: SJ.V.airFriction,
       density: 1,
       isStatic: true,
       parts: [

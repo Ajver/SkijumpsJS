@@ -1,8 +1,10 @@
 {
   "locationName": "Księżyc",
-  "padFriction": 0.00010,
   "padSize": 65.0,
+  "padFriction": 0.00010,
+  "airFriction": 0,
   "airDensity": 0,
+  "airRotateForce": 0,
   "airMinForce": 0,
   "airMaxForce": 0,
   "airDynamics": 0,

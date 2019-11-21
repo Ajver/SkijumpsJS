@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.3";
+SJ.VERSION = "0.4.1";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -105,6 +105,8 @@ SJ._startGame = (locationName) => {
     SJ._isGameReady = true; 
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);
 
+    SJ.slidersManager.setDefaultValues();
+
     SJ._state = SJ._STATE.GAME;
   });
 }
@@ -113,7 +115,6 @@ SJ.draw = () => {
   if(SJ._state == SJ._STATE.LOADING) { return; }
 
   SJ.canvasScaler.transform();
-  SJ.slidersManager.update()
 
   switch(SJ._state) {
 
@@ -122,6 +123,7 @@ SJ.draw = () => {
       break;
 
     case SJ._STATE.GAME:
+      SJ.slidersManager.update();
       SJ.main.draw();
       
       if(SJ._wantRestartGame) {
