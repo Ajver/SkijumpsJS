@@ -49,9 +49,12 @@ class {
     
     SJ.camera = new SJ.Camera(1);
 
+    SJ.paralaxBackground = new SJ.ParalaxBackground();
+
     SJ.ui = new SJ.UI();
   
-    this._drawableObjects.push(SJ.pad);
+    this._drawableObjects.push(SJ.paralaxBackground);
+    // this._drawableObjects.push(SJ.pad);
     this._drawableObjects.push(SJ.jumper);
 
     SJ.pad.onReady();

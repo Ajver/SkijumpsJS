@@ -69,6 +69,8 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-AirSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Variables.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-LocationManager.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
 
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');

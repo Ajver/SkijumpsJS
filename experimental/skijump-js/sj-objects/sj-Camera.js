@@ -25,13 +25,21 @@ class {
   }
 
   transform() {
-    const targetPos = this._targetPosition;
+    const pos = this.getPosition();
     scale(this._scale);
-    translate(-targetPos.x+this._offset.x/this._scale, -targetPos.y+this._offset.y/this._scale);
+    translate(pos.x, pos.y);
   }
 
   stopFollowingJumper() {
     this._isFollowingJumper = false;
+  }
+
+  getPosition() {
+    const targetPos = this._targetPosition;
+    return {
+      x: -targetPos.x+this._offset.x/this._scale, 
+      y: -targetPos.y+this._offset.y/this._scale
+    };
   }
 
 }
