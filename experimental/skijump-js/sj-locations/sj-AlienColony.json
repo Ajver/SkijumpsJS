@@ -1,0 +1,25 @@
+{
+  "locationName": "Alien Colony",
+  "padSize": 65.0,
+  "padFriction": 0.0001,
+  "airFriction": 0.0040,
+  "airDensity": 0.00022,
+  "airRotateForce": 0.00018,
+  "airMinForce": 5,
+  "airMaxForce": 12,
+  "airDynamics": 0.4,
+  "gravity": 0.4,
+  "texturesNames": {
+    "pad": "earth-pad.png",
+    "background": {
+      "0": "earth-layer0.png",
+      "1": "earth-layer1.png"
+    }
+  },
+  "padShapeScalars": [
+    {
+      "x": 6500,
+      "y": 2800
+    }
+  ]
+}

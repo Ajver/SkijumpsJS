@@ -58,10 +58,20 @@ SJ.ScreensManager.setup = () => {
 
     self.appendButton(backBtn)
 
-    const xSeparation = 240;
+    const xSeparation = 235;
 
-    self.appendButton(SJ.createLocationButton("Ziemia", 30, 300));
-    self.appendButton(SJ.createLocationButton("Księżyc", 30+xSeparation, 300));
+    const locations = [
+      [ "Cyber City", "CyberCity" ],
+      [ "Titan Base", "TitanBase" ],
+      [ "Star Station", "StarStation" ],
+      [ "Alien Colony", "AlienColony" ],
+      [ "Planeta X", "PlanetX" ],
+    ]
+
+    for(let i=0; i<locations.length; i++) {
+      const loc = locations[i];
+      self.appendButton(SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]));
+    }
 
     self.appendDrawable(
       new SJ.Label("Wybierz lokację", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)

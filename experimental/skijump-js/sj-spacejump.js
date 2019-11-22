@@ -93,14 +93,8 @@ SJ._enterMenu = () => {
 }
 
 SJ._startGame = (locationName) => {
-  let locationFileName = '';
 
-  switch(locationName) {
-    case 'Ziemia': locationFileName = 'Ziemia'; break;
-    case 'Księżyc': locationFileName = 'Ksiezyc'; break;
-  }
-
-  SJ.LocationManager.changeLocation(locationFileName, () => {
+  SJ.LocationManager.changeLocation(locationName, () => {
     SJ.main = new SJ.MainClass();
     SJ._isGameReady = true; 
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);
