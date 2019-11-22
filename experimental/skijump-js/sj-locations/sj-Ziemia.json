@@ -15,5 +15,11 @@
       "0": "earth-layer0.png",
       "1": "earth-layer1.png"
     }
-  }
+  },
+  "padShapeScalars": [
+    {
+      "x": 5000,
+      "y": 2500
+    }
+  ]
 }

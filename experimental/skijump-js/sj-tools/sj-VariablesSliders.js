@@ -32,6 +32,7 @@ class {
         SJ.V.airDensity = this.airDensity.value();
         SJ.V.airRotateForce = this.airRotateForce.value();
         SJ.V.airMinForce = this.airMinForce.value();
+        SJ.V.airMaxForce = this.airMaxForce.value();
         SJ.V.jumperJumpForce = this.jumpForce.value();
         SJ.V.jumperTurnForce = this.jumperTurnForce.value();
     }

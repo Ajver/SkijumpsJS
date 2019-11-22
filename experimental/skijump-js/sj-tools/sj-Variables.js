@@ -25,6 +25,11 @@ SJ.V = {
     layer0: 'layer0.png',
     layer1: 'layer1.png',
   },
+
+  padShapeScalars: {
+    x: 5000,
+    y: 2500
+  }
 };
 
 SJ.loadVariablesFromFile = (fileName, callBack) => {
@@ -39,7 +44,7 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.airDynamics = v.airDynamics;
     SJ.V.gravity = v.gravity;
     SJ.V.texturesNames.pad = v.texturesNames.pad;
-
+    SJ.V.padShapeScalars = v.padShapeScalars;
     callBack();
   });
 }

@@ -59,9 +59,8 @@ SJ.PadCreator = {
     //   { x: 800, y: 1000},
     //   { x: 1500, y: 800},
     // ];
-    const scales = [
-      { x: 5000, y: 2500},
-    ];
+    const scales = SJ.V.padShapeScalars;
+    print(scales, SJ.V.padShapeScalars);
 
     let points = [];
 
