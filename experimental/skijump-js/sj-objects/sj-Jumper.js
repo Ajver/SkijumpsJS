@@ -2,6 +2,9 @@
 SJ.Jumper =
 class {
   constructor(x, y) {
+    this.start_x = x;
+    this.start_y = y;
+
     this._w = 10;
     this._h = 20;
 
@@ -23,18 +26,17 @@ class {
     Matter.World.add(SJ.world, this.body);
   
     Matter.Body.setAngle(this.body, radians(40));
-  
-    this.canSteer = false;
-  
+    this.offsetAngle = 0;
+    
     this.isSlowingDown = false;
     this.SLOWING_MOD = .995; 
   
     this.turningDir = 0;
     this.turningMod = 0.0;
     this.wantTurn = false;
+    this.canSteer = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
-    this.offsetAngle = 0;
   }
 
   update() {

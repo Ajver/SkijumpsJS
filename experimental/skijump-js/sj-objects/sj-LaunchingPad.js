@@ -9,6 +9,10 @@ class {
 
     this._parts = SJ.PadCreator.createPadParts();
   
+    this.restart();
+  }
+
+  restart() {
     this._isWaitingForLaunch = true;
     this._isPullingJumper = false;
     this._canJump = false;
@@ -48,12 +52,12 @@ class {
 
   setJumperDynamic() {
     SJ.jumper.letSteering();
-    Matter.Body.setVelocity(SJ.jumper.body, SJ.jumper.body.velocity);
+    // Matter.Body.setVelocity(SJ.jumper.body, SJ.jumper.body.velocity);
   }
 
   startPullingJumper() {
     this._isPullingJumper = true;
-    this._pullingSystem.friction = SJ.V.jumperFriction * 3;
+    this._pullingSystem.jumperFrictionMult = 3.0;
     this._pullingSystem.pullingArray = PAD_COLLISION_POINTS;
     for(let i=0; i<PAD_COLLISION_POINTS.length; i++) {
       const point = PAD_COLLISION_POINTS[i];
