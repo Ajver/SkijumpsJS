@@ -8,7 +8,7 @@
   "airDynamics": 0.2,
   "gravity": 0.35,
   "texturesNames": {
-    "pad": "earth-pad.png",
+    "pad": "CyberCityBackground/pad.png",
     "background": {
       "0": "earth-layer0.png",
       "1": "earth-layer1.png"

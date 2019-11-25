@@ -20,7 +20,7 @@ class {
   }
 
   draw() {
-    background(51);
+    background(57, 66, 95);
 
     push();
       SJ.jumper.update();
@@ -54,7 +54,7 @@ class {
     SJ.ui = new SJ.UI();
   
     this._drawableObjects.push(SJ.paralaxBackground);
-    // this._drawableObjects.push(SJ.pad);
+    this._drawableObjects.push(SJ.pad);
     this._drawableObjects.push(SJ.jumper);
 
     SJ.pad.onReady();

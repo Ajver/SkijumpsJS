@@ -4,17 +4,17 @@ class {
   constructor() {
     this._layers = [];
     
-    let sc = 1.0;
+    let sc = 0.2;
     let step = 0.2;
-    for(let i=0; i<3; i++) {
+    for(let i=0; i<5; i++) {
       const pos = { 
-        x: -3800, 
-        y: -3000 
+        x: 200, 
+        y: 140 
       };
 
-      const layer = new SJ.ParalaxLayer(sc, pos, null);
+      const layer = new SJ.ParalaxLayer(sc, pos, i+1);
       this._layers.push(layer);
-      sc -= step;
+      sc += step;
     }
 
     this._layers.reverse();
