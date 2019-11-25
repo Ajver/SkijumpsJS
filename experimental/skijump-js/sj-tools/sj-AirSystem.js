@@ -72,7 +72,7 @@ class {
     }
 
     const relativeVelocityMagnitude = Matter.Vector.magnitude(this.getRelativeVelocity())
-    let rotateForce = relativeVelocityMagnitude * SJ.V.airDensity;
+    let rotateForce = relativeVelocityMagnitude * SJ.V.airRotateForce;
     const MAX_ROTATE_FORCE = 0.1;
     rotateForce = min(rotateForce, MAX_ROTATE_FORCE);
     rotateForce = max(rotateForce, -MAX_ROTATE_FORCE);

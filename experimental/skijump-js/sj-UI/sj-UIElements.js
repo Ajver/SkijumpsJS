@@ -48,13 +48,13 @@ class {
   }
 }
 
-SJ.createLocationButton = (locationName, x, y) => {
+SJ.createLocationButton = (locationName, x, y, fileName) => {
   const btn = new SJ.Button(locationName, x, y, 200, 120);
   btn.label.fontSize = 18;
   btn.label.vAling = BOTTOM;
 
   btn.onMouseRelease = () => {
-    SJ._startGame(locationName);
+    SJ._startGame(fileName);
   }
 
   btn.draw = () => {

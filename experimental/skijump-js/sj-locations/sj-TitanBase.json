@@ -1,0 +1,25 @@
+{
+  "locationName": "Titan base",
+  "padSize": 65.0,
+  "padFriction": 0.00080,
+  "airFriction": 0.004,
+  "airDensity": 0.00015,
+  "airRotateForce": 0.00015,
+  "airMinForce": 7,
+  "airMaxForce": 15,
+  "airDynamics": 0.5,
+  "gravity": 0.5,
+  "texturesNames": {
+    "pad": "earth-pad.png",
+    "background": {
+      "0": "moon-layer0.png",
+      "1": "moon-layer1.png"
+    }
+  },
+  "padShapeScalars": [
+    {
+      "x": 6000,
+      "y": 2000
+    }
+  ]
+}

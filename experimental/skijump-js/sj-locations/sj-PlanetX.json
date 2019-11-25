@@ -1,0 +1,25 @@
+{
+  "locationName": "Planeta X",
+  "padSize": 65.0,
+  "padFriction": 0.0,
+  "airFriction": 0.0045,
+  "airDensity": 0.0002,
+  "airRotateForce": 0.0002,
+  "airMinForce": 12,
+  "airMaxForce": 18,
+  "airDynamics": 0.6,
+  "gravity": 0.55,
+  "texturesNames": {
+    "pad": "earth-pad.png",
+    "background": {
+      "0": "earth-layer0.png",
+      "1": "earth-layer1.png"
+    }
+  },
+  "padShapeScalars": [
+    {
+      "x": 8000,
+      "y": 3300
+    }
+  ]
+}

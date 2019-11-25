@@ -12,11 +12,36 @@ class {
     SJ.world = this._engine.world;
     SJ.world.gravity.y = SJ.V.gravity;
 
+    this._createJumper();
+
+    SJ.pad = new SJ.LaunchingPad();
+    SJ.scoreCounter = new SJ.ScoreCounter();
+    
     SJ.airSystem = new SJ.AirSystem();
 
-    this._restartGame();
+    SJ.camera = new SJ.Camera(1);
+
+    SJ.ui = new SJ.UI();
+
+    SJ.paralaxBackground = new SJ.ParalaxBackground();
+  
+    this._fillDrawableObjectsArray();
+
+    SJ.pad.onReady();
 
     Matter.Engine.run(this._engine);
+  }
+
+  _createJumper() {
+    SJ.jumper = new SJ.Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
+    this._fillDrawableObjectsArray();
+  }
+
+  _fillDrawableObjectsArray() {
+    this._drawableObjects = [];
+    this._drawableObjects.push(SJ.paralaxBackground);
+    this._drawableObjects.push(SJ.pad);
+    this._drawableObjects.push(SJ.jumper);
   }
 
   draw() {
@@ -41,21 +66,9 @@ class {
   }
 
   _restartGame() {
-    this._drawableObjects = [];
-
-    SJ.jumper = new SJ.Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
-    SJ.pad = new SJ.LaunchingPad();
-    SJ.scoreCounter = new SJ.ScoreCounter();
-    
-    SJ.camera = new SJ.Camera(1);
-
-    SJ.paralaxBackground = new SJ.ParalaxBackground();
-
-    SJ.ui = new SJ.UI();
-  
-    this._drawableObjects.push(SJ.paralaxBackground);
-    this._drawableObjects.push(SJ.pad);
-    this._drawableObjects.push(SJ.jumper);
+    this._createJumper();
+    SJ.pad.restart();
+    SJ.camera.startFollowingJumper();
 
     SJ.pad.onReady();
   }

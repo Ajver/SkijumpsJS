@@ -2,12 +2,15 @@
 SJ.Jumper =
 class {
   constructor(x, y) {
+    this.start_x = x;
+    this.start_y = y;
+
     this._w = 10;
     this._h = 20;
 
     const options = {
       friction: 0.0,
-      frictionAir: SJ.V.jumperAirFriction,
+      frictionAir: SJ.V.airFriction,
       density: 1,
       isStatic: true,
       parts: [
@@ -23,20 +26,17 @@ class {
     Matter.World.add(SJ.world, this.body);
   
     Matter.Body.setAngle(this.body, radians(40));
-  
-    this.TURN_FORCE = .2;
-  
-    this.canSteer = false;
-  
+    this.offsetAngle = 0;
+    
     this.isSlowingDown = false;
     this.SLOWING_MOD = .995; 
   
     this.turningDir = 0;
     this.turningMod = 0.0;
     this.wantTurn = false;
+    this.canSteer = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
-    this.offsetAngle = 0;
   }
 
   update() {
@@ -185,7 +185,7 @@ class {
   }
 
   turn() {
-    let deltaAngle = this.TURN_FORCE * this.turningMod * this.turningDir
+    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir
     let angle = this.body.angle + deltaAngle;
     this.setAngle(angle);
   }

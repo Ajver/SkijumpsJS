@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.3";
+SJ.VERSION = "0.5.0";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -41,6 +41,7 @@ function setup() {
     SJ.canvasScaler = new SJ.CanvasScaler();
     SJ.canvasScaler.setup();
 
+    SJ.slidersManager = new SJ.VariableSlidersManager();
     setupInputManager();
 
     SJ._enterMenu();
@@ -72,6 +73,8 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
 
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
+
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-LaunchingPad.js');
@@ -92,17 +95,13 @@ SJ._enterMenu = () => {
 }
 
 SJ._startGame = (locationName) => {
-  let locationFileName = '';
 
-  switch(locationName) {
-    case 'Ziemia': locationFileName = 'Ziemia'; break;
-    case 'Księżyc': locationFileName = 'Ksiezyc'; break;
-  }
-
-  SJ.LocationManager.changeLocation(locationFileName, () => {
+  SJ.LocationManager.changeLocation(locationName, () => {
     SJ.main = new SJ.MainClass();
     SJ._isGameReady = true; 
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);
+
+    SJ.slidersManager.setDefaultValues();
 
     SJ._state = SJ._STATE.GAME;
   });
@@ -120,6 +119,7 @@ SJ.draw = () => {
       break;
 
     case SJ._STATE.GAME:
+      SJ.slidersManager.update();
       SJ.main.draw();
       
       if(SJ._wantRestartGame) {

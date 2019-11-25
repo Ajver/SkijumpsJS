@@ -1,0 +1,25 @@
+{
+  "locationName": "Star Station",
+  "padSize": 65.0,
+  "padFriction": 0.0002,
+  "airFriction": 0.0020,
+  "airDensity": 0.0001,
+  "airRotateForce": 0.0001,
+  "airMinForce": 1,
+  "airMaxForce": 3,
+  "airDynamics": 0.1,
+  "gravity": 0.25,
+  "texturesNames": {
+    "pad": "earth-pad.png",
+    "background": {
+      "0": "earth-layer0.png",
+      "1": "earth-layer1.png"
+    }
+  },
+  "padShapeScalars": [
+    {
+      "x": 6000,
+      "y": 2500
+    }
+  ]
+}

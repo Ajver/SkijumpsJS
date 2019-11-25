@@ -7,8 +7,6 @@ const onKeyPressed = () => {
 
   SJ.jumper.onKeyPressed();
   SJ.pad.onKeyPressed();
-
-  return false;
 }
 
 const onKeyReleased = () => {
@@ -16,8 +14,6 @@ const onKeyReleased = () => {
   if(SJ._state != SJ._STATE.GAME) { return; }
 
   SJ.jumper.onKeyReleased();
-  
-  return false;
 }
 
 const onTouchStarted = () => {
@@ -29,8 +25,6 @@ const onTouchStarted = () => {
     SJ.jumper.onScreenTouched();
     SJ.pad.onScreenTouched();
   }
-
-  return false;
 }
 
 const onTouchEnded = () => {
@@ -41,8 +35,6 @@ const onTouchEnded = () => {
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchEnded();
   }
-
-  return false;
 }
 
 const onMouseMoved = () => {
@@ -63,8 +55,6 @@ const onMouseDragged = () => {
   if(isMouseInCanvas()) {
     SJ.jumper.onScreenTouchMoved();
   }
-
-  return false;
 }
 
 const isMouseInCanvas = () => {

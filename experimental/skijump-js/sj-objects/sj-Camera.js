@@ -12,7 +12,7 @@ class {
 
     this._targetPosition = createVector(0, 0);
 
-    this._isFollowingJumper = true;
+    this.startFollowingJumper();
   }
 
   update() {
@@ -32,6 +32,10 @@ class {
 
   stopFollowingJumper() {
     this._isFollowingJumper = false;
+  }
+  
+  startFollowingJumper() {
+    this._isFollowingJumper = true;
   }
 
   getPosition() {
