@@ -10,12 +10,22 @@
   "airDynamics": 0.5,
   "gravity": 0.5,
   "texturesNames": {
-    "pad": "earth-pad.png",
+    "pad": "CyberCityBackground/Podpory_skocznia1.png",
     "background": {
       "0": "moon-layer0.png",
       "1": "moon-layer1.png"
     }
   },
+  "jumpStartPoint": 1500,
+  "padPullingPoints": [
+    {"x":416.0,"y":708.0},
+    {"x":656.0,"y":930.0},
+    {"x":968.0,"y":1200.0},
+    {"x":1350.0,"y":1480.0},
+    {"x":1500.0,"y":1580.0},
+    {"x":1600.0,"y":1600.0},
+    {"x":1800.0,"y":1615.0}
+  ],
   "padShapeScalars": [
     {
       "x": 6000,

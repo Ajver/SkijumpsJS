@@ -26,10 +26,25 @@ SJ.V = {
     layer1: 'layer1.png',
   },
 
-  padShapeScalars: {
-    x: 5000,
-    y: 2500
-  }
+  jumpStartPoint: 1448,
+
+  padPullingPoints: [
+    {x:416.0,y:708.0},
+    {x:656.0,y:918.0},
+    {x:968.0,y:1136.0},
+    {x:1350.0,y:1382.0},
+    {x:1406.0,y:1416.0},
+    {x:1446.0,y:1432.0},
+    {x:1556.0,y:1454.0},
+    {x:1754.0,y:1484.0},
+  ],
+
+  padShapeScalars: [
+    {
+      x: 5000,
+      y: 2500
+    },
+  ],
 };
 
 SJ.loadVariablesFromFile = (fileName, callBack) => {
@@ -44,6 +59,8 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.airDynamics = v.airDynamics;
     SJ.V.gravity = v.gravity;
     SJ.V.texturesNames.pad = v.texturesNames.pad;
+    SJ.V.jumpStartPoint = v.jumpStartPoint;
+    SJ.V.padPullingPoints = v.padPullingPoints;
     SJ.V.padShapeScalars = v.padShapeScalars;
     callBack();
   });

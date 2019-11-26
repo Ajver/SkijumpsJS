@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.5.0";
+SJ.VERSION = "0.6.0";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -44,7 +44,9 @@ function setup() {
     SJ.slidersManager = new SJ.VariableSlidersManager();
     setupInputManager();
 
+    SJ.ScreensManager.setup();
     SJ._enterMenu();
+    // SJ._startGame("PlanetX");
   }); 
 }
 
@@ -89,8 +91,6 @@ SJ._loadScripts = (callback) => {
 }
 
 SJ._enterMenu = () => {
-  SJ.ScreensManager.setup();
-
   SJ._state = SJ._STATE.MENU;
 }
 

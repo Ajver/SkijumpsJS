@@ -100,6 +100,7 @@ class {
         part.draw();
       });
 
+      this._drawPullingPoints();
       // this._drawCollisionBoxes();
 
     pop();
@@ -113,6 +114,23 @@ class {
       });
       endShape();
     });
+  }
+
+  _drawPullingPoints() {
+    push();
+      fill(200, 0, 0);
+      noStroke();
+      const p = PAD_PULLING_POINTS[0];
+      circle(p.x, p.y, 10);
+      for(let i=1; i<PAD_PULLING_POINTS.length; i++) {
+        const p1 = PAD_PULLING_POINTS[i-1];
+        const p2 = PAD_PULLING_POINTS[i];
+        stroke(255);
+        line(p1.x, p1.y, p2.x, p2.y);
+        noStroke();
+        circle(p2.x, p2.y, 10);
+      }
+    pop();
   }
  
   onKeyPressed() {

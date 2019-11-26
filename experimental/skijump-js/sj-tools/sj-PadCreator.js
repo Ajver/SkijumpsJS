@@ -39,12 +39,17 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
+    SJ.PadCreator.padDescentImg = SJ.ImageLoader.load("descent-part.png");
     SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
     SJ.PadCreator.padEndImg = SJ.ImageLoader.load("pad-end.png");
   },
 
   createPadBody: () => {
+    PAD_PULLING_POINTS = SJ.V.padPullingPoints;
     PAD_COLLISION_POINTS = SJ.PadCreator.generatePadCollisionPoints();
+    JUMP_POINT = SJ.V.jumpStartPoint;
+    JUMP_END_POINT = PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x;
+
     FALL_LINE = PAD_COLLISION_POINTS[PAD_COLLISION_POINTS.length-2].x;
 
     return Matter.Body.create({
@@ -65,7 +70,10 @@ SJ.PadCreator = {
 
     const step = 0.05;
     
-    const offsetPoint = PAD_COLLISION_POINTS[0];
+    const offsetPoint = {
+      x: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x,
+      y: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].y + 90
+    }
 
     for(let x=0; x<=1.0; x+=step) {
       const alpha = x * PI;
@@ -158,6 +166,17 @@ SJ.PadCreator = {
 
   createPadParts: () => {
     let parts = [];
+
+    // for(let i=1; i<PAD_PULLING_POINTS.length; i++) {
+    //   const p1 = PAD_PULLING_POINTS[i-1];
+    //   const p2 = PAD_PULLING_POINTS[i];
+    //   const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padDescentImg, 110);
+    //   parts.offset = {
+    //     x: -20,
+    //     y: -40,
+    //   };
+    //   parts.push(part);
+    // }
 
     for(let i=1; i<PAD_COLLISION_POINTS.length-1; i++) {
       const p1 = PAD_COLLISION_POINTS[i-1];

@@ -17,7 +17,7 @@ let PAD_COLLISION_POINTS=[
 {x:4742.0,y:2902.0},
 {x:5914.0,y:2904.0},
 ];
-const PAD_PULLING_POINTS=[
+let PAD_PULLING_POINTS=[
 {x:416.0,y:708.0},
 {x:656.0,y:918.0},
 {x:968.0,y:1136.0},
@@ -27,7 +27,7 @@ const PAD_PULLING_POINTS=[
 {x:1556.0,y:1454.0},
 {x:1754.0,y:1484.0},
 ];
-const JUMP_POINT = 1448.0;
-const JUMP_END_POINT = 1756.0;
+let JUMP_POINT = 1448.0;
+let JUMP_END_POINT = 1756.0;
 const POINT_K=3004.0;
 let FALL_LINE=4520.0;
