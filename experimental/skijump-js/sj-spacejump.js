@@ -48,8 +48,8 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
-    SJ._enterScreen(SJ.ScreensManager.screens.shop);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    // SJ._enterScreen(SJ.ScreensManager.screens.shop);
     // SJ._startGame("PlanetX");
   }); 
 }

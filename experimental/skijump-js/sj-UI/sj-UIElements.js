@@ -111,11 +111,13 @@ class {
     push();
       translate(this.x, this.y);
       fill(this.bgColor);
+      stroke(255);
       rect(0, 0, this.w, this.h);
 
       textSize(this.textSize);  
       textAlign(CENTER, CENTER);
       fill(this.textColor);
+      noStroke();
       text(this.text, this.w / 2, this.h / 2);
     pop();
   }
@@ -227,6 +229,7 @@ SJ.createItemButton = (x, y, item) => {
     SJ.itemsManager.addItem(item);
     btn.disabled = true;
     SJ.money -= item.price;
+    popup.hide();
   }
 
   btn.draw = () => {
