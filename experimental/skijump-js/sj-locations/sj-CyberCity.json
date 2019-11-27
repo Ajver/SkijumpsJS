@@ -10,7 +10,7 @@
   "airDynamics": 0.2,
   "gravity": 0.35,
   "texturesNames": {
-    "pad": "CyberCityBackground/Podpory_skocznia1.png",
+    "pad": "CyberCityBackground/duza-skocznia-02.jpg",
     "background": {
       "0": "earth-layer0.png",
       "1": "earth-layer1.png"

@@ -72,7 +72,7 @@ SJ.PadCreator = {
     
     const offsetPoint = {
       x: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x,
-      y: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].y + 90
+      y: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].y + 40
     }
 
     for(let x=0; x<=1.0; x+=step) {
