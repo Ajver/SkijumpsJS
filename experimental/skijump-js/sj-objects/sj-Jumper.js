@@ -81,7 +81,7 @@ class {
     const angle = this.body.angle;
     const padAngle = this.getPadAngle();
     const diffAngle = angle - padAngle;
-    if(abs(diffAngle) >= radians(20)) {
+    if(abs(diffAngle) >= radians(SJ.V.goodLandingAngle)) {
       if(diffAngle < 0) {
         this.offsetAngle = -HALF_PI;
       }else {

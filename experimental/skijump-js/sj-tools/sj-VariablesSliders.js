@@ -12,6 +12,7 @@ class {
     this.jumpForce = select('#jump-force');
     this.jumperTurnForce = select('#jumper-turn-force');
     this.airDynamics = select('#air-dynamics');
+    this.goodLandingAngle = select('#good-landing-angle');
   }
 
   setDefaultValues() {
@@ -25,6 +26,7 @@ class {
     this.jumpForce.value(SJ.V.jumperJumpForce);
     this.jumperTurnForce.value(SJ.V.jumperTurnForce);
     this.airDynamics.value(SJ.V.airDynamics);
+    this.goodLandingAngle.value(SJ.V.goodLandingAngle);
   }
 
   update() {
@@ -38,5 +40,6 @@ class {
     SJ.V.jumperJumpForce = this.jumpForce.value();
     SJ.V.jumperTurnForce = this.jumperTurnForce.value();
     SJ.V.airDynamics = this.airDynamics.value();
+    SJ.V.goodLandingAngle = this.goodLandingAngle.value();
   }
 }

@@ -23,7 +23,6 @@ class {
   }
 
   addItem(item) {
-    item.equip();
     this._items.push(item);
   }
 
