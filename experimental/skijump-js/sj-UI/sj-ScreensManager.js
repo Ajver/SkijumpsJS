@@ -12,6 +12,8 @@ SJ.ScreensManager.screens = {
   game: {},
 };
 
+SJ.ScreensManager.popups = [];
+
 SJ.ScreensManager.setup = () => {
   if(SJ.ScreensManager._isSetupped) {
     SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu
@@ -100,7 +102,7 @@ SJ.ScreensManager.setup = () => {
     const xSeparation = 235;
     const ySeparation = 160;
     const items = [
-      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie!", 80),
+      new SJ.Item("Narty", "padFriction", 0.85, "Super nartyzmniejszające tarcie!", 80),
       new SJ.Item("Buty", "jumperJumpForce", 1.2, "Super buty zwiększające siłę wybicia!", 100),
       new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną!", 110),
       new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie zmniejszający opory powietrza!", 140),
@@ -155,6 +157,19 @@ SJ.ScreensManager.changeScreen = (screen) => {
 
 SJ.ScreensManager.draw = () => {
   SJ.ScreensManager.currentScreen.draw();
+  SJ.ScreensManager.drawPopups();
+}
+
+SJ.ScreensManager.drawPopups = () => {
+  SJ.ScreensManager.popups.forEach(popup => {
+    if(popup.isVisible) {
+      popup.draw();
+    }
+  });
+}
+
+SJ.ScreensManager.addPopup = (popup) => {
+  SJ.ScreensManager.popups.unshift(popup);
 }
 
 SJ.ScreensManager.onMouseMove = () => {

@@ -5,7 +5,7 @@ class {
     this.itemName = itemName;
     this.changedVarName = changedVarName;
     this.varMult = varMult;
-    this.description = description;
+    this.description = "Koszt: " + price + "\n" + description;
     this.price = price;
   }
 

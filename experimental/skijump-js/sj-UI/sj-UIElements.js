@@ -79,6 +79,96 @@ class {
   }
 }
 
+SJ.Texture = 
+class {
+  constructor(textureName, x, y) {
+    this.x = x;
+    this.y = y;
+
+    this.texture = SJ.ImageLoader.load(textureName, () => {
+      this.w = this.texture.width; 
+      this.h = this.texture.height;
+    });
+  }
+
+  draw() {
+    image(this.texture, this.x, this.y);
+  }
+}
+
+SJ.TextWindow = 
+class {
+  constructor(x, y, txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
+    this.x = x;
+    this.y = y;
+    this.setTextSize(txtSize);
+    this.setText(txt);
+    this.textColor = textColor;
+    this.bgColor = bgColor;
+  }
+  
+  draw() {
+    push();
+      translate(this.x, this.y);
+      fill(this.bgColor);
+      rect(0, 0, this.w, this.h);
+
+      textSize(this.textSize);  
+      textAlign(CENTER, CENTER);
+      fill(this.textColor);
+      text(this.text, this.w / 2, this.h / 2);
+    pop();
+  }
+
+  setText(txt) {
+    this.text = txt;
+    const lines = txt.split(/\n/gm);
+    textSize(this.textSize);
+    let longestLineWidth = textWidth(lines[0]);
+    for(let i=1; i<lines.length; i++) {
+      const lineWidth = textWidth(lines[i]);
+      if(lineWidth > longestLineWidth) {
+        longestLineWidth = lineWidth;
+      }
+    }
+    this.w = longestLineWidth + 20;
+    this.h = lines.length * textLeading() + 20
+  }
+
+  setTextSize(textSize) {
+    this.textSize = textSize;
+  }
+}
+
+SJ.MouseFollowingPopup =
+class {
+  constructor(txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
+    this.isVisible = false;
+    this.popup = new SJ.TextWindow(0, 0, txt, txtSize, textColor, bgColor);
+  }
+
+  draw() {
+    push();
+      const maxX = SJ.SCREEN_WIDTH - this.popup.w;
+      const maxY = SJ.SCREEN_HEIGHT - this.popup.h;
+      let x = max(min(maxX, SJ.mouseScreenX-this.popup.w/2), 0);
+      let y = max(min(maxY, SJ.mouseScreenY-this.popup.h-10), 0);
+      translate(x, y);
+      this.popup.draw();
+    pop();
+  }
+  
+  show() {
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
 SJ.createLocationButton = (locationName, x, y, fileName) => {
   const btn = new SJ.Button(locationName, x, y, 200, 120);
   btn.label.fontSize = 18;
@@ -119,6 +209,17 @@ SJ.createItemButton = (x, y, item) => {
   btn.label.fontSize = 18;
   btn.label.vAling = BOTTOM;
 
+  const popup = new SJ.MouseFollowingPopup(item.description);
+  SJ.ScreensManager.addPopup(popup);
+
+  btn.onMouseEnter = () => {
+    popup.show();
+  }
+
+  btn.onMouseLeave = () => {
+    popup.hide();
+  }
+
   btn.onMouseRelease = () => {
     if(SJ.money < item.price) {
       return;
@@ -154,25 +255,14 @@ SJ.createItemButton = (x, y, item) => {
         }
         btn.label.draw();
       pop();
+
+      if(!btn.disabled) {
+        if(btn.isMouseIn) {
+          // popup.draw();
+        }
+      }
     pop();
   }
 
   return btn;
-}
-
-SJ.Texture = 
-class {
-  constructor(textureName, x, y) {
-    this.x = x;
-    this.y = y;
-
-    this.texture = SJ.ImageLoader.load(textureName, () => {
-      this.w = this.texture.width; 
-      this.h = this.texture.height;
-    });
-  }
-
-  draw() {
-    image(this.texture, this.x, this.y);
-  }
 }
