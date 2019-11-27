@@ -18,7 +18,7 @@ SJ.ScreensManager.setup = () => {
     return;
   }
 
-  const backBtn = new SJ.Button("Wróć", 20, SJ.SCREEN_HEIGHT-60, 200, 40, () => {
+  const backBtn = new SJ.Button("Wróć", 20, SJ.SCREEN_HEIGHT-60, 200, 40, null, () => {
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.mainMenu);
   });
 

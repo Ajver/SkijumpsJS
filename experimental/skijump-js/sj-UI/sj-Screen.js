@@ -14,11 +14,13 @@ class {
   }
 
   draw() {
-    background(this.backgroundColor);
+    push();
+      background(this.backgroundColor);
 
-    this._drawable.forEach((obj) => {
-      obj.draw();
-    });
+      this._drawable.forEach((obj) => {
+        obj.draw();
+      });
+    pop();
   }
 
   onMouseMove() {

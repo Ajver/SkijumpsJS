@@ -51,9 +51,17 @@ class {
 
   draw() {
     if(this.disabled) {
-      fill(160);
+      fill(37, 53, 64);
     }else {
-      fill(100);
+      if(this.isMouseIn) {
+        if(this.isPress) {
+          fill(17, 91, 140);
+        }else {
+          fill(14, 143, 230);
+        }
+      }else {
+        fill(10, 123, 199);
+      }
     }
 
     rect(this.x, this.y, this.w, this.h);
@@ -82,7 +90,19 @@ SJ.createLocationButton = (locationName, x, y, fileName) => {
 
   btn.draw = () => {
     push();
-      fill(255, 128, 128);
+      if(btn.disabled) {
+        fill(64, 57, 57);
+      }else {
+        if(btn.isMouseIn) {
+          if(btn.isPress) {
+            fill(158, 55, 55);
+          }else {
+            fill(224, 130, 130);
+          }
+        }else {
+          fill(196, 94, 94);
+        }
+      }
       rect(btn.x, btn.y, btn.w, btn.h);
       push();
         translate(btn.x+btn.w/2, btn.y+btn.h-2);
@@ -107,10 +127,19 @@ SJ.createItemButton = (x, y, item) => {
   btn.draw = () => {
     push();
       if(btn.disabled) {
-        fill(100);
+        fill(24, 150, 49);
       }else {
-        fill(100, 80, 255);
+        if(btn.isMouseIn) {
+          if(btn.isPress) {
+            fill(25, 49, 115);
+          }else {
+            fill(46, 95, 230);
+          }
+        }else {
+          fill(32, 76, 199);
+        }
       }
+      
       rect(btn.x, btn.y, btn.w, btn.h);
       push();
         translate(btn.x+btn.w/2, btn.y+btn.h-2);
