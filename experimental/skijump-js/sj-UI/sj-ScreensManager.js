@@ -86,15 +86,26 @@ SJ.ScreensManager.setup = () => {
       new SJ.Label("Sklep", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
     );
 
+    const moneyLabel = new SJ.Label("", SJ.SCREEN_WIDTH-350, SJ.SCREEN_HEIGHT-20, LEFT, BOTTOM, 32, color(252, 251, 179));
+    moneyLabel.draw = () => {
+      push();
+        textSize(moneyLabel.fontSize);
+        textAlign(moneyLabel.aling, moneyLabel.vAling);
+        fill(moneyLabel.fontColor);
+        text("Pieniądze: "+SJ.money, moneyLabel.x, moneyLabel.y);
+      pop();
+    };
+    self.appendDrawable(moneyLabel);
+
     const xSeparation = 235;
     const ySeparation = 160;
     const items = [
-      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie!"),
-      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Super buty zwiększające siłę wybicia!"),
-      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną!"),
-      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie zmniejszający opory powietrza!"),
-      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.9, "Wszczep pomagający utrzymać dobrą pozycję przy silnym wietrze!"),
-      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 3, "Wszczep wspomagający lądowanie pod złym kątem!"),
+      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie!", 80),
+      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Super buty zwiększające siłę wybicia!", 100),
+      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną!", 110),
+      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie zmniejszający opory powietrza!", 140),
+      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.9, "Wszczep pomagający utrzymać dobrą pozycję przy silnym wietrze!", 200),
+      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 3, "Wszczep wspomagający lądowanie pod złym kątem!", 160),
     ];
 
     // Drawing buttons in grid 5x[some rows count]

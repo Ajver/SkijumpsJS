@@ -48,8 +48,8 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
-    // SJ._enterScreen(SJ.ScreensManager.screens.selectLocation);
+    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.shop);
     // SJ._startGame("PlanetX");
   }); 
 }
@@ -78,6 +78,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-LocationManager.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-MoneySystem.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
 

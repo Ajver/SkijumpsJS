@@ -120,8 +120,12 @@ SJ.createItemButton = (x, y, item) => {
   btn.label.vAling = BOTTOM;
 
   btn.onMouseRelease = () => {
+    if(SJ.money < item.price) {
+      return;
+    }
     SJ.itemsManager.addItem(item);
     btn.disabled = true;
+    SJ.money -= item.price;
   }
 
   btn.draw = () => {
