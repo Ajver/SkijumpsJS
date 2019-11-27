@@ -44,8 +44,12 @@ function setup() {
     SJ.slidersManager = new SJ.VariableSlidersManager();
     setupInputManager();
 
+    SJ.itemsManager = new SJ.ItemsManager();
+
     SJ.ScreensManager.setup();
-    SJ._enterMenu();
+
+    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.shop);
     // SJ._startGame("PlanetX");
   }); 
 }
@@ -87,11 +91,21 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');
 
+  scriptsLoader.loadScript('skijump-js/sj-items/sj-Item.js');
+  scriptsLoader.loadScript('skijump-js/sj-items/sj-ItemsManager.js');
+
   scriptsLoader.done();
 }
 
-SJ._enterMenu = () => {
+SJ._enterScreen = (screen) => {
   SJ._state = SJ._STATE.MENU;
+
+  if(screen != SJ.ScreensManager.screens.game) {
+    SJ.ScreensManager.changeScreen(screen);
+  }else {
+    console.error("Cannot enter game directly from '_enterScreen' function. Use '_startGame' instead.");
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+  }
 }
 
 SJ._startGame = (locationName) => {
@@ -100,6 +114,7 @@ SJ._startGame = (locationName) => {
     SJ.main = new SJ.MainClass();
     SJ._isGameReady = true; 
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);
+    SJ.itemsManager.equipAllItems();
 
     SJ.slidersManager.setDefaultValues();
 

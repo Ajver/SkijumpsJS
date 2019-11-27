@@ -56,10 +56,9 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.selectLocation = new SJ.Screen((self) => {
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     const xSeparation = 235;
-
     const locations = [
       [ "Cyber City", "CyberCity" ],
       [ "Titan Base", "TitanBase" ],
@@ -81,11 +80,21 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.shop = new SJ.Screen((self) => {
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Sklep", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
     );
+
+    const xSeparation = 235;
+    const items = [
+      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie!"),
+      new SJ.Item("Buty", "jumperJumpForce", 1.3, "Super buty zwiększające siłę wybicia!"),
+    ];
+
+    for(let i=0; i<items.length; i++) {
+      self.appendButton(SJ.createItemButton(30+xSeparation*i, 300, items[i]));
+    }
 
   });
 
@@ -93,7 +102,7 @@ SJ.ScreensManager.setup = () => {
 
     self.appendDrawable(new SJ.Texture('how_to_play.png', SJ.SCREEN_MIDDLE_X-250, 250, 500, 500));
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Jak grać?", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
