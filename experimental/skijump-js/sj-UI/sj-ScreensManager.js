@@ -12,13 +12,15 @@ SJ.ScreensManager.screens = {
   game: {},
 };
 
+SJ.ScreensManager.popups = [];
+
 SJ.ScreensManager.setup = () => {
   if(SJ.ScreensManager._isSetupped) {
     SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu
     return;
   }
 
-  const backBtn = new SJ.Button("Wróć", 20, SJ.SCREEN_HEIGHT-60, 200, 40, () => {
+  const backBtn = new SJ.Button("Wróć", 20, SJ.SCREEN_HEIGHT-60, 200, 40, null, () => {
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.mainMenu);
   });
 
@@ -56,10 +58,9 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.selectLocation = new SJ.Screen((self) => {
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     const xSeparation = 235;
-
     const locations = [
       [ "Cyber City", "CyberCity" ],
       [ "Titan Base", "TitanBase" ],
@@ -81,11 +82,47 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.shop = new SJ.Screen((self) => {
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Sklep", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
     );
+
+    const moneyLabel = new SJ.Label("", SJ.SCREEN_WIDTH-350, SJ.SCREEN_HEIGHT-20, LEFT, BOTTOM, 32, color(252, 251, 179));
+    moneyLabel.draw = () => {
+      push();
+        textSize(moneyLabel.fontSize);
+        textAlign(moneyLabel.aling, moneyLabel.vAling);
+        fill(moneyLabel.fontColor);
+        text("Pieniądze: "+SJ.money, moneyLabel.x, moneyLabel.y);
+      pop();
+    };
+    self.appendDrawable(moneyLabel);
+
+    const xSeparation = 235;
+    const ySeparation = 160;
+    const items = [
+      new SJ.Item("Narty", "padFriction", 0.85, "Super nartyzmniejszające tarcie!", 80),
+      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Super buty zwiększające siłę wybicia!", 100),
+      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną!", 110),
+      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie zmniejszający opory powietrza!", 140),
+      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.9, "Wszczep pomagający utrzymać dobrą pozycję przy silnym wietrze!", 200),
+      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 3, "Wszczep wspomagający lądowanie pod złym kątem!", 160),
+    ];
+
+    // Drawing buttons in grid 5x[some rows count]
+    let yPos = 200;
+    let drawedItems = 0;
+    let itemsCount = min(items.length, 5);
+    while(itemsCount > 0) {
+      for(let i=0; i<itemsCount; i++) {
+        self.appendButton(SJ.createItemButton(30+xSeparation*i, yPos, items[drawedItems]));
+        drawedItems++;
+      }
+      yPos += ySeparation;
+      itemsCount = min(items.length - drawedItems, 5);
+    }
+    
 
   });
 
@@ -93,7 +130,7 @@ SJ.ScreensManager.setup = () => {
 
     self.appendDrawable(new SJ.Texture('how_to_play.png', SJ.SCREEN_MIDDLE_X-250, 250, 500, 500));
 
-    self.appendButton(backBtn)
+    self.appendButton(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Jak grać?", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
@@ -120,6 +157,19 @@ SJ.ScreensManager.changeScreen = (screen) => {
 
 SJ.ScreensManager.draw = () => {
   SJ.ScreensManager.currentScreen.draw();
+  SJ.ScreensManager.drawPopups();
+}
+
+SJ.ScreensManager.drawPopups = () => {
+  SJ.ScreensManager.popups.forEach(popup => {
+    if(popup.isVisible) {
+      popup.draw();
+    }
+  });
+}
+
+SJ.ScreensManager.addPopup = (popup) => {
+  SJ.ScreensManager.popups.unshift(popup);
 }
 
 SJ.ScreensManager.onMouseMove = () => {

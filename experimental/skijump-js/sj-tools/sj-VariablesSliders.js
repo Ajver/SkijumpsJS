@@ -1,42 +1,58 @@
 
+SJ.VariableSlider = 
+class {
+  constructor(varName, upd) {
+    this.varName = varName;
+    this.slider = select("#id-" + varName);
+
+    this.update = upd || (() => {
+      SJ.V[this.varName] = this.slider.value();
+    });
+  }
+
+  setDefaultValue() {
+    this.slider.value(SJ.V[this.varName]);
+  }
+
+}
+
 SJ.VariableSlidersManager =
 class {
   constructor() {
-    this.gravity = select('#gravity');
-    this.padFriction = select('#pad-friction');
-    this.airFriction = select('#air-friction');
-    this.airDensity = select('#air-density');
-    this.airRotateForce = select('#air-rotate-force');
-    this.airMinForce = select('#air-min-force');
-    this.airMaxForce = select('#air-max-force');
-    this.jumpForce = select('#jump-force');
-    this.jumperTurnForce = select('#jumper-turn-force');
-    this.airDynamics = select('#air-dynamics');
+    const gravitySlider = new SJ.VariableSlider("gravity")
+    gravitySlider.update = () => {
+      SJ.world.gravity.y = gravitySlider.slider.value();
+    }
+
+    const airFrictionSlider = new SJ.VariableSlider("airFriction")
+    airFrictionSlider.update = () => {
+      SJ.jumper.body.frictionAir = airFrictionSlider.slider.value();
+    }
+
+    this._sliders = [
+      gravitySlider,
+      new SJ.VariableSlider("padFriction"),
+      airFrictionSlider,
+      new SJ.VariableSlider("airDensity"),
+      new SJ.VariableSlider("airRotateForce"),
+      new SJ.VariableSlider("airMinForce"),
+      new SJ.VariableSlider("airMaxForce"),
+      new SJ.VariableSlider("jumperJumpForce"),
+      new SJ.VariableSlider("jumperTurnForce"),
+      new SJ.VariableSlider("airDynamics"),
+      new SJ.VariableSlider("goodLandingAngle"),
+    ];
   }
 
   setDefaultValues() {
-    this.gravity.value(SJ.V.gravity);
-    this.padFriction.value(SJ.V.padFriction);
-    this.airFriction.value(SJ.V.airFriction);
-    this.airDensity.value(SJ.V.airDensity);
-    this.airRotateForce.value(SJ.V.airRotateForce);
-    this.airMinForce.value(SJ.V.airMinForce);
-    this.airMaxForce.value(SJ.V.airMaxForce);
-    this.jumpForce.value(SJ.V.jumperJumpForce);
-    this.jumperTurnForce.value(SJ.V.jumperTurnForce);
-    this.airDynamics.value(SJ.V.airDynamics);
+    this._sliders.forEach(slider => {
+      slider.setDefaultValue();
+    });
   }
 
   update() {
-    SJ.world.gravity.y = this.gravity.value();
-    SJ.V.padFriction = this.padFriction.value();
-    SJ.jumper.body.frictionAir = this.airFriction.value();
-    SJ.V.airDensity = this.airDensity.value();
-    SJ.V.airRotateForce = this.airRotateForce.value();
-    SJ.V.airMinForce = this.airMinForce.value();
-    SJ.V.airMaxForce = this.airMaxForce.value();
-    SJ.V.jumperJumpForce = this.jumpForce.value();
-    SJ.V.jumperTurnForce = this.jumperTurnForce.value();
-    SJ.V.airDynamics = this.airDynamics.value();
+    this._sliders.forEach(slider => {
+      slider.update();
+    })
   }
 }
