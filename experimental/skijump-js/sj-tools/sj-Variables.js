@@ -22,10 +22,12 @@ SJ.V = {
   texturesNames: {
     pad: 'pad.png',
 
-    // Placeholders (not implemented yet)
-    layer0: 'layer0.png',
-    layer1: 'layer1.png',
+    background: [],
   },
+
+  cameraPath: [
+    
+  ],
 
   jumpStartPoint: 1448,
 
@@ -60,6 +62,8 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.airDynamics = v.airDynamics;
     SJ.V.gravity = v.gravity;
     SJ.V.texturesNames.pad = v.texturesNames.pad;
+    SJ.V.texturesNames.background = v.texturesNames.background;
+    SJ.V.cameraPath = v.cameraPath;
     SJ.V.jumpStartPoint = v.jumpStartPoint;
     SJ.V.padPullingPoints = v.padPullingPoints;
     SJ.V.padShapeScalars = v.padShapeScalars;

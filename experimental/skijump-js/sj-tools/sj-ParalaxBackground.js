@@ -12,7 +12,7 @@ class {
         y: 140 
       };
 
-      const layer = new SJ.ParalaxLayer(sc, pos, i+1);
+      const layer = new SJ.ParalaxLayer(sc, pos, i);
       this._layers.push(layer);
       sc += step;
     }
