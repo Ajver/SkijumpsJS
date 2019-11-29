@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.7.1";
+SJ.VERSION = "0.8.4";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -48,9 +48,9 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("CyberCity");
+    // SJ._startGame("CyberCity");
   }); 
 }
 

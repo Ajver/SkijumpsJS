@@ -4,7 +4,7 @@ class {
   constructor() {
     this._layers = [];
     
-    let sc = 0.3;
+    let sc = 0.44;
     let step = 0.2;
     const layersCount = SJ.V.texturesNames.background.length
     for(let i=0; i<layersCount; i++) {

@@ -19,16 +19,25 @@ class {
   }
 
   restart() {
-    this._pathIndex = 0;
     const jumperPos = SJ.jumper.body.position
     this._currentPosition = createVector(jumperPos.x, jumperPos.y);
     this._targetPosition = createVector(jumperPos.x, jumperPos.y);
+    this._setPathIndex();
+  }
+
+  _setPathIndex() {
+    for(let i=1; i<this._path.length; i++) {
+      if(this._currentPosition.x < this._path[i].x) {
+        this._pathIndex = i-1;
+        break;
+      }
+    }
   }
 
   update() {
     const jumperX = SJ.jumper.body.position.x;
 
-    if(jumperX >= this._path[this._pathIndex+1].x && this._pathIndex < this._path.length-1) {
+    if(jumperX >= this._path[this._pathIndex+1].x && this._pathIndex < this._path.length-2) {
       this._pathIndex++;
     }
 
