@@ -37,7 +37,6 @@ class {
     if(!SJ.jumper.isSlowingDown) {
       if(jumperPos.x >= FALL_LINE) {
         SJ.jumper.isSlowingDown = true;
-        SJ.camera.stopFollowingJumper();
 
         window.setTimeout(() => {
           SJ.restartGame();

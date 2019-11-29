@@ -57,7 +57,7 @@ class {
         this._drawableObjects.forEach((element) => {
           element.draw();
         });
-        SJ.camera.drawPath();
+        // SJ.camera.drawPath();
       pop();
       
       SJ.airSystem.update();

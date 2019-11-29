@@ -14,23 +14,18 @@ class {
     this._targetPosition = createVector(0, 0);
 
     this._path = SJ.V.cameraPath;
-    this._pathIndex = 0;
 
-    this.startFollowingJumper();
+    this.restart();
   }
 
   restart() {
     this._pathIndex = 0;
-    this.startFollowingJumper();
-    this._currentPosition = createVector(0, 0);
-    this._targetPosition = createVector(0, 0);
+    const jumperPos = SJ.jumper.body.position
+    this._currentPosition = createVector(jumperPos.x, jumperPos.y);
+    this._targetPosition = createVector(jumperPos.x, jumperPos.y);
   }
 
   update() {
-    if(!this._isFollowingJumper) {
-      return;
-    }
-
     const jumperX = SJ.jumper.body.position.x;
 
     if(jumperX >= this._path[this._pathIndex+1].x && this._pathIndex < this._path.length-1) {
@@ -56,14 +51,6 @@ class {
     const pos = this.getPosition();
     scale(this._scale);
     translate(pos.x, pos.y);
-  }
-
-  stopFollowingJumper() {
-    this._isFollowingJumper = false;
-  }
-  
-  startFollowingJumper() {
-    this._isFollowingJumper = true;
   }
 
   getPosition() {
