@@ -59,11 +59,6 @@ SJ.PadCreator = {
   },
 
   generatePadCollisionPoints: () => {
-    // const scales = [
-    //   { x: 1500, y: 1000},
-    //   { x: 800, y: 1000},
-    //   { x: 1500, y: 800},
-    // ];
     const scales = SJ.V.padShapeScalars;
 
     let points = [];

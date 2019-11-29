@@ -142,9 +142,26 @@ SJ.ScreensManager.setup = () => {
 
     self.setBackgroundColor(color(0, 0, 0, 0));
 
-    // self.appendDrawable(
-    //   new SJ.Label("Teścik", 0, 0, LEFT, TOP)
-    // );
+    const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
+
+    });
+    pauseBtn.label.fontSize = 24;
+    self.appendButton(pauseBtn);
+
+    self.appendDrawable(
+      new SJ.LabelWithBackground(SJ.playerData.nick, SJ.SCREEN_MIDDLE_X-150, 0, 150, 40, 16, color(255), color(0, 0, 100))
+    );
+    self.appendDrawable(
+      new SJ.LabelWithBackground(SJ.playerData.positionInLeaderboard, SJ.SCREEN_MIDDLE_X, 0, 50, 40, 16, color(255), color(0, 0, 60))
+    );
+    self.appendDrawable(
+      new SJ.LabelWithBackground(SJ.playerData.highScore + "pkt.", SJ.SCREEN_MIDDLE_X+50, 0, 100, 40, 16, color(255), color(0, 0, 60))
+    );
+
+    self.appendDrawable(new SJ.SpeedDisplay());
+    self.appendDrawable(new SJ.HeightDisplay());
+
+    self.appendDrawable(new SJ.WindDisplay());
 
   });
 

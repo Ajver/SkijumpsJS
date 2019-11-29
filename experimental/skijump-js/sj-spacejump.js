@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.9.0";
+SJ.VERSION = "0.10.0";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -48,9 +48,9 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("CyberCity");
+    // SJ._startGame("CyberCity");
   }); 
 }
 
@@ -79,6 +79,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-MoneySystem.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
 
