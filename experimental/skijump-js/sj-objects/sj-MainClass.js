@@ -21,7 +21,7 @@ class {
 
     SJ.camera = new SJ.Camera(1);
 
-    SJ.ui = new SJ.UI();
+    // SJ.ui = new SJ.UI();
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -62,7 +62,7 @@ class {
       
       SJ.airSystem.update();
 
-      SJ.ui.draw();
+      // SJ.ui.draw();
     pop();
   }
 

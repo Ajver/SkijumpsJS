@@ -142,6 +142,10 @@ SJ.ScreensManager.setup = () => {
 
     self.setBackgroundColor(color(0, 0, 0, 0));
 
+    // self.appendDrawable(
+    //   new SJ.Label("Teścik", 0, 0, LEFT, TOP)
+    // );
+
   });
 
   SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu;

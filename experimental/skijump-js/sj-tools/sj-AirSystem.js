@@ -17,7 +17,7 @@ class {
     }
     
     this.airForce = this.getNextForce();
-    SJ.ui.updateAirAngle(this.angle);
+    // SJ.ui.updateAirAngle(this.angle);
 
     if(SJ.jumper.body.isStatic) {
       return;

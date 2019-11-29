@@ -72,7 +72,7 @@ class {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
     SJ.scoreCounter.calculateDistance(this.body.position.x);
-    SJ.ui.updateScoreLabel(SJ.scoreCounter.score);
+    // SJ.ui.updateScoreLabel(SJ.scoreCounter.score);
     SJ.pad.startPullingJumper();
     this.checkIfFail();
   }
@@ -101,6 +101,7 @@ class {
   }
 
   draw() {
+    frameRate(60);
     const pos = this.body.position;
     const angle = this.body.angle;
     push();
@@ -171,7 +172,6 @@ class {
   } 
 
   jump() {
-    this.setAngle(this.body.angle);
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -SJ.V.jumperJumpForce);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
