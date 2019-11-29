@@ -3,7 +3,7 @@ SJ.ParalaxLayer =
 class {
   constructor(_scale, pos, imgNr) {
     this.scale = _scale;
-    this.img = SJ.ImageLoader.load("CyberCityBackground/" + imgNr + ".png");
+    this.img = SJ.ImageLoader.load(SJ.V.texturesNames.background[imgNr]);
     this.x = pos.x;
     this.y = pos.y;
   }

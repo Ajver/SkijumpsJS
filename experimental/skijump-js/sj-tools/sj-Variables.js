@@ -22,10 +22,12 @@ SJ.V = {
   texturesNames: {
     pad: 'pad.png',
 
-    // Placeholders (not implemented yet)
-    layer0: 'layer0.png',
-    layer1: 'layer1.png',
+    background: [],
   },
+
+  cameraPath: [
+
+  ],
 
   jumpStartPoint: 1448,
 
@@ -40,11 +42,28 @@ SJ.V = {
     {x:1754.0,y:1484.0},
   ],
 
-  padShapeScalars: [
-    {
-      x: 5000,
-      y: 2500
-    },
+  padCollisionPoints: [
+    {"x": 1754, "y": 1524},
+    {"x": 2004, "y": 1539.3895742560778},
+    {"x": 2254, "y": 1585.179354631058},
+    {"x": 2504, "y": 1660.2418447645402},
+    {"x": 2754, "y": 1762.7287570313156},
+    {"x": 3004, "y": 1890.1165235168157},
+    {"x": 3254, "y": 2039.2684346344085},
+    {"x": 3504, "y": 2206.5118753255665},
+    {"x": 3754, "y": 2387.7287570313156},
+    {"x": 4004, "y": 2578.456918699711},
+    {"x": 4254, "y": 2774},
+    {"x": 4504, "y": 2969.5430813002886},
+    {"x": 4754, "y": 3160.2712429686844},
+    {"x": 5004, "y": 3341.4881246744335},
+    {"x": 5254, "y": 3508.7315653655915},
+    {"x": 5504, "y": 3657.883476483185},
+    {"x": 5754.000000000001, "y": 3785.2712429686844},
+    {"x": 6004.000000000001, "y": 3887.75815523546},
+    {"x": 6254.000000000001, "y": 3962.820645368942},
+    {"x": 6504.000000000002, "y": 4008.6104257439224},
+    {"x": 7252.163250189961, "y": 4061.067561247072}
   ],
 };
 
@@ -60,9 +79,11 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.airDynamics = v.airDynamics;
     SJ.V.gravity = v.gravity;
     SJ.V.texturesNames.pad = v.texturesNames.pad;
+    SJ.V.texturesNames.background = v.texturesNames.background;
+    SJ.V.cameraPath = v.cameraPath;
     SJ.V.jumpStartPoint = v.jumpStartPoint;
     SJ.V.padPullingPoints = v.padPullingPoints;
-    SJ.V.padShapeScalars = v.padShapeScalars;
+    SJ.V.padCollisionPoints = v.padCollisionPoints;
     callBack();
   });
 }

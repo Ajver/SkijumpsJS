@@ -57,6 +57,7 @@ class {
         this._drawableObjects.forEach((element) => {
           element.draw();
         });
+        // SJ.camera.drawPath();
       pop();
       
       SJ.airSystem.update();
@@ -68,7 +69,7 @@ class {
   _restartGame() {
     this._createJumper();
     SJ.pad.restart();
-    SJ.camera.startFollowingJumper();
+    SJ.camera.restart();
 
     SJ.pad.onReady();
   }

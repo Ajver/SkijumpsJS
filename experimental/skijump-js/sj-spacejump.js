@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.7.1";
+SJ.VERSION = "0.9.0";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -50,7 +50,7 @@ function setup() {
 
     SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    // SJ._startGame("PlanetX");
+    // SJ._startGame("CyberCity");
   }); 
 }
 
