@@ -52,8 +52,6 @@ SJ.PadCreator = {
     JUMP_END_POINT = PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x;
     FALL_LINE = PAD_COLLISION_POINTS[PAD_COLLISION_POINTS.length-2].x;
 
-    print(PAD_COLLISION_POINTS);
-
     return Matter.Body.create({
       isStatic: true,
       parts: SJ.PadCreator.createParts() 
