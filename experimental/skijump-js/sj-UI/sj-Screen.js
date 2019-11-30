@@ -17,76 +17,102 @@ class {
     push();
       background(this.backgroundColor);
 
-      this._drawable.forEach((obj) => {
+      for(let i=this._drawable.length-1; i>=0; i--) {
+        const obj = this._drawable[i];
+
+        if(obj.isVisible === false) {
+          continue;
+        }
+
         obj.draw();
-      });
+      }
     pop();
   }
 
   onMouseMove() {
-    let stopMouse = false;
+    for(let i=0; i<this._drawable.length; i++) {
+      const obj = this._drawable[i];
 
-    this._buttons.forEach((btn) => {
-      if(btn.disabled) {
-        return;
+      if(!obj.canStopMouse) {
+        continue;
       }
 
-      if(this.isMouseInBtn(btn)) {
-        if(!btn.isMouseIn) {
-          btn.isMouseIn = true;
-          btn.onMouseEnter();
-          stopMouse = true;
-          return;
+      if(obj.disabled === true) {
+        continue;
+      }
+
+      if(obj.isVisible === false) {
+        continue;
+      }
+
+      if(this.isMouseInBtn(obj)) {
+        if(!obj.isMouseIn) {
+          obj.isMouseIn = true;
+          obj.onMouseEnter();
+          return true;
         }
-      }else if(btn.isMouseIn) {
-        btn.isMouseIn = false;
-        btn.onMouseLeave();
-        stopMouse = true;
-        return;
+      }else if(obj.isMouseIn) {
+        obj.isMouseIn = false;
+        obj.onMouseLeave();
+        return true;
       }
-    });
+    }
     
-    return stopMouse;
+    return false;
   }
   
   onMousePress() {
-    let stopMouse = false;
+    for(let i=0; i<this._drawable.length; i++) {
+      const obj = this._drawable[i];
 
-    this._buttons.forEach((btn) => {
-      if(btn.disabled) {
-        return;
+      if(!obj.canStopMouse) {
+        continue;
+      }
+
+      if(obj.disabled === true) {
+        continue;
       }
       
-      if(this.isMouseInBtn(btn)) {
-        btn.isPress = true;
-        btn.onMousePress();
-        stopMouse = true;
-        return;
+      if(obj.isVisible === false) {
+        continue;
       }
-    });
 
-    return stopMouse;
+      if(this.isMouseInBtn(obj)) {
+        obj.isPress = true;
+        obj.onMousePress();
+        return true;
+      }
+    }
+
+    return false;
   }
 
   onMouseRelease() {
-    let stopMouse = false;
+    for(let i=0; i<this._drawable.length; i++) {
+      const obj = this._drawable[i];
 
-    this._buttons.forEach((btn) => {
-      if(btn.disabled) {
-        return;
+      if(!obj.canStopMouse) {
+        continue;
+      }
+
+      if(obj.disabled === true) {
+        continue;
       }
       
-      if(btn.isPress) {
-        btn.isPress = false;
-        if(this.isMouseInBtn(btn)) {
-          btn.onMouseRelease();
-          stopMouse = true;
-          return;
+      if(obj.isVisible === false) {
+        continue;
+      }
+
+      if(obj.isPress) {
+        obj.isPress = false;
+        if(this.isMouseInBtn(obj)) {
+          obj.onMouseRelease();
+          return true;
         }
       }
-    });
+    }
 
-    return stopMouse;
+    return false;
   }
 
   isMouseInBtn(btn) {

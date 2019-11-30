@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.9.0";
+SJ.VERSION = "0.10.2";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -79,6 +79,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-MoneySystem.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
 
@@ -121,6 +122,13 @@ SJ._startGame = (locationName) => {
 
     SJ._state = SJ._STATE.GAME;
   });
+}
+
+SJ.backToMenu = () => {
+  SJ.main = null;
+  SJ._isGameReady = false; 
+  SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+  SJ.itemsManager.unequipAllItems();
 }
 
 SJ.draw = () => {

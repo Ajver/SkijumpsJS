@@ -42,4 +42,10 @@ class {
     });
   }
 
+  unequipAllItems() {
+    this._items.forEach(item => {
+      item.unequip();
+    });
+  }
+
 }

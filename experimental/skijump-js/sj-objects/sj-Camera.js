@@ -6,6 +6,10 @@ class {
       -200,
       0
     )
+    // this._offset = createVector(
+    //   -1000,
+    //   -700
+    // )
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
     this._offset.y += SJ.SCREEN_HEIGHT*0.5;
     this._scale = scaleMod;
@@ -35,6 +39,7 @@ class {
   }
 
   update() {
+    // return;
     const jumperX = SJ.jumper.body.position.x;
 
     if(jumperX >= this._path[this._pathIndex+1].x && this._pathIndex < this._path.length-2) {
@@ -49,10 +54,10 @@ class {
     const k = diffX / distX; 
 
     this._targetPosition.x = jumperX;
-    this._targetPosition.y = p1.y + k * distY; //SJ.jumper.body.position.y;
+    this._targetPosition.y = p1.y + k * distY; 
 
-    const LERP_SPEED = 0.1;
-    this._currentPosition.x = lerp(this._currentPosition.x, this._targetPosition.x, LERP_SPEED);
+    const LERP_SPEED = 0.08;
+    this._currentPosition.x = this._targetPosition.x;
     this._currentPosition.y = lerp(this._currentPosition.y, this._targetPosition.y, LERP_SPEED);
   }
 

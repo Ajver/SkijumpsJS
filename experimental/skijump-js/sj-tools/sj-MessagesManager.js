@@ -2,7 +2,7 @@
 SJ.MessagesManager = {};
 
 SJ.MessagesManager.setMessage = (message) => {
-  SJ.ui.updateMessageLabel(message);
+  // SJ.ui.updateMessageLabel(message);
 }
 
 SJ.MessagesManager.waitingForLaunch = () => {

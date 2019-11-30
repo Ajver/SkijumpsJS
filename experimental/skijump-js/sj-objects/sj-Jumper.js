@@ -20,6 +20,7 @@ class {
         Matter.Bodies.circle(x+this._w*0.5+12, y+this._h*0.5+2.5, 3),
       ],
     };
+    this.realBodyStatic = true;
   
     this.body = Matter.Body.create(options);
     
@@ -72,7 +73,7 @@ class {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
     SJ.scoreCounter.calculateDistance(this.body.position.x);
-    SJ.ui.updateScoreLabel(SJ.scoreCounter.score);
+    // SJ.ui.updateScoreLabel(SJ.scoreCounter.score);
     SJ.pad.startPullingJumper();
     this.checkIfFail();
   }
@@ -107,6 +108,7 @@ class {
       translate(pos.x, pos.y);
       rotate(angle);
       fill(255);
+      rectMode(CENTER);
       rect(0, 0, this._w, this._h);
     pop();
 
@@ -171,7 +173,6 @@ class {
   } 
 
   jump() {
-    this.setAngle(this.body.angle);
     const jumpAngle = this.body.angle;
     let jumpVector = Matter.Vector.create(0, -SJ.V.jumperJumpForce);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
@@ -185,7 +186,7 @@ class {
   }
 
   turn() {
-    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir
+    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir;
     let angle = this.body.angle + deltaAngle;
     this.setAngle(angle);
   }

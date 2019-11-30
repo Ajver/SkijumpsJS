@@ -1,12 +1,12 @@
 
 SJ.Label = 
 class {
-  constructor(content, x, y, aling=LEFT, vAling=CENTER, fontSize=18, fontColor=color(255, 255, 255)) {
+  constructor(content, x, y, align=LEFT, vAlign=CENTER, fontSize=18, fontColor=color(255, 255, 255)) {
     this.x = x;
     this.y = y;
     this.content = content;
-    this.aling = aling;
-    this.vAling = vAling;
+    this.align = align;
+    this.vAlign = vAlign;
     this.fontSize = fontSize;
     this.fontColor = fontColor;
   }
@@ -14,7 +14,7 @@ class {
   draw() {
     push();
       textSize(this.fontSize);
-      textAlign(this.aling, this.vAling);
+      textAlign(this.align, this.vAlign);
       fill(this.fontColor);
       text(this.content, this.x, this.y);
     pop();
@@ -29,20 +29,21 @@ class {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.isMouseIn = false;
-    this.isPress = false;
     this.onMousePress = onMousePress || (() => {});
     this.onMouseRelease = onMouseRelease || (() => {});
     this.onMouseEnter = onMouseEnter || (() => {});
     this.onMouseLeave = onMouseLeave || (() => {});
-    this.draw = draw || this.draw;
     this.disabled = false;
+    this.canStopMouse = true;
+    this.isMouseIn = false;
+    this.isPress = false;
+    this.isVisible = true;
 
     if(overrideLabelDraw) {
       this.label.draw = () => {
         push();
           textSize(this.label.fontSize);
-          textAlign(this.label.aling, this.label.vAling);
+          textAlign(this.label.align, this.label.vAlign);
           text(this.label.content, this.label.x, this.label.y);
         pop();
       }
@@ -50,22 +51,23 @@ class {
   }
 
   draw() {
-    if(this.disabled) {
-      fill(37, 53, 64);
-    }else {
-      if(this.isMouseIn) {
-        if(this.isPress) {
-          fill(17, 91, 140);
-        }else {
-          fill(14, 143, 230);
-        }
-      }else {
-        fill(10, 123, 199);
-      }
-    }
-
-    rect(this.x, this.y, this.w, this.h);
     push();
+      if(this.disabled) {
+        fill(37, 53, 64);
+      }else {
+        if(this.isMouseIn) {
+          if(this.isPress) {
+            fill(17, 91, 140);
+          }else {
+            fill(14, 143, 230);
+          }
+        }else {
+          fill(10, 123, 199);
+        }
+      }
+
+      rectMode(CORNER);
+      rect(this.x, this.y, this.w, this.h);
       translate(this.x+this.w/2, this.y+this.h/2);
 
       if(this.disabled) {
@@ -75,7 +77,15 @@ class {
       }
 
       this.label.draw();
-    pop();  
+    pop();
+  }
+
+  show() {
+    this.isVisible = true;
+  }
+  
+  hide() {
+    this.isVisible = false;
   }
 }
 
@@ -112,6 +122,7 @@ class {
       translate(this.x, this.y);
       fill(this.bgColor);
       stroke(255);
+      rectMode(CORNER);
       rect(0, 0, this.w, this.h);
 
       textSize(this.textSize);  
@@ -169,12 +180,203 @@ class {
   }
 }
 
+SJ.DrawableRect = 
+class {
+  constructor(x, y, w, h, col) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.color = col;
+    this.mode = CORNER;
+  }
+
+  draw() {
+    push();
+      rectMode(this.mode);
+      fill(this.color);
+      noStroke();
+      rect(this.x, this.y, this.w, this.h);
+    pop();
+  }
+}
+
+SJ.LabelWithBackground = 
+class {
+  constructor(txt, x, y, w, h, txtSize=16, col=color(255), bgColor=color(0), align=LEFT, vAlign=CENTER) {
+    let lx = x; 
+    let ly = y;
+
+    switch(align) {
+      case LEFT: lx += 10; break;
+      case CENTER: lx += w/2; break;
+      case RIGHT: lx += w-10; break;
+    }
+    switch(vAlign) {
+      case TOP: ly += 10; break;
+      case CENTER: ly += h/2; break;
+      case BOTTOM: ly += h-10; break;
+    }
+
+    this.label = new SJ.Label(txt, lx, ly, align, vAlign, txtSize, col);
+    this.rect = new SJ.DrawableRect(x, y, w, h, bgColor);
+  }
+
+  draw() {
+    this.rect.draw();
+    this.label.draw();
+  }
+
+}
+
+SJ.WindDisplay =
+class {
+  constructor() {
+    this.radius = 220;
+    this.offset = 50;
+    this.arrowImg = SJ.ImageLoader.load('arrow.png');
+    this.rotate = 0;
+  }
+
+  draw() {
+    push();
+      fill(40, 70, 255);
+      noStroke();
+      translate(SJ.SCREEN_WIDTH, 0);
+      circle(-this.offset, this.offset, this.radius);
+      push();    
+        translate(-60, 60);
+        rotate(SJ.airSystem.angle);
+        image(this.arrowImg, -40, -40, 80, 80);
+      pop();
+      fill(255);
+      textAlign(CENTER);
+      const airForce = SJ.airSystem.airForce;
+      const decVal = floor((airForce*10) % 10);
+      const roundedForce = floor(airForce);
+      text(roundedForce+"."+decVal + " m/s", -this.offset-10, 130);
+    pop();
+
+    this.rotate += 0.1;
+  }
+}
+
+SJ.SpeedDisplay =
+class {
+  constructor() {
+    this.disp = new SJ.LabelWithBackground("Szybkość", SJ.SCREEN_WIDTH-100, 140, 100, 80, 16, color(255), color(0, 0, 80), LEFT, BOTTOM)
+  }
+  
+  draw() {
+    const jumperVel = SJ.jumper.body.velocity
+    const jumperSpeed = floor(Matter.Vector.magnitude(jumperVel)*10.0)/10.0;
+    this.disp.label.content = "Szybkość\n" + jumperSpeed + " m/s";
+    this.disp.draw();
+  }
+}
+
+SJ.HeightDisplay =
+class {
+  constructor() {
+    this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
+  }
+  
+  draw() {
+    var jumperHeight = 0;
+    if(!SJ.jumper.body.isStatic) {
+      const jumperPos = SJ.jumper.body.position;
+      for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
+        const p2 = PAD_COLLISION_POINTS[i];
+        if(jumperPos.x <= p2.x) {
+          const p1 = PAD_COLLISION_POINTS[i-1];
+          const diffX = jumperPos.x - p1.x;
+          const distX = p2.x - p1.x;
+          const diffY = p2.y - p1.y;
+          const k = distX / diffX;
+          const yUnderJumper = p1.y + k * diffY;
+
+          var jumperHeight = max(floor(yUnderJumper-SJ.jumper.body.position.y), 0);
+          break;
+        }
+      }
+    }
+
+    this.disp.label.content = "Wysokość\n" + jumperHeight + " m";
+    this.disp.draw();
+  }
+}
+
+SJ.PausePopup =
+class {
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+    this.w = SJ.SCREEN_WIDTH;    
+    this.h = SJ.SCREEN_HEIGHT;    
+
+    this.isVisible = false;
+    this.darkBackground = new SJ.DrawableRect(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
+    this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, 300, 500, color(50, 70, 140));
+    this.bgRect.mode = CENTER;
+    this.canStopMouse = true;
+    this.onMousePress = (() => {});
+    this.onMouseRelease = (() => {});
+    this.onMouseEnter = (() => {});
+    this.onMouseLeave = (() => {});
+
+    const learnBtn = new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
+      print("Samouczek!");
+    });
+    learnBtn.disabled = true;
+
+    this._drawable = [
+      new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+      }),
+      new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.restartGame();
+      }),
+      learnBtn,
+      new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.backToMenu();
+      }),
+    ];
+
+    this.hide();
+  }
+
+  draw() {
+    this.darkBackground.draw();
+    this.bgRect.draw();
+  }
+
+  show() {
+    this.isVisible = true;
+    this._drawable.forEach(obj => {
+      obj.show();
+    });
+  }
+
+  hide() {
+    this.isVisible = false;
+    this._drawable.forEach(obj => {
+      obj.hide();
+    });
+  }
+
+  isMouseIn() {
+    return this.isVisible;
+  }
+}
+
 //////////////////////////////////////////////////////////////////////
 
 SJ.createLocationButton = (locationName, x, y, fileName) => {
   const btn = new SJ.Button(locationName, x, y, 200, 120);
   btn.label.fontSize = 18;
-  btn.label.vAling = BOTTOM;
+  btn.label.vAlign = BOTTOM;
 
   btn.onMouseRelease = () => {
     SJ._startGame(fileName);
@@ -209,17 +411,16 @@ SJ.createLocationButton = (locationName, x, y, fileName) => {
 SJ.createItemButton = (x, y, item) => {
   const btn = new SJ.Button(item.itemName, x, y, 200, 120);
   btn.label.fontSize = 18;
-  btn.label.vAling = BOTTOM;
+  btn.label.vAlign = BOTTOM;
 
-  const popup = new SJ.MouseFollowingPopup(item.description);
-  SJ.ScreensManager.addPopup(popup);
+  btn.popup = new SJ.MouseFollowingPopup(item.description);
 
   btn.onMouseEnter = () => {
-    popup.show();
+    btn.popup.show();
   }
 
   btn.onMouseLeave = () => {
-    popup.hide();
+    btn.popup.hide();
   }
 
   btn.onMouseRelease = () => {
@@ -229,7 +430,7 @@ SJ.createItemButton = (x, y, item) => {
     SJ.itemsManager.addItem(item);
     btn.disabled = true;
     SJ.money -= item.price;
-    popup.hide();
+    btn.popup.hide();
   }
 
   btn.draw = () => {
@@ -258,12 +459,6 @@ SJ.createItemButton = (x, y, item) => {
         }
         btn.label.draw();
       pop();
-
-      if(!btn.disabled) {
-        if(btn.isMouseIn) {
-          // popup.draw();
-        }
-      }
     pop();
   }
 
