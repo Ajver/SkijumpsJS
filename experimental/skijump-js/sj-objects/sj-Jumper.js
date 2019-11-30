@@ -101,7 +101,6 @@ class {
   }
 
   draw() {
-    frameRate(60);
     const pos = this.body.position;
     const angle = this.body.angle;
     push();
@@ -185,7 +184,7 @@ class {
   }
 
   turn() {
-    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir
+    let deltaAngle = SJ.V.jumperTurnForce * this.turningMod * this.turningDir;
     let angle = this.body.angle + deltaAngle;
     this.setAngle(angle);
   }

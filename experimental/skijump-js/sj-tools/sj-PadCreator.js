@@ -162,17 +162,6 @@ SJ.PadCreator = {
   createPadParts: () => {
     let parts = [];
 
-    // for(let i=1; i<PAD_PULLING_POINTS.length; i++) {
-    //   const p1 = PAD_PULLING_POINTS[i-1];
-    //   const p2 = PAD_PULLING_POINTS[i];
-    //   const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padDescentImg, 110);
-    //   parts.offset = {
-    //     x: -20,
-    //     y: -40,
-    //   };
-    //   parts.push(part);
-    // }
-
     for(let i=1; i<PAD_COLLISION_POINTS.length-1; i++) {
       const p1 = PAD_COLLISION_POINTS[i-1];
       const p2 = PAD_COLLISION_POINTS[i];

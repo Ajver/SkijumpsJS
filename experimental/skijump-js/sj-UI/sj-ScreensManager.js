@@ -123,7 +123,6 @@ SJ.ScreensManager.setup = () => {
       itemsCount = min(items.length - drawedItems, 5);
     }
     
-
   });
 
   SJ.ScreensManager.screens.howToPlay = new SJ.Screen((self) => {

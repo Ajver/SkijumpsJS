@@ -269,15 +269,30 @@ SJ.HeightDisplay =
 class {
   constructor() {
     this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
+    
   }
   
   draw() {
-    if(SJ.jumper.body.isStatic) {
-      var jumperPos = 0;
-    }else {
-      var jumperPos = 10;//floor(2000-SJ.jumper.body.position.y)
+    var jumperHeight = 0;
+    if(!SJ.jumper.body.isStatic) {
+      const jumperPos = SJ.jumper.body.position;
+      for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
+        const p2 = PAD_COLLISION_POINTS[i];
+        if(jumperPos.x <= p2.x) {
+          const p1 = PAD_COLLISION_POINTS[i-1];
+          const diffX = jumperPos.x - p1.x;
+          const distX = p2.x - p1.x;
+          const diffY = p2.y - p1.y;
+          const k = distX / diffX;
+          const yUnderJumper = p1.y + k * diffY;
+
+          var jumperHeight = max(floor(yUnderJumper-SJ.jumper.body.position.y), 0);
+          break;
+        }
+      }
     }
-    this.disp.label.content = "Wysokość\n" + jumperPos + " m";
+
+    this.disp.label.content = "Wysokość\n" + jumperHeight + " m";
     this.disp.draw();
   }
 }
@@ -371,12 +386,6 @@ SJ.createItemButton = (x, y, item) => {
         }
         btn.label.draw();
       pop();
-
-      if(!btn.disabled) {
-        if(btn.isMouseIn) {
-          // popup.draw();
-        }
-      }
     pop();
   }
 
