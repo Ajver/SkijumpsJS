@@ -142,7 +142,7 @@ SJ.ScreensManager.setup = () => {
     self.setBackgroundColor(color(0, 0, 0, 0));
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
-
+      SJ.main.setRunning(!SJ.main._isRunning)
     });
     pauseBtn.label.fontSize = 24;
     self.appendButton(pauseBtn);

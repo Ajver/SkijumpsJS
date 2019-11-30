@@ -145,6 +145,10 @@ class {
   }
   
   onSpaceHit() {
+    if(!SJ.main._isRunning) {
+      return;
+    }
+    
     if(this._canJump) {
       this.endOfPulling();
       SJ.jumper.jump();

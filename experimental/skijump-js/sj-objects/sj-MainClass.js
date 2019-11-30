@@ -21,8 +21,6 @@ class {
 
     SJ.camera = new SJ.Camera(1);
 
-    // SJ.ui = new SJ.UI();
-
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
     this._fillDrawableObjectsArray();
@@ -30,6 +28,19 @@ class {
     SJ.pad.onReady();
 
     Matter.Engine.run(this._engine);
+
+    this._isRunning = true;
+  }
+
+  setRunning(flag) {
+    this._isRunning = flag;
+
+    if(flag) {
+      SJ.jumper.body.isStatic = SJ.jumper.realBodyStatic;
+    }else {
+      SJ.jumper.realBodyStatic = SJ.jumper.body.isStatic;
+      SJ.jumper.body.isStatic = true;
+    }
   }
 
   _createJumper() {
@@ -45,25 +56,26 @@ class {
   }
 
   draw() {
+    if(this._isRunning) {
+      this._update();
+    }
+
     background(57, 66, 95);
 
     push();
-      SJ.jumper.update();
-      SJ.pad.update();
-    
-      push();
-        SJ.camera.update();
-        SJ.camera.transform();
-        this._drawableObjects.forEach((element) => {
-          element.draw();
-        });
-        // SJ.camera.drawPath();
-      pop();
-      
-      SJ.airSystem.update();
-
-      // SJ.ui.draw();
+      SJ.camera.transform();
+      this._drawableObjects.forEach((element) => {
+        element.draw();
+      });
+      // SJ.camera.drawPath();
     pop();
+  }
+
+  _update() {
+    SJ.jumper.update();
+    SJ.pad.update();
+    SJ.camera.update();
+    SJ.airSystem.update();
   }
 
   _restartGame() {

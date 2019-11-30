@@ -297,6 +297,25 @@ class {
   }
 }
 
+SJ.PausePopup =
+class {
+  constructor() {
+    this.isVisible = false;
+  }
+
+  draw() {
+
+  }
+
+  show() {
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+}
+
 //////////////////////////////////////////////////////////////////////
 
 SJ.createLocationButton = (locationName, x, y, fileName) => {

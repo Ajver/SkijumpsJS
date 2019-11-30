@@ -20,6 +20,7 @@ class {
         Matter.Bodies.circle(x+this._w*0.5+12, y+this._h*0.5+2.5, 3),
       ],
     };
+    this.realBodyStatic = true;
   
     this.body = Matter.Body.create(options);
     
