@@ -324,6 +324,11 @@ class {
     this.onMouseEnter = (() => {});
     this.onMouseLeave = (() => {});
 
+    const learnBtn = new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
+      print("Samouczek!");
+    });
+    learnBtn.disabled = true;
+
     this._drawable = [
       new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
         SJ.main.setRunning(true);
@@ -332,9 +337,7 @@ class {
         SJ.main.setRunning(true);
         SJ.restartGame();
       }),
-      new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
-        print("Samouczek!");
-      }),
+      learnBtn,
       new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
         SJ.main.setRunning(true);
         SJ.backToMenu();
