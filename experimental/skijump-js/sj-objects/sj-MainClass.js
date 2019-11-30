@@ -5,8 +5,6 @@ class {
     this._drawableObjects = [];
     
     SJ.PadCreator.loadImages();
-    
-    rectMode(CENTER);
 
     this._engine = Matter.Engine.create();
     SJ.world = this._engine.world;
@@ -37,9 +35,11 @@ class {
 
     if(flag) {
       SJ.jumper.body.isStatic = SJ.jumper.realBodyStatic;
+      SJ.ScreensManager.screens.game.pausePopup.hide();
     }else {
       SJ.jumper.realBodyStatic = SJ.jumper.body.isStatic;
       SJ.jumper.body.isStatic = true;
+      SJ.ScreensManager.screens.game.pausePopup.show();
     }
   }
 

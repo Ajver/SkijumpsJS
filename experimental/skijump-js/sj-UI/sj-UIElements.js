@@ -29,14 +29,15 @@ class {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.isMouseIn = false;
-    this.isPress = false;
     this.onMousePress = onMousePress || (() => {});
     this.onMouseRelease = onMouseRelease || (() => {});
     this.onMouseEnter = onMouseEnter || (() => {});
     this.onMouseLeave = onMouseLeave || (() => {});
-    this.draw = draw || this.draw;
     this.disabled = false;
+    this.canStopMouse = true;
+    this.isMouseIn = false;
+    this.isPress = false;
+    this.isVisible = true;
 
     if(overrideLabelDraw) {
       this.label.draw = () => {
@@ -77,6 +78,14 @@ class {
 
       this.label.draw();
     pop();
+  }
+
+  show() {
+    this.isVisible = true;
+  }
+  
+  hide() {
+    this.isVisible = false;
   }
 }
 
@@ -179,11 +188,12 @@ class {
     this.w = w;
     this.h = h;
     this.color = col;
+    this.mode = CORNER;
   }
 
   draw() {
     push();
-      rectMode(CORNER);
+      rectMode(this.mode);
       fill(this.color);
       noStroke();
       rect(this.x, this.y, this.w, this.h);
@@ -269,7 +279,6 @@ SJ.HeightDisplay =
 class {
   constructor() {
     this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
-    
   }
   
   draw() {
@@ -300,19 +309,62 @@ class {
 SJ.PausePopup =
 class {
   constructor() {
+    this.x = 0;
+    this.y = 0;
+    this.w = SJ.SCREEN_WIDTH;    
+    this.h = SJ.SCREEN_HEIGHT;    
+
     this.isVisible = false;
+    this.darkBackground = new SJ.DrawableRect(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
+    this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, 300, 500, color(50, 70, 140));
+    this.bgRect.mode = CENTER;
+    this.canStopMouse = true;
+    this.onMousePress = (() => {});
+    this.onMouseRelease = (() => {});
+    this.onMouseEnter = (() => {});
+    this.onMouseLeave = (() => {});
+
+    this._drawable = [
+      new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+      }),
+      new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.restartGame();
+      }),
+      new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
+        print("Samouczek!");
+      }),
+      new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.backToMenu();
+      }),
+    ];
+
+    this.hide();
   }
 
   draw() {
-
+    this.darkBackground.draw();
+    this.bgRect.draw();
   }
 
   show() {
     this.isVisible = true;
+    this._drawable.forEach(obj => {
+      obj.show();
+    });
   }
 
   hide() {
     this.isVisible = false;
+    this._drawable.forEach(obj => {
+      obj.hide();
+    });
+  }
+
+  isMouseIn() {
+    return this.isVisible;
   }
 }
 
@@ -358,15 +410,14 @@ SJ.createItemButton = (x, y, item) => {
   btn.label.fontSize = 18;
   btn.label.vAlign = BOTTOM;
 
-  const popup = new SJ.MouseFollowingPopup(item.description);
-  SJ.ScreensManager.addPopup(popup);
+  btn.popup = new SJ.MouseFollowingPopup(item.description);
 
   btn.onMouseEnter = () => {
-    popup.show();
+    btn.popup.show();
   }
 
   btn.onMouseLeave = () => {
-    popup.hide();
+    btn.popup.hide();
   }
 
   btn.onMouseRelease = () => {
@@ -376,7 +427,7 @@ SJ.createItemButton = (x, y, item) => {
     SJ.itemsManager.addItem(item);
     btn.disabled = true;
     SJ.money -= item.price;
-    popup.hide();
+    btn.popup.hide();
   }
 
   btn.draw = () => {

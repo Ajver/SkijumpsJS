@@ -12,8 +12,6 @@ SJ.ScreensManager.screens = {
   game: {},
 };
 
-SJ.ScreensManager.popups = [];
-
 SJ.ScreensManager.setup = () => {
   if(SJ.ScreensManager._isSetupped) {
     SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu
@@ -82,6 +80,38 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.shop = new SJ.Screen((self) => {
 
+    const xSeparation = 235;
+    const ySeparation = 160;
+    const items = [
+      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie o 15%", 80),
+      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Buty zwiększające siłę wybicia o 20%", 100),
+      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną o 10%", 110),
+      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie\nzmniejszający opory powietrza o 10%", 140),
+      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.7, "Wszczep pomagający utrzymać dobrą\npozycję przy silnym wietrze o 30%", 200),
+      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 1.5, "Wszczep wspomagający lądowanie\npod złym kątem o 50%", 160),
+    ];
+
+    const itemsBtn = []; 
+
+    // Drawing buttons in grid 5x[some rows count]
+    let yPos = 200;
+    let drawedItems = 0;
+    let itemsCount = min(items.length, 5);
+    while(itemsCount > 0) {
+      for(let i=0; i<itemsCount; i++) {
+        const btn = SJ.createItemButton(30+xSeparation*i, yPos, items[drawedItems]);
+        self.appendDrawable(btn.popup);
+        itemsBtn.push(btn);
+        drawedItems++;
+      }
+      yPos += ySeparation;
+      itemsCount = min(items.length - drawedItems, 5);
+    }
+
+    itemsBtn.forEach(itemBtn => {
+      self.appendButton(itemBtn);
+    }); 
+    
     self.appendButton(backBtn);
 
     self.appendDrawable(
@@ -98,30 +128,6 @@ SJ.ScreensManager.setup = () => {
       pop();
     };
     self.appendDrawable(moneyLabel);
-
-    const xSeparation = 235;
-    const ySeparation = 160;
-    const items = [
-      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie o 15%", 80),
-      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Buty zwiększające siłę wybicia o 20%", 100),
-      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną o 10%", 110),
-      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie\nzmniejszający opory powietrza o 10%", 140),
-      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.7, "Wszczep pomagający utrzymać dobrą\npozycję przy silnym wietrze o 30%", 200),
-      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 1.5, "Wszczep wspomagający lądowanie\npod złym kątem o 50%", 160),
-    ];
-
-    // Drawing buttons in grid 5x[some rows count]
-    let yPos = 200;
-    let drawedItems = 0;
-    let itemsCount = min(items.length, 5);
-    while(itemsCount > 0) {
-      for(let i=0; i<itemsCount; i++) {
-        self.appendButton(SJ.createItemButton(30+xSeparation*i, yPos, items[drawedItems]));
-        drawedItems++;
-      }
-      yPos += ySeparation;
-      itemsCount = min(items.length - drawedItems, 5);
-    }
     
   });
 
@@ -139,11 +145,18 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
 
+    self.pausePopup = new SJ.PausePopup();
+    self.pausePopup._drawable.forEach(obj => {
+      self.appendDrawable(obj);
+    });
+    self.appendDrawable(self.pausePopup);
+
     self.setBackgroundColor(color(0, 0, 0, 0));
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
-      SJ.main.setRunning(!SJ.main._isRunning)
+      SJ.main.setRunning(false);
     });
+
     pauseBtn.label.fontSize = 24;
     self.appendButton(pauseBtn);
 
@@ -157,10 +170,10 @@ SJ.ScreensManager.setup = () => {
       new SJ.LabelWithBackground(SJ.playerData.highScore + "pkt.", SJ.SCREEN_MIDDLE_X+50, 0, 100, 40, 16, color(255), color(0, 0, 60))
     );
 
+    self.appendDrawable(new SJ.WindDisplay());
+
     self.appendDrawable(new SJ.SpeedDisplay());
     self.appendDrawable(new SJ.HeightDisplay());
-
-    self.appendDrawable(new SJ.WindDisplay());
 
   });
 
@@ -177,19 +190,6 @@ SJ.ScreensManager.changeScreen = (screen) => {
 
 SJ.ScreensManager.draw = () => {
   SJ.ScreensManager.currentScreen.draw();
-  SJ.ScreensManager.drawPopups();
-}
-
-SJ.ScreensManager.drawPopups = () => {
-  SJ.ScreensManager.popups.forEach(popup => {
-    if(popup.isVisible) {
-      popup.draw();
-    }
-  });
-}
-
-SJ.ScreensManager.addPopup = (popup) => {
-  SJ.ScreensManager.popups.unshift(popup);
 }
 
 SJ.ScreensManager.onMouseMove = () => {

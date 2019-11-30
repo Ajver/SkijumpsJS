@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.10.0";
+SJ.VERSION = "0.10.2";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -122,6 +122,13 @@ SJ._startGame = (locationName) => {
 
     SJ._state = SJ._STATE.GAME;
   });
+}
+
+SJ.backToMenu = () => {
+  SJ.main = null;
+  SJ._isGameReady = false; 
+  SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+  SJ.itemsManager.unequipAllItems();
 }
 
 SJ.draw = () => {

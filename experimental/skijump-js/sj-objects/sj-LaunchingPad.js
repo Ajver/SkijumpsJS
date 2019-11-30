@@ -53,7 +53,6 @@ class {
 
   setJumperDynamic() {
     SJ.jumper.letSteering();
-    // Matter.Body.setVelocity(SJ.jumper.body, SJ.jumper.body.velocity);
   }
 
   startPullingJumper() {
@@ -148,7 +147,7 @@ class {
     if(!SJ.main._isRunning) {
       return;
     }
-    
+
     if(this._canJump) {
       this.endOfPulling();
       SJ.jumper.jump();

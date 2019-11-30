@@ -108,6 +108,7 @@ class {
       translate(pos.x, pos.y);
       rotate(angle);
       fill(255);
+      rectMode(CENTER);
       rect(0, 0, this._w, this._h);
     pop();
 
