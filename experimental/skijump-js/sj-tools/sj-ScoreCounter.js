@@ -100,8 +100,6 @@ class {
     let points = 60 + (this.mettersDistTo_K * this._POINT_PER_METER);
     points = round(points, 2);
 
-    print("Metters:", this.mettersDistTo_K);
-
     return points;
   }
 

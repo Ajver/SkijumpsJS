@@ -191,13 +191,6 @@ class {
   }
 
   setAngle(angle) {
-    while(angle < -PI) {
-      angle += TWO_PI;
-    }
-    while(angle > PI) {
-      angle -= TWO_PI;
-    }
-    
     Matter.Body.setAngle(this.body, angle);
   }
 
