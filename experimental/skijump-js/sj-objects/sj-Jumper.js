@@ -60,15 +60,13 @@ class {
 
     if(this.turningMod) {
       if(this.wantTurn) {
-        this.turningMod = min(this.turningMod + 0.02, 0.5);
+        this.turningMod = lerp(this.turningMod, 0.5, 0.02);
       }else {
-        this.turningMod = max(this.turningMod - 0.01, 0.0);
+        this.turningMod = lerp(this.turningMod, 0, 0.04);
       }
 
       this.turn();
     }
-
-    SJ.scoreCounter.stableFlyRater.rate();
   }
 
   onPadHit() {

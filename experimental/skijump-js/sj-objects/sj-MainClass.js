@@ -80,6 +80,7 @@ class {
     SJ.pad.update();
     SJ.camera.update();
     SJ.airSystem.update();
+    SJ.scoreCounter.update();
   }
 
   _restartGame() {

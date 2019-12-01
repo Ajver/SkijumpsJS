@@ -11,6 +11,8 @@ class {
 SJ.ScoreCounter = 
 class {
   constructor() {
+    this.previousJumperAngle = 0;
+
     this.jumpRater = new SJ.Rater(() => {
       const jumperX = SJ.jumper.body.position.x;
       const jumpAreaWidth = JUMP_END_POINT - JUMP_POINT;
@@ -25,11 +27,10 @@ class {
 
     this.stableFlyRater = new SJ.Rater(() => {
       const currentAnlge = SJ.jumper.body.angle;
-      const relativeAngle = abs(currentAnlge - this.stableFlyRater.jumperPreviousAngle);
+      const relativeAngle = abs(currentAnlge - this.previousJumperAngle);
       this.stableFlyRater.reachedJumperAngle += relativeAngle;  
-      this.stableFlyRater.jumperPreviousAngle = currentAnlge;
       // print(degrees(this.stableFlyRater.reachedJumperAngle));
-      print(degrees(relativeAngle));
+      // print(degrees(relativeAngle));
 
     }, () => {
       const reachedAngle = degrees(this.stableFlyRater.reachedJumperAngle);
@@ -43,18 +44,43 @@ class {
       }
     });
     this.stableFlyRater.reachedJumperAngle = 0;
-    this.stableFlyRater.jumperPreviousAngle = 0;
 
+    this.rotatingSpeedRater = new SJ.Rater(() => {
+      const currentAnlge = SJ.jumper.body.angle;
+      const relativeAngle = abs(currentAnlge - this.previousJumperAngle);
+
+      const maxAcceptedRelativeAngle = radians(1);
+
+      if(relativeAngle > maxAcceptedRelativeAngle) {
+        this.rotatingSpeedRater.score -= 0.1;
+      }
+    }, () => {
+      const score = round(this.rotatingSpeedRater.score) / 2
+      return max(score, 0);
+    });
+    this.rotatingSpeedRater.score = 40.0;
+ 
     this._raters = [
       this.jumpRater,
       this.stableFlyRater,
-
+      this.rotatingSpeedRater,
     ];
 
     // Distance to the point K in metters
     this._PIXELS_TO_METERS = SJ.V.padSize / (POINT_K-JUMP_END_POINT);
     this._POINT_PER_METER = 2.8;
     this.score = 0;
+  }
+
+  update() {
+    if(SJ.jumper.body.isStatic) {
+      return;
+    }
+
+    this.stableFlyRater.rate();
+    this.rotatingSpeedRater.rate();
+
+    this.previousJumperAngle = SJ.jumper.body.angle;
   }
 
   calculateDistance() {
