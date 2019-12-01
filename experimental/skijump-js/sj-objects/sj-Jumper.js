@@ -67,18 +67,15 @@ class {
 
       this.turn();
     }
+
+    SJ.scoreCounter.stableFlyRater.rate();
   }
 
   onPadHit() {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
-    SJ.scoreCounter.calculateDistance(this.body.position.x);
-    SJ.pad.startPullingJumper();
     this.checkIfFail();
-    
-    window.setTimeout(() => {
-      SJ.main.jumpEnd();
-    }, 1000);
+    SJ.main.onJumperPadHit();
   }
 
   checkIfFail() {
@@ -181,6 +178,7 @@ class {
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
     Matter.Body.setVelocity(this.body, newVelocity);
+    SJ.scoreCounter.jumpRater.rate();
   }
   
   letSteering() {

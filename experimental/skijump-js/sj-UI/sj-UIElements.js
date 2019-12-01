@@ -400,7 +400,7 @@ class {
     this.scoreLabel = new SJ.Label("520", SJ.SCREEN_MIDDLE_X, 290, CENTER, TOP, 40)
     const drawable = [
       new SJ.Label("Koniec skoku", SJ.SCREEN_MIDDLE_X, 200, CENTER, TOP, 32),
-      new SJ.Label("Zdobyte punkty:", SJ.SCREEN_MIDDLE_X, 260, CENTER, TOP, 24),
+      new SJ.Label("Zdobyte punkty:", SJ.SCREEN_MIDDLE_X, 255, CENTER, TOP, 24),
       this.scoreLabel,
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 360, 200, 40, null, () => {
         this.hide();
