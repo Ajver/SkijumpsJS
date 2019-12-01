@@ -11,9 +11,9 @@ class {
     SJ.world.gravity.y = SJ.V.gravity;
 
     this._createJumper();
+    this._createScoreCounter();
 
     SJ.pad = new SJ.LaunchingPad();
-    SJ.scoreCounter = new SJ.ScoreCounter();
     
     SJ.airSystem = new SJ.AirSystem();
 
@@ -48,6 +48,10 @@ class {
     this._fillDrawableObjectsArray();
   }
 
+  _createScoreCounter() {
+    SJ.scoreCounter = new SJ.ScoreCounter();
+  }
+
   _fillDrawableObjectsArray() {
     this._drawableObjects = [];
     this._drawableObjects.push(SJ.paralaxBackground);
@@ -76,14 +80,25 @@ class {
     SJ.pad.update();
     SJ.camera.update();
     SJ.airSystem.update();
+    SJ.scoreCounter.update();
   }
 
   _restartGame() {
     this._createJumper();
+    this._createScoreCounter();
     SJ.pad.restart();
     SJ.camera.restart();
 
     SJ.pad.onReady();
+  }
+
+  onJumperPadHit() {
+    SJ.scoreCounter.calculateScore();
+    SJ.pad.startPullingJumper();
+   
+    window.setTimeout(() => {
+      SJ.jumpEndPopup.show();
+    }, 1000);
   }
 
 };

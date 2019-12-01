@@ -17,7 +17,6 @@ class {
     }
     
     this.airForce = this.getNextForce();
-    // SJ.ui.updateAirAngle(this.angle);
 
     if(SJ.jumper.body.isStatic) {
       return;
@@ -82,6 +81,13 @@ class {
 
   getRelativeAngle() {
     let jumperAngle = SJ.jumper.body.angle;
+    
+    while(jumperAngle < -PI) {
+      jumperAngle += TWO_PI;
+    }
+    while(jumperAngle > PI) {
+      jumperAngle -= TWO_PI;
+    }
 
     if(this.isWindFacingRight()) {
       return jumperAngle - this.angle;

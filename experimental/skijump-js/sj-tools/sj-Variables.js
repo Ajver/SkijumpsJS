@@ -13,6 +13,8 @@ SJ.V = {
 SJ.loadVariablesFromFile = (fileName, callBack) => {
   loadJSON(document.URL + 'skijump-js/sj-locations/' + fileName, (v) => {
     SJ.V.padSize = v.padSize;
+    SJ.V.minJumpDistance = v.minJumpDistance;
+    SJ.V.maxJumpDistance = v.maxJumpDistance;
     SJ.V.airFriction = v.airFriction;
     SJ.V.padFriction = v.padFriction;
     SJ.V.airDensity = v.airDensity;
