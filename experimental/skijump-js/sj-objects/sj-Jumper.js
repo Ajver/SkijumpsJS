@@ -30,7 +30,7 @@ class {
     this.offsetAngle = 0;
     
     this.isSlowingDown = false;
-    this.SLOWING_MOD = .995; 
+    this.SLOWING_SPEED = 0.01; 
   
     this.turningDir = 0;
     this.turningMod = 0.0;
@@ -43,8 +43,8 @@ class {
   update() {
     if(this.body.isStatic) {
       if(this.isSlowingDown) {
-        this.body.velocity.x *= this.SLOWING_MOD;
-        this.body.velocity.y *= this.SLOWING_MOD;
+        this.body.velocity.x = lerp(this.body.velocity.x, 0, this.SLOWING_SPEED);
+        this.body.velocity.y = lerp(this.body.velocity.y, 0, this.SLOWING_SPEED);
       }
       Matter.Body.translate(this.body, this.body.velocity);
     }
@@ -73,9 +73,12 @@ class {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
     SJ.scoreCounter.calculateDistance(this.body.position.x);
-    // SJ.ui.updateScoreLabel(SJ.scoreCounter.score);
     SJ.pad.startPullingJumper();
     this.checkIfFail();
+    
+    window.setTimeout(() => {
+      SJ.main.jumpEnd();
+    }, 1000);
   }
 
   checkIfFail() {

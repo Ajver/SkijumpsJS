@@ -9,6 +9,7 @@ class {
     this.vAlign = vAlign;
     this.fontSize = fontSize;
     this.fontColor = fontColor;
+    this.isVisible = true;
   }
 
   draw() {
@@ -18,6 +19,14 @@ class {
       fill(this.fontColor);
       text(this.content, this.x, this.y);
     pop();
+  }
+  
+  show() {
+    this.isVisible = true;
+  }
+  
+  hide() {
+    this.isVisible = false;
   }
 }
 
@@ -376,6 +385,40 @@ class {
   }
 
   show() {
+    this.popup.show();
+  }
+
+  hide() {
+    this.popup.hide();
+  }
+
+}
+
+SJ.JumpEndPopup =
+class {
+  constructor() {    
+    this.scoreLabel = new SJ.Label("520", SJ.SCREEN_MIDDLE_X, 290, CENTER, TOP, 40)
+    const drawable = [
+      new SJ.Label("Koniec skoku", SJ.SCREEN_MIDDLE_X, 200, CENTER, TOP, 32),
+      new SJ.Label("Zdobyte punkty:", SJ.SCREEN_MIDDLE_X, 260, CENTER, TOP, 24),
+      this.scoreLabel,
+      new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 360, 200, 40, null, () => {
+        this.hide();
+        SJ.restartGame();
+      }),
+      new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 420, 200, 40, null, () => {
+        this.hide();
+        SJ.backToMenu();
+      }),
+    ];
+    
+    this.popup = new SJ.Popup(300, 500, drawable);
+
+    this.hide();
+  }
+
+  show() {
+    this.scoreLabel.content = SJ.scoreCounter.score;
     this.popup.show();
   }
 

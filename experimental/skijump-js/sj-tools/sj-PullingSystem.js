@@ -37,10 +37,6 @@ class {
     if(!SJ.jumper.isSlowingDown) {
       if(jumperPos.x >= FALL_LINE) {
         SJ.jumper.isSlowingDown = true;
-
-        window.setTimeout(() => {
-          SJ.restartGame();
-        }, 1000);
       } 
     }
 
@@ -57,6 +53,10 @@ class {
     const currVelMag = Matter.Vector.magnitude(currVel);
     
     SJ.jumper.setAngle(alpha + SJ.jumper.offsetAngle);
+
+    if(SJ.jumper.isSlowingDown) {
+      return;
+    }
 
     let newVel = Matter.Vector.create(0, 0);
     newVel.x = currVelMag;

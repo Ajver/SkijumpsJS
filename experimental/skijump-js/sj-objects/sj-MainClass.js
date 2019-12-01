@@ -86,4 +86,8 @@ class {
     SJ.pad.onReady();
   }
 
+  jumpEnd() {
+    SJ.jumpEndPopup.show();
+  }
+
 };

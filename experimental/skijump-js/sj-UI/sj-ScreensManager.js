@@ -151,6 +151,12 @@ SJ.ScreensManager.setup = () => {
     });
     self.appendDrawable(self.pausePopup.popup);
 
+    SJ.jumpEndPopup = new SJ.JumpEndPopup();
+    SJ.jumpEndPopup.popup._drawable.forEach(obj => {
+      self.appendDrawable(obj);
+    });
+    self.appendDrawable(SJ.jumpEndPopup.popup);
+
     self.setBackgroundColor(color(0, 0, 0, 0));
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
