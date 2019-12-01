@@ -59,6 +59,14 @@ class {
       return max(score, 0);
     });
     this.rotatingSpeedRater.score = 40.0;
+
+    this.distanceRater = new SJ.Rater(() => {
+      const relativeDist = this.mettersDistTo_K - SJ.V.minJumpDistance;
+      const maxminDist = SJ.V.maxJumpDistance - SJ.V.minJumpDistance;
+      const proportion = relativeDist / maxminDist;
+
+      this.distanceRater.score = max(min(round(proportion * 40.0) / 2, 20), 0);
+    });
  
     this._raters = [
       this.jumpRater,
@@ -87,20 +95,24 @@ class {
     const landX = SJ.jumper.body.position.x;
     const distTo_K = landX - POINT_K;
     
-    const mettersDistTo_K = distTo_K * this._PIXELS_TO_METERS;
+    this.mettersDistTo_K = distTo_K * this._PIXELS_TO_METERS;
 
-    let points = 60 + (mettersDistTo_K * this._POINT_PER_METER);
+    let points = 60 + (this.mettersDistTo_K * this._POINT_PER_METER);
     points = round(points, 2);
+
+    print("Metters:", this.mettersDistTo_K);
 
     return points;
   }
 
   calculateScore() {
     let score = 0;
+    score += this.calculateDistance();
+    this.distanceRater.rate();
+
     this._raters.forEach(rater => {
       score += rater.getScore();
     });
-    score += this.calculateDistance();
     this.score = score;
   }
 
