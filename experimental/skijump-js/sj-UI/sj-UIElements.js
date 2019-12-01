@@ -306,52 +306,31 @@ class {
   }
 }
 
-SJ.PausePopup =
+SJ.Popup =
 class {
-  constructor() {
+  constructor(w, h, drawable) {
     this.x = 0;
     this.y = 0;
     this.w = SJ.SCREEN_WIDTH;    
-    this.h = SJ.SCREEN_HEIGHT;    
+    this.h = SJ.SCREEN_HEIGHT;  
+    this._drawable = drawable;
 
     this.isVisible = false;
     this.darkBackground = new SJ.DrawableRect(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
-    this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, 300, 500, color(50, 70, 140));
+    this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, w, h, color(50, 70, 140));
     this.bgRect.mode = CENTER;
     this.canStopMouse = true;
     this.onMousePress = (() => {});
     this.onMouseRelease = (() => {});
     this.onMouseEnter = (() => {});
-    this.onMouseLeave = (() => {});
-
-    const learnBtn = new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
-      print("Samouczek!");
-    });
-    learnBtn.disabled = true;
-
-    this._drawable = [
-      new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
-        SJ.main.setRunning(true);
-      }),
-      new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
-        SJ.main.setRunning(true);
-        SJ.restartGame();
-      }),
-      learnBtn,
-      new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
-        SJ.main.setRunning(true);
-        SJ.backToMenu();
-      }),
-    ];
-
-    this.hide();
+    this.onMouseLeave = (() => {}); 
   }
 
   draw() {
     this.darkBackground.draw();
     this.bgRect.draw();
   }
-
+  
   show() {
     this.isVisible = true;
     this._drawable.forEach(obj => {
@@ -366,9 +345,44 @@ class {
     });
   }
 
-  isMouseIn() {
-    return this.isVisible;
+}
+
+SJ.PausePopup =
+class {
+  constructor() {
+    const learnBtn = new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
+      print("Samouczek!");
+    });
+    learnBtn.disabled = true;
+    
+    const drawable = [
+      new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+      }),
+      new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.restartGame();
+      }),
+      learnBtn,
+      new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
+        SJ.main.setRunning(true);
+        SJ.backToMenu();
+      }),
+    ];
+    
+    this.popup = new SJ.Popup(300, 500, drawable);
+
+    this.hide();
   }
+
+  show() {
+    this.popup.show();
+  }
+
+  hide() {
+    this.popup.hide();
+  }
+
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -146,10 +146,10 @@ SJ.ScreensManager.setup = () => {
   SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
 
     self.pausePopup = new SJ.PausePopup();
-    self.pausePopup._drawable.forEach(obj => {
+    self.pausePopup.popup._drawable.forEach(obj => {
       self.appendDrawable(obj);
     });
-    self.appendDrawable(self.pausePopup);
+    self.appendDrawable(self.pausePopup.popup);
 
     self.setBackgroundColor(color(0, 0, 0, 0));
 
