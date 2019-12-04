@@ -48,6 +48,7 @@ class {
     this._isPullingJumper = false;
     this.setJumperDynamic();
     this._canJump = false;
+    SJ.jumper.isFlying = true;
     SJ.MessagesManager.isFlying();
   }
 
@@ -154,6 +155,8 @@ class {
     }else if(this._isWaitingForLaunch) {
       this.launch();
     }
+
+    SJ.jumper.canLand = true;
   }
 
 }
