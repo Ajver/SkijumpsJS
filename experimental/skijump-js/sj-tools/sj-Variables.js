@@ -5,7 +5,7 @@ SJ.V = {
   jumperAngularFriction: 0.96,
   jumperJumpForce: 5.1,
   jumperTurnForce: 0.2,
-  goodLandingAngle: 20, // in degrees
+  goodLandingAngle: 30, // in degrees
   
   texturesNames: {},
 };

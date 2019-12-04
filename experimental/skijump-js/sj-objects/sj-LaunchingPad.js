@@ -31,7 +31,6 @@ class {
         this.endOfPulling();
       }
     }
-    // this.onSpaceHit();
   }
 
   setJumperVelocity() {

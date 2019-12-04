@@ -12,10 +12,9 @@ class {
 
     this._createJumper();
     this._createScoreCounter();
+    this._createAirSystem();
 
     SJ.pad = new SJ.LaunchingPad();
-    
-    SJ.airSystem = new SJ.AirSystem();
 
     SJ.camera = new SJ.Camera(1);
 
@@ -50,6 +49,10 @@ class {
 
   _createScoreCounter() {
     SJ.scoreCounter = new SJ.ScoreCounter();
+  }
+
+  _createAirSystem() {
+    SJ.airSystem = new SJ.AirSystem();
   }
 
   _fillDrawableObjectsArray() {
@@ -87,6 +90,7 @@ class {
     print("=== NEW JUMP ===");
     this._createJumper();
     this._createScoreCounter();
+    this._createAirSystem();
     SJ.pad.restart();
     SJ.camera.restart();
 
