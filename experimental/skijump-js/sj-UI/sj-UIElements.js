@@ -369,12 +369,11 @@ class {
         SJ.main.setRunning(true);
       }),
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
-        SJ.main.setRunning(true);
         SJ.restartGame();
       }),
       learnBtn,
       new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
-        SJ.main.setRunning(true);
+        SJ.ScreensManager.screens.game.pausePopup.hide();
         SJ.backToMenu();
       }),
     ];
