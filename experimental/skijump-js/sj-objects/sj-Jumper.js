@@ -43,6 +43,7 @@ class {
     this.landingTimeCounter = 0.0;
     this.LANDING_TIME_MILLIS = 200;
     this.landed = false;
+    this.failed = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
 
@@ -73,6 +74,7 @@ class {
         print("Land ended");
         this.isLanding = false;
         this.landed = true;
+        SJ.scoreCounter.onJumperLand();
       }
     }
 
@@ -116,6 +118,8 @@ class {
         this.offsetAngle = HALF_PI;
       }
       SJ.MessagesManager.fail();
+      this.failed = true;
+      print("FAILED");
     }else {
       SJ.MessagesManager.noFail();
     }
@@ -228,8 +232,6 @@ class {
     this.canLand = false;
     this.isLanding = true;
     this.canSteer = false;
-
-    print("want landing!");
   }
 
   jump() {

@@ -84,6 +84,7 @@ class {
   }
 
   _restartGame() {
+    print("=== NEW JUMP ===");
     this._createJumper();
     this._createScoreCounter();
     SJ.pad.restart();
