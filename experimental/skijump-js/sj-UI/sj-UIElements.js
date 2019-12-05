@@ -432,10 +432,12 @@ class {
       this.scoreLabel,
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 360, 200, 40, null, () => {
         this.hide();
+        SJ.ratersDisplay.hide();
         SJ.restartGame();
       }),
       new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 420, 200, 40, null, () => {
         this.hide();
+        SJ.ratersDisplay.hide();
         SJ.backToMenu();
       }),
     ];
@@ -461,26 +463,36 @@ class {
   constructor() {
     this._ratersBoxes = [];
 
-    const boxesX = SJ.SCREEN_WIDTH - 200;
+    const boxesX = SJ.SCREEN_WIDTH - 400;
     let boxY = 200;
-    const ySeparator = 50;
+    const ySeparator = 40;
+
+    this.label = new SJ.Label("Oceny sędziów", boxesX, boxY, LEFT, TOP, 24);
 
     for(let i=0; i<5; i++) {
-      const raterBox = new SJ.TextWindow(boxesX, boxY+=ySeparator, "17.5");
-      raterBox.setPadding(20, 20, 10, 10);
+      const raterBox = new SJ.LabelWithBackground("17.5", boxesX, boxY+=ySeparator, 100, 35);
+      raterBox.rect.color = color(40, 50, 120);
       this._ratersBoxes.push(raterBox);
     }
 
-    this.isVisible = true;
+
+    this.isVisible = false;
   }
 
   draw() {
+    this.label.draw();
     this._ratersBoxes.forEach((raterBox) => {
       raterBox.draw();
     });
   }
 
   show() {
+    let i = 0;
+    SJ.scoreCounter.forEachRaters((rater) => {
+      const raterBox = this._ratersBoxes[i++];
+      raterBox.label.content = rater.getScore();
+    });
+
     this.isVisible = true;
   }
 

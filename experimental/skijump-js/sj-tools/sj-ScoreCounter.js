@@ -79,7 +79,7 @@ class {
         if(diff <= maxBestDiff) {
           this.landingRater.score = 20;
         }else {
-          const maxAcceptedDiff = 300;
+          const maxAcceptedDiff = 500;
           const score = round((maxAcceptedDiff - diff) / (maxAcceptedDiff-maxBestDiff) * 40.0)  / 2.0;
           this.landingRater.score = max(score, 0);
         }
@@ -132,13 +132,13 @@ class {
   }
 
   calculateScore() {
-    let score = 0;
-    score += this.calculateDistance();
+    let score = this.calculateDistance();
     this.distanceRater.rate();
     this.landingRater.rate();
 
     this._raters.forEach(rater => {
       score += rater.getScore();
+      print(rater);
     });
     this.score = score;
   }

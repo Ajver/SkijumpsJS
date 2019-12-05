@@ -122,6 +122,7 @@ class {
 
   _showJumpEndPopup() {
     SJ.jumpEndPopup.show();
+    SJ.ratersDisplay.show();
   }
 
 };
