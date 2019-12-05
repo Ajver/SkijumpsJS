@@ -7,6 +7,7 @@ const onKeyPressed = () => {
 
   SJ.jumper.onKeyPressed();
   SJ.pad.onKeyPressed();
+  SJ.itemsManager.onKeyPressed();
 }
 
 const onKeyReleased = () => {

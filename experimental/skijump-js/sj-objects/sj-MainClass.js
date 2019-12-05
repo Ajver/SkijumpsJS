@@ -13,6 +13,8 @@ class {
     this._createJumper();
     this._createScoreCounter();
     this._createAirSystem();
+    
+    SJ.itemsManager.resetActiveItems();
 
     SJ.pad = new SJ.LaunchingPad();
 
@@ -103,6 +105,7 @@ class {
     this._createAirSystem();
     SJ.pad.restart();
     SJ.camera.restart();
+    SJ.itemsManager.resetActiveItems();
 
     SJ.pad.onReady();
   }

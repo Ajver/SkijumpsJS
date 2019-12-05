@@ -350,6 +350,20 @@ class {
     this.item = item;
     this.setPosition(x, y);
     this.setSize(w, h);
+
+    if(this.item.isActiveItem) {
+      this._fill = () => {
+        if(this.item.isActive) {
+          fill(50, 50, 180);
+        }else {
+          if(this.item.disabled) {
+            fill(50, 50, 50);
+          }else {
+            fill(255, 200, 200);
+          }
+        }
+      }
+    }
   }
 
   setPosition(x, y) {
@@ -366,9 +380,14 @@ class {
     push();
       translate(this.x, this.y);
       rectMode(CORNER);
-      fill(255, 50, 200);
+
+      this._fill();
       rect(0, 0, this.w, this.h);
     pop();
+  }
+
+  _fill() {
+    fill(50, 50, 180);
   }
 }
 
@@ -383,11 +402,16 @@ class {
     
     const boxWidth = 48;
     const xSeparator = boxWidth + 16;
-    const itemsCount = SJ.itemsManager._items.length;
+    const itemsCount = SJ.itemsManager.getItemsCount();
     const allItemsWidth = (itemsCount-1)*xSeparator + boxWidth;
     let boxX = SJ.SCREEN_MIDDLE_X - (allItemsWidth/2); 
     const boxY = SJ.SCREEN_HEIGHT - 64; 
     
+    SJ.itemsManager._activeItems.forEach((item) => {
+      this._itemsBoxes.push(new SJ.ItemBox(item, boxX, boxY, boxWidth, boxWidth));
+      boxX += xSeparator;
+    });
+
     SJ.itemsManager._items.forEach((item) => {
       this._itemsBoxes.push(new SJ.ItemBox(item, boxX, boxY, boxWidth, boxWidth));
       boxX += xSeparator;
