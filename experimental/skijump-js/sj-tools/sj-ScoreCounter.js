@@ -143,6 +143,12 @@ class {
     this.score = score;
   }
 
+  forEachRaters(callback) {
+    this._raters.forEach(rater => {
+      callback(rater);
+    });
+  }
+
   onJumperLand() {
     this.landingRater.onJumperLand();
   }
