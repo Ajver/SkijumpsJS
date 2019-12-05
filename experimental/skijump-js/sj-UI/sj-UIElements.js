@@ -344,6 +344,94 @@ class {
   }
 }
 
+SJ.ItemBox = 
+class {
+  constructor(item, x, y, w, h) {
+    this.item = item;
+    this.setPosition(x, y);
+    this.setSize(w, h);
+
+    if(this.item.isActiveItem) {
+      this._fill = () => {
+        if(this.item.isActive) {
+          fill(50, 50, 180);
+        }else {
+          if(this.item.disabled) {
+            fill(50, 50, 50);
+          }else {
+            fill(255, 200, 200);
+          }
+        }
+      }
+    }
+  }
+
+  setPosition(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  setSize(w, h) {
+    this.w = w;
+    this.h = h;
+  }
+
+  draw() {
+    push();
+      translate(this.x, this.y);
+      rectMode(CORNER);
+
+      this._fill();
+      rect(0, 0, this.w, this.h);
+    pop();
+  }
+
+  _fill() {
+    fill(50, 50, 180);
+  }
+}
+
+SJ.ItemsDisplay =
+class {
+  constructor() {
+    this._itemsBoxes = [];
+  }
+
+  updateItemsList() {
+    this._itemsBoxes = [];
+    
+    const boxWidth = 48;
+    const xSeparator = boxWidth + 16;
+    const itemsCount = SJ.itemsManager.getItemsCount();
+    const allItemsWidth = (itemsCount-1)*xSeparator + boxWidth;
+    let boxX = SJ.SCREEN_MIDDLE_X - (allItemsWidth/2); 
+    const boxY = SJ.SCREEN_HEIGHT - 64; 
+    
+    SJ.itemsManager._activeItems.forEach((item) => {
+      this._itemsBoxes.push(new SJ.ItemBox(item, boxX, boxY, boxWidth, boxWidth));
+      boxX += xSeparator;
+    });
+
+    SJ.itemsManager._items.forEach((item) => {
+      this._itemsBoxes.push(new SJ.ItemBox(item, boxX, boxY, boxWidth, boxWidth));
+      boxX += xSeparator;
+    });
+
+    print(this._itemsBoxes);
+  }
+
+  draw() {
+    push();
+      fill(0, 0, 50);
+      rect(100, SJ.SCREEN_HEIGHT-80, SJ.SCREEN_WIDTH-200, 80);
+    pop();
+
+    this._itemsBoxes.forEach((itemBox) => {
+      itemBox.draw();
+    });
+  }
+}
+
 SJ.Popup =
 class {
   constructor(w, h, drawable) {

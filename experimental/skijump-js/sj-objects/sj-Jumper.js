@@ -235,12 +235,16 @@ class {
   }
 
   jump() {
+    this.accelerateWithForce(SJ.V.jumperJumpForce);
+    SJ.scoreCounter.jumpRater.rate();
+  }
+
+  accelerateWithForce(force) {
     const jumpAngle = this.body.angle;
-    let jumpVector = Matter.Vector.create(0, -SJ.V.jumperJumpForce);
+    let jumpVector = Matter.Vector.create(0, -force);
     jumpVector = Matter.Vector.rotate(jumpVector, jumpAngle);
     const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
     Matter.Body.setVelocity(this.body, newVelocity);
-    SJ.scoreCounter.jumpRater.rate();
   }
   
   letSteering() {

@@ -89,6 +89,14 @@ SJ.ScreensManager.setup = () => {
       new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie\nzmniejszający opory powietrza o 10%", 140),
       new SJ.Item("Stabilizator lotu", "airRotateForce", 0.7, "Wszczep pomagający utrzymać dobrą\npozycję przy silnym wietrze o 30%", 200),
       new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 1.5, "Wszczep wspomagający lądowanie\npod złym kątem o 50%", 160),
+      new SJ.ActiveItem("JetPack", "Jet pack wspomagający lot", 200, () => {
+        if(SJ.jumper.isFlying) {
+          SJ.jumper.accelerateWithForce(SJ.V.jumperJumpForce);
+          return true;
+        }
+
+        return false;
+      }),
     ];
 
     const itemsBtn = []; 
@@ -142,8 +150,10 @@ SJ.ScreensManager.setup = () => {
     );
 
   });
-
+  
   SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
+    
+    self.setBackgroundColor(color(0, 0, 0, 0));
 
     self.pausePopup = new SJ.PausePopup();
     self.pausePopup.popup._drawable.forEach(obj => {
@@ -160,7 +170,8 @@ SJ.ScreensManager.setup = () => {
     });
     self.appendDrawable(SJ.jumpEndPopup.popup);
 
-    self.setBackgroundColor(color(0, 0, 0, 0));
+    SJ.itemsDisplay = new SJ.ItemsDisplay();
+    self.appendDrawable(SJ.itemsDisplay);
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
       SJ.main.setRunning(false);
