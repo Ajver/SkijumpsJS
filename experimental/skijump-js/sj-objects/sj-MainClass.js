@@ -12,10 +12,9 @@ class {
 
     this._createJumper();
     this._createScoreCounter();
+    this._createAirSystem();
 
     SJ.pad = new SJ.LaunchingPad();
-    
-    SJ.airSystem = new SJ.AirSystem();
 
     SJ.camera = new SJ.Camera(1);
 
@@ -28,6 +27,7 @@ class {
     Matter.Engine.run(this._engine);
 
     this._isRunning = true;
+    this._wantShowJumpEndPopup = false;
   }
 
   setRunning(flag) {
@@ -36,6 +36,12 @@ class {
     if(flag) {
       SJ.jumper.body.isStatic = SJ.jumper.realBodyStatic;
       SJ.ScreensManager.screens.game.pausePopup.hide();
+
+      if(this._wantShowJumpEndPopup) {
+        print("Huh!?");
+        this._wantShowJumpEndPopup = false;
+        this._showJumpEndPopup();
+      }
     }else {
       SJ.jumper.realBodyStatic = SJ.jumper.body.isStatic;
       SJ.jumper.body.isStatic = true;
@@ -50,6 +56,10 @@ class {
 
   _createScoreCounter() {
     SJ.scoreCounter = new SJ.ScoreCounter();
+  }
+
+  _createAirSystem() {
+    SJ.airSystem = new SJ.AirSystem();
   }
 
   _fillDrawableObjectsArray() {
@@ -84,8 +94,13 @@ class {
   }
 
   _restartGame() {
+    print("=== NEW JUMP ===");
+    this._wantShowJumpEndPopup = false;
+    this.setRunning(true);
+
     this._createJumper();
     this._createScoreCounter();
+    this._createAirSystem();
     SJ.pad.restart();
     SJ.camera.restart();
 
@@ -97,8 +112,17 @@ class {
     SJ.pad.startPullingJumper();
    
     window.setTimeout(() => {
-      SJ.jumpEndPopup.show();
+      if(!this._isRunning) {
+        this._wantShowJumpEndPopup = true;
+      }else {
+        this._showJumpEndPopup();
+      }
     }, 1000);
+  }
+
+  _showJumpEndPopup() {
+    SJ.jumpEndPopup.show();
+    SJ.ratersDisplay.show();
   }
 
 };

@@ -36,8 +36,22 @@ class {
     this.turningMod = 0.0;
     this.wantTurn = false;
     this.canSteer = false;
+    this.isFlying = false;
+
+    this.canLand = false;
+    this.isLanding = false;
+    this.landingTimeCounter = 0.0;
+    this.LANDING_TIME_MILLIS = 200;
+    this.landed = false;
+    this.failed = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
+
+    // this.testNormalizedAngle(PI, PI);
+    // this.testNormalizedAngle(TWO_PI, 0);
+    // this.testNormalizedAngle(-TWO_PI, 0);
+    // this.testNormalizedAngle(PI+HALF_PI, -HALF_PI);
+    // this.testNormalizedAngle(-PI-HALF_PI, HALF_PI);
   }
 
   update() {
@@ -49,12 +63,27 @@ class {
       Matter.Body.translate(this.body, this.body.velocity);
     }
 
-    if(!this.canSteer) {
+    if(!this.isFlying) {
       return;
+    }
+
+    if(this.isLanding) {
+      this.landingTimeCounter += deltaTime;
+
+      if(this.landingTimeCounter >= this.LANDING_TIME_MILLIS) {
+        print("Land ended");
+        this.isLanding = false;
+        this.landed = true;
+        SJ.scoreCounter.onJumperLand();
+      }
     }
 
     if(Matter.Query.collides(this.body, [SJ.pad.body]).length > 0) {
       this.onPadHit();
+      return;
+    }
+
+    if(!this.canSteer) {
       return;
     }
 
@@ -72,24 +101,47 @@ class {
   onPadHit() {
     Matter.Body.setStatic(this.body, true);
     this.canSteer = false;
+    this.isFlying = false;
     this.checkIfFail();
     SJ.main.onJumperPadHit();
   }
 
   checkIfFail() {
-    const angle = this.body.angle;
+    const angle = this.getNormalizedBodyAngle();
     const padAngle = this.getPadAngle();
     const diffAngle = angle - padAngle;
-    if(abs(diffAngle) >= radians(SJ.V.goodLandingAngle)) {
+    if(abs(diffAngle) >= radians(SJ.V.goodLandingAngle) || !this.landed) {
+      print("Fail: ", degrees(diffAngle));
       if(diffAngle < 0) {
         this.offsetAngle = -HALF_PI;
       }else {
         this.offsetAngle = HALF_PI;
       }
       SJ.MessagesManager.fail();
+      this.failed = true;
+      print("FAILED");
     }else {
       SJ.MessagesManager.noFail();
     }
+  }
+
+  testNormalizedAngle(enterAngle, exeptedAngle) {
+    print(this.normalizeAngle(enterAngle) === exeptedAngle ? "OK" : ("Test failed for:\nEA:" + enterAngle + "\nEA:" + exeptedAngle));
+  }
+
+  getNormalizedBodyAngle() {
+    return this.normalizeAngle(this.body.angle);
+  }
+
+  normalizeAngle(angle) {
+    while(angle > PI) {
+      angle -= TWO_PI;
+    }
+    while(angle < -PI) {
+      angle += TWO_PI;
+    }
+
+    return angle;
   }
 
   getPadAngle() {
@@ -135,6 +187,12 @@ class {
       this.wantTurnTo(-1);
     }else if(keyCode == RIGHT_ARROW) {
       this.wantTurnTo(1);
+    }else if(keyCode == SPACE) {
+      if(!this.body.isStatic) {
+        if(this.canLand) {
+          this.land();
+        }
+      }
     }
   }
 
@@ -169,6 +227,12 @@ class {
     this.wantTurn = true;
     this.turningMod = 0.1;
   } 
+
+  land() {
+    this.canLand = false;
+    this.isLanding = true;
+    this.canSteer = false;
+  }
 
   jump() {
     const jumpAngle = this.body.angle;

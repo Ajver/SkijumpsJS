@@ -6,7 +6,7 @@ class {
     this.slider = select("#id-" + varName);
 
     this.update = upd || (() => {
-      SJ.V[this.varName] = this.slider.value();
+      SJ.V[this.varName] = Number(this.slider.value());
     });
   }
 
@@ -21,12 +21,12 @@ class {
   constructor() {
     const gravitySlider = new SJ.VariableSlider("gravity")
     gravitySlider.update = () => {
-      SJ.world.gravity.y = gravitySlider.slider.value();
+      SJ.world.gravity.y = Number(gravitySlider.slider.value());
     }
 
     const airFrictionSlider = new SJ.VariableSlider("airFriction")
     airFrictionSlider.update = () => {
-      SJ.jumper.body.frictionAir = airFrictionSlider.slider.value();
+      SJ.jumper.body.frictionAir = Number(airFrictionSlider.slider.value());
     }
 
     this._sliders = [

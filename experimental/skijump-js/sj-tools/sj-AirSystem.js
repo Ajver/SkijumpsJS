@@ -76,7 +76,9 @@ class {
     rotateForce = min(rotateForce, MAX_ROTATE_FORCE);
     rotateForce = max(rotateForce, -MAX_ROTATE_FORCE);
     
-    return relativeAngle * rotateForce;
+    const forceMod = SJ.jumper.wantTurn ? 0.5 : 1.0;
+
+    return relativeAngle * rotateForce * forceMod;
   }
 
   getRelativeAngle() {

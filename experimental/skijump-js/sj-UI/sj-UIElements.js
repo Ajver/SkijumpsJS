@@ -120,10 +120,14 @@ class {
   constructor(x, y, txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
     this.x = x;
     this.y = y;
-    this.setTextSize(txtSize);
-    this.setText(txt);
     this.textColor = textColor;
     this.bgColor = bgColor;
+    
+    this._setPadding(10, 10, 10, 10);
+    this._setTextSize(txtSize);
+    this._setText(txt);
+
+    this._calculateSize()
   }
   
   draw() {
@@ -135,16 +139,15 @@ class {
       rect(0, 0, this.w, this.h);
 
       textSize(this.textSize);  
-      textAlign(CENTER, CENTER);
+      textAlign(LEFT, TOP);
       fill(this.textColor);
       noStroke();
-      text(this.text, this.w / 2, this.h / 2);
+      text(this.text, this._paddingLeft, this._paddingTop);
     pop();
   }
 
-  setText(txt) {
-    this.text = txt;
-    const lines = txt.split(/\n/gm);
+  _calculateSize() {
+    const lines = this.text.split(/\n/gm);
     textSize(this.textSize);
     let longestLineWidth = textWidth(lines[0]);
     for(let i=1; i<lines.length; i++) {
@@ -153,12 +156,38 @@ class {
         longestLineWidth = lineWidth;
       }
     }
-    this.w = longestLineWidth + 20;
-    this.h = lines.length * textLeading() + 20
+    this.w = longestLineWidth + this._paddingLeft + this._paddingRight;
+    this.h = lines.length * this.textSize + this._paddingTop + this._paddingBottom;
   }
 
-  setTextSize(textSize) {
-    this.textSize = textSize;
+  setText(txt) {
+    this._setText(txt);
+    this._calculateSize();
+  }
+
+  _setText(txt) {
+    this.text = txt;
+  }
+
+  setTextSize(txtSize) {
+    _setTextSize(txtSize);
+    this._calculateSize();
+  }
+
+  _setTextSize(txtSize) {
+    this.textSize = txtSize;
+  }
+
+  setPadding(pLeft, pRight, pTop, pBottom) {
+    this._setPadding(pLeft, pRight, pTop, pBottom);
+    this._calculateSize();
+  }
+
+  _setPadding(pLeft, pRight, pTop, pBottom) {
+    this._paddingLeft = pLeft;
+    this._paddingRight = pRight;
+    this._paddingTop = pTop;
+    this._paddingBottom = pBottom;
   }
 }
 
@@ -369,12 +398,11 @@ class {
         SJ.main.setRunning(true);
       }),
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 260, 200, 40, null, () => {
-        SJ.main.setRunning(true);
         SJ.restartGame();
       }),
       learnBtn,
       new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 380, 200, 40, null, () => {
-        SJ.main.setRunning(true);
+        SJ.ScreensManager.screens.game.pausePopup.hide();
         SJ.backToMenu();
       }),
     ];
@@ -404,10 +432,12 @@ class {
       this.scoreLabel,
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 360, 200, 40, null, () => {
         this.hide();
+        SJ.ratersDisplay.hide();
         SJ.restartGame();
       }),
       new SJ.Button("Wróc do menu", SJ.SCREEN_MIDDLE_X-100, 420, 200, 40, null, () => {
         this.hide();
+        SJ.ratersDisplay.hide();
         SJ.backToMenu();
       }),
     ];
@@ -427,6 +457,51 @@ class {
   }
 
 }
+
+SJ.RatersDisplay =
+class {
+  constructor() {
+    this._ratersBoxes = [];
+
+    const boxesX = SJ.SCREEN_WIDTH - 400;
+    let boxY = 200;
+    const ySeparator = 40;
+
+    this.label = new SJ.Label("Oceny sędziów", boxesX, boxY, LEFT, TOP, 24);
+
+    for(let i=0; i<5; i++) {
+      const raterBox = new SJ.LabelWithBackground("17.5", boxesX, boxY+=ySeparator, 100, 35);
+      raterBox.rect.color = color(40, 50, 120);
+      this._ratersBoxes.push(raterBox);
+    }
+
+
+    this.isVisible = false;
+  }
+
+  draw() {
+    this.label.draw();
+    this._ratersBoxes.forEach((raterBox) => {
+      raterBox.draw();
+    });
+  }
+
+  show() {
+    let i = 0;
+    SJ.scoreCounter.forEachRaters((rater) => {
+      const raterBox = this._ratersBoxes[i++];
+      raterBox.label.content = rater.getScore();
+    });
+
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+
+}
+
 
 //////////////////////////////////////////////////////////////////////
 

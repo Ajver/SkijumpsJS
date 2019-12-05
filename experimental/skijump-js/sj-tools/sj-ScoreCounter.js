@@ -40,7 +40,7 @@ class {
       }else {
         const maxAcceptedRotate = 300;
         const score = round((maxAcceptedRotate - reachedAngle) / (maxAcceptedRotate-maxBestAngle) * 40.0)  / 2.0;
-        return max(min(score, 20), 0);
+        return max(score, 0);
       }
     });
     this.stableFlyRater.reachedJumperAngle = 0;
@@ -67,11 +67,39 @@ class {
 
       this.distanceRater.score = max(min(round(proportion * 40.0) / 2, 20), 0);
     });
+
+    this.landingRater = new SJ.Rater(() => {
+      if(SJ.jumper.failed) {
+        this.landingRater.score = 0;
+        print("Jumper failed!");
+      }else {
+        const diff = millis() - this.landingRater.landMoment;
+        print("Current moment: ", millis());
+        const maxBestDiff = 50;
+        if(diff <= maxBestDiff) {
+          this.landingRater.score = 20;
+        }else {
+          const maxAcceptedDiff = 500;
+          const score = round((maxAcceptedDiff - diff) / (maxAcceptedDiff-maxBestDiff) * 40.0)  / 2.0;
+          this.landingRater.score = max(score, 0);
+        }
+
+        print("Landing time diff: ", diff);
+        print("Score: ", this.landingRater.score);
+      }
+    });
+
+    this.landingRater.onJumperLand = () => {
+      this.landingRater.landMoment = millis();
+      print("Landed moment: ", this.landingRater.landMoment);
+    }
  
     this._raters = [
       this.jumpRater,
       this.stableFlyRater,
       this.rotatingSpeedRater,
+      this.distanceRater,
+      this.landingRater,
     ];
 
     // Distance to the point K in metters
@@ -104,14 +132,25 @@ class {
   }
 
   calculateScore() {
-    let score = 0;
-    score += this.calculateDistance();
+    let score = this.calculateDistance();
     this.distanceRater.rate();
+    this.landingRater.rate();
 
     this._raters.forEach(rater => {
       score += rater.getScore();
+      print(rater);
     });
     this.score = score;
+  }
+
+  forEachRaters(callback) {
+    this._raters.forEach(rater => {
+      callback(rater);
+    });
+  }
+
+  onJumperLand() {
+    this.landingRater.onJumperLand();
   }
 
   rate() {

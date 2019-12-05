@@ -6,8 +6,7 @@ class {
     this.jumperFrictionMult = 1.0;
     this.p1 = null;
     this.p2 = null;
-    this.index = 1;
-    this.setIndex(this.index);
+    this.setIndex(1);
   }
 
   setIndex(newIndex) {
