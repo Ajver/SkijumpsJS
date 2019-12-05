@@ -98,6 +98,7 @@ class {
       this.jumpRater,
       this.stableFlyRater,
       this.rotatingSpeedRater,
+      this.distanceRater,
       this.landingRater,
     ];
 
