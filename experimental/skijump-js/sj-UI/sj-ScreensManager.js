@@ -142,8 +142,10 @@ SJ.ScreensManager.setup = () => {
     );
 
   });
-
+  
   SJ.ScreensManager.screens.game = new SJ.Screen((self) => {
+    
+    self.setBackgroundColor(color(0, 0, 0, 0));
 
     self.pausePopup = new SJ.PausePopup();
     self.pausePopup.popup._drawable.forEach(obj => {
@@ -160,7 +162,8 @@ SJ.ScreensManager.setup = () => {
     });
     self.appendDrawable(SJ.jumpEndPopup.popup);
 
-    self.setBackgroundColor(color(0, 0, 0, 0));
+    SJ.itemsDisplay = new SJ.ItemsDisplay();
+    self.appendDrawable(SJ.itemsDisplay);
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
       SJ.main.setRunning(false);

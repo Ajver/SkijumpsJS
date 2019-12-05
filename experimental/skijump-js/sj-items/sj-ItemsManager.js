@@ -40,6 +40,7 @@ class {
     this._items.forEach(item => {
       item.equip();
     });
+    SJ.itemsDisplay.updateItemsList();
   }
 
   unequipAllItems() {
