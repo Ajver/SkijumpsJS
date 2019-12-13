@@ -339,22 +339,16 @@ class {
   draw() {
     var jumperHeight = 0;
     if(!SJ.jumper.body.isStatic) {
-      const jumperPos = SJ.jumper.body.position;
+      const jumperX = SJ.jumper.body.position.x;
       for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
         const p2 = PAD_COLLISION_POINTS[i];
-        if(jumperPos.x <= p2.x) {
+        if(jumperX <= p2.x) {
           const p1 = PAD_COLLISION_POINTS[i-1];
-          const diffX = jumperPos.x - p1.x;
+          const diffX = jumperX - p1.x;
           const distX = p2.x - p1.x;
           const diffY = p2.y - p1.y;
-          const k = distX / diffX;
+          const k = diffX / distX;
           const yUnderJumper = p1.y + k * diffY;
-
-          push();
-            fill(255, 0, 0);
-            circle(jumperPos.x, yUnderJumper, 20);
-            print(yUnderJumper);
-          pop();
 
           const heightInPixels = yUnderJumper - SJ.jumper.body.position.y;
           const heightInMeters = heightInPixels * SJ.scoreCounter.PIXELS_TO_METERS;
