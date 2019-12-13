@@ -229,6 +229,7 @@ class {
   } 
 
   land() {
+    print("fooo");
     this.canLand = false;
     this.isLanding = true;
     this.canSteer = false;
@@ -237,6 +238,7 @@ class {
   jump() {
     this.accelerateWithForce(SJ.V.jumperJumpForce);
     SJ.scoreCounter.jumpRater.rate();
+    this.canLand = true;
   }
 
   accelerateWithForce(force) {

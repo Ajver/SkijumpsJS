@@ -1,13 +1,22 @@
 
-SJ.Item =
+
+SJ._BasicItem =
 class {
-  constructor(itemName, changedVarName, varMult, description, price) {
-    this.isActiveItem = false;
+  constructor(itemName, description, price) {
     this.itemName = itemName;
-    this.changedVarName = changedVarName;
-    this.varMult = varMult;
     this.description = "Koszt: " + price + "\n" + description;
     this.price = price;
+  }
+}
+
+SJ.Item =
+class extends SJ._BasicItem {
+  constructor(itemName, changedVarName, varMult, description, price) {
+    super(itemName, description, price);
+
+    this.isActiveItem = false;
+    this.changedVarName = changedVarName;
+    this.varMult = varMult;
   }
 
   equip() {
@@ -20,17 +29,17 @@ class {
 }
 
 SJ.ActiveItem =
-class {
+class extends SJ._BasicItem {
   constructor(itemName, description, price, activateFunc, afterActivateFunc) {
+    super(itemName, description, price);
+
     this.isActiveItem = true;
-    this.itemName = itemName;
-    this.description = description;
-    this.price = price;
     this.activate = activateFunc;
     this.afterActivate = afterActivateFunc || (() => {
       this.isActive = true;
       this.disabled = true;
     });
+    
     this.reset();
   }
   

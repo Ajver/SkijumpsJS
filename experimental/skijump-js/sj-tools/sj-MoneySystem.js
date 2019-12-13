@@ -1,2 +1,2 @@
 
-SJ.money = 692;
+SJ.money = 1000;

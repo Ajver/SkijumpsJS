@@ -40,7 +40,6 @@ class {
       SJ.ScreensManager.screens.game.pausePopup.hide();
 
       if(this._wantShowJumpEndPopup) {
-        print("Huh!?");
         this._wantShowJumpEndPopup = false;
         this._showJumpEndPopup();
       }

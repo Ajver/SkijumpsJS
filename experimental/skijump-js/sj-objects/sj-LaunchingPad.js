@@ -154,8 +154,6 @@ class {
     }else if(this._isWaitingForLaunch) {
       this.launch();
     }
-
-    SJ.jumper.canLand = true;
   }
 
 }
