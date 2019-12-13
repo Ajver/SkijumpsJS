@@ -350,7 +350,16 @@ class {
           const k = distX / diffX;
           const yUnderJumper = p1.y + k * diffY;
 
-          var jumperHeight = max(floor(yUnderJumper-SJ.jumper.body.position.y), 0);
+          push();
+            fill(255, 0, 0);
+            circle(jumperPos.x, yUnderJumper, 20);
+            print(yUnderJumper);
+          pop();
+
+          const heightInPixels = yUnderJumper - SJ.jumper.body.position.y;
+          const heightInMeters = heightInPixels * SJ.scoreCounter.PIXELS_TO_METERS;
+
+          jumperHeight = max(floor(heightInMeters), 0);
           break;
         }
       }

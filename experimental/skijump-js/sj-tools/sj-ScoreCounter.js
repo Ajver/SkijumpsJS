@@ -103,7 +103,7 @@ class {
     ];
 
     // Distance to the point K in metters
-    this._PIXELS_TO_METERS = SJ.V.padSize / (POINT_K-JUMP_END_POINT);
+    this.PIXELS_TO_METERS = SJ.V.padSize / (POINT_K-JUMP_END_POINT);
     this._POINT_PER_METER = 2.8;
     this.score = 0;
   }
@@ -123,7 +123,7 @@ class {
     const landX = SJ.jumper.body.position.x;
     const distTo_K = landX - POINT_K;
     
-    this.mettersDistTo_K = distTo_K * this._PIXELS_TO_METERS;
+    this.mettersDistTo_K = distTo_K * this.PIXELS_TO_METERS;
 
     let points = 60 + (this.mettersDistTo_K * this._POINT_PER_METER);
     points = round(points, 2);
