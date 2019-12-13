@@ -227,6 +227,7 @@ class {
     this.h = h;
     this.color = col;
     this.mode = CORNER;
+    this.isVisible = true;
   }
 
   draw() {
@@ -237,11 +238,23 @@ class {
       rect(this.x, this.y, this.w, this.h);
     pop();
   }
+
+  
+  show() {
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+
 }
 
 SJ.LabelWithBackground = 
-class {
+class extends SJ.DrawableRect {
   constructor(txt, x, y, w, h, txtSize=16, col=color(255), bgColor=color(0), align=LEFT, vAlign=CENTER) {
+    super(x, y, w, h, bgColor)
+
     let lx = x; 
     let ly = y;
 
@@ -257,11 +270,15 @@ class {
     }
 
     this.label = new SJ.Label(txt, lx, ly, align, vAlign, txtSize, col);
-    this.rect = new SJ.DrawableRect(x, y, w, h, bgColor);
   }
 
   draw() {
-    this.rect.draw();
+    push();
+      rectMode(this.mode);
+      fill(this.color);
+      noStroke();
+      rect(this.x, this.y, this.w, this.h);
+    pop();
     this.label.draw();
   }
 
@@ -546,6 +563,26 @@ class {
 
 }
 
+SJ.RaterBox =
+class extends SJ.LabelWithBackground {
+  constructor(titleText, label, x, y, w, h) {
+    super(label, x, y, w, h);
+
+    this.title = new SJ.MouseFollowingPopup(titleText);
+  }
+  
+  onMouseEnter() {
+    this.title.show();
+  }
+
+  onMouseLeave() {
+    this.title.hide();
+  }
+
+  onMousePress() {}
+  onMouseRelease() {}
+}
+
 SJ.RatersDisplay =
 class {
   constructor() {
@@ -557,9 +594,19 @@ class {
 
     this.label = new SJ.Label("Oceny sędziów", boxesX, boxY, LEFT, TOP, 24);
 
+    const ratersTitles = [
+      "Ocena za wybicie",
+      "Ocena za stabilność lotu",
+      "Ocena za gwałtowność obracania się",
+      "Ocena za długość skoku",
+      "Ocena za lądowanie"
+    ];
+
     for(let i=0; i<5; i++) {
-      const raterBox = new SJ.LabelWithBackground("17.5", boxesX, boxY+=ySeparator, 100, 35);
-      raterBox.rect.color = color(40, 50, 120);
+      const raterBox = new SJ.RaterBox(ratersTitles[i], "17.5", boxesX, boxY+=ySeparator, 100, 35);
+      raterBox.canStopMouse = true;
+      raterBox.color = color(40, 50, 120);
+      raterBox.hide();
       this._ratersBoxes.push(raterBox);
     }
 
@@ -569,9 +616,9 @@ class {
 
   draw() {
     this.label.draw();
-    this._ratersBoxes.forEach((raterBox) => {
-      raterBox.draw();
-    });
+    // this._ratersBoxes.forEach((raterBox) => {
+    //   raterBox.draw();
+    // });
   }
 
   show() {
@@ -579,6 +626,7 @@ class {
     SJ.scoreCounter.forEachRaters((rater) => {
       const raterBox = this._ratersBoxes[i++];
       raterBox.label.content = rater.getScore();
+      raterBox.show();
     });
 
     this.isVisible = true;
@@ -586,6 +634,9 @@ class {
 
   hide() {
     this.isVisible = false;
+    this._ratersBoxes.forEach(raterBox => {
+      raterBox.hide();
+    });
   }
 
 }

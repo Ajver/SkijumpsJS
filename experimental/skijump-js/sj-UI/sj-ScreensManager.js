@@ -162,6 +162,12 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(self.pausePopup.popup);
 
     SJ.ratersDisplay = new SJ.RatersDisplay();
+    SJ.ratersDisplay._ratersBoxes.forEach(raterBox => {
+      self.appendDrawable(raterBox.title);
+    });
+    SJ.ratersDisplay._ratersBoxes.forEach(raterBox => {
+      self.appendDrawable(raterBox);
+    });
     self.appendDrawable(SJ.ratersDisplay);
 
     SJ.jumpEndPopup = new SJ.JumpEndPopup();
