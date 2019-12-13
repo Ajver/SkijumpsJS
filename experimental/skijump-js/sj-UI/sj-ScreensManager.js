@@ -132,7 +132,7 @@ SJ.ScreensManager.setup = () => {
         textSize(moneyLabel.fontSize);
         textAlign(moneyLabel.aling, moneyLabel.vAling);
         fill(moneyLabel.fontColor);
-        text("Pieniądze: "+SJ.money, moneyLabel.x, moneyLabel.y);
+        text("Pieniądze: "+SJ.playerData.money, moneyLabel.x, moneyLabel.y);
       pop();
     };
     self.appendDrawable(moneyLabel);

@@ -698,12 +698,12 @@ SJ.createItemButton = (x, y, item) => {
   }
 
   btn.onMouseRelease = () => {
-    if(SJ.money < item.price) {
+    if(SJ.playerData.money < item.price) {
       return;
     }
     SJ.itemsManager.addItem(item);
     btn.disabled = true;
-    SJ.money -= item.price;
+    SJ.playerData.money -= item.price;
     btn.popup.hide();
   }
 
