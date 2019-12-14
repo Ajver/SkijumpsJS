@@ -2,8 +2,10 @@
 
 SJ._BasicItem =
 class {
-  constructor(itemName, description, price) {
+  constructor(itemName, imgName, description, price, ) {
     this.itemName = itemName;
+    this.imgName = imgName;
+    this.img = SJ.ImageLoader.load("Items/" + this.imgName);
     this.description = "Koszt: " + price + "\n" + description;
     this.price = price;
   }
@@ -11,8 +13,8 @@ class {
 
 SJ.Item =
 class extends SJ._BasicItem {
-  constructor(itemName, changedVarName, varMult, description, price) {
-    super(itemName, description, price);
+  constructor(itemName, imgName, changedVarName, varMult, description, price) {
+    super(itemName, imgName, description, price);
 
     this.isActiveItem = false;
     this.changedVarName = changedVarName;
@@ -30,8 +32,10 @@ class extends SJ._BasicItem {
 
 SJ.ActiveItem =
 class extends SJ._BasicItem {
-  constructor(itemName, description, price, activateFunc, afterActivateFunc) {
-    super(itemName, description, price);
+  constructor(itemName, imgName, description, price, activateFunc, afterActivateFunc) {
+    super(itemName, imgName, description, price);
+    this.imgActive = SJ.ImageLoader.load("Items/active_" + this.imgName);
+    this.imgDisabled = SJ.ImageLoader.load("Items/disabled_" + this.imgName);
 
     this.isActiveItem = true;
     this.activate = activateFunc;

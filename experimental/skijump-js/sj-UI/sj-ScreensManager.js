@@ -82,21 +82,27 @@ SJ.ScreensManager.setup = () => {
 
     const xSeparation = 235;
     const ySeparation = 160;
-    const items = [
-      new SJ.Item("Narty", "padFriction", 0.85, "Super narty zmniejszające tarcie o 15%", 80),
-      new SJ.Item("Buty", "jumperJumpForce", 1.2, "Buty zwiększające siłę wybicia o 20%", 100),
-      new SJ.Item("Skrzydła", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną o 10%", 110),
-      new SJ.Item("Opływowy kombinezon", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie\nzmniejszający opory powietrza o 10%", 140),
-      new SJ.Item("Stabilizator lotu", "airRotateForce", 0.7, "Wszczep pomagający utrzymać dobrą\npozycję przy silnym wietrze o 30%", 200),
-      new SJ.Item("Wspomagacz lądowania", "goodLandingAngle", 1.5, "Wszczep wspomagający lądowanie\npod złym kątem o 50%", 160),
-      new SJ.ActiveItem("JetPack", "Jet pack wspomagający lot", 200, () => {
-        if(SJ.jumper.isFlying) {
-          SJ.jumper.accelerateWithForce(SJ.V.jumperJumpForce);
-          return true;
-        }
+    const jetPackItem = new SJ.ActiveItem("JetPack", "jetPack.png", "Jet pack wspomagający lot", 200, () => {
+      if(SJ.jumper.isFlying) {
+        SJ.jumper.accelerateWithForce(SJ.V.jumperJumpForce);
+        return true;
+      }
 
-        return false;
-      }),
+      return false;
+    });
+    jetPackItem.afterActivate = () => {
+      jetPackItem.isActive = false;
+      jetPackItem.disabled = true;
+    }
+
+    const items = [
+      new SJ.Item("Narty", "skis.png", "padFriction", 0.85, "Super narty zmniejszające tarcie o 15%", 80),
+      new SJ.Item("Buty", "boots.png", "jumperJumpForce", 1.2, "Buty zwiększające siłę wybicia o 20%", 100),
+      new SJ.Item("Skrzydła", "wings.png", "airDensity", 0.9, "Małe skrzydełka zwiększające siłę nośną o 10%", 110),
+      new SJ.Item("Opływowy kombinezon", "suit.png", "airFriction", 0.9, "Kombinezon o bardziej opływowym kształcie\nzmniejszający opory powietrza o 10%", 140),
+      new SJ.Item("Stabilizator lotu", "stabiliser.png", "airRotateForce", 0.7, "Wszczep pomagający utrzymać dobrą\npozycję przy silnym wietrze o 30%", 200),
+      new SJ.Item("Wspomagacz lądowania", "landingHelper.png", "goodLandingAngle", 1.5, "Wszczep wspomagający lądowanie\npod złym kątem o 50%", 160),
+      jetPackItem,
     ];
 
     const itemsBtn = []; 
