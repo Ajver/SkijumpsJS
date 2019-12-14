@@ -374,15 +374,17 @@ class {
     if(this.item.isActiveItem) {
       this._fill = () => {
         if(this.item.isActive) {
-          fill(50, 50, 180);
+          this.img = this.item.imgActive;
         }else {
           if(this.item.disabled) {
-            fill(50, 50, 50);
+            this.img = this.item.imgDisabled;
           }else {
-            fill(255, 200, 200);
+            this.img = this.item.img;
           }
         }
       }
+    }else {
+      this.img = this.item.img;
     }
   }
 
@@ -402,7 +404,7 @@ class {
       rectMode(CORNER);
 
       this._fill();
-      rect(0, 0, this.w, this.h);
+      image(this.img, 0, 0, this.w, this.h);
     pop();
   }
 
@@ -723,9 +725,11 @@ SJ.createItemButton = (x, y, item) => {
         }
       }
       
-      rect(btn.x, btn.y, btn.w, btn.h);
+      translate(btn.x, btn.y)
+      rect(0, 0, btn.w, btn.h);
       push();
-        translate(btn.x+btn.w/2, btn.y+btn.h-2);
+        image(item.img, (btn.w-48)/2, 20);
+        translate(btn.w/2, btn.h-2);
         if(btn.disabled) {
           fill(200);
         }else {
