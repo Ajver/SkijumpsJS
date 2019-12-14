@@ -50,8 +50,8 @@ class {
 
     const currVel = SJ.jumper.body.velocity
     const currVelMag = Matter.Vector.magnitude(currVel);
-    
-    SJ.jumper.setAngle(alpha + SJ.jumper.offsetAngle);
+
+    SJ.jumper.setAngle(lerp(SJ.jumper.body.angle, alpha + SJ.jumper.offsetAngle, 0.1));
 
     if(SJ.jumper.isSlowingDown) {
       return;
