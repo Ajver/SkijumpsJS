@@ -2,7 +2,6 @@
 const SPACE = 32;
 
 const onKeyPressed = () => { 
-  if(SJ._state == SJ._STATE.LOADING) { return; }
   if(SJ._state != SJ._STATE.GAME) { return; }
 
   SJ.jumper.onKeyPressed();
@@ -11,14 +10,12 @@ const onKeyPressed = () => {
 }
 
 const onKeyReleased = () => {
-  if(SJ._state == SJ._STATE.LOADING) { return; }
   if(SJ._state != SJ._STATE.GAME) { return; }
 
   SJ.jumper.onKeyReleased();
 }
 
 const onTouchStarted = () => {
-  if(SJ._state == SJ._STATE.LOADING) { return; }
   if(SJ.ScreensManager.onMousePress()) { return; }
   if(SJ._state != SJ._STATE.GAME) { return; }
 
