@@ -140,7 +140,7 @@ class {
       score += rater.getScore();
       print(rater);
     });
-    this.score = score;
+    this.score = max(score, 0);
   }
 
   forEachRaters(callback) {
