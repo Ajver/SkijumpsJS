@@ -79,7 +79,7 @@ class {
         if(diff <= maxBestDiff) {
           this.landingRater.score = 20;
         }else {
-          const maxAcceptedDiff = 500;
+          const maxAcceptedDiff = 200;
           const score = round((maxAcceptedDiff - diff) / (maxAcceptedDiff-maxBestDiff) * 40.0)  / 2.0;
           this.landingRater.score = max(score, 0);
         }

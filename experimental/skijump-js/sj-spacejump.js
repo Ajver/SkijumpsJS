@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.16.12";
+SJ.VERSION = "0.16.13";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
