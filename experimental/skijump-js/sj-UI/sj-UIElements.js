@@ -324,8 +324,9 @@ class {
   
   draw() {
     const jumperVel = SJ.jumper.body.velocity
-    const jumperSpeed = floor(Matter.Vector.magnitude(jumperVel)*10.0)/10.0;
-    this.disp.label.content = "Szybkość\n" + jumperSpeed + " m/s";
+    const velMagn = Matter.Vector.magnitude(jumperVel) * 8.0;
+    const jumperSpeed = floor(velMagn*10.0)/10.0;
+    this.disp.label.content = "Szybkość\n" + jumperSpeed + " km/h";
     this.disp.draw();
   }
 }
