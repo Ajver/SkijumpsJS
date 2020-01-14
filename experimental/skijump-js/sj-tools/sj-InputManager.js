@@ -16,6 +16,8 @@ const onKeyReleased = () => {
 }
 
 const onTouchStarted = () => {
+  updateMouseScreenPosition();
+  
   if(SJ.ScreensManager.onMousePress()) { return; }
   if(SJ._state != SJ._STATE.GAME) { return; }
 
@@ -67,8 +69,8 @@ const updateMouseScreenPosition = () => {
 function setupInputManager() {
   keyPressed = onKeyPressed;
   keyReleased = onKeyReleased;
-  mousePressed = onTouchStarted;
-  mouseReleased = onTouchEnded;
+  touchStarted = onTouchStarted;
+  touchEnded = onTouchEnded;
   mouseMoved = onMouseMoved;
   mouseDragged = onMouseDragged;
 }
