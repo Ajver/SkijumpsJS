@@ -16,6 +16,8 @@ const onKeyReleased = () => {
 }
 
 const onTouchStarted = () => {
+  if(SJ._state == SJ._STATE.LOADING) { return; }
+  
   updateMouseScreenPosition();
   
   if(SJ.ScreensManager.onMousePress()) { return; }
