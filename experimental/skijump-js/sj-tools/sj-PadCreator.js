@@ -47,6 +47,7 @@ SJ.PadCreator = {
   createPadBody: () => {
     PAD_PULLING_POINTS = SJ.V.padPullingPoints;
     // PAD_COLLISION_POINTS = SJ.PadCreator.generatePadCollisionPoints();
+    // print(PAD_COLLISION_POINTS);
     PAD_COLLISION_POINTS = SJ.V.padCollisionPoints;
     JUMP_POINT = SJ.V.jumpStartPoint;
     JUMP_END_POINT = PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x;
@@ -59,7 +60,12 @@ SJ.PadCreator = {
   },
 
   generatePadCollisionPoints: () => {
-    const scales = SJ.V.padShapeScalars;
+    const scales = [
+      { 
+        x: 6200, 
+        y: 3500
+      }
+    ];
 
     let points = [];
 
