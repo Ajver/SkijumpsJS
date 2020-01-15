@@ -100,18 +100,27 @@ class {
 
 SJ.Texture = 
 class {
-  constructor(textureName, x, y) {
+  constructor(textureName, x, y, w=0, h=0, onload=null) {
     this.x = x;
     this.y = y;
+
+    this.scaleX = 1.0;
+    this.scaleY = 1.0;
+
+    this.w = w;
+    this.h = h;
 
     this.texture = SJ.ImageLoader.load(textureName, () => {
       this.w = this.texture.width; 
       this.h = this.texture.height;
+      if(onload) {
+        onload();
+      }
     });
   }
 
   draw() {
-    image(this.texture, this.x, this.y);
+    image(this.texture, this.x, this.y, this.w*this.scaleX, this.h*this.scaleY);
   }
 }
 

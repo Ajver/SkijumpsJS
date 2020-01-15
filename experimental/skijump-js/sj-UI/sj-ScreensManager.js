@@ -52,6 +52,13 @@ SJ.ScreensManager.setup = () => {
       new SJ.Label("version "+SJ.VERSION, 10, SJ.SCREEN_HEIGHT-10, LEFT, BOTTOM, 14, color(200, 200, 200))
     );
   
+    const bgTexture = new SJ.Texture("Menu/menubg.gif", 0, 0, 0, 0, () => {
+      const scale = SJ.SCREEN_WIDTH / bgTexture.w;
+      bgTexture.scaleX = scale;
+      bgTexture.scaleY = scale;
+    });
+    self.appendDrawable(bgTexture);
+
   });
 
   SJ.ScreensManager.screens.selectLocation = new SJ.Screen((self) => {
