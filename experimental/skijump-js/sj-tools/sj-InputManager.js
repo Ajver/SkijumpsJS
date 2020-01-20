@@ -72,7 +72,12 @@ function setupInputManager() {
   keyPressed = onKeyPressed;
   keyReleased = onKeyReleased;
   touchStarted = onTouchStarted;
-  touchEnded = onTouchEnded;
+  touchEnded = onTouchEnded;  
   mouseMoved = onMouseMoved;
   mouseDragged = onMouseDragged;
+
+  // Remove default behaviour
+  // Needed to prevent double event calling on mobile
+  mousePressed = () => {};
+  mouseReleased = () => {};
 }
