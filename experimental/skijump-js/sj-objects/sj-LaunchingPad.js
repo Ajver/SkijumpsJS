@@ -92,7 +92,7 @@ class {
       fill(50, 50, 255, 64);
       
       push();
-        scale(PAD_SCALE);
+        scale(SJ.V.padScale);
         image(this._img, 0, 0);
       pop();
       
