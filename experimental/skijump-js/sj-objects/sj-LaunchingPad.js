@@ -92,6 +92,7 @@ class {
       fill(50, 50, 255, 64);
       
       push();
+        translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
         scale(SJ.V.padScale);
         image(this._img, 0, 0);
       pop();

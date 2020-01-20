@@ -11,6 +11,10 @@
   "airMaxForce": 15,
   "airDynamics": 0.5,
   "gravity": 0.5,
+  "textureOffset": {
+    "x": 0,
+    "y": -100
+  },
   "texturesNames": {
     "pad": "TitanBase/background.png",
     "background": [
