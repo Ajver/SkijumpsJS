@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.17.6";
+SJ.VERSION = "0.18.0";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -79,6 +79,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-CameraPath.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
 

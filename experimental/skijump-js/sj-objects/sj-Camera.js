@@ -17,44 +17,32 @@ class {
     this._currentPosition = createVector(0, 0);
     this._targetPosition = createVector(0, 0);
 
-    this._path = SJ.V.cameraPath;
+    this._topPath = new SJ.CameraPath(SJ.V.cameraTopPath);
+    this._bottomPath = new SJ.CameraPath(SJ.V.cameraBottomPath);
 
     this.restart();
   }
 
   restart() {
-    const jumperPos = SJ.jumper.body.position
+    const jumperPos = SJ.jumper.body.position;
     this._currentPosition = createVector(jumperPos.x, jumperPos.y);
     this._targetPosition = createVector(jumperPos.x, jumperPos.y);
     this._setPathIndex();
   }
 
   _setPathIndex() {
-    for(let i=1; i<this._path.length; i++) {
-      if(this._currentPosition.x < this._path[i].x) {
-        this._pathIndex = i-1;
-        break;
-      }
-    }
+    this._topPath.setPathIndex(this._currentPosition.x);
+    this._bottomPath.setPathIndex(this._currentPosition.x);
   }
 
   update() {
-    // return;
-    const jumperX = SJ.jumper.body.position.x;
-
-    if(jumperX >= this._path[this._pathIndex+1].x && this._pathIndex < this._path.length-2) {
-      this._pathIndex++;
-    }
-
-    const p1 = this._path[this._pathIndex];
-    const p2 = this._path[this._pathIndex+1];
-    const diffX = jumperX - p1.x;
-    const distX = p2.x - p1.x; 
-    const distY = p2.y - p1.y;
-    const k = diffX / distX; 
-
-    this._targetPosition.x = jumperX;
-    this._targetPosition.y = p1.y + k * distY; 
+    const jumperPos = SJ.jumper.body.position;
+    const minY = this._topPath.getExpectedY();
+    const maxY = this._bottomPath.getExpectedY();
+    const targetY = constrain(jumperPos.y, minY, maxY);
+    
+    this._targetPosition.x = jumperPos.x;
+    this._targetPosition.y = targetY; 
 
     const LERP_SPEED = 0.08;
     this._currentPosition.x = this._targetPosition.x;
@@ -76,21 +64,8 @@ class {
   }
 
   drawPath() {
-    push();
-      strokeWeight(20);
-      fill(200, 0, 0);
-      noStroke();
-      const p = this._path[0];
-      circle(p.x, p.y, 40);
-      for(let i=1; i<this._path.length; i++) {
-        const p1 = this._path[i-1];
-        const p2 = this._path[i];
-        stroke(0, 0, 255);
-        line(p1.x, p1.y, p2.x, p2.y);
-        noStroke();
-        circle(p2.x, p2.y, 40);
-      }
-    pop();
+    this._topPath.draw(color(200, 100, 0));
+    this._bottomPath.draw(color(100, 200, 0));
   }
 
 }
