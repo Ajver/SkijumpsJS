@@ -24,8 +24,8 @@ const onTouchStarted = () => {
   if(SJ._state != SJ._STATE.GAME) { return; }
 
   if(isMouseInCanvas()) {
-    SJ.jumper.onScreenTouched();
     SJ.pad.onScreenTouched();
+    SJ.jumper.onScreenTouched();
   }
 }
 
@@ -71,13 +71,19 @@ const updateMouseScreenPosition = () => {
 function setupInputManager() {
   keyPressed = onKeyPressed;
   keyReleased = onKeyReleased;
-  touchStarted = onTouchStarted;
-  touchEnded = onTouchEnded;  
   mouseMoved = onMouseMoved;
   mouseDragged = onMouseDragged;
 
-  // Remove default behaviour
-  // Needed to prevent double event calling on mobile
-  mousePressed = () => {};
-  mouseReleased = () => {};
+  if(SJ.IS_MOBILE) {
+    touchStarted = onTouchStarted;
+    touchEnded = onTouchEnded;  
+
+    // Remove default behaviour
+    // Needed to prevent double event calling on mobile
+    mousePressed = () => {};
+    mouseReleased = () => {};
+  }else {
+    mousePressed = onTouchStarted;
+    mouseReleased = onTouchEnded;
+  }
 }
