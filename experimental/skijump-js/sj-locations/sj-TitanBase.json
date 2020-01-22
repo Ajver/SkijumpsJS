@@ -12,15 +12,15 @@
   "airDynamics": 0.5,
   "gravity": 0.5,
   "textureOffset": {
-    "x": 0,
-    "y": -100
+    "x": -50,
+    "y": -580
   },
-  "padScale": 5.23,
   "texturesNames": {
-    "pad": "TitanBase/background.gif",
+    "pad": "TitanBase/pad.png",
     "background": [
     ]
   },
+  "padScale": 1.15,
   "cameraTopPath": [
     {"x":216.0,"y":708.0},
     {"x":900.0,"y":1100.0},

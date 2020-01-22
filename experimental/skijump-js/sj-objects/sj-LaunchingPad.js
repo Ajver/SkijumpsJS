@@ -97,12 +97,12 @@ class {
         image(this._img, 0, 0);
       pop();
       
-      // this._parts.forEach(part => {
-      //   part.draw();
-      // });
+      this._parts.forEach(part => {
+        part.draw();
+      });
 
-      // this._drawPullingPoints();
-      // this._drawCollisionBoxes();
+      this._drawPullingPoints();
+      this._drawCollisionBoxes();
 
     pop();
   }
