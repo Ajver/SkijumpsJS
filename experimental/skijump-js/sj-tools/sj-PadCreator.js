@@ -45,13 +45,12 @@ SJ.PadCreator = {
   },
 
   createPadBody: () => {
-    PAD_PULLING_POINTS = SJ.V.padPullingPoints;
-    // PAD_COLLISION_POINTS = SJ.PadCreator.generatePadCollisionPoints();
-    // print(PAD_COLLISION_POINTS);
-    PAD_COLLISION_POINTS = SJ.V.padCollisionPoints;
+    // SJ.V.padCollisionPoints = SJ.PadCreator.generatePadCollisionPoints();
+    print(SJ.V.padCollisionPoints);
+    SJ.V.padCollisionPoints = SJ.V.padCollisionPoints;
     JUMP_POINT = SJ.V.jumpStartPoint;
-    JUMP_END_POINT = PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x;
-    FALL_LINE = PAD_COLLISION_POINTS[PAD_COLLISION_POINTS.length-2].x;
+    JUMP_END_POINT = SJ.V.padPullingPoints[SJ.V.padPullingPoints.length-1].x;
+    FALL_LINE = SJ.V.padCollisionPoints[SJ.V.padCollisionPoints.length-2].x;
 
     return Matter.Body.create({
       isStatic: true,
@@ -62,8 +61,8 @@ SJ.PadCreator = {
   generatePadCollisionPoints: () => {
     const scales = [
       { 
-        x: 6200, 
-        y: 3500
+        x: 7900, 
+        y: 3900
       }
     ];
 
@@ -72,8 +71,8 @@ SJ.PadCreator = {
     const step = 0.05;
     
     const offsetPoint = {
-      x: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].x,
-      y: PAD_PULLING_POINTS[PAD_PULLING_POINTS.length-1].y + 40
+      x: SJ.V.padPullingPoints[SJ.V.padPullingPoints.length-1].x,
+      y: SJ.V.padPullingPoints[SJ.V.padPullingPoints.length-1].y + 40
     }
 
     for(let x=0; x<=1.0; x+=step) {
@@ -107,7 +106,7 @@ SJ.PadCreator = {
     }
 
     angle = 0.07;
-    distance = 375 * PAD_SCALE;
+    distance = 375 * SJ.V.padScale;
     
     const p1 = points[points.length-1];
     const p2 = {
@@ -139,7 +138,7 @@ SJ.PadCreator = {
   createParts: () => {    
     let parts = [];
 
-    for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
+    for(let i=1; i<SJ.V.padCollisionPoints.length; i++) {
       parts.push(SJ.PadCreator.createOneBody(i-1, i));
     }
 
@@ -147,8 +146,8 @@ SJ.PadCreator = {
   },
 
   createOneBody: (p1_idx, p2_idx) => {
-    const p1 = Matter.Vector.create(PAD_COLLISION_POINTS[p1_idx].x, PAD_COLLISION_POINTS[p1_idx].y);
-    const p2 = Matter.Vector.create(PAD_COLLISION_POINTS[p2_idx].x, PAD_COLLISION_POINTS[p2_idx].y);
+    const p1 = Matter.Vector.create(SJ.V.padCollisionPoints[p1_idx].x, SJ.V.padCollisionPoints[p1_idx].y);
+    const p2 = Matter.Vector.create(SJ.V.padCollisionPoints[p2_idx].x, SJ.V.padCollisionPoints[p2_idx].y);
 
     const vec = Matter.Vector.create(p2.x - p1.x, p2.y - p1.y);
     const angle = atan2(vec.y, vec.x);
@@ -168,16 +167,16 @@ SJ.PadCreator = {
   createPadParts: () => {
     let parts = [];
 
-    for(let i=1; i<PAD_COLLISION_POINTS.length-1; i++) {
-      const p1 = PAD_COLLISION_POINTS[i-1];
-      const p2 = PAD_COLLISION_POINTS[i];
+    for(let i=1; i<SJ.V.padCollisionPoints.length-1; i++) {
+      const p1 = SJ.V.padCollisionPoints[i-1];
+      const p2 = SJ.V.padCollisionPoints[i];
       const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padPartImg, 130);
       parts.push(part);
     }
     
-    const i = PAD_COLLISION_POINTS.length-1;
-    const p1 = PAD_COLLISION_POINTS[i-1];
-    const p2 = PAD_COLLISION_POINTS[i];
+    const i = SJ.V.padCollisionPoints.length-1;
+    const p1 = SJ.V.padCollisionPoints[i-1];
+    const p2 = SJ.V.padCollisionPoints[i];
     const part = new SJ.PadPart(p1, p2, SJ.PadCreator.padEndImg, 375);
     part.offset.y = -20 * part.scale;
     parts.push(part);

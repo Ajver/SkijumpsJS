@@ -18,7 +18,7 @@ class {
 
     SJ.pad = new SJ.LaunchingPad();
 
-    SJ.camera = new SJ.Camera(.15);
+    SJ.camera = new SJ.Camera(.8);
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -51,7 +51,7 @@ class {
   }
 
   _createJumper() {
-    SJ.jumper = new SJ.Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
+    SJ.jumper = new SJ.Jumper(SJ.V.jumperPosition.x, SJ.V.jumperPosition.y);
     this._fillDrawableObjectsArray();
   }
 

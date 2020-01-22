@@ -50,7 +50,7 @@ function setup() {
 
     // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("TitanBase");
+    SJ._startGame("CyberCity");
   }); 
 }
 
@@ -65,7 +65,6 @@ SJ._loadScripts = (callback) => {
 
   scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');
   
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-PadCollisionPointsList.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-CanvasScaler.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-InputManager.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ImageLoader.js');

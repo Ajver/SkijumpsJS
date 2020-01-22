@@ -3,8 +3,8 @@ SJ.Camera =
 class {
   constructor(scaleMod) {
     this._offset = createVector(
-      -200,
-      0
+      -500,
+      -150
     )
     // this._offset = createVector(
     //   -1000,

@@ -190,7 +190,7 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(SJ.jumpEndPopup.popup);
 
     SJ.itemsDisplay = new SJ.ItemsDisplay();
-    self.appendDrawable(SJ.itemsDisplay);
+    // self.appendDrawable(SJ.itemsDisplay);
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
       SJ.main.setRunning(false);

@@ -2,7 +2,7 @@
 SJ.PullingSystem =
 class {
   constructor() {
-    this.pullingArray = PAD_PULLING_POINTS;
+    this.pullingArray = SJ.V.padPullingPoints;
     this.jumperFrictionMult = 1.0;
     this.p1 = null;
     this.p2 = null;
@@ -28,7 +28,7 @@ class {
       }
     }
     
-    if(jumperPos.x >= JUMP_POINT && jumperPos.x <= JUMP_END_POINT) {
+    if(jumperPos.x >= SJ.V.jumpPoint && jumperPos.x <= SJ.V.jumpEndPoint) {
       SJ.pad._canJump = true;
       SJ.MessagesManager.canJump();
     }

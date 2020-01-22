@@ -58,9 +58,9 @@ class {
   startPullingJumper() {
     this._isPullingJumper = true;
     this._pullingSystem.jumperFrictionMult = 3.0;
-    this._pullingSystem.pullingArray = PAD_COLLISION_POINTS;
-    for(let i=0; i<PAD_COLLISION_POINTS.length; i++) {
-      const point = PAD_COLLISION_POINTS[i];
+    this._pullingSystem.pullingArray = SJ.V.padCollisionPoints;
+    for(let i=0; i<SJ.V.padCollisionPoints.length; i++) {
+      const point = SJ.V.padCollisionPoints[i];
       if(point.x >= SJ.jumper.body.position.x) {
         this._pullingSystem.setIndex(i);
         this.setJumperRightPosition();
@@ -97,9 +97,9 @@ class {
         image(this._img, 0, 0);
       pop();
       
-      this._parts.forEach(part => {
-        part.draw();
-      });
+      // this._parts.forEach(part => {
+      //   part.draw();
+      // });
 
       this._drawPullingPoints();
       this._drawCollisionBoxes();
@@ -121,11 +121,11 @@ class {
     push();
       fill(200, 0, 0);
       noStroke();
-      const p = PAD_PULLING_POINTS[0];
+      const p = SJ.V.padPullingPoints[0];
       circle(p.x, p.y, 10);
-      for(let i=1; i<PAD_PULLING_POINTS.length; i++) {
-        const p1 = PAD_PULLING_POINTS[i-1];
-        const p2 = PAD_PULLING_POINTS[i];
+      for(let i=1; i<SJ.V.padPullingPoints.length; i++) {
+        const p1 = SJ.V.padPullingPoints[i-1];
+        const p2 = SJ.V.padPullingPoints[i];
         stroke(255);
         line(p1.x, p1.y, p2.x, p2.y);
         noStroke();
