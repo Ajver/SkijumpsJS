@@ -15,9 +15,9 @@
     "x": 0,
     "y": -100
   },
-  "padScale": 5.23,
+  "padScale": 1,
   "texturesNames": {
-    "pad": "TitanBase/background.gif",
+    "pad": "TitanBase/background.png",
     "background": [
     ]
   },
