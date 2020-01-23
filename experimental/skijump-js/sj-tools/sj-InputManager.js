@@ -43,6 +43,12 @@ const onMouseMoved = () => {
   if(SJ._state == SJ._STATE.LOADING) { return; }
 
   updateMouseScreenPosition();
+  
+  const pos = SJ.camera.screenToWorld(createVector(
+    SJ.mouseScreenX,
+    SJ.mouseScreenY
+  ));
+  print(pos);
 
   SJ.ScreensManager.onMouseMove();
 }

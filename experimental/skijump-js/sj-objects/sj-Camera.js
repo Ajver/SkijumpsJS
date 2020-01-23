@@ -6,10 +6,7 @@ class {
       -500,
       -150
     )
-    // this._offset = createVector(
-    //   -1000,
-    //   -700
-    // )
+    // this._offset = createVector(0, 0)
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
     this._offset.y += SJ.SCREEN_HEIGHT*0.5;
     this._scale = scaleMod;
@@ -66,6 +63,17 @@ class {
   drawPath() {
     this._topPath.draw(color(200, 100, 0));
     this._bottomPath.draw(color(100, 200, 0));
+  }
+
+  screenToWorld(p) {
+    const screenPoint = p.copy();
+    // screenPoint.sub(createVector(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y));
+    screenPoint.sub(this._offset);
+    screenPoint.div(this._scale);
+    screenPoint.add(this._currentPosition);
+    // screenPoint.div(this._scale);
+    // screenPoint.sub(createVector(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y));
+    return screenPoint;
   }
 
 }

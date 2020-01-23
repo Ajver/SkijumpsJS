@@ -34,7 +34,7 @@ class {
     }
     
     if(!SJ.jumper.isSlowingDown) {
-      if(jumperPos.x >= FALL_LINE) {
+      if(jumperPos.x >= SJ.V.fallLine) {
         SJ.jumper.isSlowingDown = true;
       } 
     }

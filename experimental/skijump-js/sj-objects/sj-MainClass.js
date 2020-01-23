@@ -18,7 +18,7 @@ class {
 
     SJ.pad = new SJ.LaunchingPad();
 
-    SJ.camera = new SJ.Camera(.8);
+    SJ.camera = new SJ.Camera(.1);
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   

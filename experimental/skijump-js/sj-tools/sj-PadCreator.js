@@ -46,11 +46,8 @@ SJ.PadCreator = {
 
   createPadBody: () => {
     // SJ.V.padCollisionPoints = SJ.PadCreator.generatePadCollisionPoints();
-    print(SJ.V.padCollisionPoints);
-    SJ.V.padCollisionPoints = SJ.V.padCollisionPoints;
-    JUMP_POINT = SJ.V.jumpStartPoint;
-    JUMP_END_POINT = SJ.V.padPullingPoints[SJ.V.padPullingPoints.length-1].x;
-    FALL_LINE = SJ.V.padCollisionPoints[SJ.V.padCollisionPoints.length-2].x;
+    // print(SJ.V.padCollisionPoints);
+    SJ.V.fallLine = SJ.V.padCollisionPoints[SJ.V.padCollisionPoints.length-2].x;
 
     return Matter.Body.create({
       isStatic: true,
