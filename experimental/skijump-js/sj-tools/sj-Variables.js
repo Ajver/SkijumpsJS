@@ -33,7 +33,7 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.padPullingPoints = v.padPullingPoints;
     SJ.V.padCollisionPoints = v.padCollisionPoints;
     SJ.V.jumperPosition = v.jumperPosition || { x: 213.0, y: 334.0 };
-    SJ.V.pointK = v.pointK || 1502.0;
+    SJ.V.pointK = v.pointK;
     SJ.V.jumpEndPoint = v.padPullingPoints[v.padPullingPoints.length-1].x;
 
     callBack();

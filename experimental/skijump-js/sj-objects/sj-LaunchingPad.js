@@ -15,7 +15,7 @@ class {
   restart() {
     this._isWaitingForLaunch = true;
     this._isPullingJumper = false;
-    this._canJump = false;
+    this._canJump = true;
     this._pullingSystem = new SJ.PullingSystem();
   }
   
@@ -149,12 +149,23 @@ class {
       return;
     }
 
-    if(this._canJump) {
-      this.endOfPulling();
-      SJ.jumper.jump();
+    if(this._isInJumpArea()) {
+      if(this._canJump) {
+        this._canJump = false;
+        this.endOfPulling();
+        SJ.jumper.jump();
+      }
     }else if(this._isWaitingForLaunch) {
       this.launch();
     }
+  }
+
+  _isInJumpArea() {
+    const jumperX = SJ.jumper.body.position.x;
+    return (
+      SJ.V.jumpStartPoint < jumperX &&
+      jumperX < SJ.V.jumpEndPoint
+    );
   }
 
 }

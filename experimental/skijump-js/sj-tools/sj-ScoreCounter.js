@@ -15,9 +15,9 @@ class {
 
     this.jumpRater = new SJ.Rater(() => {
       const jumperX = SJ.jumper.body.position.x;
-      const jumpAreaWidth = JUMP_END_POINT - JUMP_POINT;
+      const jumpAreaWidth = SJ.V.jumpEndPoint - SJ.V.jumpStartPoint;
 
-      const jumperRelativeX = jumperX - JUMP_POINT;
+      const jumperRelativeX = jumperX - SJ.V.jumpStartPoint;
 
       const proportion = jumperRelativeX / jumpAreaWidth;
 
