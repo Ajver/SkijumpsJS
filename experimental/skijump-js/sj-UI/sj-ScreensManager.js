@@ -76,7 +76,12 @@ SJ.ScreensManager.setup = () => {
 
     for(let i=0; i<locations.length; i++) {
       const loc = locations[i];
-      self.appendButton(SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]));
+      const btn = SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]);
+      
+      if(i > 1) {
+        btn.disabled = true;
+      }
+      self.appendButton(btn);
     }
 
     self.appendDrawable(
@@ -190,7 +195,7 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(SJ.jumpEndPopup.popup);
 
     SJ.itemsDisplay = new SJ.ItemsDisplay();
-    // self.appendDrawable(SJ.itemsDisplay);
+    self.appendDrawable(SJ.itemsDisplay);
 
     const pauseBtn = new SJ.Button("Pauza", 0, 0, 160, 40, null, () => {
       SJ.main.setRunning(false);
