@@ -15,9 +15,9 @@ class {
 
     this.jumpRater = new SJ.Rater(() => {
       const jumperX = SJ.jumper.body.position.x;
-      const jumpAreaWidth = JUMP_END_POINT - JUMP_POINT;
+      const jumpAreaWidth = SJ.V.jumpEndPoint - SJ.V.jumpStartPoint;
 
-      const jumperRelativeX = jumperX - JUMP_POINT;
+      const jumperRelativeX = jumperX - SJ.V.jumpStartPoint;
 
       const proportion = jumperRelativeX / jumpAreaWidth;
 
@@ -103,7 +103,7 @@ class {
     ];
 
     // Distance to the point K in metters
-    this.PIXELS_TO_METERS = SJ.V.padSize / (POINT_K-JUMP_END_POINT);
+    this.PIXELS_TO_METERS = SJ.V.padSize / (SJ.V.pointK-SJ.V.jumpEndPoint);
     this._POINT_PER_METER = 2.8;
     this.score = 0;
   }
@@ -121,7 +121,7 @@ class {
 
   calculateDistance() {
     const landX = SJ.jumper.body.position.x;
-    const distTo_K = landX - POINT_K;
+    const distTo_K = landX - SJ.V.pointK;
     
     this.mettersDistTo_K = distTo_K * this.PIXELS_TO_METERS;
 

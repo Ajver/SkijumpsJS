@@ -229,7 +229,6 @@ class {
   } 
 
   land() {
-    print("fooo");
     this.canLand = false;
     this.isLanding = true;
     this.canSteer = false;

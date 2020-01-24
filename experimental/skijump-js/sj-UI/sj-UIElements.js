@@ -350,10 +350,10 @@ class {
     var jumperHeight = 0;
     if(!SJ.jumper.body.isStatic) {
       const jumperX = SJ.jumper.body.position.x;
-      for(let i=1; i<PAD_COLLISION_POINTS.length; i++) {
-        const p2 = PAD_COLLISION_POINTS[i];
+      for(let i=1; i<SJ.V.padCollisionPoints.length; i++) {
+        const p2 = SJ.V.padCollisionPoints[i];
         if(jumperX <= p2.x) {
-          const p1 = PAD_COLLISION_POINTS[i-1];
+          const p1 = SJ.V.padCollisionPoints[i-1];
           const diffX = jumperX - p1.x;
           const distX = p2.x - p1.x;
           const diffY = p2.y - p1.y;

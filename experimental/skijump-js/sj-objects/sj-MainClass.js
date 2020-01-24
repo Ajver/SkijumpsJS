@@ -51,7 +51,7 @@ class {
   }
 
   _createJumper() {
-    SJ.jumper = new SJ.Jumper(JUMPER_POSITION.x, JUMPER_POSITION.y);
+    SJ.jumper = new SJ.Jumper(SJ.V.jumperPosition.x, SJ.V.jumperPosition.y);
     this._fillDrawableObjectsArray();
   }
 

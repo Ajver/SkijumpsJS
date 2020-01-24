@@ -2,7 +2,7 @@
 const SJ = {};
 
 // Game Version
-SJ.VERSION = "0.18.1";
+SJ.VERSION = "0.18.5";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -65,7 +65,6 @@ SJ._loadScripts = (callback) => {
 
   scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');
   
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-PadCollisionPointsList.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-CanvasScaler.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-InputManager.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ImageLoader.js');

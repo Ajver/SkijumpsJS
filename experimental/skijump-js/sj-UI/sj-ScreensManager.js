@@ -76,7 +76,12 @@ SJ.ScreensManager.setup = () => {
 
     for(let i=0; i<locations.length; i++) {
       const loc = locations[i];
-      self.appendButton(SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]));
+      const btn = SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]);
+      self.appendButton(btn);
+      
+      if(i > 1) {
+        btn.disabled = true;
+      }
     }
 
     self.appendDrawable(
