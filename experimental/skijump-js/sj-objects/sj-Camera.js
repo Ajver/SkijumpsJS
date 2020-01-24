@@ -4,9 +4,9 @@ class {
   constructor(scaleMod) {
     this._offset = createVector(
       -500,
-      -150
+      -200
     )
-    // this._offset = createVector(0, 0)
+    this._offset = createVector(-200, 0)
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
     this._offset.y += SJ.SCREEN_HEIGHT*0.5;
     this._scale = scaleMod;
