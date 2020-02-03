@@ -119,7 +119,7 @@ class {
       }else {
         this._showJumpEndPopup();
       }
-    }, 1000);
+    }, 2000);
   }
 
   _showJumpEndPopup() {

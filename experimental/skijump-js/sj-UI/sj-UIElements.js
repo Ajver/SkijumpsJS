@@ -563,6 +563,7 @@ class {
     ];
     
     this.popup = new SJ.Popup(300, 500, drawable);
+    this.popup.darkBackground.color = color(0, 0, 0, 0);
 
     this.hide();
   }

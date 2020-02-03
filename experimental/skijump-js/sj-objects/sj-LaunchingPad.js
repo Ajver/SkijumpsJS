@@ -8,6 +8,8 @@ class {
     this._img = SJ.PadCreator.padImg;
 
     this._parts = SJ.PadCreator.createPadParts();
+
+    this._afterJump = false;
   
     this.restart();
   }
@@ -28,7 +30,13 @@ class {
       if(this._pullingSystem.update()) {
         this.setJumperVelocity();
       }else {
-        this.endOfPulling();
+        if(this._afterJump) {
+          // When collision points ends
+          this.body.velocity.x = 0;
+          this.body.velocity.y = 0;
+        }else {
+          this.endOfPulling();
+        }
       }
     }
   }
@@ -44,6 +52,7 @@ class {
   }
 
   endOfPulling() {
+    this._afterJump = true;
     this._isPullingJumper = false;
     this.setJumperDynamic();
     this._canJump = false;
