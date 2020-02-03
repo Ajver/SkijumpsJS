@@ -185,13 +185,10 @@ SJ.ScreensManager.setup = () => {
     });
     self.appendDrawable(self.pausePopup.popup);
 
-    SJ.ratersDisplay = new SJ.RatersDisplay();
-    SJ.ratersDisplay._ratersBoxes.forEach(raterBox => {
-      self.appendDrawable(raterBox.title);
-    });
-    SJ.ratersDisplay._ratersBoxes.forEach(raterBox => {
-      self.appendDrawable(raterBox);
-    });
+    SJ.jumpDataDisplay = new SJ.JumpDataDisplay(self);
+    self.appendDrawable(SJ.jumpDataDisplay);
+
+    SJ.ratersDisplay = new SJ.RatersDisplay(self);
     self.appendDrawable(SJ.ratersDisplay);
 
     SJ.jumpEndPopup = new SJ.JumpEndPopup();

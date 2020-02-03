@@ -335,6 +335,11 @@ class {
     const jumperVel = SJ.jumper.body.velocity
     const velMagn = Matter.Vector.magnitude(jumperVel) * 8.0;
     const jumperSpeed = floor(velMagn*10.0)/10.0;
+
+    if(jumperSpeed > SJ.higherJumperSpeed) {
+      SJ.higherJumperSpeed = jumperSpeed;
+    }
+
     this.disp.label.content = "Szybkość\n" + jumperSpeed + " km/h";
     this.disp.draw();
   }
@@ -362,6 +367,10 @@ class {
 
           const heightInPixels = yUnderJumper - SJ.jumper.body.position.y;
           const heightInMeters = heightInPixels * SJ.scoreCounter.PIXELS_TO_METERS;
+
+          if(heightInMeters > SJ.higherJumperHeight) {
+            SJ.higherJumperHeight = heightInMeters;
+          } 
 
           jumperHeight = max(floor(heightInMeters), 0);
           break;
@@ -448,8 +457,6 @@ class {
       this._itemsBoxes.push(new SJ.ItemBox(item, boxX, boxY, boxWidth, boxWidth));
       boxX += xSeparator;
     });
-
-    print(this._itemsBoxes);
   }
 
   draw() {
@@ -571,10 +578,14 @@ class {
   show() {
     this.scoreLabel.content = SJ.scoreCounter.score;
     this.popup.show();
+    SJ.ratersDisplay.show();
+    SJ.jumpDataDisplay.show();
   }
 
   hide() {
     this.popup.hide();
+    SJ.ratersDisplay.hide();
+    SJ.jumpDataDisplay.hide();
   }
 
 }
@@ -601,7 +612,7 @@ class extends SJ.LabelWithBackground {
 
 SJ.RatersDisplay =
 class {
-  constructor() {
+  constructor(screensManager) {
     this._ratersBoxes = [];
 
     const boxesX = SJ.SCREEN_WIDTH - 400;
@@ -628,6 +639,14 @@ class {
 
 
     this.isVisible = false;
+
+    
+    this._ratersBoxes.forEach(raterBox => {
+      screensManager.appendDrawable(raterBox.title);
+    });
+    this._ratersBoxes.forEach(raterBox => {
+      screensManager.appendDrawable(raterBox);
+    });
   }
 
   draw() {
@@ -655,6 +674,87 @@ class {
     });
   }
 
+}
+
+SJ.JumpDataBox =
+class extends SJ.LabelWithBackground {
+  constructor(titleText, label, x, y, w, h) {
+    super(label, x, y, w, h, 16, color(255), color(0), RIGHT);
+    this.titleText = titleText;
+    this.setData("");
+    this.canStopMouse = true;
+    this.color = color(40, 50, 120);
+    this.hide();
+  }
+
+  setData(data) {
+    this.label.content = this.titleText + '\n' + data;
+  }
+
+  draw() {
+    super.draw();
+  }
+  
+  // Needed for prevending errors
+  onMouseEnter() {}
+  onMouseLeave() {}
+  onMousePress() {}
+  onMouseRelease() {}
+}
+
+SJ.JumpDataDisplay =
+class {
+  constructor(screensManager) {
+    this._dataBoxes = [];
+
+    const boxesX = SJ.SCREEN_MIDDLE_X - 400;
+    let boxY = 170;
+    const boxW = 200;
+    const boxH = 65;
+    const ySeparator = 70;
+
+    this.label = new SJ.Label("Parametry skoku", boxesX+boxW, boxY+30, RIGHT, TOP, 24);
+
+    const dataTitles = [
+      "Długość skoku",
+      "Maksymalna prędkość",
+      "Maksymalna wysokość"
+    ];
+
+    for(let i=0; i<3; i++) {
+      const dataBox = new SJ.JumpDataBox(dataTitles[i], "", boxesX, boxY+=ySeparator, boxW, boxH);
+      this._dataBoxes.push(dataBox);
+    }
+
+    this.isVisible = false;
+    
+    this._dataBoxes.forEach(dataBox => {
+      screensManager.appendDrawable(dataBox);
+    });
+  }
+  
+  draw() {
+    this.label.draw();
+  }
+
+  show() {
+    this._dataBoxes[0].setData(round(SJ.scoreCounter.mettersDistTo_K*10.0)/10.0 + " m");
+    this._dataBoxes[1].setData(round(SJ.higherJumperSpeed*10.0)/10.0 + " km/h");
+    this._dataBoxes[2].setData(round(SJ.higherJumperHeight*10.0)/10.0 + " m");
+
+    this._dataBoxes.forEach(dataBox => {
+      dataBox.show();
+    });
+    
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+    this._dataBoxes.forEach(dataBox => {
+      dataBox.hide();
+    });
+  }
 }
 
 

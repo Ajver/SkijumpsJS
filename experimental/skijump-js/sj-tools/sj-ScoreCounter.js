@@ -1,4 +1,7 @@
 
+SJ.higherJumperSpeed = 0;
+SJ.higherJumperHeight = 0;
+
 SJ.Rater =
 class {
   constructor(rateFunc, getScore) {
