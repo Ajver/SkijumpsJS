@@ -39,6 +39,7 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
+    SJ.PadCreator.padImgFront = SJ.V.texturesNames.padFront ? SJ.ImageLoader.load(SJ.V.texturesNames.padFront) : null;
     SJ.PadCreator.padDescentImg = SJ.ImageLoader.load("descent-part.png");
     SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
     SJ.PadCreator.padEndImg = SJ.ImageLoader.load("pad-end.png");

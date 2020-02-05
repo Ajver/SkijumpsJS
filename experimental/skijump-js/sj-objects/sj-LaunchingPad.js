@@ -6,6 +6,7 @@ class {
     Matter.World.add(SJ.world, this.body);
   
     this._img = SJ.PadCreator.padImg;
+    this._imgFront = SJ.PadCreator.padImgFront;
 
     this._parts = SJ.PadCreator.createPadParts();
 
@@ -110,10 +111,20 @@ class {
       //   part.draw();
       // });
 
-      // this._drawPullingPoints();
-      // this._drawCollisionBoxes();
+      this._drawPullingPoints();
+      this._drawCollisionBoxes();
 
     pop();
+  }
+
+  drawFront() {
+    if(this._imgFront) {
+      push();
+        translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
+        scale(SJ.V.padScale);
+        image(this._imgFront, 0, 0);
+      pop();
+    }
   }
 
   _drawCollisionBoxes() {
