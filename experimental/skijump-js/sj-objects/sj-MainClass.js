@@ -18,7 +18,7 @@ class {
 
     SJ.pad = new SJ.LaunchingPad();
 
-    SJ.camera = new SJ.Camera(.2);
+    SJ.camera = new SJ.Camera(1);
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -83,7 +83,7 @@ class {
         element.draw();
       });
       SJ.pad.drawFront();
-      SJ.camera.drawPath();
+      // SJ.camera.drawPath();
     pop();
   }
 
