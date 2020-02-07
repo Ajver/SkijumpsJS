@@ -19,12 +19,7 @@ class {
 
       for(let i=this._drawable.length-1; i>=0; i--) {
         const obj = this._drawable[i];
-
-        if(obj.isVisible === false) {
-          continue;
-        }
-
-        obj.draw();
+        obj._draw();
       }
     pop();
   }

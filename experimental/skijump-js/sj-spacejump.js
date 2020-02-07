@@ -87,7 +87,6 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-LaunchingPad.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-MainClass.js');
   
-  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UI.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-Screen.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');

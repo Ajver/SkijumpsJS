@@ -180,10 +180,7 @@ SJ.ScreensManager.setup = () => {
     self.setBackgroundColor(color(0, 0, 0, 0));
 
     self.pausePopup = new SJ.PausePopup();
-    self.pausePopup.popup._drawable.forEach(obj => {
-      self.appendDrawable(obj);
-    });
-    self.appendDrawable(self.pausePopup.popup);
+    self.appendDrawable(self.pausePopup);
 
     SJ.jumpDataDisplay = new SJ.JumpDataDisplay(self);
     self.appendDrawable(SJ.jumpDataDisplay);
@@ -192,10 +189,7 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(SJ.ratersDisplay);
 
     SJ.jumpEndPopup = new SJ.JumpEndPopup();
-    SJ.jumpEndPopup.popup._drawable.forEach(obj => {
-      self.appendDrawable(obj);
-    });
-    self.appendDrawable(SJ.jumpEndPopup.popup);
+    self.appendDrawable(SJ.jumpEndPopup);
 
     SJ.itemsDisplay = new SJ.ItemsDisplay();
     self.appendDrawable(SJ.itemsDisplay);

@@ -1,15 +1,92 @@
 
-SJ.Label = 
+// All UI elements in one object
+SJ.UI = {};
+
+SJ.UI.Drawable =
 class {
-  constructor(content, x, y, align=LEFT, vAlign=CENTER, fontSize=18, fontColor=color(255, 255, 255)) {
+  constructor(isVisible=true) {
+    this.isVisible = isVisible;
+
+    // UI elements as children
+    this.children = [];
+  }
+
+  addChild(drawable) {
+    this.children.push(drawable);
+  }
+
+  show() {
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+
+  _draw() {
+    push();
+      this.draw();
+
+      this.children.forEach(child => {
+        child._draw();
+      });
+    pop();
+  }
+
+  draw() {}
+}
+
+SJ.UI.Element =
+class extends SJ.UI.Drawable {
+  constructor(x=0, y=0, w=0, h=0, canStopMouse=false, onMousePress=null, onMouseRelease=null, onMouseEnter=null, onMouseLeave=null) {
+    super(true);
+
     this.x = x;
     this.y = y;
+    this.w = w;
+    this.h = h;
+    
+    this.canStopMouse = canStopMouse;
+    this.isMouseIn = false;
+    this.isPress = false;
+
+    this.onMousePress = onMousePress || (() => {});
+    this.onMouseRelease = onMouseRelease || (() => {});
+    this.onMouseEnter = onMouseEnter || (() => {});
+    this.onMouseLeave = onMouseLeave || (() => {});
+  }
+
+  onMousePress() {}
+  onMouseRelease() {}
+  onMouseEnter() {}
+  onMouseLeave() {}
+
+  _draw() {
+    if(!this.isVisible) {
+      return;
+    }
+
+    push();
+      translate(this.x, this.y);
+
+      this.draw();
+
+      this.children.forEach(child => {
+        child._draw();
+      });
+    pop();
+  }
+}
+
+SJ.Label = 
+class extends SJ.UI.Element {
+  constructor(content, x, y, align=LEFT, vAlign=CENTER, fontSize=18, fontColor=color(255, 255, 255)) {
+    super(x, y);
     this.content = content;
     this.align = align;
     this.vAlign = vAlign;
     this.fontSize = fontSize;
     this.fontColor = fontColor;
-    this.isVisible = true;
   }
 
   draw() {
@@ -17,37 +94,19 @@ class {
       textSize(this.fontSize);
       textAlign(this.align, this.vAlign);
       fill(this.fontColor);
-      text(this.content, this.x, this.y);
+      text(this.content, 0, 0);
     pop();
-  }
-  
-  show() {
-    this.isVisible = true;
-  }
-  
-  hide() {
-    this.isVisible = false;
   }
 }
 
 SJ.Button = 
-class {
+class extends SJ.UI.Element {
   constructor(caption, x, y, w, h, onMousePress, onMouseRelease, onMouseEnter, onMouseLeave, draw, overrideLabelDraw=false) {
-    this.label = new SJ.Label(caption, 0, 0, CENTER, CENTER, h*0.6);
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.onMousePress = onMousePress || (() => {});
-    this.onMouseRelease = onMouseRelease || (() => {});
-    this.onMouseEnter = onMouseEnter || (() => {});
-    this.onMouseLeave = onMouseLeave || (() => {});
+    super(x, y, w, h, true, onMousePress, onMouseRelease, onMouseEnter, onMouseLeave);
     this.disabled = false;
-    this.canStopMouse = true;
-    this.isMouseIn = false;
-    this.isPress = false;
-    this.isVisible = true;
-
+    
+    this.label = new SJ.Label(caption, 0, 0, CENTER, CENTER, h*0.6);
+    
     if(overrideLabelDraw) {
       this.label.draw = () => {
         push();
@@ -57,58 +116,44 @@ class {
         pop();
       }
     }
+
+    this.addChild(this.label);
   }
 
   draw() {
-    push();
-      if(this.disabled) {
-        fill(37, 53, 64);
-      }else {
-        if(this.isMouseIn) {
-          if(this.isPress) {
-            fill(17, 91, 140);
-          }else {
-            fill(14, 143, 230);
-          }
+    if(this.disabled) {
+      fill(37, 53, 64);
+    }else {
+      if(this.isMouseIn) {
+        if(this.isPress) {
+          fill(17, 91, 140);
         }else {
-          fill(10, 123, 199);
+          fill(14, 143, 230);
         }
-      }
-
-      rectMode(CORNER);
-      rect(this.x, this.y, this.w, this.h);
-      translate(this.x+this.w/2, this.y+this.h/2);
-
-      if(this.disabled) {
-        fill(60);
       }else {
-        fill(0);
+        fill(10, 123, 199);
       }
+    }
 
-      this.label.draw();
-    pop();
-  }
+    rectMode(CORNER);
+    rect(0, 0, this.w, this.h);
+    translate(this.w/2, this.h/2);
 
-  show() {
-    this.isVisible = true;
-  }
-  
-  hide() {
-    this.isVisible = false;
+    if(this.disabled) {
+      fill(60);
+    }else {
+      fill(0);
+    }
   }
 }
 
 SJ.Texture = 
-class {
+class extends SJ.UI.Element {
   constructor(textureName, x, y, w=0, h=0, onload=null) {
-    this.x = x;
-    this.y = y;
+    super(x, y, w, h, false);
 
     this.scaleX = 1.0;
     this.scaleY = 1.0;
-
-    this.w = w;
-    this.h = h;
 
     this.texture = SJ.ImageLoader.load(textureName, () => {
       this.w = this.texture.width; 
@@ -120,15 +165,15 @@ class {
   }
 
   draw() {
-    image(this.texture, this.x, this.y, this.w*this.scaleX, this.h*this.scaleY);
+    image(this.texture, 0, 0, this.w*this.scaleX, this.h*this.scaleY);
   }
 }
 
 SJ.TextWindow = 
-class {
+class extends SJ.UI.Element {
   constructor(x, y, txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
-    this.x = x;
-    this.y = y;
+    super(x, y, 0, 0);
+
     this.textColor = textColor;
     this.bgColor = bgColor;
     
@@ -141,7 +186,6 @@ class {
   
   draw() {
     push();
-      translate(this.x, this.y);
       fill(this.bgColor);
       stroke(255);
       rectMode(CORNER);
@@ -201,39 +245,26 @@ class {
 }
 
 SJ.MouseFollowingPopup =
-class {
+class extends SJ.UI.Drawable {
   constructor(txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
-    this.isVisible = false;
+    super(false);
     this.popup = new SJ.TextWindow(0, 0, txt, txtSize, textColor, bgColor);
+    this.children.push(this.popup);
   }
 
   draw() {
-    push();
-      const maxX = SJ.SCREEN_WIDTH - this.popup.w;
-      const maxY = SJ.SCREEN_HEIGHT - this.popup.h;
-      let x = max(min(maxX, SJ.mouseScreenX-this.popup.w/2), 0);
-      let y = max(min(maxY, SJ.mouseScreenY-this.popup.h-10), 0);
-      translate(x, y);
-      this.popup.draw();
-    pop();
-  }
-  
-  show() {
-    this.isVisible = true;
-  }
-
-  hide() {
-    this.isVisible = false;
+    const maxX = SJ.SCREEN_WIDTH - this.popup.w;
+    const maxY = SJ.SCREEN_HEIGHT - this.popup.h;
+    const x = max(min(maxX, SJ.mouseScreenX-this.popup.w/2), 0);
+    const y = max(min(maxY, SJ.mouseScreenY-this.popup.h-10), 0);
+    translate(x, y);
   }
 }
 
 SJ.DrawableRect = 
-class {
+class extends SJ.UI.Element {
   constructor(x, y, w, h, col) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
+    super(x, y, w, h);
     this.color = col;
     this.mode = CORNER;
     this.isVisible = true;
@@ -244,19 +275,9 @@ class {
       rectMode(this.mode);
       fill(this.color);
       noStroke();
-      rect(this.x, this.y, this.w, this.h);
+      rect(0, 0, this.w, this.h);
     pop();
   }
-
-  
-  show() {
-    this.isVisible = true;
-  }
-
-  hide() {
-    this.isVisible = false;
-  }
-
 }
 
 SJ.LabelWithBackground = 
@@ -279,23 +300,14 @@ class extends SJ.DrawableRect {
     }
 
     this.label = new SJ.Label(txt, lx, ly, align, vAlign, txtSize, col);
+    this.children.push(this.label)
   }
-
-  draw() {
-    push();
-      rectMode(this.mode);
-      fill(this.color);
-      noStroke();
-      rect(this.x, this.y, this.w, this.h);
-    pop();
-    this.label.draw();
-  }
-
 }
 
 SJ.WindDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor() {
+    super();
     this.radius = 220;
     this.offset = 50;
     this.arrowImg = SJ.ImageLoader.load('arrow.png');
@@ -326,8 +338,9 @@ class {
 }
 
 SJ.SpeedDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor() {
+    super();
     this.disp = new SJ.LabelWithBackground("Szybkość", SJ.SCREEN_WIDTH-100, 140, 100, 80, 16, color(255), color(0, 0, 80), LEFT, BOTTOM)
   }
   
@@ -346,8 +359,9 @@ class {
 }
 
 SJ.HeightDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor() {
+    super();
     this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
   }
   
@@ -384,11 +398,10 @@ class {
 }
 
 SJ.ItemBox = 
-class {
+class extends SJ.UI.Element {
   constructor(item, x, y, w, h) {
+    super(x, y, w, h);
     this.item = item;
-    this.setPosition(x, y);
-    this.setSize(w, h);
 
     if(this.item.isActiveItem) {
       this._fill = () => {
@@ -433,8 +446,9 @@ class {
 }
 
 SJ.ItemsDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor() {
+    super();
     this._itemsBoxes = [];
   }
 
@@ -472,55 +486,28 @@ class {
 }
 
 SJ.Popup =
-class {
+class extends SJ.DrawableRect {
   constructor(w, h, drawable) {
-    this.x = 0;
-    this.y = 0;
-    this.w = SJ.SCREEN_WIDTH;    
-    this.h = SJ.SCREEN_HEIGHT;  
-    this._drawable = drawable;
-
+    super(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
     this.isVisible = false;
-    this.darkBackground = new SJ.DrawableRect(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
+    this.canStopMouse = true; 
+
     this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, w, h, color(50, 70, 140));
     this.bgRect.mode = CENTER;
-    this.canStopMouse = true;
-    this.onMousePress = (() => {});
-    this.onMouseRelease = (() => {});
-    this.onMouseEnter = (() => {});
-    this.onMouseLeave = (() => {}); 
-  }
 
-  draw() {
-    this.darkBackground.draw();
-    this.bgRect.draw();
+    this.drawable = drawable;
+    this.addChild(this.bgRect);
   }
-  
-  show() {
-    this.isVisible = true;
-    this._drawable.forEach(obj => {
-      obj.show();
-    });
-  }
-
-  hide() {
-    this.isVisible = false;
-    this._drawable.forEach(obj => {
-      obj.hide();
-    });
-  }
-
 }
 
 SJ.PausePopup =
-class {
+class extends SJ.Popup {
   constructor() {
     const learnBtn = new SJ.Button("Samouczek", SJ.SCREEN_MIDDLE_X-100, 320, 200, 40, null, () => {
       print("Samouczek!");
     });
-    learnBtn.disabled = true;
-    
-    const drawable = [
+
+    super(300, 500, [
       new SJ.Button("Wznów", SJ.SCREEN_MIDDLE_X-100, 200, 200, 40, null, () => {
         SJ.main.setRunning(true);
       }),
@@ -532,31 +519,18 @@ class {
         SJ.ScreensManager.screens.game.pausePopup.hide();
         SJ.backToMenu();
       }),
-    ];
-    
-    this.popup = new SJ.Popup(300, 500, drawable);
+    ]);
 
-    this.hide();
+    learnBtn.disabled = true;
   }
-
-  show() {
-    this.popup.show();
-  }
-
-  hide() {
-    this.popup.hide();
-  }
-
 }
 
 SJ.JumpEndPopup =
-class {
-  constructor() {    
-    this.scoreLabel = new SJ.Label("520", SJ.SCREEN_MIDDLE_X, 290, CENTER, TOP, 40)
-    const drawable = [
+class extends SJ.Popup {
+  constructor() {
+    super(300, 500, [
       new SJ.Label("Koniec skoku", SJ.SCREEN_MIDDLE_X, 200, CENTER, TOP, 32),
       new SJ.Label("Zdobyte punkty:", SJ.SCREEN_MIDDLE_X, 255, CENTER, TOP, 24),
-      this.scoreLabel,
       new SJ.Button("Powtórz skok", SJ.SCREEN_MIDDLE_X-100, 360, 200, 40, null, () => {
         this.hide();
         SJ.ratersDisplay.hide();
@@ -567,27 +541,14 @@ class {
         SJ.ratersDisplay.hide();
         SJ.backToMenu();
       }),
-    ];
+    ]);
+    this.color = color(0, 0, 0, 0);
     
-    this.popup = new SJ.Popup(300, 500, drawable);
-    this.popup.darkBackground.color = color(0, 0, 0, 0);
-
-    this.hide();
+    this.scoreLabel = new SJ.Label("520", SJ.SCREEN_MIDDLE_X, 290, CENTER, TOP, 40)
+    this.addChild(this.scoreLabel);
+    this.addChild(SJ.ratersDisplay);
+    this.addChild(SJ.jumpDataDisplay);
   }
-
-  show() {
-    this.scoreLabel.content = SJ.scoreCounter.score;
-    this.popup.show();
-    SJ.ratersDisplay.show();
-    SJ.jumpDataDisplay.show();
-  }
-
-  hide() {
-    this.popup.hide();
-    SJ.ratersDisplay.hide();
-    SJ.jumpDataDisplay.hide();
-  }
-
 }
 
 SJ.RaterBox =
@@ -611,8 +572,10 @@ class extends SJ.LabelWithBackground {
 }
 
 SJ.RatersDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor(screensManager) {
+    super(false);
+
     this._ratersBoxes = [];
 
     const boxesX = SJ.SCREEN_WIDTH - 400;
@@ -636,10 +599,6 @@ class {
       raterBox.hide();
       this._ratersBoxes.push(raterBox);
     }
-
-
-    this.isVisible = false;
-
     
     this._ratersBoxes.forEach(raterBox => {
       screensManager.appendDrawable(raterBox.title);
@@ -703,8 +662,10 @@ class extends SJ.LabelWithBackground {
 }
 
 SJ.JumpDataDisplay =
-class {
+class extends SJ.UI.Drawable {
   constructor(screensManager) {
+    super(false);
+
     this._dataBoxes = [];
 
     const boxesX = SJ.SCREEN_MIDDLE_X - 400;
@@ -726,8 +687,6 @@ class {
       this._dataBoxes.push(dataBox);
     }
 
-    this.isVisible = false;
-    
     this._dataBoxes.forEach(dataBox => {
       screensManager.appendDrawable(dataBox);
     });
