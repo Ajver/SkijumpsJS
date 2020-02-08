@@ -714,6 +714,8 @@ class extends SJ.Popup {
 
     SJ.ratersDisplay.show();
     SJ.jumpDataDisplay.show();
+
+    this.scoreLabel.content = SJ.scoreCounter.score;
   }
 }
 
