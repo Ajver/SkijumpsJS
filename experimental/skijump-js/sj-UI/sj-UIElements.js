@@ -25,10 +25,10 @@ class {
     this.isMouseIn = false;
     this.isPress = false;
 
-    this.onMousePress = onMousePress || (() => {});
-    this.onMouseRelease = onMouseRelease || (() => {});
-    this.onMouseEnter = onMouseEnter || (() => {});
-    this.onMouseLeave = onMouseLeave || (() => {});
+    if(onMousePress)    { this.onMousePress = onMousePress; }
+    if(onMouseRelease)  { this.onMouseRelease = onMouseRelease; }
+    if(onMouseEnter)    { this.onMouseEnter = onMouseEnter; }
+    if(onMouseLeave)    { this.onMouseLeave = onMouseLeave; }
   }
   
   _draw() {
@@ -412,8 +412,8 @@ class extends SJ.UI.Element {
   draw() {
     const maxX = SJ.SCREEN_WIDTH - this.popup.w;
     const maxY = SJ.SCREEN_HEIGHT - this.popup.h;
-    const x = max(min(maxX, SJ.mouseScreenX-this.popup.w/2), 0);
-    const y = max(min(maxY, SJ.mouseScreenY-this.popup.h-10), 0);
+    const x = max(min(maxX, SJ.mouseScreenX - this.popup.w/2), 0);
+    const y = max(min(maxY, SJ.mouseScreenY - this.popup.h-10), 0);
     translate(x, y);
   }
 }
@@ -424,7 +424,6 @@ class extends SJ.UI.Element {
     super(x, y, w, h);
     this.color = col;
     this.mode = CORNER;
-    this.isVisible = true;
   }
 
   draw() {
@@ -725,7 +724,7 @@ class extends SJ.LabelWithBackground {
     super(label, x, y, w, h);
 
     this.color = color(40, 50, 120);
-    this.mouseMode = SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
+    this.mouseMode = SJ.UI.MOUSE_MODE.TEST_AND_PASS;
 
     this.title = new SJ.MouseFollowingPopup(titleText);
   }
