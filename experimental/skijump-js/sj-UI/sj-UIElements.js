@@ -2,55 +2,26 @@
 // All UI elements in one object
 SJ.UI = {};
 
-SJ.UI.Drawable =
-class {
-  constructor(isVisible=true) {
-    this.isVisible = isVisible;
-
-    // UI elements as children
-    this.children = [];
-  }
-
-  addChild(drawable) {
-    this.children.push(drawable);
-  }
-
-  show() {
-    this.isVisible = true;
-  }
-
-  hide() {
-    this.isVisible = false;
-  }
-
-  _draw() {
-    if(!this.isVisible) {
-      return;
-    }
-
-    push();
-      this.draw();
-
-      this.children.forEach(child => {
-        child._draw();
-      });
-    pop();
-  }
-
-  draw() {}
-}
+SJ.UI.MOUSE_MODE = {
+  PASS: 0,
+  TEST_AND_PASS: 1,
+  TEST_AND_BLOCK: 2,
+  BLOCK: 3
+};
 
 SJ.UI.Element =
-class extends SJ.UI.Drawable {
-  constructor(x=0, y=0, w=0, h=0, canStopMouse=false, onMousePress=null, onMouseRelease=null, onMouseEnter=null, onMouseLeave=null) {
-    super(true);
+class {
+  constructor(x=0, y=0, w=0, h=0, onMousePress=null, onMouseRelease=null, onMouseEnter=null, onMouseLeave=null) {
+    this.isVisible = true;
+    this.parent = null;
+    this.children = [];
 
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     
-    this.canStopMouse = canStopMouse;
+    this.mouseMode = SJ.UI.MOUSE_MODE.PASS;
     this.isMouseIn = false;
     this.isPress = false;
 
@@ -59,12 +30,7 @@ class extends SJ.UI.Drawable {
     this.onMouseEnter = onMouseEnter || (() => {});
     this.onMouseLeave = onMouseLeave || (() => {});
   }
-
-  onMousePress() {}
-  onMouseRelease() {}
-  onMouseEnter() {}
-  onMouseLeave() {}
-
+  
   _draw() {
     if(!this.isVisible) {
       return;
@@ -75,11 +41,196 @@ class extends SJ.UI.Drawable {
 
       this.draw();
 
-      this.children.forEach(child => {
+      this.forEachChild(child => {
         child._draw();
       });
     pop();
   }
+
+  forEachChild(callback) {
+    this.children.forEach(child => {
+      callback(child);
+    });
+  }
+
+  forEachChildReversed(callback) {
+    for(let i=this.children.length-1; i>=0; i--) {
+      const child = this.children[i];
+      callback(child);
+    }
+  }
+  
+  addChild(drawable) {
+    this.children.push(drawable);
+    drawable.parent = this;
+  }
+
+  show() {
+    this.isVisible = true;
+  }
+
+  hide() {
+    this.isVisible = false;
+  }
+
+  // Returns true when catched mouse
+  // Returns false when ignored mouse
+  _mouseMoved() {
+    if(!this.isVisible) {
+      return false;
+    }
+
+    if(this.disabled === true) {
+      return false;
+    }
+
+    for(let i=this.children.length-1; i>=0; i--) {
+      const child = this.children[i];
+      if(child._mouseMoved()) {
+        return true;
+      }
+    }
+
+    switch(this.mouseMode) {
+      case SJ.UI.MOUSE_MODE.TEST_AND_PASS:
+      case SJ.UI.MOUSE_MODE.TEST_AND_BLOCK:
+        if(this._isMouseIn()) {
+          if(!this.isMouseIn) {
+            this.isMouseIn = true;
+            this.onMouseEnter();
+            return this.mouseMode === SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
+          }
+        }else if(this.isMouseIn) {
+          this.isMouseIn = false;
+          this.onMouseLeave();
+        }
+        break;
+      
+      case SJ.UI.MOUSE_MODE.BLOCK:
+        if(this._isMouseIn()) {
+          return true;
+        }
+        break;
+    }
+
+    return false;
+  }
+
+  // Returns true when catched mouse
+  // Returns false when ignored mouse
+  _mousePressed() {
+    if(!this.isVisible) {
+      return false;
+    }
+
+    if(this.disabled === true) {
+      return false;
+    }
+
+    for(let i=this.children.length-1; i>=0; i--) {
+      const child = this.children[i];
+      if(child._mousePressed()) {
+        return true;
+      }
+    }
+
+    switch(this.mouseMode) {
+      case SJ.UI.MOUSE_MODE.TEST_AND_PASS:
+      case SJ.UI.MOUSE_MODE.TEST_AND_BLOCK:
+        if(this._isMouseIn()) {
+          this.isPress = true;
+          print(this);
+          this.onMousePress();
+          return this.mouseMode === SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
+        }
+        break;
+      
+      case SJ.UI.MOUSE_MODE.BLOCK:
+        if(this._isMouseIn()) {
+          return true;
+        }
+        break;
+    }
+
+    return false;
+  }
+
+  // Returns true when catched mouse
+  // Returns false when ignored mouse
+  _mouseReleased() {
+    if(!this.isVisible) {
+      return false;
+    }
+
+    if(this.disabled === true) {
+      return false;
+    }
+
+    for(let i=this.children.length-1; i>=0; i--) {
+      const child = this.children[i];
+      if(child._mouseReleased()) {
+        return true;
+      }
+    }
+    
+    switch(this.mouseMode) {
+      case SJ.UI.MOUSE_MODE.TEST_AND_PASS:
+      case SJ.UI.MOUSE_MODE.TEST_AND_BLOCK:
+        if(this.isPress) {
+          this.isPress = false;
+          if(this._isMouseIn()) {
+            this.onMouseRelease();
+            return true;
+          }
+        }
+        break;
+      
+      case SJ.UI.MOUSE_MODE.BLOCK:
+        if(this._isMouseIn()) {
+          return true;
+        }
+        break;
+    }
+
+    return false;
+  }
+
+  _isMouseIn() {
+    return this.isPointIn(
+      SJ.mouseScreenX,
+      SJ.mouseScreenY
+    );
+  }
+
+  isPointIn(x, y) {
+    const globalPos = this.getGlobalPosition();
+
+    return(x >= globalPos.x && 
+      x < globalPos.x + this.w && 
+      y >= globalPos.y &&
+      y < globalPos.y + this.h);
+  }
+
+  getGlobalPosition() {
+    const pos = {
+      x: this.x,
+      y: this.y
+    };
+
+    if(this.parent) {
+      const parentPos = this.parent.getGlobalPosition();
+      pos.x += parentPos.x;
+      pos.y += parentPos.y;
+    }
+
+    return pos;
+  }
+
+  draw() {}
+  onMousePress() {}
+  onMouseRelease() {}
+  onMouseEnter() {}
+  onMouseLeave() {}
 }
 
 SJ.Label = 
@@ -106,9 +257,11 @@ class extends SJ.UI.Element {
 SJ.Button = 
 class extends SJ.UI.Element {
   constructor(caption, x, y, w, h, onMousePress, onMouseRelease, onMouseEnter, onMouseLeave, draw, overrideLabelDraw=false) {
-    super(x, y, w, h, true, onMousePress, onMouseRelease, onMouseEnter, onMouseLeave);
+    super(x, y, w, h, onMousePress, onMouseRelease, onMouseEnter, onMouseLeave);
     this.disabled = false;
     
+    this.mouseMode = SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
+
     this.label = new SJ.Label(caption, 0, 0, CENTER, CENTER, h*0.6);
     
     if(overrideLabelDraw) {
@@ -154,7 +307,7 @@ class extends SJ.UI.Element {
 SJ.Texture = 
 class extends SJ.UI.Element {
   constructor(textureName, x, y, w=0, h=0, onload=null) {
-    super(x, y, w, h, false);
+    super(x, y, w, h);
 
     this.scaleX = 1.0;
     this.scaleY = 1.0;
@@ -249,9 +402,10 @@ class extends SJ.UI.Element {
 }
 
 SJ.MouseFollowingPopup =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor(txt, txtSize=16, textColor=color(255), bgColor=color(0, 10, 50)) {
-    super(false);
+    super();
+    this.isVisible = false;
     this.popup = new SJ.TextWindow(0, 0, txt, txtSize, textColor, bgColor);
     this.children.push(this.popup);
   }
@@ -309,7 +463,7 @@ class extends SJ.DrawableRect {
 }
 
 SJ.WindDisplay =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor() {
     super();
     this.radius = 220;
@@ -342,7 +496,7 @@ class extends SJ.UI.Drawable {
 }
 
 SJ.SpeedDisplay =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor() {
     super();
     this.disp = new SJ.LabelWithBackground("Szybkość", SJ.SCREEN_WIDTH-100, 140, 100, 80, 16, color(255), color(0, 0, 80), LEFT, BOTTOM)
@@ -363,7 +517,7 @@ class extends SJ.UI.Drawable {
 }
 
 SJ.HeightDisplay =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor() {
     super();
     this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
@@ -450,7 +604,7 @@ class extends SJ.UI.Element {
 }
 
 SJ.ItemsDisplay =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor() {
     super();
     this._itemsBoxes = [];
@@ -494,7 +648,7 @@ class extends SJ.DrawableRect {
   constructor(w, h, drawable) {
     super(0, 0, SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT, color(0, 0, 0, 200));
     this.isVisible = false;
-    this.canStopMouse = true; 
+    this.mouseMode = SJ.UI.MOUSE_MODE.BLOCK;
 
     this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, w, h, color(50, 70, 140));
     this.bgRect.mode = CENTER;
@@ -569,6 +723,9 @@ class extends SJ.LabelWithBackground {
   constructor(titleText, label, x, y, w, h) {
     super(label, x, y, w, h);
 
+    this.color = color(40, 50, 120);
+    this.mouseMode = SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
+
     this.title = new SJ.MouseFollowingPopup(titleText);
   }
   
@@ -583,9 +740,9 @@ class extends SJ.LabelWithBackground {
 }
 
 SJ.RatersDisplay =
-class extends SJ.UI.Drawable {
+class extends SJ.UI.Element {
   constructor(screensManager) {
-    super(true);
+    super();
 
     this._ratersBoxes = [];
 
@@ -605,8 +762,6 @@ class extends SJ.UI.Drawable {
 
     for(let i=0; i<5; i++) {
       const raterBox = new SJ.RaterBox(ratersTitles[i], "17.5", boxesX, boxY+=ySeparator, 100, 35);
-      raterBox.canStopMouse = true;
-      raterBox.color = color(40, 50, 120);
       this._ratersBoxes.push(raterBox);
       this.addChild(raterBox);
     }
@@ -636,7 +791,6 @@ class extends SJ.LabelWithBackground {
     super(label, x, y, w, h, 16, color(255), color(0), RIGHT);
     this.titleText = titleText;
     this.setData("");
-    this.canStopMouse = false;
     this.color = color(40, 50, 120);
   }
 
@@ -646,9 +800,9 @@ class extends SJ.LabelWithBackground {
 }
 
 SJ.JumpDataDisplay =
-class extends SJ.UI.Drawable {
-  constructor(screensManager) {
-    super(true);
+class extends SJ.UI.Element {
+  constructor() {
+    super();
 
     this._dataBoxes = [];
 

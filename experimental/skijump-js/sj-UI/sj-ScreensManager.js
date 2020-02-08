@@ -182,7 +182,7 @@ SJ.ScreensManager.setup = () => {
     self.pausePopup = new SJ.PausePopup();
     self.appendDrawable(self.pausePopup);
 
-    SJ.jumpDataDisplay = new SJ.JumpDataDisplay(self);
+    SJ.jumpDataDisplay = new SJ.JumpDataDisplay();
 
     SJ.ratersDisplay = new SJ.RatersDisplay(self);
 
