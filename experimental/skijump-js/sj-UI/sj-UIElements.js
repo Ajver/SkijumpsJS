@@ -139,7 +139,6 @@ class {
       case SJ.UI.MOUSE_MODE.TEST_AND_BLOCK:
         if(this._isMouseIn()) {
           this.isPress = true;
-          print(this);
           this.onMousePress();
           return this.mouseMode === SJ.UI.MOUSE_MODE.TEST_AND_BLOCK;
         }
@@ -847,6 +846,8 @@ SJ.createLocationButton = (locationName, x, y, fileName) => {
   const btn = new SJ.Button(locationName, x, y, 200, 120);
   btn.label.fontSize = 18;
   btn.label.vAlign = BOTTOM;
+  btn.label.x = btn.w/2;
+  btn.label.y = btn.h-2;
 
   btn.onMouseRelease = () => {
     SJ._startGame(fileName);
@@ -867,11 +868,7 @@ SJ.createLocationButton = (locationName, x, y, fileName) => {
           fill(196, 94, 94);
         }
       }
-      rect(btn.x, btn.y, btn.w, btn.h);
-      push();
-        translate(btn.x+btn.w/2, btn.y+btn.h-2);
-        btn.label.draw();
-      pop();
+      rect(0, 0, btn.w, btn.h);
     pop();
   }
 
@@ -882,6 +879,8 @@ SJ.createItemButton = (x, y, item) => {
   const btn = new SJ.Button(item.itemName, x, y, 200, 120);
   btn.label.fontSize = 18;
   btn.label.vAlign = BOTTOM;
+  btn.label.x = btn.w/2;
+  btn.label.y = btn.h-2;
 
   btn.popup = new SJ.MouseFollowingPopup(item.description);
 
@@ -919,18 +918,8 @@ SJ.createItemButton = (x, y, item) => {
         }
       }
       
-      translate(btn.x, btn.y)
       rect(0, 0, btn.w, btn.h);
-      push();
-        image(item.img, (btn.w-48)/2, 20);
-        translate(btn.w/2, btn.h-2);
-        if(btn.disabled) {
-          fill(200);
-        }else {
-          fill(255);
-        }
-        btn.label.draw();
-      pop();
+      image(item.img, (btn.w-48)/2, 20);
     pop();
   }
 
