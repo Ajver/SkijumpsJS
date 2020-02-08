@@ -24,6 +24,10 @@ class {
   }
 
   _draw() {
+    if(!this.isVisible) {
+      return;
+    }
+
     push();
       this.draw();
 
@@ -285,18 +289,18 @@ class extends SJ.DrawableRect {
   constructor(txt, x, y, w, h, txtSize=16, col=color(255), bgColor=color(0), align=LEFT, vAlign=CENTER) {
     super(x, y, w, h, bgColor)
 
-    let lx = x; 
-    let ly = y;
+    let lx = 0; 
+    let ly = 0;
 
     switch(align) {
-      case LEFT: lx += 10; break;
-      case CENTER: lx += w/2; break;
-      case RIGHT: lx += w-10; break;
+      case LEFT: lx = 10; break;
+      case CENTER: lx = w/2; break;
+      case RIGHT: lx = w-10; break;
     }
     switch(vAlign) {
-      case TOP: ly += 10; break;
-      case CENTER: ly += h/2; break;
-      case BOTTOM: ly += h-10; break;
+      case TOP: ly = 10; break;
+      case CENTER: ly = h/2; break;
+      case BOTTOM: ly = h-10; break;
     }
 
     this.label = new SJ.Label(txt, lx, ly, align, vAlign, txtSize, col);
@@ -342,6 +346,7 @@ class extends SJ.UI.Drawable {
   constructor() {
     super();
     this.disp = new SJ.LabelWithBackground("Szybkość", SJ.SCREEN_WIDTH-100, 140, 100, 80, 16, color(255), color(0, 0, 80), LEFT, BOTTOM)
+    this.addChild(this.disp);
   }
   
   draw() {
@@ -354,7 +359,6 @@ class extends SJ.UI.Drawable {
     }
 
     this.disp.label.content = "Szybkość\n" + jumperSpeed + " km/h";
-    this.disp.draw();
   }
 }
 
@@ -363,6 +367,7 @@ class extends SJ.UI.Drawable {
   constructor() {
     super();
     this.disp = new SJ.LabelWithBackground("Wysokość", SJ.SCREEN_WIDTH-100, 220, 100, 60, 16, color(255), color(0, 0, 60), LEFT, BOTTOM)
+    this.addChild(this.disp);
   }
   
   draw() {
@@ -393,7 +398,6 @@ class extends SJ.UI.Drawable {
     }
 
     this.disp.label.content = "Wysokość\n" + jumperHeight + " m";
-    this.disp.draw();
   }
 }
 
@@ -494,9 +498,11 @@ class extends SJ.DrawableRect {
 
     this.bgRect = new SJ.DrawableRect(SJ.SCREEN_MIDDLE_X, SJ.SCREEN_MIDDLE_Y, w, h, color(50, 70, 140));
     this.bgRect.mode = CENTER;
-
-    this.drawable = drawable;
     this.addChild(this.bgRect);
+
+    drawable.forEach(el => {
+      this.addChild(el);
+    });
   }
 }
 
@@ -549,6 +555,13 @@ class extends SJ.Popup {
     this.addChild(SJ.ratersDisplay);
     this.addChild(SJ.jumpDataDisplay);
   }
+
+  show() {
+    super.show();
+
+    SJ.ratersDisplay.show();
+    SJ.jumpDataDisplay.show();
+  }
 }
 
 SJ.RaterBox =
@@ -567,14 +580,12 @@ class extends SJ.LabelWithBackground {
     this.title.hide();
   }
 
-  onMousePress() {}
-  onMouseRelease() {}
 }
 
 SJ.RatersDisplay =
 class extends SJ.UI.Drawable {
   constructor(screensManager) {
-    super(false);
+    super(true);
 
     this._ratersBoxes = [];
 
@@ -596,23 +607,15 @@ class extends SJ.UI.Drawable {
       const raterBox = new SJ.RaterBox(ratersTitles[i], "17.5", boxesX, boxY+=ySeparator, 100, 35);
       raterBox.canStopMouse = true;
       raterBox.color = color(40, 50, 120);
-      raterBox.hide();
       this._ratersBoxes.push(raterBox);
+      this.addChild(raterBox);
     }
+
+    this.addChild(this.label);
     
     this._ratersBoxes.forEach(raterBox => {
       screensManager.appendDrawable(raterBox.title);
     });
-    this._ratersBoxes.forEach(raterBox => {
-      screensManager.appendDrawable(raterBox);
-    });
-  }
-
-  draw() {
-    this.label.draw();
-    // this._ratersBoxes.forEach((raterBox) => {
-    //   raterBox.draw();
-    // });
   }
 
   show() {
@@ -620,17 +623,9 @@ class extends SJ.UI.Drawable {
     SJ.scoreCounter.forEachRaters((rater) => {
       const raterBox = this._ratersBoxes[i++];
       raterBox.label.content = rater.getScore();
-      raterBox.show();
     });
 
     this.isVisible = true;
-  }
-
-  hide() {
-    this.isVisible = false;
-    this._ratersBoxes.forEach(raterBox => {
-      raterBox.hide();
-    });
   }
 
 }
@@ -641,30 +636,19 @@ class extends SJ.LabelWithBackground {
     super(label, x, y, w, h, 16, color(255), color(0), RIGHT);
     this.titleText = titleText;
     this.setData("");
-    this.canStopMouse = true;
+    this.canStopMouse = false;
     this.color = color(40, 50, 120);
-    this.hide();
   }
 
   setData(data) {
     this.label.content = this.titleText + '\n' + data;
   }
-
-  draw() {
-    super.draw();
-  }
-  
-  // Needed for prevending errors
-  onMouseEnter() {}
-  onMouseLeave() {}
-  onMousePress() {}
-  onMouseRelease() {}
 }
 
 SJ.JumpDataDisplay =
 class extends SJ.UI.Drawable {
   constructor(screensManager) {
-    super(false);
+    super(true);
 
     this._dataBoxes = [];
 
@@ -675,6 +659,7 @@ class extends SJ.UI.Drawable {
     const ySeparator = 70;
 
     this.label = new SJ.Label("Parametry skoku", boxesX+boxW, boxY+30, RIGHT, TOP, 24);
+    this.addChild(this.label);
 
     const dataTitles = [
       "Długość skoku",
@@ -688,31 +673,16 @@ class extends SJ.UI.Drawable {
     }
 
     this._dataBoxes.forEach(dataBox => {
-      screensManager.appendDrawable(dataBox);
+      this.addChild(dataBox);
     });
-  }
-  
-  draw() {
-    this.label.draw();
   }
 
   show() {
     this._dataBoxes[0].setData(round(SJ.scoreCounter.mettersDistTo_K*10.0)/10.0 + " m");
     this._dataBoxes[1].setData(round(SJ.higherJumperSpeed*10.0)/10.0 + " km/h");
     this._dataBoxes[2].setData(round(SJ.higherJumperHeight*10.0)/10.0 + " m");
-
-    this._dataBoxes.forEach(dataBox => {
-      dataBox.show();
-    });
     
     this.isVisible = true;
-  }
-
-  hide() {
-    this.isVisible = false;
-    this._dataBoxes.forEach(dataBox => {
-      dataBox.hide();
-    });
   }
 }
 
