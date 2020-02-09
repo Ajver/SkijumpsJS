@@ -22,8 +22,6 @@ SJ.ImageLoader.divideSpriteSheet = (ss, frameW, frameH, offsetX=0, offsetY=0) =>
     }
   }
 
-  print(frames);
-  
   return frames;
 }
 

@@ -17,10 +17,9 @@ class {
     push();
       background(this.backgroundColor);
 
-      for(let i=this._drawable.length-1; i>=0; i--) {
-        const obj = this._drawable[i];
+      this._drawable.forEach(obj => {
         obj._draw();
-      }
+      });
     pop();
   }
 
@@ -59,11 +58,6 @@ class {
 
   appendDrawable(obj) {
     this._drawable.push(obj);
-  }
-
-  appendButton(btn) {
-    this._buttons.unshift(btn);
-    this.appendDrawable(btn);
   }
 
 }

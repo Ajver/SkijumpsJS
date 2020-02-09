@@ -29,21 +29,36 @@ SJ.ScreensManager.setup = () => {
     const btnX = SJ.SCREEN_MIDDLE_X - btnW/2;
     const ySeparation = btnH + 20; 
 
-    self.appendDrawable(
-      new SJ.AnimatedSpriteSheet("TitanBase/Drone/dron_idle.png", 40, 100, 1000, 64, 116)
-    );
+    const bgTexture = new SJ.Texture("Menu/menubg.gif", 0, 0, () => {
+      const scale = SJ.SCREEN_WIDTH / bgTexture.w;
+      bgTexture.scaleX = scale;
+      bgTexture.scaleY = scale;
+    });
+    self.appendDrawable(bgTexture);
 
-    self.appendButton(
+    SJ.ImageLoader.load("TitanBase/Drone/dron_idle.png", (ss) => {
+      const ssTex = SJ.ImageLoader.divideSpriteSheet(ss, 64, 116);
+      self.appendDrawable(
+        new SJ.AnimatedTexture([
+          ssTex[0],
+          ssTex[1],
+          ssTex[2],
+          ssTex[1],
+        ], SJ.SCREEN_WIDTH - 200, 100, 1200)
+      );
+    });
+
+    self.appendDrawable(
       new SJ.Button("SKACZ", btnX, startY, btnW, btnH, null, () => {
         SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.selectLocation);
       }));
       
-    self.appendButton(
+    self.appendDrawable(
       new SJ.Button("SKLEP", btnX, startY+ySeparation, btnW, btnH, null, () => {
         SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.shop);
       }));
       
-    self.appendButton(
+    self.appendDrawable(
       new SJ.Button("JAK GRAĆ?", btnX, startY+ySeparation*2, btnW, btnH, null, () => {
         SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.howToPlay);
       }));
@@ -55,25 +70,11 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(
       new SJ.Label("version "+SJ.VERSION, 10, SJ.SCREEN_HEIGHT-10, LEFT, BOTTOM, 14, color(200, 200, 200))
     );
-
-    // const droneTexture = new SJ.Texture("Menu/dron_idle.gif", 40, 70, 0, 0, () => {
-    //   droneTexture.w = 400;
-    //   droneTexture.h = 400;
-    // });
-    // self.appendDrawable(droneTexture);
-  
-    const bgTexture = new SJ.Texture("Menu/menubg.gif", 0, 0, () => {
-      const scale = SJ.SCREEN_WIDTH / bgTexture.w;
-      bgTexture.scaleX = scale;
-      bgTexture.scaleY = scale;
-    });
-    self.appendDrawable(bgTexture);
-
   });
 
   SJ.ScreensManager.screens.selectLocation = new SJ.Screen((self) => {
 
-    self.appendButton(backBtn);
+    self.appendDrawable(backBtn);
 
     const xSeparation = 235;
     const locations = [
@@ -87,7 +88,7 @@ SJ.ScreensManager.setup = () => {
     for(let i=0; i<locations.length; i++) {
       const loc = locations[i];
       const btn = SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]);
-      self.appendButton(btn);
+      self.appendDrawable(btn);
       
       if(i > 1) {
         btn.disabled = true;
@@ -145,10 +146,10 @@ SJ.ScreensManager.setup = () => {
     }
 
     itemsBtn.forEach(itemBtn => {
-      self.appendButton(itemBtn);
+      self.appendDrawable(itemBtn);
     }); 
     
-    self.appendButton(backBtn);
+    self.appendDrawable(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Sklep", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
@@ -171,7 +172,7 @@ SJ.ScreensManager.setup = () => {
 
     self.appendDrawable(new SJ.Texture('how_to_play.png', SJ.SCREEN_MIDDLE_X-250, 250));
 
-    self.appendButton(backBtn);
+    self.appendDrawable(backBtn);
 
     self.appendDrawable(
       new SJ.Label("Jak grać?", SJ.SCREEN_MIDDLE_X, 80, CENTER, TOP, 64)
@@ -201,7 +202,7 @@ SJ.ScreensManager.setup = () => {
     });
 
     pauseBtn.label.fontSize = 24;
-    self.appendButton(pauseBtn);
+    self.appendDrawable(pauseBtn);
 
     self.appendDrawable(
       new SJ.LabelWithBackground(SJ.playerData.nick, SJ.SCREEN_MIDDLE_X-150, 0, 150, 40, 16, color(255), color(0, 0, 100))
