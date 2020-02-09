@@ -1,6 +1,9 @@
 
 const SJ = {};
 
+// All UI elements in one object
+SJ.UI = {};
+
 // Game Version
 SJ.VERSION = "0.19.2";
 
@@ -79,7 +82,6 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-CameraPath.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-Timer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animation.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
@@ -90,6 +92,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-MainClass.js');
   
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-Screen.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UI.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');
 

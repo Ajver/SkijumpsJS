@@ -29,6 +29,10 @@ SJ.ScreensManager.setup = () => {
     const btnX = SJ.SCREEN_MIDDLE_X - btnW/2;
     const ySeparation = btnH + 20; 
 
+    self.appendDrawable(
+      new SJ.AnimatedSpriteSheet("TitanBase/Drone/dron_idle.png", 40, 100, 1000, 64, 116)
+    );
+
     self.appendButton(
       new SJ.Button("SKACZ", btnX, startY, btnW, btnH, null, () => {
         SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.selectLocation);
@@ -58,7 +62,7 @@ SJ.ScreensManager.setup = () => {
     // });
     // self.appendDrawable(droneTexture);
   
-    const bgTexture = new SJ.Texture("Menu/menubg.gif", 0, 0, 0, 0, () => {
+    const bgTexture = new SJ.Texture("Menu/menubg.gif", 0, 0, () => {
       const scale = SJ.SCREEN_WIDTH / bgTexture.w;
       bgTexture.scaleX = scale;
       bgTexture.scaleY = scale;
@@ -165,7 +169,7 @@ SJ.ScreensManager.setup = () => {
 
   SJ.ScreensManager.screens.howToPlay = new SJ.Screen((self) => {
 
-    self.appendDrawable(new SJ.Texture('how_to_play.png', SJ.SCREEN_MIDDLE_X-250, 250, 500, 500));
+    self.appendDrawable(new SJ.Texture('how_to_play.png', SJ.SCREEN_MIDDLE_X-250, 250));
 
     self.appendButton(backBtn);
 
