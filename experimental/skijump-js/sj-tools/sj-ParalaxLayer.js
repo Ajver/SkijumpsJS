@@ -45,7 +45,11 @@ class {
         this._prepareImgFromObject(idxBg);
       }
     }else if(typeof idxBg === "string") {
-      this.images.push(new SJ.ParalaxImage(idxBg, 0, 0));
+      const pos = {
+        x: 0,
+        y: 0
+      }
+      this.images.push(new SJ.ParalaxImage(idxBg, pos, 1.0, null));
     }else {
       print("Error, unexpected type of idxBg:", typeof idxBg);
     }
