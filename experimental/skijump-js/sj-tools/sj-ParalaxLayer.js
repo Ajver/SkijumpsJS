@@ -1,4 +1,27 @@
 
+SJ.ParalaxImage =
+class {
+  constructor(imgName, pos, scale, subrect) {
+    this.img = SJ.ImageLoader.load(imgName);
+    this.x = pos.x;
+    this.y = pos.y;
+    this.scale = scale;
+    this.subrect = subrect;
+  }
+
+  draw() {
+    push();
+      translate(this.x, this.y);
+      scale(this.scale);
+      if(this.subrect) {
+        image(this.img, 0, 0, this.subrect.w, this.subrect.h, this.subrect.x, this.subrect.y, this.subrect.w, this.subrect.h);
+      }else {
+        image(this.img, 0, 0);
+      }
+    pop();
+  }
+}
+
 SJ.ParalaxLayer =
 class {
   constructor(scale, pos, imgNr) {
@@ -6,40 +29,49 @@ class {
     this.scale = 1.0;
     this.x = pos.x;
     this.y = pos.y;
-    this.subrect = null;
+    this.images = [];
 
     this._prepareData(imgNr);
   }
 
   _prepareData(idx) {
     const idxBg = SJ.V.texturesNames.background[idx];
-    let imgName = "";
     if(typeof idxBg === "object") {
-      imgName = idxBg.name;
-      this.subrect = idxBg.subrect || null;
-      if(idxBg.position) {
-        this.x += idxBg.position.x;
-        this.y += idxBg.position.y;
+      if(idxBg.type === "array") {
+        idxBg.array.forEach(img => {
+          this._prepareImgFromObject(img);
+        });
+      }else {
+        this._prepareImgFromObject(idxBg);
       }
-      this.scale *= idxBg.scale || 1.0;
     }else if(typeof idxBg === "string") {
-      imgName = idxBg;
+      this.images.push(new SJ.ParalaxImage(idxBg, 0, 0));
     }else {
       print("Error, unexpected type of idxBg:", typeof idxBg);
     }
-    
-    this.img = SJ.ImageLoader.load(imgName);
+  }
+
+  _prepareImgFromObject(idxBg) {
+    const subrect = idxBg.subrect || null;
+    const imgPos = {
+      x: 0,
+      y: 0
+    }
+    if(idxBg.position) {
+      imgPos.x += idxBg.position.x;
+      imgPos.y += idxBg.position.y;
+    }
+    const scale = idxBg.scale || 1.0;
+
+    this.images.push(new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect));
   }
 
   draw(cameraPos) {
     push();
       translate(this.x-cameraPos.x*this.camScale, this.y-cameraPos.y*this.camScale);
-      scale(this.scale);
-      if(this.subrect) {
-        image(this.img, 0, 0, this.subrect.w, this.subrect.h, this.subrect.x, this.subrect.y, this.subrect.w, this.subrect.h);
-      }else {
-        image(this.img, 0, 0);
-      }
+      this.images.forEach(img => {
+        img.draw();
+      });
     pop();
   }
 }

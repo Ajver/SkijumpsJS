@@ -21,18 +21,51 @@
     "padFront": "TitanBase/Pad/pad-front.png",
     "background": [
       {
-        "name": "TitanBase/droga_skaly/droga.png",
+        "name": "TitanBase/droga_skaly/skaly.png",
         "position": {
-          "x": 4500,
-          "y": 3200
+          "x": 2000,
+          "y": 2700
         },
         "subrect": {
           "x": 0,
           "y": 0,
-          "w": 1000,
-          "h": 715
+          "w": 2738,
+          "h": 1009
         },
-        "scale": 1.6
+        "scale": 1.0
+      },
+      {
+        "type": "array",
+        "array": [
+          {
+            "name": "TitanBase/droga_skaly/droga.png",
+            "position": {
+              "x": 4500,
+              "y": 3200
+            },
+            "subrect": {
+              "x": 0,
+              "y": 0,
+              "w": 1000,
+              "h": 715
+            },
+            "scale": 1.6
+          },
+          {
+            "name": "TitanBase/droga_skaly/antena.png",
+            "position": {
+              "x": 3000,
+              "y": 1400
+            },
+            "subrect": {
+              "x": 0,
+              "y": 0,
+              "w": 250,
+              "h": 810
+            },
+            "scale": 1.6
+          }
+        ]
       },
       {
         "name": "TitanBase/droga_skaly/skaly2.png",
