@@ -1,24 +1,60 @@
 
-SJ.ParalaxImage =
+SJ.ParalaxObject =
 class {
-  constructor(imgName, pos, scale, subrect) {
-    this.img = SJ.ImageLoader.load(imgName);
+  constructor(pos, scale) {
     this.x = pos.x;
     this.y = pos.y;
     this.scale = scale;
-    this.subrect = subrect;
   }
 
   draw() {
     push();
       translate(this.x, this.y);
       scale(this.scale);
-      if(this.subrect) {
-        image(this.img, 0, 0, this.subrect.w, this.subrect.h, this.subrect.x, this.subrect.y, this.subrect.w, this.subrect.h);
-      }else {
-        image(this.img, 0, 0);
-      }
+      this._drawSelf();
     pop();
+  }
+
+  _drawSelf() {}
+}
+
+SJ.ParalaxImage =
+class extends SJ.ParalaxObject {
+  constructor(imgName, pos, scale, subrect) {
+    super(pos, scale);
+    this.img = SJ.ImageLoader.load(imgName);
+    this.subrect = subrect;
+  }
+
+  _drawSelf() {
+    if(this.subrect) {
+      image(this.img, 0, 0, this.subrect.w, this.subrect.h, this.subrect.x, this.subrect.y, this.subrect.w, this.subrect.h);
+    }else {
+      image(this.img, 0, 0);
+    }
+  }
+}
+
+SJ.ParalaxSpriteSheet =
+class extends SJ.ParalaxObject {
+  constructor(ssName, pos, scale, ssData) {
+    super(pos, scale);
+
+    this.animation = new SJ.Animation([], ssData.duration, true, true, true);
+    
+    const ss = new SJ.SpriteSheet(ssName, ssData.frameW, ssData.frameH, () => {
+      const frames = [];
+
+      ssData.animation.forEach(idx => {
+        frames.push(ss.frames[idx]);
+      });
+  
+      this.animation.frames = frames;
+    }, ssData.offsetX||0, ssData.offsetY||0);
+  }
+
+  _drawSelf() {
+    this.animation.draw();
   }
 }
 
@@ -45,11 +81,7 @@ class {
         this._prepareImgFromObject(idxBg);
       }
     }else if(typeof idxBg === "string") {
-      const pos = {
-        x: 0,
-        y: 0
-      }
-      this.images.push(new SJ.ParalaxImage(idxBg, pos, 1.0, null));
+      this.images.push(new SJ.ParalaxImage(idxBg, { x: 0, y: 0 }, 1.0, null));
     }else {
       print("Error, unexpected type of idxBg:", typeof idxBg);
     }
@@ -67,7 +99,11 @@ class {
     }
     const scale = idxBg.scale || 1.0;
 
-    this.images.push(new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect));
+    let obj = idxBg.spritesheet ?
+      new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet) :
+      new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
+
+    this.images.push(obj);
   }
 
   draw(cameraPos) {

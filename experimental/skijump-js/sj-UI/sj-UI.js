@@ -389,10 +389,9 @@ SJ.AnimatedSpriteSheet =
 class extends SJ.AnimatedTexture {
   constructor(ssName, x, y, duration, frameW, frameH, onload=null, offsetX=0, offsetY=0) {
     super([], x, y, duration, null);
-
-    SJ.ImageLoader.load(ssName, (ss) => {
+    new SJ.SpriteSheet(ssName, frameW, frameH, (ss) => {
       this.setTextures(SJ.ImageLoader.divideSpriteSheet(ss, frameW, frameH, offsetX, offsetY), onload);
-    });
+    }, offsetX, offsetY);
   }
 }
 

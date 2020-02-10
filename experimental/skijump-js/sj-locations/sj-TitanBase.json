@@ -52,16 +52,16 @@
             "scale": 1.6
           },
           {
-            "name": "TitanBase/droga_skaly/antena.png",
+            "name": "TitanBase/droga_skaly/antena_przesunieta.png",
+            "spritesheet": {
+              "frameW": 405,
+              "frameH": 874,
+              "duration": 1000,
+              "animation": [ 0, 1, 2, 1 ]
+            },
             "position": {
               "x": 3000,
               "y": 1400
-            },
-            "subrect": {
-              "x": 0,
-              "y": 0,
-              "w": 250,
-              "h": 810
             },
             "scale": 1.6
           }
