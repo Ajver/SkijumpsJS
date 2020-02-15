@@ -44,7 +44,7 @@ SJ.ScreensManager.setup = () => {
           ssTex[1],
           ssTex[2],
           ssTex[1],
-        ], SJ.SCREEN_WIDTH - 200, 100, 1200)
+        ], 800, 390, 1200)
       );
     });
 
