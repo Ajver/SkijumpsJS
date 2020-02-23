@@ -213,12 +213,12 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(
       new SJ.LabelWithBackground(SJ.playerData.highScore + "pkt.", SJ.SCREEN_MIDDLE_X+50, 0, 100, 40, 16, color(255), color(0, 0, 60))
     );
-
-    self.appendDrawable(new SJ.WindDisplay());
-
+    
     self.appendDrawable(new SJ.SpeedDisplay());
     self.appendDrawable(new SJ.HeightDisplay());
 
+    self.appendDrawable(new SJ.WindDisplay());
+    
   });
 
   SJ.ScreensManager.currentScreen = SJ.ScreensManager.screens.mainMenu;
