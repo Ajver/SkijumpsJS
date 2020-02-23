@@ -52,7 +52,6 @@ class {
 
   _createJumper() {
     SJ.jumper = new SJ.Jumper(SJ.V.jumperPosition.x, SJ.V.jumperPosition.y);
-    this._fillDrawableObjectsArray();
   }
 
   _createScoreCounter() {
@@ -106,6 +105,8 @@ class {
     SJ.pad.restart();
     SJ.camera.restart();
     SJ.itemsManager.resetActiveItems();
+
+    this._fillDrawableObjectsArray();
 
     SJ.pad.onReady();
   }

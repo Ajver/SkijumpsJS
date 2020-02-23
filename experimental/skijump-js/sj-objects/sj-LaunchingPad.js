@@ -9,8 +9,6 @@ class {
     this._imgFront = SJ.PadCreator.padImgFront;
 
     this._parts = SJ.PadCreator.createPadParts();
-
-    this._afterJump = false;
   
     this.restart();
   }
@@ -19,6 +17,7 @@ class {
     this._isWaitingForLaunch = true;
     this._isPullingJumper = false;
     this._canJump = true;
+    this._afterJump = false;
     this._pullingSystem = new SJ.PullingSystem();
   }
   
