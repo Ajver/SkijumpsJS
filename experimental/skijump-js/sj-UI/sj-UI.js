@@ -344,14 +344,13 @@ class extends SJ.UI.Element {
   }
   
   setTextures(texturesArray, onload=null) {
-    this.texturesArray = [];
-
+    const loadedTexturesArray = [];
     let loadedTextures = 0;
 
     texturesArray.forEach((textureName) => {
       if(typeof textureName === 'string') {
         SJ.ImageLoader.load(texture, () => {
-          this.texturesArray.push(texture);
+          loadedTexturesArray.push(texture);
           
           if(onload) {
             loadedTextures++;
@@ -364,7 +363,7 @@ class extends SJ.UI.Element {
           }
         });
       }else {
-        this.texturesArray.push(textureName);
+        loadedTexturesArray.push(textureName);
         if(onload) {
           loadedTextures++;
         }
@@ -377,7 +376,7 @@ class extends SJ.UI.Element {
       }
     }
 
-    this.animation.frames = this.texturesArray;
+    this.animation.frames = loadedTexturesArray;
   }
 
   draw() {

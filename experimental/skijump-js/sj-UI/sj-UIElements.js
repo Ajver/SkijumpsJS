@@ -280,7 +280,7 @@ class extends SJ.LabelWithBackground {
 
 SJ.RatersDisplay =
 class extends SJ.UI.Element {
-  constructor(screensManager) {
+  constructor() {
     super();
 
     this._ratersBoxes = [];
@@ -306,7 +306,9 @@ class extends SJ.UI.Element {
     }
 
     this.addChild(this.label);
-    
+  }
+
+  addRatersBoxesTitlesToScreensManager(screensManager) {
     this._ratersBoxes.forEach(raterBox => {
       screensManager.appendDrawable(raterBox.title);
     });

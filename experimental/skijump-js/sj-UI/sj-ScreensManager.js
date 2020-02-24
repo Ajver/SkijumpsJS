@@ -137,7 +137,7 @@ SJ.ScreensManager.setup = () => {
     while(itemsCount > 0) {
       for(let i=0; i<itemsCount; i++) {
         const btn = SJ.createItemButton(30+xSeparation*i, yPos, items[drawedItems]);
-        self.appendDrawable(btn.popup);
+        self.appendDrawable(btn);
         itemsBtn.push(btn);
         drawedItems++;
       }
@@ -146,7 +146,7 @@ SJ.ScreensManager.setup = () => {
     }
 
     itemsBtn.forEach(itemBtn => {
-      self.appendDrawable(itemBtn);
+      self.appendDrawable(itemBtn.popup);
     }); 
     
     self.appendDrawable(backBtn);
@@ -184,15 +184,13 @@ SJ.ScreensManager.setup = () => {
     
     self.setBackgroundColor(color(0, 0, 0, 0));
 
-    self.pausePopup = new SJ.PausePopup();
-    self.appendDrawable(self.pausePopup);
-
     SJ.jumpDataDisplay = new SJ.JumpDataDisplay();
 
-    SJ.ratersDisplay = new SJ.RatersDisplay(self);
+    SJ.ratersDisplay = new SJ.RatersDisplay();
 
     SJ.jumpEndPopup = new SJ.JumpEndPopup();
     self.appendDrawable(SJ.jumpEndPopup);
+    SJ.ratersDisplay.addRatersBoxesTitlesToScreensManager(self);
 
     SJ.itemsDisplay = new SJ.ItemsDisplay();
     self.appendDrawable(SJ.itemsDisplay);
@@ -218,6 +216,9 @@ SJ.ScreensManager.setup = () => {
     self.appendDrawable(new SJ.HeightDisplay());
 
     self.appendDrawable(new SJ.WindDisplay());
+    
+    self.pausePopup = new SJ.PausePopup();
+    self.appendDrawable(self.pausePopup);
     
   });
 
