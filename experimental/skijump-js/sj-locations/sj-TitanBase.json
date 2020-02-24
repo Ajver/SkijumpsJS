@@ -31,8 +31,7 @@
           "y": 0,
           "w": 2738,
           "h": 1009
-        },
-        "scale": 1.0
+        }
       },
       {
         "type": "array",
@@ -70,7 +69,7 @@
       {
         "name": "TitanBase/droga_skaly/skaly2.png",
         "position": {
-          "x": 2700,
+          "x": 2100,
           "y": 2000
         },
         "subrect": {
@@ -82,12 +81,45 @@
         "scale": 1.6
       },
       {
-        "name": "TitanBase/tlo/statek.png",
-        "position": {
-          "x": 2500,
-          "y": 400
-        },
-        "scale": 0.8
+        "type": "array",
+        "array": [
+          {
+            "name": "TitanBase/tlo/statek.png",
+            "position": {
+              "x": 2300,
+              "y": 400
+            },
+            "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/statek_oswietlenie_ss.png",
+            "spritesheet": {
+              "frameW": 720,
+              "frameH": 413,
+              "duration": 2000,
+              "animation": [ 0, 1 ]
+            },
+            "position": {
+              "x": 2960,
+              "y": 1570
+            },
+            "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/statek_szyby_swiatlo.png",
+            "spritesheet": {
+              "frameW": 420,
+              "frameH": 530,
+              "duration": 2000,
+              "animation": [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0 ]
+            },
+            "position": {
+              "x": 3190,
+              "y": 735
+            },
+            "scale": 0.8
+          }
+        ]
       },
       {
         "name": "TitanBase/droga_skaly/droga.png",
@@ -118,67 +150,7 @@
         "scale": 0.6
       },
       {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 9746,
-          "w": 6385,
-          "h": 1143
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 8386,
-          "w": 6385,
-          "h": 1731
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 6993,
-          "w": 6385,
-          "h": 1395
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 5500,
-          "w": 6385,
-          "h": 1494
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 3753,
-          "w": 6385,
-          "h": 1751
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 1960,
-          "w": 6385,
-          "h": 1787
-        }
-      },
-      {
-        "name": "TitanBase/tlo/chmury.png",
-        "subrect": {
-          "x": 0,
-          "y": 0,
-          "w": 6385,
-          "h": 1960
-        },
+        "name": "TitanBase/tlo/clouds_merged.png",
         "position": {
           "x": 0,
           "y": -50
