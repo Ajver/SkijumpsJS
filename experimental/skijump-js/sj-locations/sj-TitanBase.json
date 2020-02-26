@@ -88,7 +88,7 @@
             },
             "position": {
               "x": 2960,
-              "y": 1770
+              "y": 1870
             },
             "scale": 0.8
           },
@@ -102,7 +102,7 @@
             },
             "position": {
               "x": 3190,
-              "y": 935
+              "y": 1035
             },
             "scale": 0.8
           },
@@ -192,18 +192,23 @@
         ]
       },
       {
-        "name": "TitanBase/tlo/tlo.png",
-        "subrect": {
-          "x": 0, 
-          "y": 0,
-          "w": 5130,
-          "h": 1650
-        },
-        "position": {
-          "x": -100,
-          "y": 500
-        },
-        "scale": 0.6
+        "type": "array",
+        "array": [
+          {
+            "name": "TitanBase/tlo/tlo_poprawione.png",
+            "position": {
+              "x": -100,
+              "y": 500
+            },
+            "spritesheet": {
+              "frameW": 5130,
+              "frameH": 1660,
+              "duration": 1600,
+              "animation": [ 0, 1, 0, 0, 0, 0, 0, 0 ]
+            },
+            "scale": 0.6
+          }
+        ]
       },
       {
         "name": "TitanBase/tlo/clouds_merged.png",
