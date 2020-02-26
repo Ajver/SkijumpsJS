@@ -23,15 +23,16 @@
       {
         "name": "TitanBase/droga_skaly/skaly.png",
         "position": {
-          "x": 2000,
-          "y": 2700
+          "x": 200,
+          "y": 1900
         },
         "subrect": {
           "x": 0,
           "y": 0,
           "w": 2738,
           "h": 1009
-        }
+        },
+        "scale": 1.1
       },
       {
         "type": "array",
@@ -39,55 +40,41 @@
           {
             "name": "TitanBase/droga_skaly/droga.png",
             "position": {
-              "x": 4500,
-              "y": 3200
+              "x": 2330,
+              "y": 2330 
             },
+            "subrect": {
+              "x": 1000,
+              "y": 0,
+              "w": 2326,
+              "h": 715
+            }
+          },
+          {
+            "name": "TitanBase/tlo/statek.png",
             "subrect": {
               "x": 0,
               "y": 0,
-              "w": 1000,
-              "h": 715
+              "w": 2412,
+              "h": 1876
             },
-            "scale": 1.6
-          },
-          {
-            "name": "TitanBase/droga_skaly/antena_przesunieta.png",
-            "spritesheet": {
-              "frameW": 405,
-              "frameH": 874,
-              "duration": 1000,
-              "animation": [ 0, 1, 2, 1 ]
-            },
-            "position": {
-              "x": 3000,
-              "y": 1400
-            },
-            "scale": 1.6
-          }
-        ]
-      },
-      {
-        "name": "TitanBase/droga_skaly/skaly2.png",
-        "position": {
-          "x": 2100,
-          "y": 2000
-        },
-        "subrect": {
-          "x": 0,
-          "y": 1040,
-          "w": 1309,
-          "h": 468
-        },
-        "scale": 1.6
-      },
-      {
-        "type": "array",
-        "array": [
-          {
-            "name": "TitanBase/tlo/statek.png",
             "position": {
               "x": 2300,
-              "y": 400
+              "y": 700
+            },
+            "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/statek.png",
+            "subrect": {
+              "x": 2811,
+              "y": 671,
+              "w": 669,
+              "h": 1205
+            },
+            "position": {
+              "x": 3800,
+              "y": 1350
             },
             "scale": 0.8
           },
@@ -101,7 +88,7 @@
             },
             "position": {
               "x": 2960,
-              "y": 1570
+              "y": 1770
             },
             "scale": 0.8
           },
@@ -115,30 +102,99 @@
             },
             "position": {
               "x": 3190,
-              "y": 735
+              "y": 935
             },
             "scale": 0.8
+          },
+          {
+            "name": "TitanBase/droga_skaly/skaly2.png",
+            "position": {
+              "x": 3050,
+              "y": 2100 
+            },
+            "subrect": {
+              "x": 0,
+              "y": 0,
+              "w": 793,
+              "h": 270
+            },
+            "scale": 1.2
+          },
+          {
+            "name": "TitanBase/droga_skaly/skaly2.png",
+            "position": {
+              "x": 1650,
+              "y": 1900 
+            },
+            "subrect": {
+              "x": 0,
+              "y": 1040,
+              "w": 1309,
+              "h": 468
+            },
+            "scale": 1.6
+          },
+          {
+            "name": "TitanBase/droga_skaly/droga.png",
+            "position": {
+              "x": 2850,
+              "y": 2300
+            },
+            "subrect": {
+              "x": 0,
+              "y": 0,
+              "w": 1000,
+              "h": 715
+            }
+          },
+          {
+            "name": "TitanBase/droga_skaly/skaly2.png",
+            "position": {
+              "x": 3850,
+              "y": 2200 
+            },
+            "subrect": {
+              "x": 0,
+              "y": 477,
+              "w": 1087,
+              "h": 562
+            },
+            "scale": 0.9
+          },
+          {
+            "name": "TitanBase/droga_skaly/skaly2.png",
+            "position": {
+              "x": 3850,
+              "y": 2400 
+            },
+            "subrect": {
+              "x": 0,
+              "y": 477,
+              "w": 1087,
+              "h": 562
+            },
+            "scale": 1.2
+          },
+          {
+            "name": "TitanBase/droga_skaly/antena_przesunieta.png",
+            "spritesheet": {
+              "frameW": 405,
+              "frameH": 874,
+              "duration": 1000,
+              "animation": [ 0, 1, 2, 1 ]
+            },
+            "position": {
+              "x": 1800,
+              "y": 800
+            },
+            "scale": 1.6
           }
         ]
       },
       {
-        "name": "TitanBase/droga_skaly/droga.png",
-        "position": {
-          "x": 3000,
-          "y": 1500
-        },
-        "subrect": {
-          "x": 1000,
-          "y": 0,
-          "w": 2325,
-          "h": 715
-        },
-        "scale": 1.6
-      },
-      {
         "name": "TitanBase/tlo/tlo.png",
         "subrect": {
-          "x": 0,
+          "x": 0, 
           "y": 0,
           "w": 5130,
           "h": 1650
