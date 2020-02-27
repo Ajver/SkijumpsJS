@@ -47,11 +47,78 @@ class {
   
     this.offsetPoint = Matter.Vector.create(0, -10);
 
+    this._setupAnimations();
+
     // this.testNormalizedAngle(PI, PI);
     // this.testNormalizedAngle(TWO_PI, 0);
     // this.testNormalizedAngle(-TWO_PI, 0);
     // this.testNormalizedAngle(PI+HALF_PI, -HALF_PI);
     // this.testNormalizedAngle(-PI-HALF_PI, HALF_PI);
+  }
+
+  _setupAnimations() {
+    this.animationPlayer = new SJ.AnimationPlayer({
+      "downhill": new SJ.Animation([
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 1.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 2.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 3.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 4.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 5.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 6.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 7.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 8.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 9.png"),
+        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 10.png"),
+      ], 1000, true, true),
+      "jump": new SJ.Animation([
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 1.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 2.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 3.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 4.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 5.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 6.png"),
+      ], 250),
+      "jump-fly": new SJ.Animation([
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 1.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 2.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 3.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 4.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 5.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 6.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 7.png"),
+        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 8.png"),
+      ], 500),
+      "fly": new SJ.Animation([
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 1.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 2.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 3.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 4.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 5.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 6.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 7.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 8.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 9.png"),
+        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 10.png"),
+      ], 1000, true, true),
+    });
+
+    this.animationPlayer.animations["downhill"].offset = new p5.Vector(-45, -55);
+    this.animationPlayer.animations["jump"].offset = new p5.Vector(-45, -55);
+    this.animationPlayer.animations["jump-fly"].offset = new p5.Vector(-45, -55);
+    this.animationPlayer.animations["fly"].offset = new p5.Vector(-45, -55);
+
+    this.animationPlayer.play("downhill");
+    this.animationPlayer.onAnimationFinished((animationName) => {
+      switch(animationName) {
+        case 'jump':
+          this.animationPlayer.play("jump-fly");
+          break;
+        case 'jump-fly':
+          this.animationPlayer.play("fly");
+          break;
+      }
+      console.log("Animation finished: ", animationName);
+    });
   }
 
   update() {
@@ -160,16 +227,22 @@ class {
       fill(255);
       rectMode(CENTER);
       rect(0, 0, this._w, this._h);
+
+      const offset = this.animationPlayer.currentAnimation.offset || new p5.Vector(0, 0);
+      this.animationPlayer.draw(offset.x, offset.y);
     pop();
 
-    this.body.parts.forEach((part) => {
-      beginShape();
-      part.vertices.forEach((element) => {
-        vertex(element.x, element.y)
-        // circle(element.x, element.y, 3);
+    push();
+      fill(255, 255, 255, 64);
+      this.body.parts.forEach((part) => {
+        beginShape();
+        part.vertices.forEach((element) => {
+          vertex(element.x, element.y);
+          // circle(element.x, element.y, 3);
+        });
+        endShape(CLOSE);
       });
-      endShape(CLOSE);
-    });
+    pop();
 
     // this._drawVelocityVector();
   }
@@ -238,6 +311,7 @@ class {
     this.accelerateWithForce(SJ.V.jumperJumpForce);
     SJ.scoreCounter.jumpRater.rate();
     this.canLand = true;
+    this.animationPlayer.play("jump");
   }
 
   accelerateWithForce(force) {

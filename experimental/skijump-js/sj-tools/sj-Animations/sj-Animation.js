@@ -10,6 +10,8 @@ class {
 
     // Elapsed time in ms in moment of pause
     this._pausedAt = 0;
+
+    this._onTimeoutCallbacks = [];
     
     if(autostart) {
       this._start();
@@ -59,9 +61,7 @@ class {
       return false;
     }
 
-    this._tick();
-
-    return false;
+    return this._tick();
   }
 
   _tick() { 
@@ -72,8 +72,14 @@ class {
         this.stop();
       }
 
+      this._onTimeoutCallbacks.forEach(callback => {
+        callback();
+      })
+
       return true;
     }
+
+    return false;
   }
 
   // Returns value between <0; 1> (if running)
@@ -124,6 +130,10 @@ class {
   
   now() {
     return new Date();
+  }
+
+  onTimeout(callback) {
+    this._onTimeoutCallbacks.push(callback);
   }
 }
 
