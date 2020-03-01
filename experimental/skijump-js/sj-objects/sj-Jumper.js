@@ -41,7 +41,7 @@ class {
     this.canLand = false;
     this.isLanding = false;
     this.landingTimeCounter = 0.0;
-    this.LANDING_TIME_MILLIS = 200;
+    this.LANDING_TIME_MILLIS = 300;
     this.landed = false;
     this.failed = false;
   
@@ -59,53 +59,79 @@ class {
   _setupAnimations() {
     this.animationPlayer = new SJ.AnimationPlayer({
       "downhill": new SJ.Animation([
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 1.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 2.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 3.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 4.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 5.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 6.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 7.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 8.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 9.png"),
-        SJ.ImageLoader.load("JumperAnimation/zjazd/Warstwa 10.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/1.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/2.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/3.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/4.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/5.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/6.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/7.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/8.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/9.png"),
+        SJ.ImageLoader.load("JumperBigger/zjazd/10.png"),
       ], 1000, true, true),
       "jump": new SJ.Animation([
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 1.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 2.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 3.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 4.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 5.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok/Warstwa 6.png"),
-      ], 250),
+        SJ.ImageLoader.load("JumperBigger/wyskok/1.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok/2.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok/3.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok/4.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok/5.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok/6.png"),
+      ], 200),
       "jump-fly": new SJ.Animation([
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 1.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 2.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 3.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 4.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 5.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 6.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 7.png"),
-        SJ.ImageLoader.load("JumperAnimation/wyskok_lot/Warstwa 8.png"),
-      ], 500),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/1.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/2.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/3.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/4.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/5.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/6.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/7.png"),
+        SJ.ImageLoader.load("JumperBigger/wyskok_lot/8.png"),
+      ], 300),
       "fly": new SJ.Animation([
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 1.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 2.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 3.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 4.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 5.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 6.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 7.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 8.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 9.png"),
-        SJ.ImageLoader.load("JumperAnimation/lot/Warstwa 10.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/1.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/2.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/3.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/4.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/5.png"),
+        SJ.ImageLoader.load("JumperBigger/lot/6.png"),
       ], 1000, true, true),
+      "land": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/ladowanie/1.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie/2.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie/3.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie/4.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie/5.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie/6.png"),
+      ], this.LANDING_TIME_MILLIS),
+      "land2": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/1.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/2.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/3.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/4.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/5.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/6.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie2/7.png"),
+      ], 400),
+      "land_downhill": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/1.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/2.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/3.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/4.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/5.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3/6.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3_zjazd/1.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3_zjazd/2.png"),
+        SJ.ImageLoader.load("JumperBigger/ladowanie3_zjazd/3.png"),
+      ], 600),
+      "fail": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/lot/1.png"),
+      ], 1000),
     });
 
-    this.animationPlayer.animations["downhill"].offset = new p5.Vector(-45, -55);
-    this.animationPlayer.animations["jump"].offset = new p5.Vector(-45, -55);
-    this.animationPlayer.animations["jump-fly"].offset = new p5.Vector(-45, -55);
-    this.animationPlayer.animations["fly"].offset = new p5.Vector(-45, -55);
+    this.animationPlayer.forEachAnimation(animation => {
+      animation.offset = new p5.Vector(-45, -65);
+    })
 
     this.animationPlayer.play("downhill");
     this.animationPlayer.onAnimationFinished((animationName) => {
@@ -116,8 +142,10 @@ class {
         case 'jump-fly':
           this.animationPlayer.play("fly");
           break;
+        case 'land':
+          this.animationPlayer.play("land2");
+          break;
       }
-      console.log("Animation finished: ", animationName);
     });
   }
 
@@ -143,6 +171,8 @@ class {
         this.landed = true;
         SJ.scoreCounter.onJumperLand();
       }
+    }else if(this.landed) {
+      print("foo");
     }
 
     if(Matter.Query.collides(this.body, [SJ.pad.body]).length > 0) {
@@ -179,15 +209,12 @@ class {
     const diffAngle = angle - padAngle;
     if(abs(diffAngle) >= radians(SJ.V.goodLandingAngle) || !this.landed) {
       print("Fail: ", degrees(diffAngle));
-      if(diffAngle < 0) {
-        this.offsetAngle = -HALF_PI;
-      }else {
-        this.offsetAngle = HALF_PI;
-      }
+      this.setAngle(padAngle);
+      this.animationPlayer.play("fail");
       SJ.MessagesManager.fail();
       this.failed = true;
-      print("FAILED");
     }else {
+      this.animationPlayer.play("land_downhill")
       SJ.MessagesManager.noFail();
     }
   }
@@ -224,25 +251,25 @@ class {
     push();
       translate(pos.x, pos.y);
       rotate(angle);
-      fill(255);
-      rectMode(CENTER);
-      rect(0, 0, this._w, this._h);
+      // fill(255);
+      // rectMode(CENTER);
+      // rect(0, 0, this._w, this._h);
 
       const offset = this.animationPlayer.currentAnimation.offset || new p5.Vector(0, 0);
       this.animationPlayer.draw(offset.x, offset.y);
     pop();
 
-    push();
-      fill(255, 255, 255, 64);
-      this.body.parts.forEach((part) => {
-        beginShape();
-        part.vertices.forEach((element) => {
-          vertex(element.x, element.y);
-          // circle(element.x, element.y, 3);
-        });
-        endShape(CLOSE);
-      });
-    pop();
+    // push();
+    //   fill(255, 255, 255, 64);
+    //   this.body.parts.forEach((part) => {
+    //     beginShape();
+    //     part.vertices.forEach((element) => {
+    //       vertex(element.x, element.y);
+    //       // circle(element.x, element.y, 3);
+    //     });
+    //     endShape(CLOSE);
+    //   });
+    // pop();
 
     // this._drawVelocityVector();
   }
@@ -305,13 +332,12 @@ class {
     this.canLand = false;
     this.isLanding = true;
     this.canSteer = false;
+    this.animationPlayer.play("land");
   }
 
   jump() {
     this.accelerateWithForce(SJ.V.jumperJumpForce);
     SJ.scoreCounter.jumpRater.rate();
-    this.canLand = true;
-    this.animationPlayer.play("jump");
   }
 
   accelerateWithForce(force) {
@@ -321,7 +347,14 @@ class {
     const newVelocity = Matter.Vector.add(this.body.velocity, jumpVector);
     Matter.Body.setVelocity(this.body, newVelocity);
   }
-  
+ 
+  fly() {
+    this.letSteering();
+    this.animationPlayer.play("jump");
+    this.isFlying = true;
+    this.canLand = true;
+  }
+
   letSteering() {
     Matter.Body.setStatic(this.body, false);
     this.canSteer = true;

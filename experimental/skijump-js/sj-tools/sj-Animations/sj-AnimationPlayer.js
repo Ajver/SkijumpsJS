@@ -8,12 +8,16 @@ class {
       this.addAnimation(animation, animations[animation]);
     }
 
-    console.log(this.animations);
-
     this.currentAnimationName = "";
     this.currentAnimation = null;
 
     this._onAnimationFinishedCallbacks = [];
+  }
+
+  forEachAnimation(callback) {
+    for(const animation in this.animations) {
+      callback(this.animations[animation]);
+    }
   }
 
   addAnimation(animationName, animation) {

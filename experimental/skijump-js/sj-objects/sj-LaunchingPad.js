@@ -54,14 +54,9 @@ class {
   endOfPulling() {
     this._afterJump = true;
     this._isPullingJumper = false;
-    this.setJumperDynamic();
     this._canJump = false;
-    SJ.jumper.isFlying = true;
+    SJ.jumper.fly();
     SJ.MessagesManager.isFlying();
-  }
-
-  setJumperDynamic() {
-    SJ.jumper.letSteering();
   }
 
   startPullingJumper() {
