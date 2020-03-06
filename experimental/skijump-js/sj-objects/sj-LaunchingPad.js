@@ -98,7 +98,7 @@ class {
       push();
         translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
         scale(SJ.V.padScale);
-        image(this._img, 0, 0);
+        // image(this._img, 0, 0);
       pop();
       
       // this._parts.forEach(part => {
@@ -106,7 +106,8 @@ class {
       // });
 
       this._drawPullingPoints();
-      this._drawCollisionBoxes();
+      this._drawCollisionLines();
+      // this._drawCollisionBoxes();
 
     pop();
   }
@@ -132,18 +133,31 @@ class {
   }
 
   _drawPullingPoints() {
+    this._drawArray(SJ.V.padPullingPoints, color(200, 100, 250), 8.0, false)
+  }
+  
+  _drawCollisionLines() {
+    this._drawArray(SJ.V.padCollisionPoints, color(0, 255, 100), 8.0, false)
+  }
+
+  _drawArray(array, color, lineWeightScale=1.0, drawCircles=true, circleColor=null) {
     push();
-      fill(200, 0, 0);
+      if(drawCircles && circleColor) {
+        fill(circleColor);
+      }
       noStroke();
-      const p = SJ.V.padPullingPoints[0];
+      strokeWeight(2.0 * lineWeightScale)
+      const p = array[0];
       circle(p.x, p.y, 10);
-      for(let i=1; i<SJ.V.padPullingPoints.length; i++) {
-        const p1 = SJ.V.padPullingPoints[i-1];
-        const p2 = SJ.V.padPullingPoints[i];
-        stroke(255);
+      for(let i=1; i<array.length; i++) {
+        const p1 = array[i-1];
+        const p2 = array[i];
+        stroke(color);
         line(p1.x, p1.y, p2.x, p2.y);
-        noStroke();
-        circle(p2.x, p2.y, 10);
+        if(drawCircles) {
+          noStroke();
+          circle(p2.x, p2.y, 10 * lineWeightScale);
+        }
       }
     pop();
   }

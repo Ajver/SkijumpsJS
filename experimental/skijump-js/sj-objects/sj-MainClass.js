@@ -18,7 +18,7 @@ class {
 
     SJ.pad = new SJ.LaunchingPad();
 
-    SJ.camera = new SJ.Camera(.2);
+    SJ.camera = new SJ.Camera(.08);
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -66,7 +66,7 @@ class {
     this._drawableObjects = [];
     this._drawableObjects.push(SJ.paralaxBackground);
     this._drawableObjects.push(SJ.pad);
-    this._drawableObjects.push(SJ.jumper);
+    // this._drawableObjects.push(SJ.jumper);
   }
 
   draw() {
@@ -81,7 +81,7 @@ class {
       this._drawableObjects.forEach((element) => {
         element.draw();
       });
-      SJ.pad.drawFront();
+      // SJ.pad.drawFront();
       // SJ.camera.drawPath();
     pop();
   }
