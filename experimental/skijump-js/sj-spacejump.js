@@ -55,6 +55,7 @@ function setup() {
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
     // SJ._startGame("TitanBase");
     // SJ._startGame("CyberCity");
+    SJ._startGame("StarStation");
   }); 
 }
 

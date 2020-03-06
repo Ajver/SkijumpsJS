@@ -105,8 +105,8 @@ class {
       //   part.draw();
       // });
 
-      // this._drawPullingPoints();
-      // this._drawCollisionBoxes();
+      this._drawPullingPoints();
+      this._drawCollisionBoxes();
 
     pop();
   }
