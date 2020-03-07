@@ -21,6 +21,23 @@ class {
       ],
     };
     this.realBodyStatic = true;
+
+    this.S = {
+      START    : 0, // start walk, hand waving
+      READY    : 1, // Ready to go
+      DOWN     : 2, // Downhill
+      FLYING   : 3, // Flying
+      LANDED   : 5, // Landed on pad (or failed)
+    }
+    this.state = this.S.START
+
+    this.FLY_S = {
+      JUMP     : 0, // Jump animation, cannot start landing yet
+      FLY      : 1, // Static fly animation, can land
+      LANDING  : 2, // Landing animation, but not landed yet
+      LANDED   : 3, // Landing animation ended, ready to hit pad
+    }
+    this.flyState = this.FLY_S.JUMP
   
     this.body = Matter.Body.create(options);
     
@@ -29,20 +46,14 @@ class {
     Matter.Body.setAngle(this.body, radians(40));
     this.offsetAngle = 0;
     
-    this.isSlowingDown = false;
     this.SLOWING_SPEED = 0.01; 
   
     this.turningDir = 0;
     this.turningMod = 0.0;
     this.wantTurn = false;
-    this.canSteer = false;
-    this.isFlying = false;
 
-    this.canLand = false;
-    this.isLanding = false;
     this.landingTimeCounter = 0.0;
-    this.LANDING_TIME_MILLIS = 300;
-    this.landed = false;
+    this.LANDING_TIME_MILLIS = 200;
     this.failed = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
@@ -141,6 +152,7 @@ class {
           break;
         case 'jump-fly':
           this.animationPlayer.play("fly");
+          this.flyState = this.FLY_S.FLY
           break;
         case 'land':
           this.animationPlayer.play("land2");
@@ -150,73 +162,102 @@ class {
   }
 
   update() {
-    if(this.body.isStatic) {
-      if(this.isSlowingDown) {
+    switch(this.state) {
+      case this.S.START:
+
+        break;
+      case this.S.READY:
+
+        break;
+      case this.S.DOWN:
+
+        break;
+      case this.S.FLYING:
+        this._updateOnFly()      
+        break;
+      case this.S.LANDED:
         this.body.velocity.x = lerp(this.body.velocity.x, 0, this.SLOWING_SPEED);
         this.body.velocity.y = lerp(this.body.velocity.y, 0, this.SLOWING_SPEED);
-      }
+        break;
+    }
+  
+    if(this.body.isStatic) {
       Matter.Body.translate(this.body, this.body.velocity);
     }
+  }
 
-    if(!this.isFlying) {
-      return;
+  _updateOnFly() {
+    switch(this.flyState) {
+      case this.FLY_S.FLY:
+      case this.FLY_S.JUMP:
+        if(this.turningMod) {
+          if(this.wantTurn) {
+            this.turningMod = lerp(this.turningMod, 0.5, 0.02);
+          }else {
+            this.turningMod = lerp(this.turningMod, 0, 0.04);
+          }
+    
+          this.turn();
+        }
+        break;
+      case this.FLY_S.LANDING:
+        this.landingTimeCounter += deltaTime;
+
+        if(this.landingTimeCounter >= this.LANDING_TIME_MILLIS) {
+          print("Land ended");
+          SJ.scoreCounter.onJumperLand();
+          this.flyState = this.FLY_S.LANDED;
+        }
+        break;
     }
-
-    if(this.isLanding) {
-      this.landingTimeCounter += deltaTime;
-
-      if(this.landingTimeCounter >= this.LANDING_TIME_MILLIS) {
-        print("Land ended");
-        this.isLanding = false;
-        this.landed = true;
-        SJ.scoreCounter.onJumperLand();
-      }
-    }else if(this.landed) {
-      print("foo");
-    }
-
+    
     if(Matter.Query.collides(this.body, [SJ.pad.body]).length > 0) {
       this.onPadHit();
       return;
-    }
-
-    if(!this.canSteer) {
-      return;
-    }
-
-    if(this.turningMod) {
-      if(this.wantTurn) {
-        this.turningMod = lerp(this.turningMod, 0.5, 0.02);
-      }else {
-        this.turningMod = lerp(this.turningMod, 0, 0.04);
-      }
-
-      this.turn();
     }
   }
 
   onPadHit() {
     Matter.Body.setStatic(this.body, true);
-    this.canSteer = false;
-    this.isFlying = false;
+    this.state = this.S.LANDED
     this.checkIfFail();
     SJ.main.onJumperPadHit();
   }
 
   checkIfFail() {
-    const angle = this.getNormalizedBodyAngle();
     const padAngle = this.getPadAngle();
-    const diffAngle = angle - padAngle;
-    if(abs(diffAngle) >= radians(SJ.V.goodLandingAngle) || !this.landed) {
-      print("Fail: ", degrees(diffAngle));
-      this.setAngle(padAngle);
-      this.animationPlayer.play("fail");
-      SJ.MessagesManager.fail();
-      this.failed = true;
+
+    if(this.flyState != this.FLY_S.LANDED) {
+      this._fail()
     }else {
-      this.animationPlayer.play("land_downhill")
-      SJ.MessagesManager.noFail();
+      const angle = this.getNormalizedBodyAngle();
+      const diffAngle = degrees(angle - padAngle);
+
+      if(abs(diffAngle) >= SJ.V.goodLandingAngle) {
+        this._fail(diffAngle)
+      }else {
+        this._landSuccess()
+      } 
     }
+
+    this.setAngle(padAngle);
+  }
+
+  _fail(deg) {
+    if(deg !== undefined) {
+      print("Fail with angle: ", deg);
+    }else {
+      print("Failed because not Landed")
+    }
+
+    this.animationPlayer.play("fail");
+    SJ.MessagesManager.fail();
+    this.failed = true;
+  }
+
+  _landSuccess() {
+    this.animationPlayer.play("land_downhill")
+    SJ.MessagesManager.noFail();
   }
 
   testNormalizedAngle(enterAngle, exeptedAngle) {
@@ -288,8 +329,8 @@ class {
     }else if(keyCode == RIGHT_ARROW) {
       this.wantTurnTo(1);
     }else if(keyCode == SPACE) {
-      if(!this.body.isStatic) {
-        if(this.canLand) {
+      if(this.state == this.S.FLYING) {
+        if(this.flyState == this.FLY_S.FLY) {
           this.land();
         }
       }
@@ -329,15 +370,15 @@ class {
   } 
 
   land() {
-    this.canLand = false;
-    this.isLanding = true;
-    this.canSteer = false;
     this.animationPlayer.play("land");
+    this.flyState = this.FLY_S.LANDING;
   }
 
   jump() {
     this.accelerateWithForce(SJ.V.jumperJumpForce);
     SJ.scoreCounter.jumpRater.rate();
+    this.animationPlayer.play("jump");
+    this.flyState = this.FLY_S.JUMP
   }
 
   accelerateWithForce(force) {
@@ -350,14 +391,11 @@ class {
  
   fly() {
     this.letSteering();
-    this.animationPlayer.play("jump");
-    this.isFlying = true;
-    this.canLand = true;
   }
 
   letSteering() {
     Matter.Body.setStatic(this.body, false);
-    this.canSteer = true;
+    this.state = this.S.FLYING
   }
 
   turn() {
