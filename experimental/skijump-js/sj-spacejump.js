@@ -84,6 +84,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-CameraPath.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-SpriteSheet.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-StartWalkSystem.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-Animation.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-AnimationPlayer.js');

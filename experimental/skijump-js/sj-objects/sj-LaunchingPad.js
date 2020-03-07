@@ -23,7 +23,8 @@ class {
   }
 
   update () {
-    if(SJ.jumper.state == SJ.jumper.S.DOWN) {
+    const { state, S } = SJ.jumper;
+    if(state == S.DOWN || state == S.LANDED) {
       if(this._pullingSystem.update()) {
         this.setJumperVelocity();
       }else {
@@ -38,11 +39,13 @@ class {
   }
 
   launch () {
+    SJ.jumper.state = SJ.jumper.S.DOWN
     SJ.MessagesManager.skiingDown();
   }
 
   endOfPulling() {
     SJ.jumper.fly();
+    SJ.jumper.animationPlayer.play("jump");
     SJ.MessagesManager.isFlying();
   }
 
@@ -60,19 +63,8 @@ class {
   }
 
   setJumperRightPosition() {
-    const jumperRightPosition = this.getJumperRightPosition();
+    const jumperRightPosition = this._pullingSystem.getJumperRightPosition();
     Matter.Body.setPosition(SJ.jumper.body, jumperRightPosition);
-  }
-
-  getJumperRightPosition() {
-    const jumperX = SJ.jumper.body.position.x;
-    const diffX = jumperX - this._pullingSystem.p1.x;
-    const pullingPointsDiffX = this._pullingSystem.p2.x - this._pullingSystem.p1.x;
-    const pullingPointsDiffY = this._pullingSystem.p2.y - this._pullingSystem.p1.y;
-    const k = diffX / pullingPointsDiffX;
-    const nextJumperY = this._pullingSystem.p1.y + pullingPointsDiffY * k;
-    const nextJumperPos = Matter.Vector.create(jumperX, nextJumperY);
-    return Matter.Vector.add(nextJumperPos, SJ.jumper.offsetPoint)
   }
 
   draw() {
@@ -148,7 +140,8 @@ class {
     if(!SJ.main._isRunning) {
       return;
     }
-    
+
+
     switch(SJ.jumper.state) {
       case SJ.jumper.S.READY:
         this.launch();

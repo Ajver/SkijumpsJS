@@ -39,11 +39,12 @@ class {
     }
     this.flyState = this.FLY_S.JUMP
   
+    this.walkSystem = new SJ.StartWalkSystem();
+
     this.body = Matter.Body.create(options);
     
     Matter.World.add(SJ.world, this.body);
   
-    Matter.Body.setAngle(this.body, radians(40));
     this.offsetAngle = 0;
     
     this.SLOWING_SPEED = 0.01; 
@@ -76,7 +77,27 @@ class {
         SJ.ImageLoader.load("JumperBigger/start_spacer/4.png"),
         SJ.ImageLoader.load("JumperBigger/start_spacer/5.png"),
         SJ.ImageLoader.load("JumperBigger/start_spacer/6.png"),
-      ], 1000, true, true),
+      ], 800, true, true),
+      "wave": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/start_machanie/1.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/2.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/3.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/4.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/5.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/6.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/7.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/8.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/9.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/10.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/11.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/12.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/13.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/14.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/15.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/16.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/17.png"),
+        SJ.ImageLoader.load("JumperBigger/start_machanie/18.png"),
+      ], 2000),
       "downhill": new SJ.Animation([
         SJ.ImageLoader.load("JumperBigger/zjazd/1.png"),
         SJ.ImageLoader.load("JumperBigger/zjazd/2.png"),
@@ -156,6 +177,11 @@ class {
 
     this.animationPlayer.onAnimationFinished((animationName) => {
       switch(animationName) {
+        case 'wave':
+          this.state = this.S.READY;
+          this.animationPlayer.play("downhill")
+          this.walkSystem = null;
+          break;
         case 'jump':
           this.animationPlayer.play("jump-fly");
           break;
@@ -173,7 +199,7 @@ class {
   update() {
     switch(this.state) {
       case this.S.START:
-
+        this.walkSystem.update()
         break;
       case this.S.READY:
 
