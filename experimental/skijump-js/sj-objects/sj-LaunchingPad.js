@@ -14,10 +14,7 @@ class {
   }
 
   restart() {
-    this._isWaitingForLaunch = true;
-    this._isPullingJumper = false;
     this._canJump = true;
-    this._afterJump = false;
     this._pullingSystem = new SJ.PullingSystem();
   }
   
@@ -26,17 +23,12 @@ class {
   }
 
   update () {
-    if(this._isPullingJumper) {
+    if(SJ.jumper.state == SJ.jumper.S.DOWN) {
       if(this._pullingSystem.update()) {
         this.setJumperVelocity();
       }else {
-        if(this._afterJump) {
-          // When collision points ends
-          this.body.velocity.x = 0;
-          this.body.velocity.y = 0;
-        }else {
-          this.endOfPulling();
-        }
+        // When collision points ends
+        this.endOfPulling();
       }
     }
   }
@@ -46,21 +38,15 @@ class {
   }
 
   launch () {
-    this._isWaitingForLaunch = false;
-    this._isPullingJumper = true;
     SJ.MessagesManager.skiingDown();
   }
 
   endOfPulling() {
-    this._afterJump = true;
-    this._isPullingJumper = false;
-    this._canJump = false;
     SJ.jumper.fly();
     SJ.MessagesManager.isFlying();
   }
 
   startPullingJumper() {
-    this._isPullingJumper = true;
     this._pullingSystem.jumperFrictionMult = 3.0;
     this._pullingSystem.pullingArray = SJ.V.padCollisionPoints;
     for(let i=0; i<SJ.V.padCollisionPoints.length; i++) {
@@ -162,15 +148,17 @@ class {
     if(!SJ.main._isRunning) {
       return;
     }
-
-    if(this._isInJumpArea()) {
-      if(this._canJump) {
-        this._canJump = false;
-        this.endOfPulling();
-        SJ.jumper.jump();
-      }
-    }else if(this._isWaitingForLaunch) {
-      this.launch();
+    
+    switch(SJ.jumper.state) {
+      case SJ.jumper.S.READY:
+        this.launch();
+        break;
+      case SJ.jumper.S.DOWN:
+        if(this._isInJumpArea()) {
+          this.endOfPulling();
+          SJ.jumper.jump();
+        }
+        break;
     }
   }
 

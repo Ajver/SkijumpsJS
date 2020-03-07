@@ -69,6 +69,14 @@ class {
 
   _setupAnimations() {
     this.animationPlayer = new SJ.AnimationPlayer({
+      "start_walk": new SJ.Animation([
+        SJ.ImageLoader.load("JumperBigger/start_spacer/1.png"),
+        SJ.ImageLoader.load("JumperBigger/start_spacer/2.png"),
+        SJ.ImageLoader.load("JumperBigger/start_spacer/3.png"),
+        SJ.ImageLoader.load("JumperBigger/start_spacer/4.png"),
+        SJ.ImageLoader.load("JumperBigger/start_spacer/5.png"),
+        SJ.ImageLoader.load("JumperBigger/start_spacer/6.png"),
+      ], 1000, true, true),
       "downhill": new SJ.Animation([
         SJ.ImageLoader.load("JumperBigger/zjazd/1.png"),
         SJ.ImageLoader.load("JumperBigger/zjazd/2.png"),
@@ -144,7 +152,8 @@ class {
       animation.offset = new p5.Vector(-45, -65);
     })
 
-    this.animationPlayer.play("downhill");
+    this.animationPlayer.play("start_walk");
+
     this.animationPlayer.onAnimationFinished((animationName) => {
       switch(animationName) {
         case 'jump':
