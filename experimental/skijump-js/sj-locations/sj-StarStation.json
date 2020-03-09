@@ -1,5 +1,5 @@
 {
-    "airDensity": 0.0001,
+    "airDensity": 0.0004,
     "airDynamics": 0.1,
     "airFriction": 0.002,
     "airMaxForce": 3,
@@ -159,7 +159,7 @@
     }],
     "padScale": 1,
     "padSize": 80,
-    "pointK": 0,
+    "pointK": 2125,
     "textureOffset": {
         "x": -300,
         "y": -210

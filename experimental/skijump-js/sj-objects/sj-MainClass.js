@@ -18,7 +18,7 @@ class {
 
     SJ.pad = new SJ.LaunchingPad();
 
-    SJ.camera = new SJ.Camera(.08);
+    SJ.camera = new SJ.Camera(1);
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -66,7 +66,7 @@ class {
     this._drawableObjects = [];
     this._drawableObjects.push(SJ.paralaxBackground);
     this._drawableObjects.push(SJ.pad);
-    // this._drawableObjects.push(SJ.jumper);
+    this._drawableObjects.push(SJ.jumper);
   }
 
   draw() {
