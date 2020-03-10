@@ -76,7 +76,7 @@ class {
       push();
         translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
         scale(SJ.V.padScale);
-        // image(this._img, 0, 0);
+        image(this._img, 0, 0);
       pop();
       
       // this._parts.forEach(part => {

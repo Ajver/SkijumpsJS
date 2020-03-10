@@ -81,7 +81,7 @@ class {
       this._drawableObjects.forEach((element) => {
         element.draw();
       });
-      // SJ.pad.drawFront();
+      SJ.pad.drawFront();
       // SJ.camera.drawPath();
     pop();
   }

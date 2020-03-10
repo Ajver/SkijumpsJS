@@ -166,7 +166,7 @@
     },
     "texturesNames": {
         "background": [],
-        "pad": "TitanBase/Pad/pad.png",
-        "padFront": "TitanBase/Pad/pad-front.png"
+        "pad": "",
+        "padFront": ""
     }
 }
