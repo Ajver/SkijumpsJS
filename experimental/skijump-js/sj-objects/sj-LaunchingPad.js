@@ -14,10 +14,7 @@ class {
   }
 
   restart() {
-    this._isWaitingForLaunch = true;
-    this._isPullingJumper = false;
     this._canJump = true;
-    this._afterJump = false;
     this._pullingSystem = new SJ.PullingSystem();
   }
   
@@ -26,17 +23,13 @@ class {
   }
 
   update () {
-    if(this._isPullingJumper) {
+    const { state, S } = SJ.jumper;
+    if(state == S.DOWN || state == S.LANDED) {
       if(this._pullingSystem.update()) {
         this.setJumperVelocity();
       }else {
-        if(this._afterJump) {
-          // When collision points ends
-          this.body.velocity.x = 0;
-          this.body.velocity.y = 0;
-        }else {
-          this.endOfPulling();
-        }
+        // When collision points ends
+        this.endOfPulling();
       }
     }
   }
@@ -46,21 +39,17 @@ class {
   }
 
   launch () {
-    this._isWaitingForLaunch = false;
-    this._isPullingJumper = true;
+    SJ.jumper.state = SJ.jumper.S.DOWN
     SJ.MessagesManager.skiingDown();
   }
 
   endOfPulling() {
-    this._afterJump = true;
-    this._isPullingJumper = false;
-    this._canJump = false;
     SJ.jumper.fly();
+    SJ.jumper.animationPlayer.play("jump");
     SJ.MessagesManager.isFlying();
   }
 
   startPullingJumper() {
-    this._isPullingJumper = true;
     this._pullingSystem.jumperFrictionMult = 3.0;
     this._pullingSystem.pullingArray = SJ.V.padCollisionPoints;
     for(let i=0; i<SJ.V.padCollisionPoints.length; i++) {
@@ -74,19 +63,8 @@ class {
   }
 
   setJumperRightPosition() {
-    const jumperRightPosition = this.getJumperRightPosition();
+    const jumperRightPosition = this._pullingSystem.getJumperRightPosition();
     Matter.Body.setPosition(SJ.jumper.body, jumperRightPosition);
-  }
-
-  getJumperRightPosition() {
-    const jumperX = SJ.jumper.body.position.x;
-    const diffX = jumperX - this._pullingSystem.p1.x;
-    const pullingPointsDiffX = this._pullingSystem.p2.x - this._pullingSystem.p1.x;
-    const pullingPointsDiffY = this._pullingSystem.p2.y - this._pullingSystem.p1.y;
-    const k = diffX / pullingPointsDiffX;
-    const nextJumperY = this._pullingSystem.p1.y + pullingPointsDiffY * k;
-    const nextJumperPos = Matter.Vector.create(jumperX, nextJumperY);
-    return Matter.Vector.add(nextJumperPos, SJ.jumper.offsetPoint)
   }
 
   draw() {
@@ -177,14 +155,17 @@ class {
       return;
     }
 
-    if(this._isInJumpArea()) {
-      if(this._canJump) {
-        this._canJump = false;
-        this.endOfPulling();
-        SJ.jumper.jump();
-      }
-    }else if(this._isWaitingForLaunch) {
-      this.launch();
+
+    switch(SJ.jumper.state) {
+      case SJ.jumper.S.READY:
+        this.launch();
+        break;
+      case SJ.jumper.S.DOWN:
+        if(this._isInJumpArea()) {
+          this.endOfPulling();
+          SJ.jumper.jump();
+        }
+        break;
     }
   }
 

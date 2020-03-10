@@ -16,8 +16,8 @@ class {
   }
 
   update () {
-    const jumperPos = SJ.jumper.body.position;
-    if(jumperPos.x >= this.p2.x) {
+    const jumperX = SJ.jumper.body.position.x;
+    if(jumperX >= this.p2.x) {
       this.index++;
       if(this.index < this.pullingArray.length) {
         this.p1 = this.p2;
@@ -28,13 +28,13 @@ class {
       }
     }
     
-    if(jumperPos.x >= SJ.V.jumpPoint && jumperPos.x <= SJ.V.jumpEndPoint) {
+    if(jumperX >= SJ.V.jumpPoint && jumperX <= SJ.V.jumpEndPoint) {
       SJ.pad._canJump = true;
       SJ.MessagesManager.canJump();
     }
     
     if(!SJ.jumper.isSlowingDown) {
-      if(jumperPos.x >= SJ.V.fallLine) {
+      if(jumperX >= SJ.V.fallLine) {
         SJ.jumper.isSlowingDown = true;
       } 
     }
@@ -68,6 +68,17 @@ class {
     newVel = Matter.Vector.mult(newVel, 1.0 - SJ.V.padFriction - this.jumperFrictionMult*SJ.V.jumperFriction);
 
     SJ.jumper.body.velocity = newVel;
+  }
+
+  getJumperRightPosition() {
+    const jumperX = SJ.jumper.body.position.x;
+    const diffX = jumperX - this.p1.x;
+    const pullingPointsDiffX = this.p2.x - this.p1.x;
+    const pullingPointsDiffY = this.p2.y - this.p1.y;
+    const k = diffX / pullingPointsDiffX;
+    const nextJumperY = this.p1.y + pullingPointsDiffY * k;
+    const nextJumperPos = Matter.Vector.create(jumperX, nextJumperY);
+    return Matter.Vector.add(nextJumperPos, SJ.jumper.offsetPoint)
   }
 
 }

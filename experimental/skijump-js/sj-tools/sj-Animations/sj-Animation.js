@@ -58,10 +58,14 @@ class {
 
   tick() {
     if(!this._isRunning) {
-      return false;
+      if(this._isPaused) {
+        return this._tick();
+      }else {
+        return false;
+      }
+    }else {
+      return this._tick();
     }
-
-    return this._tick();
   }
 
   _tick() { 

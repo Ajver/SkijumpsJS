@@ -5,7 +5,7 @@ const SJ = {};
 SJ.UI = {};
 
 // Game Version
-SJ.VERSION = "0.23.1";
+SJ.VERSION = "0.24.2";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -85,6 +85,7 @@ SJ._loadScripts = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-CameraPath.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-SpriteSheet.js');
+  scriptsLoader.loadScript('skijump-js/sj-tools/sj-StartWalkSystem.js');
 
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-Animation.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-AnimationPlayer.js');
