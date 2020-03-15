@@ -32,6 +32,7 @@ class {
 
   play(animationName) {
     this.stop();
+    this.currentAnimationName = animationName;
     this.currentAnimation = this.animations[animationName];
     this.currentAnimation.restart();
   }

@@ -34,8 +34,9 @@ class {
     this.FLY_S = {
       JUMP     : 0, // Jump animation, cannot start landing yet
       FLY      : 1, // Static fly animation, can land
-      LANDING  : 2, // Landing animation, but not landed yet
-      LANDED   : 3, // Landing animation ended, ready to hit pad
+      FALLDOWN : 2, // Fly with velocity.y > 0
+      LANDING  : 3, // Landing animation, but not landed yet
+      LANDED   : 4, // Landing animation ended, ready to hit pad
     }
     this.flyState = this.FLY_S.JUMP
   
@@ -143,6 +144,24 @@ class {
         SJ.ImageLoader.load(animationsFolder+"lot/5.png"),
         SJ.ImageLoader.load(animationsFolder+"lot/6.png"),
       ], 1000, true, true),
+      "fly-falldown": new SJ.Animation([
+        SJ.ImageLoader.load(animationsFolder+"lot_lotdol/1.png"),
+        SJ.ImageLoader.load(animationsFolder+"lot_lotdol/2.png"),
+        SJ.ImageLoader.load(animationsFolder+"lot_lotdol/3.png"),
+        SJ.ImageLoader.load(animationsFolder+"lot_lotdol/4.png"),
+      ], 400),
+      "falldown": new SJ.Animation([
+        SJ.ImageLoader.load(animationsFolder+"lotdol/1.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/2.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/3.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/4.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/5.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/6.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/7.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/8.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/9.png"),
+        SJ.ImageLoader.load(animationsFolder+"lotdol/10.png"),
+      ], 1000, true, true),
       "land": new SJ.Animation([
         SJ.ImageLoader.load(animationsFolder+"ladowanie/1.png"),
         SJ.ImageLoader.load(animationsFolder+"ladowanie/2.png"),
@@ -196,6 +215,9 @@ class {
           this.animationPlayer.play("fly");
           this.flyState = this.FLY_S.FLY
           break;
+        case 'fly-falldown':
+          this.animationPlayer.play("falldown");
+          break;
         case 'land':
           this.animationPlayer.play("land2");
           break;
@@ -207,12 +229,6 @@ class {
     switch(this.state) {
       case this.S.START:
         this.walkSystem.update()
-        break;
-      case this.S.READY:
-
-        break;
-      case this.S.DOWN:
-
         break;
       case this.S.FLYING:
         this._updateOnFly()      
@@ -232,6 +248,7 @@ class {
     switch(this.flyState) {
       case this.FLY_S.FLY:
       case this.FLY_S.JUMP:
+      case this.FLY_S.FALLDOWN:
         if(this.turningMod) {
           if(this.wantTurn) {
             this.turningMod = lerp(this.turningMod, 0.5, 0.02);
@@ -252,6 +269,13 @@ class {
         }
         break;
     }
+
+    // if(this.flyState == this.FLY_S.FLY) {
+    //   if(this.body.velocity.y > 0) {
+    //     this.flyState = this.FLY_S.FALLDOWN;
+    //     this.animationPlayer.play("fly-falldown")
+    //   }
+    // }
     
     if(Matter.Query.collides(this.body, [SJ.pad.body]).length > 0) {
       this.onPadHit();
@@ -372,7 +396,7 @@ class {
       this.wantTurnTo(1);
     }else if(keyCode == SPACE) {
       if(this.state == this.S.FLYING) {
-        if(this.flyState == this.FLY_S.FLY) {
+        if(this.flyState == this.FLY_S.FLY || this.flyState == this.FLY_S.FALLDOWN) {
           this.land();
         }
       }
