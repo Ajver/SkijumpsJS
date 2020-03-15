@@ -8,6 +8,9 @@ SJ.V = {
   goodLandingAngle: 40, // in degrees
 
   texturesNames: {},
+
+  PIXELS_TO_METERS: 0.03,
+  POINTS_PER_METER: 3,
 };
 
 SJ.loadVariablesFromFile = (fileName, callBack) => {

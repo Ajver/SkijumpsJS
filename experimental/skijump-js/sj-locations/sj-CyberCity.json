@@ -1,7 +1,5 @@
 {
   "locationName": "Ziemia",
-  "padSize": 60.0,
-  "pointK": 2500,
   "padScale": 2.0,
   "minJumpDistance": 30.0,
   "maxJumpDistance": 75.0,

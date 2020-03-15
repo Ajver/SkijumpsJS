@@ -105,9 +105,6 @@ class {
       this.landingRater,
     ];
 
-    // Distance to the point K in metters
-    this.PIXELS_TO_METERS = SJ.V.padSize / (SJ.V.pointK-SJ.V.jumpEndPoint);
-    this._POINT_PER_METER = 2.8;
     this.score = 0;
   }
 
@@ -124,11 +121,12 @@ class {
 
   calculateDistance() {
     const landX = SJ.jumper.body.position.x;
-    const distTo_K = landX - SJ.V.pointK;
+    const { padPullingPoints } = SJ.V
+    const dist = landX - padPullingPoints[padPullingPoints.length-1].x;
     
-    this.mettersDistTo_K = distTo_K * this.PIXELS_TO_METERS;
+    this.mettersDistTo_K = dist * SJ.V.PIXELS_TO_METERS;
 
-    let points = 60 + (this.mettersDistTo_K * this._POINT_PER_METER);
+    let points = (this.mettersDistTo_K * SJ.V.POINTS_PER_METER);
     points = round(points, 2);
 
     return points;

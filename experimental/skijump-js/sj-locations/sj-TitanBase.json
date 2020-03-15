@@ -1,7 +1,5 @@
 {
   "locationName": "Titan base",
-  "padSize": 80.0,
-  "pointK": 3000,
   "minJumpDistance": 20.0,
   "maxJumpDistance": 200.0,
   "padFriction": 0.00080,
