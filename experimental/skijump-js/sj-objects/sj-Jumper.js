@@ -190,9 +190,44 @@ class {
         SJ.ImageLoader.load(animationsFolder+"ladowanie3_zjazd/2.png"),
         SJ.ImageLoader.load(animationsFolder+"ladowanie3_zjazd/3.png"),
       ], 600),
-      "fail": new SJ.Animation([
-        SJ.ImageLoader.load(animationsFolder+"lot/1.png"),
-      ], 1000),
+      "fail_back": new SJ.Animation([
+        SJ.ImageLoader.load(animationsFolder+"upadek1/1.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/2.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/3.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/4.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/5.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/6.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/7.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/8.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/9.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/10.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/11.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/12.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/13.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/14.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/15.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek1/16.png"),
+      ], 1200),
+      "fail_front": new SJ.Animation([
+        SJ.ImageLoader.load(animationsFolder+"upadek2/1.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/2.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/3.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/4.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/5.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/6.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/7.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/8.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/9.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/10.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/11.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/12.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/13.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/14.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/15.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/16.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/17.png"),
+        SJ.ImageLoader.load(animationsFolder+"upadek2/18.png"),
+      ], 1200),
     });
 
     this.animationPlayer.forEachAnimation(animation => {
@@ -293,30 +328,35 @@ class {
   checkIfFail() {
     const padAngle = this.getPadAngle();
 
-    if(this.flyState != this.FLY_S.LANDED) {
-      this._fail()
-    }else {
-      const angle = this.getNormalizedBodyAngle();
-      const diffAngle = degrees(angle - padAngle);
-
+    const angle = this.getNormalizedBodyAngle();
+    const diffAngle = degrees(angle - padAngle);
+    
+    if(this.flyState == this.FLY_S.LANDED) {
       if(abs(diffAngle) >= SJ.V.goodLandingAngle) {
-        this._fail(diffAngle)
+        this._fail(diffAngle, true)
       }else {
         this._landSuccess()
       } 
+    }else {
+      this._fail(diffAngle, false)
     }
 
     this.setAngle(padAngle);
   }
 
-  _fail(deg) {
-    if(deg !== undefined) {
+  _fail(deg, landed) {
+    if(landed) {
       print("Fail with angle: ", deg);
     }else {
       print("Failed because not Landed")
     }
 
-    this.animationPlayer.play("fail");
+    if(deg < 0) {
+      this.animationPlayer.play("fail_back");
+    }else {
+      this.animationPlayer.play("fail_front");
+    }
+
     SJ.MessagesManager.fail();
     this.failed = true;
   }
