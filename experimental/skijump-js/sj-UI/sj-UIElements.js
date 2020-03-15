@@ -1,4 +1,6 @@
 
+SJ.on.preload(() => {
+
 SJ.WindDisplay =
 class extends SJ.UI.Element {
   constructor() {
@@ -62,11 +64,14 @@ class extends SJ.UI.Element {
   }
   
   draw() {
-    var jumperHeight = 0;
-    if(!SJ.jumper.body.isStatic) {
+    let jumperHeight = 0;
+
+    if(SJ.jumper.state == SJ.jumper.S.FLYING) {
       const jumperX = SJ.jumper.body.position.x;
+
       for(let i=1; i<SJ.V.padCollisionPoints.length; i++) {
         const p2 = SJ.V.padCollisionPoints[i];
+
         if(jumperX <= p2.x) {
           const p1 = SJ.V.padCollisionPoints[i-1];
           const diffX = jumperX - p1.x;
@@ -76,7 +81,7 @@ class extends SJ.UI.Element {
           const yUnderJumper = p1.y + k * diffY;
 
           const heightInPixels = yUnderJumper - SJ.jumper.body.position.y;
-          const heightInMeters = heightInPixels * SJ.scoreCounter.PIXELS_TO_METERS;
+          const heightInMeters = heightInPixels * SJ.V.PIXELS_TO_METERS;
 
           if(heightInMeters > SJ.higherJumperHeight) {
             SJ.higherJumperHeight = heightInMeters;
@@ -467,3 +472,5 @@ SJ.createItemButton = (x, y, item) => {
 
   return btn;
 }
+
+});

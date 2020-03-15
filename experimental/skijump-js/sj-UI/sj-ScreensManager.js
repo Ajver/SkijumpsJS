@@ -1,4 +1,5 @@
 
+SJ.on.preload(() => {
 
 SJ.ScreensManager = {}
 
@@ -106,7 +107,7 @@ SJ.ScreensManager.setup = () => {
     const xSeparation = 235;
     const ySeparation = 160;
     const jetPackItem = new SJ.ActiveItem("JetPack", "jetPack.png", "Jet pack wspomagający lot", 200, () => {
-      if(SJ.jumper.isFlying) {
+      if(SJ.jumper.state == SJ.jumper.S.FLYING) {
         SJ.jumper.accelerateWithForce(SJ.V.jumperJumpForce);
         return true;
       }
@@ -248,3 +249,5 @@ SJ.ScreensManager.onMousePress = () => {
 SJ.ScreensManager.onMouseRelease = () => {
   return SJ.ScreensManager.currentScreen.onMouseRelease();
 }
+
+});

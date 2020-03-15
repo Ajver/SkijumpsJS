@@ -34,10 +34,32 @@ SJ._STATE = {
 };
 SJ._state = SJ._STATE.LOADING;
 
+SJ.on = {
+  _preloadCallbacs: [],
+  _loadCallbacs: [],
+
+  preload: callback => {
+    SJ.on._preloadCallbacs.push(callback);
+  },
+
+  load: callback => {
+    SJ.on._loadCallbacs.push(callback);
+  },
+
+  callArray: arrName => {
+    SJ.on[arrName].forEach(callback => {
+      callback()
+    })
+  }
+}
+
 function setup() {
   frameRate(60);
 
   SJ._loadScripts(() => {
+    SJ.on.callArray("_preloadCallbacs")
+    SJ.on.callArray("_loadCallbacs")
+
     const canvas = createCanvas(SJ.SCREEN_WIDTH, SJ.SCREEN_HEIGHT);
     canvas.parent('skijump-game-container');
 
@@ -64,46 +86,61 @@ function draw() {
 }
 
 SJ._loadScripts = (callback) => {
+  SJ._loadEngine(() => {
+    SJ._loadGame(callback);
+  })
+}
+
+SJ._loadEngine = (callback) => {
   const scriptsLoader = new SJ.ScriptsLoader(() => {
     callback();
   });
 
-  scriptsLoader.loadScript('skijump-js/sj-libraries/matter.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-libraries/matter.js');
   
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-CanvasScaler.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-InputManager.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-ImageLoader.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-CanvasScaler.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-InputManager.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-ImageLoader.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-PullingSystem.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-AirSystem.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-LocationManager.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-ParalaxBackground.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-ParalaxLayer.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-CameraPath.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-SpriteSheet.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-VariablesSliders.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-Camera.js');
+
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-Animation.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-AnimationPlayer.js');
+  
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-UI/sj-Screen.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-UI/sj-UI.js');
+
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-items/sj-Item.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-items/sj-ItemsManager.js');
+
+  scriptsLoader.done();
+}
+
+SJ._loadGame = (callback) => {
+  const scriptsLoader = new SJ.ScriptsLoader(() => {
+    callback();
+  });
+
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PadCreator.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-ScoreCounter.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-MessagesManager.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-PullingSystem.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-AirSystem.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-Variables.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-LocationManager.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxBackground.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-ParalaxLayer.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-PlayerData.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-CameraPath.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-SpriteSheet.js');
   scriptsLoader.loadScript('skijump-js/sj-tools/sj-StartWalkSystem.js');
 
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-Animation.js');
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-Animations/sj-AnimationPlayer.js');
-
-  scriptsLoader.loadScript('skijump-js/sj-tools/sj-VariablesSliders.js');
-
-  scriptsLoader.loadScript('skijump-js/sj-objects/sj-Camera.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-Jumper.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-LaunchingPad.js');
   scriptsLoader.loadScript('skijump-js/sj-objects/sj-MainClass.js');
   
-  scriptsLoader.loadScript('skijump-js/sj-UI/sj-Screen.js');
-  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UI.js');
-  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
   scriptsLoader.loadScript('skijump-js/sj-UI/sj-ScreensManager.js');
-
-  scriptsLoader.loadScript('skijump-js/sj-items/sj-Item.js');
-  scriptsLoader.loadScript('skijump-js/sj-items/sj-ItemsManager.js');
+  scriptsLoader.loadScript('skijump-js/sj-UI/sj-UIElements.js');
 
   scriptsLoader.done();
 }
