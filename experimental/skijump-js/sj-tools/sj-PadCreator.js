@@ -39,10 +39,28 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
-    SJ.PadCreator.padImgFront = SJ.V.texturesNames.padFront ? SJ.ImageLoader.load(SJ.V.texturesNames.padFront) : null;
+    SJ.PadCreator._loadForeground()
     SJ.PadCreator.padDescentImg = SJ.ImageLoader.load("descent-part.png");
     SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
     SJ.PadCreator.padEndImg = SJ.ImageLoader.load("pad-end.png");
+  },
+
+  _loadForeground: () => {
+    const foreground = SJ.V.texturesNames.foreground || null;
+
+    if(!foreground) {
+      SJ.PadCreator.padImgFront = null;
+      return;
+    }
+
+    const foregroundArray = new Array(foreground.length);
+    for(let i=0; i<foreground.length; i++) {
+      const data = foreground[i];
+      const layer = new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
+      foregroundArray[i] = layer;
+    }
+
+    SJ.PadCreator.padImgFront = foregroundArray;
   },
 
   createPadBody: () => {

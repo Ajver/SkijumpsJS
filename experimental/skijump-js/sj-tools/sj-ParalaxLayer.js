@@ -60,30 +60,29 @@ class extends SJ.ParalaxObject {
 
 SJ.ParalaxLayer =
 class {
-  constructor(scale, pos, imgNr) {
+  constructor(scale, pos, data) {
     this.camScale = scale;
     this.scale = 1.0;
     this.x = pos.x;
     this.y = pos.y;
     this.images = [];
 
-    this._prepareData(imgNr);
+    this._prepareData(data);
   }
 
-  _prepareData(idx) {
-    const idxBg = SJ.V.texturesNames.background[idx];
-    if(typeof idxBg === "object") {
-      if(idxBg.type === "array") {
-        idxBg.array.forEach(img => {
+  _prepareData(data) {
+    if(typeof data === "object") {
+      if(data.type === "array") {
+        data.array.forEach(img => {
           this._prepareImgFromObject(img);
         });
       }else {
-        this._prepareImgFromObject(idxBg);
+        this._prepareImgFromObject(data);
       }
-    }else if(typeof idxBg === "string") {
-      this.images.push(new SJ.ParalaxImage(idxBg, { x: 0, y: 0 }, 1.0, null));
+    }else if(typeof data === "string") {
+      this.images.push(new SJ.ParalaxImage(data, { x: 0, y: 0 }, 1.0, null));
     }else {
-      print("Error, unexpected type of idxBg:", typeof idxBg);
+      print("Error, unexpected type of data:", typeof data);
     }
   }
 

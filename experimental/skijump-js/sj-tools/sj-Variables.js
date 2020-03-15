@@ -29,7 +29,7 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.airDynamics = v.airDynamics;
     SJ.V.gravity = v.gravity;
     SJ.V.texturesNames.pad = v.texturesNames.pad;
-    SJ.V.texturesNames.padFront = v.texturesNames.padFront || null;
+    SJ.V.texturesNames.foreground = v.texturesNames.foreground || null;
     SJ.V.texturesNames.background = v.texturesNames.background;
     SJ.V.cameraTopPath = v.cameraTopPath;
     SJ.V.cameraBottomPath = v.cameraBottomPath;

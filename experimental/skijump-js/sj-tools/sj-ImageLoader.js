@@ -5,6 +5,21 @@ SJ.ImageLoader.load = (imageName, callback) => {
   return SJ.ImageLoader.loadFromPath('skijump-js/sj-graphics/' + imageName, callback);
 }
 
+SJ.ImageLoader.loadArray = (imageNamesArray, callback) => {
+  const images = new Array(imageNamesArray.length);
+
+  let loaded = 0;
+  for(let i=0; i<images.length; i++) {
+    images[i] = SJ.ImageLoader.load(imageNamesArray[i], () => {
+      if(++loaded >= images.length) {
+        callback(images);
+      }
+    })
+  }
+
+  return images;
+}
+
 SJ.ImageLoader.loadFromPath = (path, callback) => {
   return loadImage(path, callback);
 }

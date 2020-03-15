@@ -95,7 +95,13 @@ class {
       push();
         translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
         scale(SJ.V.padScale);
-        image(this._imgFront, 0, 0);
+        if(this._imgFront.length) {
+          this._imgFront.forEach(layer => {
+            layer.draw(SJ.camera);
+          })
+        }else {
+          image(this._imgFront, 0, 0);
+        }
       pop();
     }
   }

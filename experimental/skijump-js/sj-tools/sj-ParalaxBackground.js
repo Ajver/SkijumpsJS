@@ -13,7 +13,8 @@ class {
         y: 100 
       };
 
-      const layer = new SJ.ParalaxLayer(sc, pos, i);
+      const data = SJ.V.texturesNames.background[i];
+      const layer = new SJ.ParalaxLayer(sc, pos, data);
       this._layers.push(layer);
       sc = lerp(sc, 1.0, step);
     }

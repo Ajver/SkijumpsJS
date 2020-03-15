@@ -16,7 +16,6 @@
   },
   "texturesNames": {
     "pad": "TitanBase/Pad/pad.png",
-    "padFront": "TitanBase/Pad/pad-front.png",
     "background": [
       {
         "name": "TitanBase/droga_skaly/skaly.png",
@@ -214,6 +213,29 @@
           "x": 0,
           "y": -50
         }
+      }
+    ],
+    "foreground": [
+      {
+        "name": "TitanBase/Pad/pad-front.png",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "TitanBase/Pad/skocznia_start_oswietlenie_ss.png",
+        "position": {
+          "x": 230,
+          "y": 465
+        },
+        "spritesheet": {
+          "frameW": 100,
+          "frameH": 116,
+          "duration": 1000,
+          "animation": [ 0, 1 ]
+        },
+        "scale": 0.96
       }
     ]
   },
