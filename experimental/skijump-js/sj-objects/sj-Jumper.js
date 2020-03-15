@@ -305,12 +305,12 @@ class {
         break;
     }
 
-    // if(this.flyState == this.FLY_S.FLY) {
-    //   if(this.body.velocity.y > 0) {
-    //     this.flyState = this.FLY_S.FALLDOWN;
-    //     this.animationPlayer.play("fly-falldown")
-    //   }
-    // }
+    if(this.flyState == this.FLY_S.FLY) {
+      if(this.body.velocity.y > 0) {
+        this.flyState = this.FLY_S.FALLDOWN;
+        this.animationPlayer.play("fly-falldown")
+      }
+    }
     
     if(Matter.Query.collides(this.body, [SJ.pad.body]).length > 0) {
       this.onPadHit();
