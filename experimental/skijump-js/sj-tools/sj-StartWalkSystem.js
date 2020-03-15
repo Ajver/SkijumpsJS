@@ -12,7 +12,7 @@ class {
 
         this.diffPosition = {
             x: 200,
-            y: 20
+            y: 100
         }
         
         const targetPosition = SJ.V.jumperPosition;
