@@ -14,7 +14,7 @@ SJ.V = {
 };
 
 SJ.loadVariablesFromFile = (fileName, callBack) => {
-  loadJSON(document.URL + 'skijump-js/sj-locations/' + fileName, (v) => {
+  loadJSON('skijump-js/sj-locations/' + fileName, (v) => {
     SJ.V.padSize = v.padSize;
     SJ.V.padScale = v.padScale || 1.0;
     SJ.V.textureOffset = v.textureOffset || { x: 0, y: 0 };

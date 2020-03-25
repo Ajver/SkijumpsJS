@@ -181,6 +181,20 @@
               "animation": [ 0, 1, 2, 1 ]
             },
             "position": {
+              "x": 3850,
+              "y": 2000
+            },
+            "scale": 1.4
+          },
+          {
+            "name": "TitanBase/droga_skaly/antena_przesunieta.png",
+            "spritesheet": {
+              "frameW": 405,
+              "frameH": 874,
+              "duration": 1000,
+              "animation": [ 0, 1, 2, 1 ]
+            },
+            "position": {
               "x": 1800,
               "y": 800
             },
@@ -204,6 +218,34 @@
               "animation": [ 0, 1, 0, 0, 0, 0, 0, 0 ]
             },
             "scale": 0.6
+          },
+          {
+            "name": "TitanBase/tlo/wieza_ss.png",
+            "position": {
+              "x": 1400,
+              "y": 500
+            },
+            "spritesheet": {
+              "frameW": 236,
+              "frameH": 842,
+              "duration": 1600,
+              "animation": [ 0, 1, 0, 0, 0, 0, 0, 0 ]
+            },
+            "scale": 0.64
+          },
+          {
+            "name": "TitanBase/tlo/wieza_swiatlo.png",
+            "position": {
+              "x": 1385,
+              "y": 430
+            },
+            "spritesheet": {
+              "frameW": 242,
+              "frameH": 243,
+              "duration": 1400,
+              "animation": [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]
+            },
+            "scale": 0.8
           }
         ]
       },
