@@ -7,6 +7,9 @@ class {
   
     this._img = SJ.PadCreator.padImg;
     this._imgFront = SJ.PadCreator.padImgFront;
+    this._middleground = SJ.PadCreator.middleground;
+
+    console.log(this._middleground)
 
     this._parts = SJ.PadCreator.createPadParts();
   
@@ -77,6 +80,16 @@ class {
         translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
         scale(SJ.V.padScale);
         image(this._img, 0, 0);
+
+        if(this._middleground) {
+          if(this._middleground.length) {
+            this._middleground.forEach(layer => {
+              layer.draw(SJ.camera);
+            })
+          }else {
+            image(this._middleground, 0, 0);
+          }
+        }
       pop();
       
       // this._parts.forEach(part => {

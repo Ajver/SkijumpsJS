@@ -16,14 +16,14 @@ class {
     const diffY = p2.y - p1.y;
     this.rotate = atan2(diffY, diffX);
     
-    this.offset = { x: -10, y: -26*this.scale};
+    this.offset = { x: -10, y: -26*this.scale };
   }
 
   draw() {
     push();
       translate(this.x, this.y);
       rotate(this.rotate);
-      translate(this.offset.x, this.offset.y)
+      translate(this.offset.x, this.offset.y);
       scale(this.scale);
       image(this.img, 0, 0);
     pop();
@@ -39,10 +39,26 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
+    SJ.PadCreator._loadMiddleground()
     SJ.PadCreator._loadForeground()
-    SJ.PadCreator.padDescentImg = SJ.ImageLoader.load("descent-part.png");
-    SJ.PadCreator.padPartImg = SJ.ImageLoader.load("pad-part.png");
-    SJ.PadCreator.padEndImg = SJ.ImageLoader.load("pad-end.png");
+  },
+
+  _loadMiddleground: () => {
+    const middleground = SJ.V.texturesNames.middleground || null;
+
+    if(!middleground) {
+      SJ.PadCreator.middleground = null;
+      return;
+    }
+
+    const middlegroundArray = new Array(middleground.length);
+    for(let i=0; i<middleground.length; i++) {
+      const data = middleground[i];
+      const layer = new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
+      middlegroundArray[i] = layer;
+    }
+
+    SJ.PadCreator.middleground = middlegroundArray;
   },
 
   _loadForeground: () => {
@@ -64,8 +80,6 @@ SJ.PadCreator = {
   },
 
   createPadBody: () => {
-    // SJ.V.padCollisionPoints = SJ.PadCreator.generatePadCollisionPoints();
-    // print(SJ.V.padCollisionPoints);
     SJ.V.fallLine = SJ.V.padCollisionPoints[SJ.V.padCollisionPoints.length-2].x;
 
     return Matter.Body.create({

@@ -76,20 +76,6 @@
             "scale": 0.8
           },
           {
-            "name": "TitanBase/tlo/statek_oswietlenie_ss.png",
-            "spritesheet": {
-              "frameW": 720,
-              "frameH": 413,
-              "duration": 2000,
-              "animation": [ 0, 1 ]
-            },
-            "position": {
-              "x": 2960,
-              "y": 1870
-            },
-            "scale": 0.8
-          },
-          {
             "name": "TitanBase/tlo/statek_szyby_swiatlo.png",
             "spritesheet": {
               "frameW": 420,
@@ -100,6 +86,34 @@
             "position": {
               "x": 3190,
               "y": 1035
+            },
+            "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/statek_oswietlenie_ss.png",
+            "spritesheet": {
+              "frameW": 720,
+              "frameH": 413,
+              "duration": 2000,
+              "animation": [ 0, 1 ]
+            },
+            "position": {
+              "x": 2950,
+              "y": 1850
+            },
+            "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/statek_obrecz_ss.png",
+            "spritesheet": {
+              "frameW": 402,
+              "frameH": 237,
+              "duration": 1000,
+              "animation": [ 0, 1, 0, 0 ]
+            },
+            "position": {
+              "x": 3100,
+              "y": 1648
             },
             "scale": 0.8
           },
@@ -257,6 +271,22 @@
         }
       }
     ],
+    "middleground": [
+      {
+        "name": "TitanBase/Pad/skocznia_start_oswietlenie_ss.png",
+        "position": {
+          "x": 225,
+          "y": 455
+        },
+        "spritesheet": {
+          "frameW": 100,
+          "frameH": 116,
+          "duration": 5000,
+          "animation": [ 1, 0, 0, 0, 0, 0 ]
+        },
+        "scale": 0.96
+      }
+    ],
     "foreground": [
       {
         "name": "TitanBase/Pad/pad-front.png",
@@ -266,18 +296,11 @@
         }
       },
       {
-        "name": "TitanBase/Pad/skocznia_start_oswietlenie_ss.png",
+        "name": "TitanBase/Pad/skocznia2_swiatlo.png",
         "position": {
-          "x": 230,
-          "y": 465
-        },
-        "spritesheet": {
-          "frameW": 100,
-          "frameH": 116,
-          "duration": 1000,
-          "animation": [ 0, 1 ]
-        },
-        "scale": 0.96
+          "x": 170,
+          "y": 490
+        }
       }
     ]
   },
