@@ -1,12 +1,49 @@
 
 const SPACE = 32;
 
+// Little light following mouse.
+const flyMode = false;
+const arr = []
+
+const posss = () => {
+  const pos = SJ.camera.screenToWorld(createVector(
+    SJ.mouseScreenX,
+    SJ.mouseScreenY
+  ));
+
+  pos.x += -28;
+  pos.y += -26;
+
+  pos.x -= SJ.V.textureOffset.x;
+  pos.y -= SJ.V.textureOffset.y;
+
+  pos.x /= SJ.V.padScale
+  pos.y /= SJ.V.padScale
+
+  pos.x = Math.round(pos.x)
+  pos.y = Math.round(pos.y)
+
+  return pos;
+}
+
 const onKeyPressed = () => { 
   if(SJ._state != SJ._STATE.GAME) { return; }
 
   SJ.jumper.onKeyPressed();
   SJ.pad.onKeyPressed();
   SJ.itemsManager.onKeyPressed();
+
+  if (keyCode == CONTROL) {
+    const pos = posss();
+    arr.push(pos);
+    print(pos);
+  }else if(keyCode == SHIFT) {
+    let str = ""
+    arr.forEach(pos => {
+      str += `{"x":${pos.x},"y":${pos.y}},\n`;
+    })
+    print(str);
+  }
 }
 
 const onKeyReleased = () => {
@@ -43,14 +80,12 @@ const onMouseMoved = () => {
   if(SJ._state == SJ._STATE.LOADING) { return; }
 
   updateMouseScreenPosition();
-  
-  // const pos = SJ.camera.screenToWorld(createVector(
-  //   SJ.mouseScreenX,
-  //   SJ.mouseScreenY
-  // ));
-  // print(pos);
 
   SJ.ScreensManager.onMouseMove();
+
+  // const pos = posss();
+  // SJ.fly.x = pos.x;
+  // SJ.fly.y = pos.y;
 }
 
 const onMouseDragged = () => {

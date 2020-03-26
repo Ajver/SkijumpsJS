@@ -9,8 +9,6 @@ class {
     this._imgFront = SJ.PadCreator.padImgFront;
     this._middleground = SJ.PadCreator.middleground;
 
-    console.log(this._middleground)
-
     this._parts = SJ.PadCreator.createPadParts();
   
     this.restart();
@@ -90,11 +88,14 @@ class {
             image(this._middleground, 0, 0);
           }
         }
+
+        if(flyMode) {
+          const pos = posss();
+          SJ.fly.x = pos.x;
+          SJ.fly.y = pos.y;
+          SJ.fly.draw()
+        }
       pop();
-      
-      // this._parts.forEach(part => {
-      //   part.draw();
-      // });
 
       this._drawPullingPoints();
       this._drawCollisionLines();

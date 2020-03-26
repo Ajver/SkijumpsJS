@@ -30,6 +30,11 @@ class {
 
     this._isRunning = true;
     this._wantShowJumpEndPopup = false;
+
+    if(flyMode) {
+      const texture = SJ.ImageLoader.load("TitanBase/Pad/white_light.png");
+      SJ.fly = new Light(0, 0, texture)
+    }
   }
 
   setRunning(flag) {

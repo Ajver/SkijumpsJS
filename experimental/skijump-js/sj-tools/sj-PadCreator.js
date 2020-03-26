@@ -44,39 +44,34 @@ SJ.PadCreator = {
   },
 
   _loadMiddleground: () => {
-    const middleground = SJ.V.texturesNames.middleground || null;
-
-    if(!middleground) {
-      SJ.PadCreator.middleground = null;
-      return;
-    }
-
-    const middlegroundArray = new Array(middleground.length);
-    for(let i=0; i<middleground.length; i++) {
-      const data = middleground[i];
-      const layer = new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
-      middlegroundArray[i] = layer;
-    }
-
-    SJ.PadCreator.middleground = middlegroundArray;
+    SJ.PadCreator.middleground = SJ.PadCreator._loadDisplayLayer(SJ.V.texturesNames.middleground)
   },
 
   _loadForeground: () => {
-    const foreground = SJ.V.texturesNames.foreground || null;
+    SJ.PadCreator.padImgFront = SJ.PadCreator._loadDisplayLayer(SJ.V.texturesNames.foreground)
+  },
 
-    if(!foreground) {
-      SJ.PadCreator.padImgFront = null;
-      return;
+  _loadDisplayLayer: (layerData) => {
+    if(!layerData) {
+      return null;
     }
 
-    const foregroundArray = new Array(foreground.length);
-    for(let i=0; i<foreground.length; i++) {
-      const data = foreground[i];
-      const layer = new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
-      foregroundArray[i] = layer;
+    const displayLayerArray = new Array(layerData.length);
+    for(let i=0; i<layerData.length; i++) {
+      const data = layerData[i];
+      const layer = SJ.PadCreator._loadLayerFromData(data);
+      displayLayerArray[i] = layer;
     }
 
-    SJ.PadCreator.padImgFront = foregroundArray;
+    return displayLayerArray;
+  },
+
+  _loadLayerFromData: (data) => {
+    if(data.type === "lightPath") {
+      return new SJ.LightPath(data.lightTexture, data.path, 1000);
+    }else {
+      return new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
+    }
   },
 
   createPadBody: () => {
