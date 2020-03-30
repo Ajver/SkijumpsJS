@@ -79,7 +79,7 @@
             "name": "TitanBase/tlo/statek_szyby_swiatlo.png",
             "spritesheet": {
               "frameW": 420,
-              "frameH": 530,
+              "frameH": 620,
               "duration": 2000,
               "animation": [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0 ]
             },
@@ -94,8 +94,8 @@
             "spritesheet": {
               "frameW": 720,
               "frameH": 413,
-              "duration": 2000,
-              "animation": [ 0, 1 ]
+              "duration": 1000,
+              "animation": [ 0, 1, 0 ]
             },
             "position": {
               "x": 2950,
@@ -191,8 +191,8 @@
             "spritesheet": {
               "frameW": 405,
               "frameH": 874,
-              "duration": 1000,
-              "animation": [ 0, 1, 2, 1 ]
+              "duration": 2000,
+              "animation": [ 0, 1, 2, 4, 3, 4, 5, 1 ]
             },
             "position": {
               "x": 3850,
@@ -205,8 +205,8 @@
             "spritesheet": {
               "frameW": 405,
               "frameH": 874,
-              "duration": 1000,
-              "animation": [ 0, 1, 2, 1 ]
+              "duration": 2500,
+              "animation": [ 0, 1, 2, 4, 3, 4, 5, 1 ]
             },
             "position": {
               "x": 1800,
@@ -281,8 +281,8 @@
         "spritesheet": {
           "frameW": 100,
           "frameH": 116,
-          "duration": 5000,
-          "animation": [ 1, 0, 0, 0, 0, 0 ]
+          "duration": 2000,
+          "animation": [ 1, 0, 0, 0 ]
         },
         "scale": 0.96
       },
@@ -296,7 +296,8 @@
           {"x":435,"y":634},
           {"x":457,"y":657},
           {"x":479,"y":678}
-        ]
+        ],
+        "duration": 1000
       },
       {
         "type": "lightPath",
@@ -322,7 +323,8 @@
           {"x":1719,"y":1283},
           {"x":1744,"y":1297},
           {"x":1771,"y":1313}
-        ]
+        ],
+        "duration": 2000
       },
       {
         "type": "lightPath",
@@ -356,7 +358,8 @@
           {"x":4060,"y":3168},
           {"x":4084,"y":3182},
           {"x":4107,"y":3198}
-        ]
+        ],
+        "duration": 3000
       },
       {
         "type": "lightPath",
@@ -378,7 +381,8 @@
           {"x":5647,"y":3469},
           {"x":5684,"y":3466},
           {"x":5725,"y":3463}
-        ]
+        ],
+        "duration": 2000
       }
     ],
     "foreground": [
@@ -406,7 +410,8 @@
           {"x":360,"y":659},
           {"x":380,"y":680},
           {"x":402,"y":702}
-        ]
+        ],
+        "duration": 1000
       },
       {
         "type": "lightPath",
@@ -432,7 +437,8 @@
           {"x":1649,"y":1343},
           {"x":1675,"y":1358},
           {"x":1701,"y":1370}
-        ]
+        ],
+        "duration": 2000
       },
       {
         "type": "lightPath",
@@ -466,7 +472,8 @@
           {"x":3972,"y":3219},
           {"x":3995,"y":3235},
           {"x":4019,"y":3253}
-        ]
+        ],
+        "duration": 3000
       },
       {
         "type": "lightPath",
@@ -488,7 +495,8 @@
           {"x":5611,"y":3566},
           {"x":5645,"y":3567},
           {"x":5690,"y":3568}
-        ]
+        ],
+        "duration": 2000
       }
     ]
   },
