@@ -28,6 +28,7 @@ class {
       DOWN     : 2, // Downhill
       FLYING   : 3, // Flying
       LANDED   : 5, // Landed on pad (or failed)
+      END      : 6, // Landed, hited end of the pad (stopped)
     }
     this.state = this.S.START
 

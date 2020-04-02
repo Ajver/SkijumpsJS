@@ -31,6 +31,11 @@ class {
     if(jumperX >= SJ.V.jumpPoint && jumperX <= SJ.V.jumpEndPoint) {
       SJ.pad._canJump = true;
       SJ.MessagesManager.canJump();
+    }else {
+      const lastPoint = this.pullingArray[this.pullingArray.length-1].x - 100;
+      if(jumperX >= lastPoint) {
+        return false;
+      }
     }
     
     if(!SJ.jumper.isSlowingDown) {

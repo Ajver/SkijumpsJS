@@ -16,6 +16,7 @@ class {
 
   restart() {
     this._canJump = true;
+    this.afterFly = false;
     this._pullingSystem = new SJ.PullingSystem();
   }
   
@@ -30,7 +31,14 @@ class {
         this.setJumperVelocity();
       }else {
         // When collision points ends
-        this.endOfPulling();
+        if(this.afterFly) {
+          SJ.jumper.body.velocity.x = 0;
+          SJ.jumper.body.velocity.y = 0;
+          SJ.jumper.state = S.END;
+        }else {
+          // Jump
+          this.endOfPulling();
+        }
       }
     }
   }
@@ -48,6 +56,7 @@ class {
     SJ.jumper.fly();
     SJ.jumper.animationPlayer.play("jump");
     SJ.MessagesManager.isFlying();
+    this.afterFly = true;
   }
 
   startPullingJumper() {
@@ -75,7 +84,7 @@ class {
       fill(50, 50, 255, 64);
       
       push();
-        translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y)
+        translate(SJ.V.textureOffset.x, SJ.V.textureOffset.y);
         scale(SJ.V.padScale);
         image(this._img, 0, 0);
 

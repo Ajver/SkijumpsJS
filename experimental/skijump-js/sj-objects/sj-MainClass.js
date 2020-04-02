@@ -43,9 +43,9 @@ class {
     this.screenLayer = [];
     SJ.V.screenLayer.forEach(data => {
       if(data.type === "particlesystem") {
-        print("Still Particle system");
-        if(data.system === "wind")
-        this.screenLayer.push(new SJ.WindParticleSystem());
+        if(data.system === "wind") {
+          this.screenLayer.push(new SJ.WindParticleSystem());
+        }
       }
     })
   }

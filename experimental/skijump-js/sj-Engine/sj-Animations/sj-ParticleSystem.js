@@ -72,8 +72,8 @@ class extends SJ.ParticleSystem {
             }
 
             draw() {
-                strokeWeight(3);
-                stroke(20, 10, 5, (this.lifeLeft / this.lifeTime) * 255);
+                strokeWeight(2);
+                stroke(20, 10, 5, 128 + (this.lifeLeft / this.lifeTime) * 127);
                 push();
                     translate(this.position.x, this.position.y);
                     line(0, 0, 0.3*this.velocity.x, 0.3*this.velocity.y)
