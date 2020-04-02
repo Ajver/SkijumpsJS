@@ -114,6 +114,7 @@ SJ._loadEngine = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-Animation.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-AnimationPlayer.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-LightPath.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-ParticleSystem.js');
   
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-UI/sj-Screen.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-UI/sj-UI.js');

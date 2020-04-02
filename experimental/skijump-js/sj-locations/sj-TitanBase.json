@@ -500,6 +500,16 @@
       }
     ]
   },
+  "screenLayer": [
+    {
+      "type": "particlesystem",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "system": "wind"
+    }
+  ],
   "padScale": 1.69,
   "cameraTopPath": [
     {"x":216.0,"y":708.0},

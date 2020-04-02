@@ -32,6 +32,7 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.texturesNames.foreground = v.texturesNames.foreground || null;
     SJ.V.texturesNames.middleground = v.texturesNames.middleground || null;
     SJ.V.texturesNames.background = v.texturesNames.background;
+    SJ.V.screenLayer = v.screenLayer || [];
     SJ.V.cameraTopPath = v.cameraTopPath;
     SJ.V.cameraBottomPath = v.cameraBottomPath;
     SJ.V.jumpStartPoint = v.jumpStartPoint;

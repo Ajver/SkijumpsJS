@@ -13,6 +13,8 @@ class {
     this._createJumper();
     this._createScoreCounter();
     this._createAirSystem();
+
+    this._prepareScreenLayer();
     
     SJ.itemsManager.resetActiveItems();
 
@@ -35,6 +37,17 @@ class {
       const texture = SJ.ImageLoader.load("TitanBase/Pad/white_light.png");
       SJ.fly = new Light(0, 0, texture)
     }
+  }
+
+  _prepareScreenLayer() {
+    this.screenLayer = [];
+    SJ.V.screenLayer.forEach(data => {
+      if(data.type === "particlesystem") {
+        print("Still Particle system");
+        if(data.system === "wind")
+        this.screenLayer.push(new SJ.WindParticleSystem());
+      }
+    })
   }
 
   setRunning(flag) {
@@ -69,9 +82,13 @@ class {
 
   _fillDrawableObjectsArray() {
     this._drawableObjects = [];
-    this._drawableObjects.push(SJ.paralaxBackground);
-    this._drawableObjects.push(SJ.pad);
-    this._drawableObjects.push(SJ.jumper);
+    this.appendDrawable(SJ.paralaxBackground);
+    this.appendDrawable(SJ.pad);
+    this.appendDrawable(SJ.jumper);
+  }
+
+  appendDrawable(drawable) {
+    this._drawableObjects.push(drawable);
   }
 
   draw() {
@@ -89,6 +106,8 @@ class {
       SJ.pad.drawFront();
       // SJ.camera.drawPath();
     pop();
+
+    this._drawScrenLayer();
   }
 
   _update() {
@@ -97,6 +116,12 @@ class {
     SJ.camera.update();
     SJ.airSystem.update();
     SJ.scoreCounter.update();
+  }
+
+  _drawScrenLayer() {
+    this.screenLayer.forEach(element => {
+      element.draw();
+    })
   }
 
   _restartGame() {

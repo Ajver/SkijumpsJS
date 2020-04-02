@@ -69,7 +69,7 @@ SJ.PadCreator = {
   _loadLayerFromData: (data) => {
     if(data.type === "lightPath") {
       return new SJ.LightPath(data.lightTexture, data.path, data.duration);
-    }else {
+    } else {
       return new SJ.ParalaxLayer(1.0, { x: 0, y: 0 }, data);
     }
   },
