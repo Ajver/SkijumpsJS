@@ -65,6 +65,11 @@ class extends SJ.ParticleSystem {
                 super(position)
                 this.dyingSpeed = 0.08;
 
+                this.color = ([
+                    { r: 20, g: 10, b: 5 },
+                    { r: 138, g: 131, b: 127 }
+                ])[floor(random() * 2)];
+
                 this.acceleration = createVector(
                     -4 + random(-2, 2), 
                     1 + random(-1, 1)
@@ -72,11 +77,13 @@ class extends SJ.ParticleSystem {
             }
 
             draw() {
-                strokeWeight(2);
-                stroke(20, 10, 5, 128 + (this.lifeLeft / this.lifeTime) * 127);
+                strokeWeight(4);
+                const { r, g, b } = this.color;
+                stroke(r, g, b, 150 + (this.lifeLeft / this.lifeTime) * 64);
                 push();
                     translate(this.position.x, this.position.y);
-                    line(0, 0, 0.3*this.velocity.x, 0.3*this.velocity.y)
+                    const lengthMult = 0.5;
+                    line(0, 0, lengthMult*this.velocity.x, lengthMult*this.velocity.y)
                 pop();
 
                 this.acceleration.x += random(-0.1, 0.1);
@@ -93,11 +100,16 @@ class extends SJ.ParticleSystem {
         super.addParticle(createVector(
             random() * (SJ.SCREEN_WIDTH + 200),
             random() * (SJ.SCREEN_HEIGHT + 200) - 200
-        ))
+        ));
+
+        super.addParticle(createVector(
+            random() * (SJ.SCREEN_WIDTH + 200),
+            random() * (SJ.SCREEN_HEIGHT + 200) - 200
+        ));
     }
 
     draw() {
-        for(let i=0; i<10; i++) {
+        for(let i=0; i<20; i++) {
             this.addParticle();
         }
         super.draw();
