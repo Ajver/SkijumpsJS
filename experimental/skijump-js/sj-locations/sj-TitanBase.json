@@ -229,7 +229,7 @@
               "frameW": 5130,
               "frameH": 1660,
               "duration": 1600,
-              "animation": [ 0, 1, 0, 0, 0, 0, 0, 0 ]
+              "animation": [ 0, 1, 0, 0, 1, 0, 0, 0 ]
             },
             "scale": 0.6
           },
@@ -243,7 +243,7 @@
               "frameW": 236,
               "frameH": 842,
               "duration": 1600,
-              "animation": [ 0, 1, 0, 0, 0, 0, 0, 0 ]
+              "animation": [ 0, 1, 0, 0, 1, 0, 0, 0 ]
             },
             "scale": 0.64
           },
@@ -264,11 +264,44 @@
         ]
       },
       {
-        "name": "TitanBase/tlo/clouds_merged.png",
-        "position": {
-          "x": 0,
-          "y": -50
-        }
+        "type": "array",
+        "array": [
+          {
+            "name": "TitanBase/tlo/clouds_merged.png",
+            "position": {
+              "x": 0,
+              "y": -50
+            }
+          },
+          {
+            "name": "TitanBase/tlo/lighting1.png",
+            "position": {
+              "x": 2000,
+              "y": 350
+            },
+            "spritesheet": {
+              "frameW": 900,
+              "frameH": 1000,
+              "duration": 1600,
+              "animation": [ 1, 0, 1, 1, 1, 1, 1, 1 ]
+            },
+            "scale": 0.6
+          },
+          {
+            "name": "TitanBase/tlo/lighting2.png",
+            "position": {
+              "x": 1000,
+              "y": 500
+            },
+            "spritesheet": {
+              "frameW": 900,
+              "frameH": 900,
+              "duration": 1600,
+              "animation": [ 1, 1, 1, 1, 0, 1, 1, 1 ]
+            },
+            "scale": 0.6
+          }
+        ]
       }
     ],
     "middleground": [
