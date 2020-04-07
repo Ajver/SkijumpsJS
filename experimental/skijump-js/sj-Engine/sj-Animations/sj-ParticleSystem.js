@@ -60,34 +60,36 @@ SJ.WindParticleSystem =
 class extends SJ.ParticleSystem {
     constructor() {
         super(createVector(0, 0));
+
         this.Particle = class extends SJ.Particle {
             constructor(position) {
                 super(position)
                 this.dyingSpeed = 0.08;
 
                 this.color = ([
-                    { r: 20, g: 10, b: 5 },
-                    { r: 138, g: 131, b: 127 }
-                ])[floor(random() * 2)];
+                    { r: 25, g: 20, b: 10 },
+                    { r: 138, g: 131, b: 127 },
+                    { r: 90, g: 100, b: 50 },
+                    { r: 71, g: 66, b: 56 }
+                ])[floor(random() * 4)];
 
                 this.acceleration = createVector(
-                    -4 + random(-2, 2), 
-                    1 + random(-1, 1)
+                    -7 + random(-3, 3), 
+                    1 + random(-2, 2)
                 );
+                
+                this.weight = random() * 3.0
             }
 
             draw() {
-                strokeWeight(4);
+                strokeWeight(this.weight);
                 const { r, g, b } = this.color;
-                stroke(r, g, b, 150 + (this.lifeLeft / this.lifeTime) * 64);
+                stroke(r, g, b);
                 push();
                     translate(this.position.x, this.position.y);
-                    const lengthMult = 0.5;
+                    const lengthMult = 0.05 * this.weight;
                     line(0, 0, lengthMult*this.velocity.x, lengthMult*this.velocity.y)
                 pop();
-
-                this.acceleration.x += random(-0.1, 0.1);
-                this.acceleration.y += random(-0.1, 0.1);
             }
         }
 

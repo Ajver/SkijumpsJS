@@ -260,6 +260,19 @@
               "animation": [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]
             },
             "scale": 0.8
+          },
+          {
+            "name": "TitanBase/tlo/lighting1.png",
+            "position": {
+              "x": 1300,
+              "y": 400
+            },
+            "spritesheet": {
+              "frameW": 900,
+              "frameH": 1000,
+              "duration": 1600,
+              "animation": [ 1, 1, 1, 1, 0, 1, 1, 1 ]
+            }
           }
         ]
       },
@@ -284,22 +297,20 @@
               "frameH": 1000,
               "duration": 1600,
               "animation": [ 1, 0, 1, 1, 1, 1, 1, 1 ]
-            },
-            "scale": 0.6
+            }
           },
           {
             "name": "TitanBase/tlo/lighting2.png",
             "position": {
-              "x": 1000,
-              "y": 500
+              "x": 200,
+              "y": -100
             },
             "spritesheet": {
               "frameW": 900,
               "frameH": 900,
               "duration": 1600,
               "animation": [ 1, 1, 1, 1, 0, 1, 1, 1 ]
-            },
-            "scale": 0.6
+            }
           }
         ]
       }
