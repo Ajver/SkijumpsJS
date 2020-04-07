@@ -5,7 +5,7 @@ const SJ = {};
 SJ.UI = {};
 
 // Game Version
-SJ.VERSION = "0.26.3";
+SJ.VERSION = "0.26.5";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -73,9 +73,9 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("TitanBase");
+    // SJ._startGame("TitanBase");
     // SJ._startGame("CyberCity");
     // SJ._startGame("StarStation");
   }); 
