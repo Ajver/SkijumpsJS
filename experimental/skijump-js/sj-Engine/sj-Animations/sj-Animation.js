@@ -195,7 +195,6 @@ class extends SJ.Timer {
     let toReturn = 0;
     let toBeat = this.framesDurationTimes[0];
 
-    // let i = 1;
     let currentAnimationProgressInMilliseconds = this.getProgress() * this.getDuration();
 
     for(let i = 1; i < this.framesDurationTimes.length;i++){
