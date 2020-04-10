@@ -179,18 +179,18 @@ class extends SJ.Timer {
 
   draw() {
 
-      let currentFrameIndex = this.getCurrentFrameIndex();
-      let currentFrame = this.getCurrentFrame(currentFrameIndex);
+      let currentFrameIndex = this.getFrameIndex();
+      let currentFrame = this.getFrame(currentFrameIndex);
 
       if(currentFrame) {
         image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
       }
   }
 
-  getCurrentFrame(currentFrameIndex) {
+  getFrame(currentFrameIndex) {
     return this.frames[currentFrameIndex];
   }
-  getCurrentFrameIndex() {
+  getFrameIndex() {
 
     let toReturn = 0;
     let toBeat = this.framesDurationTimes[0];
