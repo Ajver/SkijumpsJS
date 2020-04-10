@@ -213,6 +213,133 @@
               "y": 800
             },
             "scale": 1.6
+          },
+          {
+            "scale":1.4,
+            "position":{
+              "x": 2850,
+              "y": 800
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":60,
+                "subrect":{
+                  "x":1470,
+                  "y":0,
+                  "w":450,
+                  "h":980
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":50
+              },
+              {
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":80,
+                "subrect":{
+                  "x":1470,
+                  "y":0,
+                  "w":450,
+                  "h":980
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":500
+              },
+              {
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":60,
+                "subrect":{
+                  "x":2400,
+                  "y":0,
+                  "w":400,
+                  "h":660
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":50
+              },
+              {
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":80,
+                "subrect":{
+                  "x":2400,
+                  "y":0,
+                  "w":400,
+                  "h":660
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":1000
+              }
+            ]
+          },
+          {
+            "scale":0.6,
+            "position": {
+              "x": 3900,
+              "y": 2000
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"TitanBase/tlo/lighting2.png",
+                "frameDuration":50
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":70
+              },
+              {
+                "frameSourceImage":"TitanBase/tlo/lighting2.png",
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":3000
+              }
+            ]
+          },
+          { 
+            "scale":0.3,
+            "position": {
+              "x": 3800,
+              "y": 1900
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 100,
+                "subrect":{
+                  "x":690,
+                  "y":0,
+                  "w":310,
+                  "h":830
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 100,
+                "subrect":{
+                  "x":690,
+                  "y":0,
+                  "w":310,
+                  "h":830
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":2000
+              }
+            ]
           }
         ]
       },
@@ -262,17 +389,28 @@
             "scale": 0.8
           },
           {
-            "name": "TitanBase/tlo/lighting1.png",
             "position": {
               "x": 1300,
               "y": 400
             },
-            "spritesheet": {
-              "frameW": 900,
-              "frameH": 1000,
-              "duration": 1600,
-              "animation": [ 1, 1, 1, 1, 0, 1, 1, 1 ]
-            }
+            "keyFrames":[
+              {
+                "frameSourceImage":"TitanBase/tlo/lighting2.png",
+                "frameDuration":50
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":70
+              },
+              {
+                "frameSourceImage":"TitanBase/tlo/lighting2.png",
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":2000
+              }
+            ]
           }
         ]
       },
@@ -287,17 +425,40 @@
             }
           },
           {
-            "name": "TitanBase/tlo/lighting1.png",
             "position": {
               "x": 2000,
               "y": 350
             },
-            "spritesheet": {
-              "frameW": 900,
-              "frameH": 1000,
-              "duration": 1600,
-              "animation": [ 1, 0, 1, 1, 1, 1, 1, 1 ]
-            }
+            "keyFrames":[
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 100,
+                "subrect":{
+                  "x":690,
+                  "y":0,
+                  "w":310,
+                  "h":830
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 100,
+                "subrect":{
+                  "x":690,
+                  "y":0,
+                  "w":310,
+                  "h":830
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":2000
+              }
+            ]
           },
           {
             "scale": 1.0,
@@ -307,16 +468,32 @@
             },
             "keyFrames": [
               {
-                "frameSourceImage": "TitanBase/tlo/lighting2.png",
-                "frameDuration": 30
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 60,
+                "subrect":{
+                  "x":0,
+                  "y":0,
+                  "w":615,
+                  "h":840
+                },
+                "translate":{
+                  "x":200,
+                  "y":100
+                }
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 40
+                "frameDuration": 60
               },
               {
-                "frameSourceImage": "TitanBase/tlo/lighting2.png",
-                "frameDuration": 60
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 80,
+                "subrect":{
+                  "x":0,
+                  "y":0,
+                  "w":615,
+                  "h":840
+                }
               },
               {
                 "frameSourceImage": null,
@@ -340,7 +517,7 @@
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 3000
+                "frameDuration": 2000
               }
             ]
           }

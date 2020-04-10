@@ -66,6 +66,7 @@ class extends SJ.ParalaxObject {
     const framesDurationTimes = [];
     const framesTimesFromBeginOfAnimation = [];
     const framesTranslates = [];
+    const framesSubrects = [];
     let wholeAnimationDuration = 0;
 
     const emptyImage = createImage(1,1);
@@ -79,21 +80,33 @@ class extends SJ.ParalaxObject {
         frames.push(SJ.ImageLoader.load(frameId.frameSourceImage));
       else
         frames.push(emptyImage);
-    });
 
-    keyFrames.forEach(frameId => {
       framesDurationTimes.push(frameId.frameDuration);
+
       framesTimesFromBeginOfAnimation.push(wholeAnimationDuration);
+
       wholeAnimationDuration+=frameId.frameDuration;
-    });
-    
-    keyFrames.forEach(frameId => {
+
       if(frameId.translate)
         translate = frameId.translate;
       framesTranslates.push(translate);
+
+      if(frameId.subrect)
+        framesSubrects.push(frameId.subrect);
+      else
+        framesSubrects.push(null);
+
     });
 
-    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,wholeAnimationDuration,true,true,true);
+    keyFrames.forEach(frameId => {
+      
+    });
+    
+    keyFrames.forEach(frameId => {
+      
+    });
+
+    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,framesSubrects,wholeAnimationDuration,true,true,true);
     
   }
   _drawSelf() {
