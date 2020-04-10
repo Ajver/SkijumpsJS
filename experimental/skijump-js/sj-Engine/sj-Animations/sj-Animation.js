@@ -177,17 +177,18 @@ class extends SJ.Timer {
     this.framesTimesFromBeginOfAnimation = framesTimesFromBeginOfAnimation;
   }
 
-  draw(x = this.framesTranslates[this.getCurrentFrameIndex()].x, y = this.framesTranslates[this.getCurrentFrameIndex()].y) {
+  draw() {
 
-      let currentFrame = this.getCurrentFrame();
+      let currentFrameIndex = this.getCurrentFrameIndex();
+      let currentFrame = this.getCurrentFrame(currentFrameIndex);
 
       if(currentFrame) {
-        image(currentFrame, x, y);
+        image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
       }
   }
 
-  getCurrentFrame() {
-    return this.frames[this.getCurrentFrameIndex()];
+  getCurrentFrame(currentFrameIndex) {
+    return this.frames[currentFrameIndex];
   }
   getCurrentFrameIndex() {
 
@@ -203,7 +204,6 @@ class extends SJ.Timer {
         toBeat += this.framesDurationTimes[i];
       }
     }
-    // console.log(toReturn);
     return toReturn;
   }
 
