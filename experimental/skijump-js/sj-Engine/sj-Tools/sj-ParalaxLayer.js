@@ -62,9 +62,12 @@ class extends SJ.ParalaxObject {
   constructor(keyFrames,pos,scale){
     super(pos,scale);
 
-    // let img = 0;
-
     let wholeAnimationDuration = 0;
+
+    let translate = {
+      x: 0,
+      y: 0
+    }
 
     const frames = [];
     keyFrames.forEach(frameId => {
@@ -83,9 +86,11 @@ class extends SJ.ParalaxObject {
     const framesTranslates = [];
     keyFrames.forEach(frameId => {
       if(frameId.translate)
-        framesTranslates.push(frameId.translate);
-      else
-      framesTranslates.push(null);
+        translate = frameId.translate;
+
+      console.log(translate.x);
+      console.log(translate.y);
+      framesTranslates.push(translate);
     });
 
     this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,wholeAnimationDuration,true,true,true);

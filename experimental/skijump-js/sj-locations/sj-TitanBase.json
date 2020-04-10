@@ -308,67 +308,39 @@
             "keyFrames": [
               {
                 "frameSourceImage": "TitanBase/tlo/lighting2.png",
-                "frameDuration": 30,
-                "translate":{
-                  "x":10,
-                  "y":0
-                }
+                "frameDuration": 30
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 40,
-                "translate":{
-                  "x":0,
-                  "y":0
-                }
+                "frameDuration": 40
               },
               {
                 "frameSourceImage": "TitanBase/tlo/lighting2.png",
-                "frameDuration": 60,
-                "translate":{
-                  "x":10,
-                  "y":0
-                }
+                "frameDuration": 60
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 400,
-                "translate":{
-                  "x":0,
-                  "y":0
-                }
+                "frameDuration": 400
               },
               {
                 "frameSourceImage": "TitanBase/tlo/lighting1.png",
                 "frameDuration": 30,
                 "translate":{
-                  "x":200,
+                  "x":300,
                   "y":0
                 }
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 40,
-                "translate":{
-                  "x":0,
-                  "y":0
-                }
+                "frameDuration": 40
               },
               {
                 "frameSourceImage": "TitanBase/tlo/lighting1.png",
-                "frameDuration": 60,
-                "translate":{
-                  "x":200,
-                  "y":0
-                }
+                "frameDuration": 60
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 3000,
-                "translate":{
-                  "x":0,
-                  "y":0
-                }
+                "frameDuration": 3000
               }
             ]
           }
