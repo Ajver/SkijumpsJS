@@ -165,3 +165,45 @@ class extends SJ.Timer {
     return floor(max(min(this.getProgress() * length, length-1), 0));
   }
 }
+
+SJ.KeyFramesAnimation = 
+class extends SJ.Timer {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,duration,autostart=false, loopMode=false, resetAtEnd=false) {
+    super(duration, autostart, loopMode, resetAtEnd); 
+    
+    this.frames = frames;
+    this.framesDurationTimes = framesDurationTimes;
+    this.framesTranslates = framesTranslates;
+    this.framesTimesFromBeginOfAnimation = framesTimesFromBeginOfAnimation;
+  }
+
+  draw() {
+
+      let currentFrameIndex = this.getFrameIndex();
+      let currentFrame = this.getFrame(currentFrameIndex);
+
+      if(currentFrame) {
+        image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
+      }
+  }
+
+  getFrame(currentFrameIndex) {
+    return this.frames[currentFrameIndex];
+  }
+  getFrameIndex() {
+
+    let toReturn = 0;
+    let toBeat = this.framesDurationTimes[0];
+
+    let currentAnimationProgressInMilliseconds = this.getProgress() * this.getDuration();
+
+    for(let i = 1; i < this.framesDurationTimes.length;i++){
+      if(currentAnimationProgressInMilliseconds > toBeat){
+        toReturn++;
+        toBeat += this.framesDurationTimes[i];
+      }
+    }
+    return toReturn;
+  }
+
+}
