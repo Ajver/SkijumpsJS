@@ -57,6 +57,44 @@ class extends SJ.ParalaxObject {
     this.animation.draw();
   }
 }
+SJ.ParalaxKeyFrames=
+class extends SJ.ParalaxObject {
+  constructor(keyFrames,pos,scale){
+    super(pos,scale);
+
+    // let img = 0;
+
+    let wholeAnimationDuration = 0;
+
+    const frames = [];
+    keyFrames.forEach(frameId => {
+      let img = SJ.ImageLoader.load(frameId.frameSourceImage);
+      frames.push(img);
+    });
+
+    const framesDurationTimes = [];
+    const framesTimesFromBeginOfAnimation = [];
+    keyFrames.forEach(frameId => {
+      framesDurationTimes.push(frameId.frameDuration);
+      framesTimesFromBeginOfAnimation.push(wholeAnimationDuration);
+      wholeAnimationDuration+=frameId.frameDuration;
+    });
+
+    const framesTranslates = [];
+    keyFrames.forEach(frameId => {
+      if(frameId.translate)
+        framesTranslates.push(frameId.translate);
+      else
+      framesTranslates.push(null);
+    });
+
+    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,wholeAnimationDuration,true,true,true);
+    
+  }
+  _drawSelf() {
+    this.animation.draw();
+  }
+}
 
 SJ.ParalaxLayer =
 class {
@@ -98,9 +136,14 @@ class {
     }
     const scale = idxBg.scale || 1.0;
 
-    let obj = idxBg.spritesheet ?
-      new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet) :
-      new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
+    let obj;
+
+    if(idxBg.spritesheet)
+      obj = new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet);
+    else if(idxBg.keyFrames)
+      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,scale);
+    else
+      obj = new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
 
     this.images.push(obj);
   }

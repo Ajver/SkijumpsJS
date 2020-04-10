@@ -300,17 +300,77 @@
             }
           },
           {
-            "name": "TitanBase/tlo/lighting2.png",
-            "position": {
+            "scale": 1.0,
+            "position":{
               "x": 200,
               "y": -100
             },
-            "spritesheet": {
-              "frameW": 900,
-              "frameH": 900,
-              "duration": 1600,
-              "animation": [ 1, 1, 1, 1, 0, 1, 1, 1 ]
-            }
+            "keyFrames": [
+              {
+                "frameSourceImage": "TitanBase/tlo/lighting2.png",
+                "frameDuration": 30,
+                "translate":{
+                  "x":10,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 40,
+                "translate":{
+                  "x":0,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/lighting2.png",
+                "frameDuration": 60,
+                "translate":{
+                  "x":10,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 400,
+                "translate":{
+                  "x":0,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/lighting1.png",
+                "frameDuration": 30,
+                "translate":{
+                  "x":200,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 40,
+                "translate":{
+                  "x":0,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/lighting1.png",
+                "frameDuration": 60,
+                "translate":{
+                  "x":200,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 3000,
+                "translate":{
+                  "x":0,
+                  "y":0
+                }
+              }
+            ]
           }
         ]
       }
