@@ -169,12 +169,16 @@ class {
       obj = new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet);
     else if(idxBg.keyFrames)
       obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,scale);
-    else if(idxBg.pointsToFollow)
-      obj = new SJ.ParalaxFollowingAnimation(idxBg.name,idxBg.pointsToFollow,imgPos,scale);
+    else if(idxBg.pointsToFollow) {
+      const followingObj = new SJ.ParalaxFollowingAnimation(idxBg.name,idxBg.pointsToFollow,imgPos,scale);
+      SJ.main.appendDrawable(followingObj);
+    }
     else
       obj = new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
 
-    this.images.push(obj);
+    if(obj) {
+      this.images.push(obj);
+    }
   }
 
   draw(cameraPos) {

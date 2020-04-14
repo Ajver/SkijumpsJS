@@ -4,14 +4,16 @@ class {
   constructor() {
     this.body = SJ.PadCreator.createPadBody();
     Matter.World.add(SJ.world, this.body);
-  
-    this._img = SJ.PadCreator.padImg;
-    this._imgFront = SJ.PadCreator.padImgFront;
-    this._middleground = SJ.PadCreator.middleground;
 
     this._parts = SJ.PadCreator.createPadParts();
   
     this.restart();
+  }
+
+  loadImages() {
+    this._img = SJ.PadCreator.padImg;
+    this._imgFront = SJ.PadCreator.padImgFront;
+    this._middleground = SJ.PadCreator.middleground;
   }
 
   restart() {
@@ -91,7 +93,7 @@ class {
         if(this._middleground) {
           if(this._middleground.length) {
             this._middleground.forEach(layer => {
-              layer.draw(SJ.camera);
+              layer.draw({x:0, y:0});
             })
           }else {
             image(this._middleground, 0, 0);

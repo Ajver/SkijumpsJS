@@ -464,10 +464,9 @@
     "foreground": [
       {
         "name":"Menu/dron_idle.gif",
-        "scale": 0.5,
         "position":{
-          "x":100,
-          "y":300
+          "x":-150,
+          "y":-300
         },
         "pointsToFollow":{
           "x":"jumper.body.position.x",
