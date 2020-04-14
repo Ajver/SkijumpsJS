@@ -216,3 +216,33 @@ class extends SJ.Timer {
   }
 
 }
+
+SJ.FollowAnimation=
+class {
+  constructor(imageToDraw,pointToFollow){
+
+    this.imageToDraw = imageToDraw;
+    this.pointToFollow = pointToFollow;
+
+    Object.byString = function(o, s) {
+      s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+      s = s.replace(/^\./, '');           // strip a leading dot
+      var a = s.split('.');
+      for (var i = 0, n = a.length; i < n; ++i) {
+          var k = a[i];
+          if (k in o) {
+              o = o[k];
+          } else {
+              return;
+          }
+      }
+      return o;
+    }
+  }
+
+  draw() {
+    if(this.imageToDraw) {
+      image(this.imageToDraw, Object.byString(SJ, this.pointToFollow.x), Object.byString(SJ, this.pointToFollow.y));
+    }
+  }
+}

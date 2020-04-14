@@ -640,6 +640,17 @@
     ],
     "foreground": [
       {
+        "name":"Menu/dron_idle.gif",
+        "position":{
+          "x":-150,
+          "y":-300
+        },
+        "pointsToFollow":{
+          "x":"jumper.body.position.x",
+          "y":"jumper.body.position.y"
+        }
+      },
+      {
         "name": "TitanBase/Pad/pad-front.png",
         "position": {
           "x": 0,

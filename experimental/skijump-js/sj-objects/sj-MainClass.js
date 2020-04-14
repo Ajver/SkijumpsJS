@@ -1,10 +1,8 @@
 
 SJ.MainClass = 
 class {
-  constructor() {
+  init() {
     this._drawableObjects = [];
-    
-    SJ.PadCreator.loadImages();
 
     this._engine = Matter.Engine.create();
     SJ.world = this._engine.world;
@@ -25,6 +23,11 @@ class {
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
     this._fillDrawableObjectsArray();
+    
+    SJ.PadCreator.loadImages();
+    SJ.pad.loadImages();
+
+    print(this._drawableObjects);
 
     SJ.pad.onReady();
 
