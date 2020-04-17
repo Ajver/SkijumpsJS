@@ -683,23 +683,14 @@
       {
         "name":"Menu/dron_idle.gif",
         "position":{
-<<<<<<< HEAD
           "x":550,
           "y":-30
-=======
-          "x":-150,
-          "y":-300
->>>>>>> parent of 7013e82... Revert "Merge remote-tracking branch 'upstream/master'"
         },
         "pointsToFollow":{
           "x":"jumper.body.position.x",
           "y":"jumper.body.position.y"
-<<<<<<< HEAD
         },
         "followMode":"overtaking"
-=======
-        }
->>>>>>> parent of 7013e82... Revert "Merge remote-tracking branch 'upstream/master'"
       },
       {
         "name": "TitanBase/Pad/pad-front.png",
