@@ -73,9 +73,9 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("TitanBase");
+    // SJ._startGame("TitanBase");
     // SJ._startGame("CyberCity");
     // SJ._startGame("StarStation");
   }); 
@@ -162,7 +162,6 @@ SJ._startGame = (locationName) => {
 
   SJ.LocationManager.changeLocation(locationName, () => {
     SJ.main = new SJ.MainClass();
-    SJ.main.init();
     SJ._isGameReady = true; 
     SJ.ScreensManager.changeScreen(SJ.ScreensManager.screens.game);
     SJ.itemsManager.equipAllItems();
