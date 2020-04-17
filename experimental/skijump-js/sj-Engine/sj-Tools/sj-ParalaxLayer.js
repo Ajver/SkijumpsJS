@@ -113,6 +113,28 @@ class extends SJ.ParalaxObject {
     this.animation.draw();
   }
 }
+SJ.ParalaxFollowingAnimation=
+class extends SJ.ParalaxObject{
+  constructor(imgName,pointToFollow,pos,scale){
+    super(pos,scale);
+
+    // const imgToDraw = SJ.ImageLoader.load(imgName);
+
+    let imgToDraw = createImage(66, 66);
+    imgToDraw.loadPixels();
+    for (let i = 0; i < imgToDraw.width; i++) {
+      for (let j = 0; j < imgToDraw.height; j++) {
+        imgToDraw.set(i, j, color(0, 90, 102));
+      }
+    }
+    imgToDraw.updatePixels();
+
+    this.animation = new SJ.FollowAnimation(imgToDraw,pointToFollow);
+  }
+  _drawSelf() {
+    this.animation.draw();
+  }
+}
 
 SJ.ParalaxLayer =
 class {
@@ -160,10 +182,16 @@ class {
       obj = new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet);
     else if(idxBg.keyFrames)
       obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,scale);
+    else if(idxBg.pointsToFollow) {
+      const followingObj = new SJ.ParalaxFollowingAnimation(idxBg.name,idxBg.pointsToFollow,imgPos,scale);
+      SJ.main.appendDrawable(followingObj);
+    }
     else
       obj = new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
 
-    this.images.push(obj);
+    if(obj) {
+      this.images.push(obj);
+    }
   }
 
   draw(cameraPos) {
