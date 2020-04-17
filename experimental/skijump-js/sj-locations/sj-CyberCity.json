@@ -12,14 +12,9 @@
   "airDynamics": 0.2,
   "gravity": 0.35,
   "texturesNames": {
-    "pad": "CyberCity/Podloga_skocznia.png",
+    "pad": "CyberCity/CyberCity_mapa.png",
     "background": [
-      "CyberCity/Flagi.png",
-      "CyberCity/Plan1.png",
-      "CyberCity/Plan 2.png",
-      "CyberCity/Plan 3.png",
-      "CyberCity/Plan 4.png",
-      "CyberCity/chmury.png"
+      
     ]
   },
   "cameraTopPath": [
