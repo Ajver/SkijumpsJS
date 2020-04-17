@@ -59,13 +59,14 @@ class extends SJ.ParalaxObject {
 }
 SJ.ParalaxKeyFrames=
 class extends SJ.ParalaxObject {
-  constructor(keyFrames,pos,scale){
+  constructor(keyFrames,pos,subrect,scale){
     super(pos,scale);
 
     const frames = [];
     const framesDurationTimes = [];
     const framesTimesFromBeginOfAnimation = [];
     const framesTranslates = [];
+    const subrects = [];
     let wholeAnimationDuration = 0;
 
     const emptyImage = createImage(1,1);
@@ -79,6 +80,12 @@ class extends SJ.ParalaxObject {
         frames.push(SJ.ImageLoader.load(frameId.frameSourceImage));
       else
         frames.push(emptyImage);
+
+
+      if(frameId.subrect)
+        subrects.push(frameId.subrect);
+      else
+        subrects.push(null);
     });
 
     keyFrames.forEach(frameId => {
@@ -93,7 +100,7 @@ class extends SJ.ParalaxObject {
       framesTranslates.push(translate);
     });
 
-    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,wholeAnimationDuration,true,true,true);
+    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrects,wholeAnimationDuration,true,true,true);
     
   }
   _drawSelf() {
@@ -168,7 +175,7 @@ class {
     if(idxBg.spritesheet)
       obj = new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet);
     else if(idxBg.keyFrames)
-      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,scale);
+      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale);
     else if(idxBg.pointsToFollow) {
       const followingObj = new SJ.ParalaxFollowingAnimation(idxBg.name,idxBg.pointsToFollow,imgPos,scale);
       SJ.main.appendDrawable(followingObj);

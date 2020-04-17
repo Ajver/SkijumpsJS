@@ -168,13 +168,14 @@ class extends SJ.Timer {
 
 SJ.KeyFramesAnimation = 
 class extends SJ.Timer {
-  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,duration,autostart=false, loopMode=false, resetAtEnd=false) {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,duration,autostart=false, loopMode=false, resetAtEnd=false) {
     super(duration, autostart, loopMode, resetAtEnd); 
     
     this.frames = frames;
     this.framesDurationTimes = framesDurationTimes;
     this.framesTranslates = framesTranslates;
     this.framesTimesFromBeginOfAnimation = framesTimesFromBeginOfAnimation;
+    this.subrect = subrect;
   }
 
   draw() {
@@ -183,7 +184,13 @@ class extends SJ.Timer {
       let currentFrame = this.getFrame(currentFrameIndex);
 
       if(currentFrame) {
-        image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
+        if(this.subrect[currentFrameIndex] != null){
+          let s = this.subrect[currentFrameIndex];
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y, s.w, s.h, s.x, s.y, s.w, s.h);
+        }
+        else{
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
+        }
       }
   }
 
