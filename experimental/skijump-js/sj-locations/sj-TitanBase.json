@@ -280,23 +280,76 @@
             ]
           },
           {
+            "scale": 0.7,
+            "position":{
+              "x": 3300,
+              "y": 2000
+            },
+            "keyFrames": [
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 30,
+                "translate":{
+                  "x":500,
+                  "y":80
+                },
+                "subrect":{
+                  "x":1070,
+                  "y":0,
+                  "w":406,
+                  "h":661
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 40
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 60,
+                "subrect":{
+                  "x":1070,
+                  "y":0,
+                  "w":406,
+                  "h":661
+                }
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 2000
+              }
+            ]
+          },
+          {
             "scale":0.6,
             "position": {
               "x": 3900,
-              "y": 2000
+              "y": 2400
             },
             "keyFrames":[
               {
-                "frameSourceImage":"TitanBase/tlo/lighting2.png",
-                "frameDuration":50
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":50,
+                "subrect":{
+                  "x":0,
+                  "y":0,
+                  "w":615,
+                  "h":840
+                }
               },
               {
                 "frameSourceImage":null,
                 "frameDuration":70
               },
               {
-                "frameSourceImage":"TitanBase/tlo/lighting2.png",
-                "frameDuration":80
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":80,
+                "subrect":{
+                  "x":0,
+                  "y":0,
+                  "w":615,
+                  "h":840
+                }
               },
               {
                 "frameSourceImage":null,
@@ -395,16 +448,28 @@
             },
             "keyFrames":[
               {
-                "frameSourceImage":"TitanBase/tlo/lighting2.png",
-                "frameDuration":50
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":50,
+                "subrect":{
+                  "x":1960,
+                  "y":0,
+                  "w":450,
+                  "h":990
+                }
               },
               {
                 "frameSourceImage":null,
                 "frameDuration":70
               },
               {
-                "frameSourceImage":"TitanBase/tlo/lighting2.png",
-                "frameDuration":80
+                "frameSourceImage":"TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration":80,
+                "subrect":{
+                  "x":1960,
+                  "y":0,
+                  "w":450,
+                  "h":990
+                }
               },
               {
                 "frameSourceImage":null,
@@ -425,42 +490,6 @@
             }
           },
           {
-            "position": {
-              "x": 2000,
-              "y": 350
-            },
-            "keyFrames":[
-              {
-                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
-                "frameDuration": 100,
-                "subrect":{
-                  "x":690,
-                  "y":0,
-                  "w":310,
-                  "h":830
-                }
-              },
-              {
-                "frameSourceImage":null,
-                "frameDuration":200
-              },
-              {
-                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
-                "frameDuration": 100,
-                "subrect":{
-                  "x":690,
-                  "y":0,
-                  "w":310,
-                  "h":830
-                }
-              },
-              {
-                "frameSourceImage":null,
-                "frameDuration":2000
-              }
-            ]
-          },
-          {
             "scale": 1.0,
             "position":{
               "x": 200,
@@ -469,7 +498,7 @@
             "keyFrames": [
               {
                 "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
-                "frameDuration": 60,
+                "frameDuration": 30,
                 "subrect":{
                   "x":0,
                   "y":0,
@@ -483,11 +512,11 @@
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 60
+                "frameDuration": 40
               },
               {
                 "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
-                "frameDuration": 80,
+                "frameDuration": 60,
                 "subrect":{
                   "x":0,
                   "y":0,
@@ -500,11 +529,17 @@
                 "frameDuration": 400
               },
               {
-                "frameSourceImage": "TitanBase/tlo/lighting1.png",
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
                 "frameDuration": 30,
                 "translate":{
-                  "x":300,
-                  "y":0
+                  "x":500,
+                  "y":80
+                },
+                "subrect":{
+                  "x":1070,
+                  "y":0,
+                  "w":406,
+                  "h":661
                 }
               },
               {
@@ -512,12 +547,18 @@
                 "frameDuration": 40
               },
               {
-                "frameSourceImage": "TitanBase/tlo/lighting1.png",
-                "frameDuration": 60
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 60,
+                "subrect":{
+                  "x":1070,
+                  "y":0,
+                  "w":406,
+                  "h":661
+                }
               },
               {
                 "frameSourceImage": null,
-                "frameDuration": 2000
+                "frameDuration": 3000
               }
             ]
           }
@@ -639,6 +680,18 @@
       }
     ],
     "foreground": [
+      {
+        "name":"Menu/dron_idle.gif",
+        "position":{
+          "x":550,
+          "y":-30
+        },
+        "pointsToFollow":{
+          "x":"jumper.body.position.x",
+          "y":"jumper.body.position.y"
+        },
+        "followMode":"overtaking"
+      },
       {
         "name": "TitanBase/Pad/pad-front.png",
         "position": {
