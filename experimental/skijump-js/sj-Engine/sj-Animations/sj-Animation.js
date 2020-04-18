@@ -168,7 +168,7 @@ class extends SJ.Timer {
 
 SJ.KeyFramesAnimation = 
 class extends SJ.Timer {
-  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,duration,autostart=false, loopMode=false, resetAtEnd=false) {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,pointsToTrack,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
     super(duration, autostart, loopMode, resetAtEnd); 
     
     this.frames = frames;
@@ -176,6 +176,27 @@ class extends SJ.Timer {
     this.framesTranslates = framesTranslates;
     this.framesTimesFromBeginOfAnimation = framesTimesFromBeginOfAnimation;
     this.subrect = subrect;
+
+    this.pointsToTrack = pointsToTrack;
+    this.correctScale = 1 / scale;
+
+    Object.byString = function(o, s) {
+      s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+      s = s.replace(/^\./, '');           // strip a leading dot
+      var a = s.split('.');
+      for (var i = 0, n = a.length; i < n; ++i) {
+          var k = a[i];
+          if (k in o) {
+              o = o[k];
+          } else {
+              return;
+          }
+      }
+      return o;
+    }
+    if(pointsToTrack){
+      this.setPosition();
+    }
   }
 
   draw() {
@@ -183,13 +204,21 @@ class extends SJ.Timer {
       let currentFrameIndex = this.getFrameIndex();
       let currentFrame = this.getFrame(currentFrameIndex);
 
+      if(this.pointsToTrack){   
+        this.setPosition();
+      }
+      else{
+        this.trackedX = 0;
+        this.trackedY = 0;
+      }
+
       if(currentFrame) {
         if(this.subrect[currentFrameIndex] != null){
           let s = this.subrect[currentFrameIndex];
-          image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y, s.w, s.h, s.x, s.y, s.w, s.h);
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY, s.w, s.h, s.x, s.y, s.w, s.h);
         }
         else{
-          image(currentFrame, this.framesTranslates[currentFrameIndex].x, this.framesTranslates[currentFrameIndex].y);
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY);
         }
       }
   }
@@ -213,34 +242,9 @@ class extends SJ.Timer {
     return toReturn;
   }
 
-}
-
-SJ.FollowAnimation=
-class {
-  constructor(imageToDraw,pointToFollow){
-
-    this.imageToDraw = imageToDraw;
-    this.pointToFollow = pointToFollow;
-
-    Object.byString = function(o, s) {
-      s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-      s = s.replace(/^\./, '');           // strip a leading dot
-      var a = s.split('.');
-      for (var i = 0, n = a.length; i < n; ++i) {
-          var k = a[i];
-          if (k in o) {
-              o = o[k];
-          } else {
-              return;
-          }
-      }
-      return o;
-    }
+  setPosition(){
+    this.trackedX = Object.byString(SJ, this.pointsToTrack.x)*this.correctScale;
+    this.trackedY = Object.byString(SJ, this.pointsToTrack.y)*this.correctScale;
   }
 
-  draw() {
-    if(this.imageToDraw) {
-      image(this.imageToDraw, Object.byString(SJ, this.pointToFollow.x), Object.byString(SJ, this.pointToFollow.y));
-    }
-  }
 }

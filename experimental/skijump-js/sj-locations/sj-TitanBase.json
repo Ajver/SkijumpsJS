@@ -536,15 +536,46 @@
     ],
     "foreground": [
       {
-        "name":"Menu/dron_idle.gif",
         "position":{
           "x":-150,
-          "y":-300
+          "y":-200
         },
-        "pointsToFollow":{
+        "pointsToTrack":{
           "x":"jumper.body.position.x",
           "y":"jumper.body.position.y"
-        }
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"TitanBase/Drone/dron_fly.png",
+            "frameDuration": 250,
+            "subrect":{
+              "x":1,
+              "y":0,
+              "w":69,
+              "h":110
+            }
+          },
+          {
+            "frameSourceImage":"TitanBase/Drone/dron_fly.png",
+            "frameDuration": 250,
+            "subrect":{
+              "x":73,
+              "y":0,
+              "w":69,
+              "h":110
+            }
+          },
+          {
+            "frameSourceImage":"TitanBase/Drone/dron_fly.png",
+            "frameDuration": 250,
+            "subrect":{
+              "x":146,
+              "y":0,
+              "w":69,
+              "h":108
+            }
+          }
+        ]
       },
       {
         "name": "TitanBase/Pad/pad-front.png",
