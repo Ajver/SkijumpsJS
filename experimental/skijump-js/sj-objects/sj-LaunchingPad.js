@@ -6,7 +6,7 @@ class {
     Matter.World.add(SJ.world, this.body);
 
     this._parts = SJ.PadCreator.createPadParts();
-  
+
     this.restart();
   }
 
@@ -17,6 +17,7 @@ class {
   }
 
   restart() {
+    console.log("Restaerrrrt");
     this._canJump = true;
     this.afterFly = false;
     this._pullingSystem = new SJ.PullingSystem();

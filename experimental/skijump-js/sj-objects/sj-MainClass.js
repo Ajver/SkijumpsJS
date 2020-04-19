@@ -1,7 +1,9 @@
 
 SJ.MainClass = 
-class {
+class extends SJ.EventHandler {
   init() {
+    this.createEvent('restart');
+    
     this._drawableObjects = [];
 
     this._engine = Matter.Engine.create();
@@ -15,10 +17,19 @@ class {
     this._prepareScreenLayer();
     
     SJ.itemsManager.resetActiveItems();
+    this.addEventListener('restart', () => {
+      SJ.itemsManager.resetActiveItems();
+    });
 
     SJ.pad = new SJ.LaunchingPad();
+    this.addEventListener('restart', () => {
+      SJ.pad.restart();
+    });
 
     SJ.camera = new SJ.Camera(1);
+    this.addEventListener('restart', () => {
+      SJ.camera.restart();
+    });
 
     SJ.paralaxBackground = new SJ.ParalaxBackground();
   
@@ -73,6 +84,9 @@ class {
 
   _createJumper() {
     SJ.jumper = new SJ.Jumper(SJ.V.jumperPosition.x, SJ.V.jumperPosition.y);
+    this.addEventListener('restart', () => {
+      SJ.jumper.reset();
+    })
   }
 
   _createScoreCounter() {
@@ -132,16 +146,17 @@ class {
     this._wantShowJumpEndPopup = false;
     this.setRunning(true);
 
-    this._createJumper();
     this._createScoreCounter();
     this._createAirSystem();
-    SJ.pad.restart();
-    SJ.camera.restart();
-    SJ.itemsManager.resetActiveItems();
+    // SJ.pad.restart();
+    // SJ.camera.restart();
+    // SJ.itemsManager.resetActiveItems();
 
     this._fillDrawableObjectsArray();
 
     SJ.pad.onReady();
+
+    this.callEvent('restart')
   }
 
   onJumperPadHit() {
