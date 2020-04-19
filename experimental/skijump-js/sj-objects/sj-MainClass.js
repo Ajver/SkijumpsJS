@@ -152,7 +152,7 @@ class extends SJ.EventHandler {
     // SJ.camera.restart();
     // SJ.itemsManager.resetActiveItems();
 
-    this._fillDrawableObjectsArray();
+    // this._fillDrawableObjectsArray();
 
     SJ.pad.onReady();
 
