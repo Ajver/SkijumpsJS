@@ -4,10 +4,45 @@ class {
   constructor(x, y) {
     this.start_x = x;
     this.start_y = y;
-
+    
     this._w = 10;
     this._h = 20;
 
+    this.S = {
+      START    : 0, // start walk, hand waving
+      READY    : 1, // Ready to go
+      DOWN     : 2, // Downhill
+      FLYING   : 3, // Flying
+      LANDED   : 5, // Landed on pad (or failed)
+      END      : 6, // Landed, hited end of the pad (stopped)
+    }
+
+    this.FLY_S = {
+      JUMP     : 0, // Jump animation, cannot start landing yet
+      FLY      : 1, // Static fly animation, can land
+      FALLDOWN : 2, // Fly with velocity.y > 0
+      LANDING  : 3, // Landing animation, but not landed yet
+      LANDED   : 4, // Landing animation ended, ready to hit pad
+    }
+
+    this.SLOWING_SPEED = 0.01;
+    this.LANDING_TIME_MILLIS = 200;
+    
+    this._setupAnimations();
+
+    this.reset();
+
+    // this.testNormalizedAngle(PI, PI);
+    // this.testNormalizedAngle(TWO_PI, 0);
+    // this.testNormalizedAngle(-TWO_PI, 0);
+    // this.testNormalizedAngle(PI+HALF_PI, -HALF_PI);
+    // this.testNormalizedAngle(-PI-HALF_PI, HALF_PI);
+  }
+
+  reset() {
+    const x = this.start_x;
+    const y = this.start_y;
+    
     const options = {
       friction: 0.0,
       frictionAir: SJ.V.airFriction,
@@ -20,54 +55,29 @@ class {
         Matter.Bodies.circle(x+this._w*0.5+12, y+this._h*0.5+2.5, 3),
       ],
     };
+    this.body = Matter.Body.create(options);
+    Matter.World.add(SJ.world, this.body);
+
     this.realBodyStatic = true;
 
-    this.S = {
-      START    : 0, // start walk, hand waving
-      READY    : 1, // Ready to go
-      DOWN     : 2, // Downhill
-      FLYING   : 3, // Flying
-      LANDED   : 5, // Landed on pad (or failed)
-      END      : 6, // Landed, hited end of the pad (stopped)
-    }
-    this.state = this.S.START
+    this.state = this.S.START;
 
-    this.FLY_S = {
-      JUMP     : 0, // Jump animation, cannot start landing yet
-      FLY      : 1, // Static fly animation, can land
-      FALLDOWN : 2, // Fly with velocity.y > 0
-      LANDING  : 3, // Landing animation, but not landed yet
-      LANDED   : 4, // Landing animation ended, ready to hit pad
-    }
-    this.flyState = this.FLY_S.JUMP
+    this.flyState = this.FLY_S.JUMP;
   
     this.walkSystem = new SJ.StartWalkSystem();
-
-    this.body = Matter.Body.create(options);
-    
-    Matter.World.add(SJ.world, this.body);
   
     this.offsetAngle = 0;
-    
-    this.SLOWING_SPEED = 0.01; 
   
     this.turningDir = 0;
     this.turningMod = 0.0;
     this.wantTurn = false;
 
     this.landingTimeCounter = 0.0;
-    this.LANDING_TIME_MILLIS = 200;
     this.failed = false;
   
     this.offsetPoint = Matter.Vector.create(0, -10);
-
-    this._setupAnimations();
-
-    // this.testNormalizedAngle(PI, PI);
-    // this.testNormalizedAngle(TWO_PI, 0);
-    // this.testNormalizedAngle(-TWO_PI, 0);
-    // this.testNormalizedAngle(PI+HALF_PI, -HALF_PI);
-    // this.testNormalizedAngle(-PI-HALF_PI, HALF_PI);
+    
+    this.animationPlayer.play("start_walk");
   }
 
   _setupAnimations() {
@@ -235,8 +245,6 @@ class {
       animation.offset = new p5.Vector(-45, -65);
     })
 
-    this.animationPlayer.play("start_walk");
-
     this.animationPlayer.onAnimationFinished((animationName) => {
       switch(animationName) {
         case 'wave':
@@ -320,7 +328,7 @@ class {
   }
 
   onPadHit() {
-    Matter.Body.setStatic(this.body, true);
+    this.setStatic(true);
     this.state = this.S.LANDED
     this.checkIfFail();
     SJ.main.onJumperPadHit();
@@ -501,8 +509,12 @@ class {
   }
 
   letSteering() {
-    Matter.Body.setStatic(this.body, false);
+    this.setStatic(false);
     this.state = this.S.FLYING
+  }
+
+  setStatic(flag) {
+    Matter.Body.setStatic(this.body, flag);
   }
 
   turn() {

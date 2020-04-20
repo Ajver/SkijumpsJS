@@ -5,7 +5,7 @@ const SJ = {};
 SJ.UI = {};
 
 // Game Version
-SJ.VERSION = "0.26.5";
+SJ.VERSION = "0.27.3";
 
 // Screen resolution
 SJ.SCREEN_WIDTH = 1200;
@@ -73,9 +73,9 @@ function setup() {
 
     SJ.ScreensManager.setup();
 
-    // SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
+    SJ._enterScreen(SJ.ScreensManager.screens.mainMenu);
     // SJ._enterScreen(SJ.ScreensManager.screens.shop);
-    SJ._startGame("TitanBase");
+    // SJ._startGame("TitanBase");
     // SJ._startGame("CyberCity");
     // SJ._startGame("StarStation");
   }); 
@@ -110,6 +110,7 @@ SJ._loadEngine = (callback) => {
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-SpriteSheet.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-VariablesSliders.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-Camera.js');
+  scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Tools/sj-EventHandler.js');
 
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-Animation.js');
   scriptsLoader.loadScript('skijump-js/sj-Engine/sj-Animations/sj-AnimationPlayer.js');
