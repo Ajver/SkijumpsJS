@@ -38,8 +38,6 @@ class extends SJ.EventHandler {
     SJ.PadCreator.loadImages();
     SJ.pad.loadImages();
 
-    print(this._drawableObjects);
-
     SJ.pad.onReady();
 
     Matter.Engine.run(this._engine);
@@ -148,11 +146,6 @@ class extends SJ.EventHandler {
 
     this._createScoreCounter();
     this._createAirSystem();
-    // SJ.pad.restart();
-    // SJ.camera.restart();
-    // SJ.itemsManager.resetActiveItems();
-
-    // this._fillDrawableObjectsArray();
 
     SJ.pad.onReady();
 

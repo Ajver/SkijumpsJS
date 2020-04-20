@@ -17,7 +17,6 @@ class {
   }
 
   restart() {
-    console.log("Restaerrrrt");
     this._canJump = true;
     this.afterFly = false;
     this._pullingSystem = new SJ.PullingSystem();
