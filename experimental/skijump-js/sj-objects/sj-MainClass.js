@@ -2,6 +2,7 @@
 SJ.MainClass = 
 class extends SJ.EventHandler {
   init() {
+
     this.createEvent('restart');
     
     this._drawableObjects = [];
@@ -26,7 +27,7 @@ class extends SJ.EventHandler {
       SJ.pad.restart();
     });
 
-    SJ.camera = new SJ.Camera(1);
+    SJ.camera = new SJ.Camera(.3);
     this.addEventListener('restart', () => {
       SJ.camera.restart();
     });
