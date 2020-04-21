@@ -27,7 +27,7 @@ class extends SJ.EventHandler {
       SJ.pad.restart();
     });
 
-    SJ.camera = new SJ.Camera(.3);
+    SJ.camera = new SJ.Camera(1);
     this.addEventListener('restart', () => {
       SJ.camera.restart();
     });
