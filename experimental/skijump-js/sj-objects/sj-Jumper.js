@@ -64,6 +64,8 @@ class {
 
     this.flyState = this.FLY_S.JUMP;
   
+    this.isSlowingDown = false;
+
     this.walkSystem = new SJ.StartWalkSystem();
   
     this.offsetAngle = 0;
