@@ -37,21 +37,54 @@
             },
             "keyFrames":[
               {
-                "frameSourceImage":"CyberCity/Banery/baner2_1.png",
-                "frameDuration":250
+                "frameSourceImage":"CyberCity/Banery/banner2/1.png",
+                "frameDuration":200
               },
               {
-                "frameSourceImage":"CyberCity/Banery/baner2_2.png",
-                "frameDuration":250
+                "frameSourceImage":"CyberCity/Banery/banner2/2.png",
+                "frameDuration":200
               },
               {
-                "frameSourceImage":"CyberCity/Banery/baner2_3.png",
-                "frameDuration":250
+                "frameSourceImage":"CyberCity/Banery/banner2/3.png",
+                "frameDuration":200
               },
               {
-                "frameSourceImage":"CyberCity/Banery/baner2_4.png",
-                "frameDuration":250
+                "frameSourceImage":"CyberCity/Banery/banner2/4.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/5.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/6.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/7.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/8.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/9.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/10.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/11.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/12.png",
+                "frameDuration":200
               }
+              
             ]
           },
           {
@@ -166,6 +199,51 @@
           },
           {
             "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd1.png",
+            "position":{
+              "x":1400,
+              "y":750
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd2.png",
+            "position":{
+              "x":1450,
+              "y":850
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd3.png",
+            "position":{
+              "x":1270,
+              "y":800
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":1620,
+              "y":700
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/1.png",
+                "frameDuration": 300
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/2.png",
+                "frameDuration": 300
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/3.png",
+                "frameDuration": 300
+              }
+            ]
+          },
+          {
+            "scale":1.35,
             "position":{
               "x":2817,
               "y":940
@@ -262,14 +340,178 @@
               "x":2044,
               "y":730
             }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3080,
+              "y":1300
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/1.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/2.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/3.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/4.png",
+                "frameDuration": 230
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_niebieski.png",
+            "position":{
+              "x":3305,
+              "y":2144
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_niebieski_gora.png",
+            "position":{
+              "x":3513,
+              "y":1705
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_pomarancz.png",
+            "position":{
+              "x":3610,
+              "y":1982.5
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3207,
+              "y":1700
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 1500
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3415,
+              "y":1150
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/1.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/2.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/3.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/4.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/5.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/6.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/7.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/8.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/9.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/10.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/11.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/12.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/13.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/14.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/15.png",
+                "frameDuration":200
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_2/oswietlenie_baner.png",
+            "position":{
+              "x":3395,
+              "y":1090
+            }
           }
         ]
       },
       {
+        "scale":1.35,
         "name":"CyberCity/Tło/tlo_warstwa5.png",
         "position":{
-          "x":300,
-          "y":450
+          "x":-400,
+          "y":100
         }
       },
       {
@@ -289,19 +531,19 @@
         }
       },
       {
-        "scale":1.25,
+        "scale":1.2,
         "name":"CyberCity/Tło/tlo_warstwa2.png",
         "position":{
-          "x":300,
-          "y":140
+          "x":150,
+          "y":100
         }
       },
       {
-        "scale":1.25,
+        "scale":1.2,
         "name":"CyberCity/Tło/tlo_warstwa1.png",
         "position":{
-          "x":100,
-          "y":-100
+          "x":150,
+          "y":-140
         }
       }
       
@@ -316,6 +558,35 @@
       }
     ],
     "foreground": [
+      {
+        "scale":1.35,
+        "position":{
+          "x": 350,
+          "y": -100
+        },
+        "pointsToTrack":{
+          "x":"jumper.body.position.x",
+          "y":"jumper.body.position.y"
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/1.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/2.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/3.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/4.png",
+            "frameDuration": 250
+          }
+        ]
+      },
       { 
         "name": "CyberCity/Skocznia/skocznia_1.png",
         "position":{
