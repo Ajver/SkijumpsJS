@@ -11,6 +11,10 @@
   "airMaxForce": 10.0,
   "airDynamics": 0.2,
   "gravity": 0.35,
+  "minCameraPosition": {
+    "x": -147,
+    "y": 440
+  },
   "textureOffset": {
     "x": -10,
     "y": 460
@@ -735,7 +739,7 @@
     {"x": 6254, "y": 3950},
     {"x": 6504, "y": 3980},
     {"x": 6550, "y": 3983},
-    {"x": 7252, "y": 4030}
+    {"x": 7052, "y": 4020}
   ],
   "jumpEndPoint": 1754,
   "jumperPosition": {"x":420.0,"y":700.0}
