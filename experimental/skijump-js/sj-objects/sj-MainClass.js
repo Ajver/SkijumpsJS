@@ -143,6 +143,10 @@ class extends SJ.EventHandler {
   _restartGame() {
     print("=== NEW JUMP ===");
     this._wantShowJumpEndPopup = false;
+    
+    SJ.higherJumperSpeed = 0.0;
+    SJ.higherJumperHeight = 0.0;
+
     this.setRunning(true);
 
     this._createScoreCounter();
