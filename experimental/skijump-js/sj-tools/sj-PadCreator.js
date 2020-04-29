@@ -39,8 +39,8 @@ SJ.PadCreator = {
   
   loadImages: () => {
     SJ.PadCreator.padImg = SJ.ImageLoader.load(SJ.V.texturesNames.pad);
-    SJ.PadCreator._loadMiddleground()
-    SJ.PadCreator._loadForeground()
+    SJ.PadCreator._loadMiddleground();
+    SJ.PadCreator._loadForeground();
   },
 
   _loadMiddleground: () => {
@@ -62,7 +62,7 @@ SJ.PadCreator = {
       const layer = SJ.PadCreator._loadLayerFromData(data);
       displayLayerArray[i] = layer;
     }
-
+    
     return displayLayerArray;
   },
 

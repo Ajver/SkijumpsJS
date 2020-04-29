@@ -2,6 +2,7 @@
 SJ.MainClass = 
 class extends SJ.EventHandler {
   init() {
+
     this.createEvent('restart');
     
     this._drawableObjects = [];

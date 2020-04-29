@@ -18,7 +18,7 @@ class {
       this._layers.push(layer);
       sc = lerp(sc, 1.0, step);
     }
-
+    console.log(this._layers);
     this._layers.reverse();
   }
 

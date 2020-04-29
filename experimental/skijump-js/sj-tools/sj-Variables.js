@@ -41,6 +41,7 @@ SJ.loadVariablesFromFile = (fileName, callBack) => {
     SJ.V.jumperPosition = v.jumperPosition || { x: 213.0, y: 334.0 };
     SJ.V.pointK = v.pointK;
     SJ.V.jumpEndPoint = v.padPullingPoints[v.padPullingPoints.length-1].x;
+    SJ.V.minCameraPosition = v.minCameraPosition;
 
     callBack();
   });

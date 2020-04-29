@@ -1,0 +1,26 @@
+,
+      {
+        "scale":1.25,
+        "name":"CyberCity/Tło/tlo_warstwa4.png",
+        "position":{
+          "x":0,
+          "y":-50
+        }
+      },
+      {
+        "scale":1.25,
+        "name":"CyberCity/Tło/tlo_warstwa3.png",
+        "position":{
+          "x":0,
+          "y":30
+        }
+      }
+      
+      {
+        "scale":1.35,
+        "name":"CyberCity/Tło/tlo_warstwa2.png",
+        "position":{
+          "x":-280,
+          "y":-330
+        }
+      },
