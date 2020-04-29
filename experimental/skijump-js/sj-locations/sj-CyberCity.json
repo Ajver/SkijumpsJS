@@ -367,6 +367,51 @@
             ]
           },
           {
+            "scale":1.50,
+            "position":{
+              "x":2723,
+              "y":1215
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Budynek_3/swiatlo_niebieski.png",
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":"CyberCity/Budynek_3/swiatlo_niebieski.png",
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":"CyberCity/Budynek_3/swiatlo_niebieski.png",
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage":"CyberCity/Budynek_3/swiatlo_niebieski.png",
+                "frameDuration":1500
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/swiatlo_pomarancz.png",
+            "position":{
+              "x":2963,
+              "y":1299
+            }
+          },
+          {
             "scale":1.35,
             "name": "CyberCity/Budynek_2/oswietlenie_niebieski.png",
             "position":{
