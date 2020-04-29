@@ -11,19 +11,675 @@
   "airMaxForce": 10.0,
   "airDynamics": 0.2,
   "gravity": 0.35,
+  "minCameraPosition": {
+    "x": -147,
+    "y": 440
+  },
+  "textureOffset": {
+    "x": -10,
+    "y": 460
+  },
   "texturesNames": {
-    "pad": "CyberCity/Podloga_skocznia.png",
+    "pad": "CyberCity/Skocznia/skocznia_2.png",
     "background": [
-      "CyberCity/Flagi.png",
-      "CyberCity/Plan1.png",
-      "CyberCity/Plan 2.png",
-      "CyberCity/Plan 3.png",
-      "CyberCity/Plan 4.png",
-      "CyberCity/chmury.png"
+      {
+        "type":"array",
+        "array": [
+          {
+            "scale":1.35,
+            "name": "CyberCity/Tło/budynki_warstwa6.png",
+            "position":{
+              "x":25,
+              "y":-75
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":500,
+              "y":400
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/1.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/2.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/3.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/4.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/5.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/6.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/7.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/8.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/9.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/10.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/11.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner2/12.png",
+                "frameDuration":200
+              }
+              
+            ]
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_4/oswietlenie_niebieski.png",
+            "position":{
+              "x":25,
+              "y":167
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_4/oswietlenie_niebieski2.png",
+            "position":{
+              "x":25,
+              "y":303
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_4/oswietlenie_pomarancz.png",
+            "position":{
+              "x":339,
+              "y":118.5
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":40,
+              "y":525
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "CyberCity/Budynek_4/oswietlenie_pomarancz2.png",
+                "frameDuration":60
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":60
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_4/oswietlenie_pomarancz2.png",
+                "frameDuration":60
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":300
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_4/oswietlenie_pomarancz2.png",
+                "frameDuration":150
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":80
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_4/oswietlenie_pomarancz2.png",
+                "frameDuration":3000
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":60
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_4/oswietlenie_pomarancz2.png",
+                "frameDuration":60
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":2000
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_4/oswietlenie_wejscie.png",
+            "position":{
+              "x":848,
+              "y":555
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":805,
+              "y":230
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Budynek_4/szyld_oswietlenie.png",
+                "frameDuration":2000
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":30
+              },
+              {
+                "frameSourceImage":"CyberCity/Budynek_4/szyld_oswietlenie.png",
+                "frameDuration":40
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":30
+              },
+              {
+                "frameSourceImage":"CyberCity/Budynek_4/szyld_oswietlenie.png",
+                "frameDuration":40
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd1.png",
+            "position":{
+              "x":1400,
+              "y":750
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd2.png",
+            "position":{
+              "x":1450,
+              "y":850
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Pojazdy/pojazd3.png",
+            "position":{
+              "x":1270,
+              "y":800
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":1620,
+              "y":700
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/1.png",
+                "frameDuration": 300
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/2.png",
+                "frameDuration": 300
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus/3.png",
+                "frameDuration": 300
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":2817,
+              "y":940
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/1.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/2.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/3.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/4.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/3.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/szyldserce/2.png",
+                "frameDuration":200
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_baner_serce.png",
+            "position":{
+              "x":2710,
+              "y":850
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "CyberCity/Budynek_3/oswietlenie_baner_serce.png",
+                "frameDuration":150
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration":150
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_lampa.png",
+            "position":{
+              "x":2003,
+              "y":660
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_niebieski.png",
+            "position":{
+              "x":1905,
+              "y":845 
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_pomarancz.png",
+            "position":{
+              "x":1958,
+              "y":742 
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_pomarancz2.png",
+            "position":{
+              "x":2050,
+              "y":601
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_wejscie.png",
+            "position":{
+              "x":2680,
+              "y":730
+            }
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_3/oswietlenie_zolty.png",
+            "position":{
+              "x":2044,
+              "y":730
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3080,
+              "y":1300
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/1.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/2.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/3.png",
+                "frameDuration": 230
+              },
+              {
+                "frameSourceImage":"CyberCity/Animacje/bus2/4.png",
+                "frameDuration": 230
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_niebieski.png",
+            "position":{
+              "x":3305,
+              "y":2144
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_niebieski_gora.png",
+            "position":{
+              "x":3513,
+              "y":1705
+            }
+          },
+          {
+            "scale":1.35,
+            "name": "CyberCity/Budynek_2/oswietlenie_pomarancz.png",
+            "position":{
+              "x":3610,
+              "y":1982.5
+            }
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3207,
+              "y":1700
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": null,
+                "frameDuration": 30
+              },
+              {
+                "frameSourceImage": "CyberCity/Budynek_2/oswietlenie_pizza.png",
+                "frameDuration": 1500
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "position":{
+              "x":3415,
+              "y":1150
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/1.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/2.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/3.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/4.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/5.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/6.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/7.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/8.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/9.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/10.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/11.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/12.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/13.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/14.png",
+                "frameDuration":200
+              },
+              {
+                "frameSourceImage":"CyberCity/Banery/banner/15.png",
+                "frameDuration":200
+              }
+            ]
+          },
+          {
+            "scale":1.35,
+            "name":"CyberCity/Budynek_2/oswietlenie_baner.png",
+            "position":{
+              "x":3395,
+              "y":1090
+            }
+          }
+        ]
+      },
+      {
+        "scale":1.35,
+        "name":"CyberCity/Tło/tlo_warstwa5.png",
+        "position":{
+          "x":-400,
+          "y":100
+        }
+      },
+      {
+        "scale":1.25,
+        "name":"CyberCity/Tło/tlo_warstwa4.png",
+        "position":{
+          "x":0,
+          "y":-50
+        }
+      },
+      {
+        "scale":1.25,
+        "name":"CyberCity/Tło/tlo_warstwa3.png",
+        "position":{
+          "x":0,
+          "y":30
+        }
+      },
+      {
+        "scale":1.2,
+        "name":"CyberCity/Tło/tlo_warstwa2.png",
+        "position":{
+          "x":150,
+          "y":100
+        }
+      },
+      {
+        "scale":1.2,
+        "name":"CyberCity/Tło/tlo_warstwa1.png",
+        "position":{
+          "x":150,
+          "y":-140
+        }
+      }
+      
+    ],
+    "middleground":[
+      {
+        "name":"CyberCity/Skocznia/skocznia2_swiatlo_fiolet.png",
+        "position":{
+          "x": 133,
+          "y": 78
+        }
+      }
+    ],
+    "foreground": [
+      {
+        "scale":1.35,
+        "position":{
+          "x": 350,
+          "y": -100
+        },
+        "pointsToTrack":{
+          "x":"jumper.body.position.x",
+          "y":"jumper.body.position.y"
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/1.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/2.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/3.png",
+            "frameDuration": 250
+          },
+          {
+            "frameSourceImage":"CyberCity/Animacje/dron/4.png",
+            "frameDuration": 250
+          }
+        ]
+      },
+      { 
+        "name": "CyberCity/Skocznia/skocznia_1.png",
+        "position":{
+          "x":30,
+          "y":-10
+        }
+      },
+      {
+        "position":{
+          "x": 162,
+          "y": 113
+        },
+        "keyFrames": [
+          {
+            "frameSourceImage": "CyberCity/Skocznia/skocznia1_swiatlo.png",
+            "frameDuration":700
+          },
+          {
+            "frameSourceImage":null,
+            "frameDuration":700
+          }
+        ]
+      },
+      {
+        "position":{
+          "x": 862,
+          "y": 545
+        },
+        "keyFrames": [
+          {
+            "frameSourceImage": "CyberCity/Skocznia/dolskoczni_oswietlenie.png",
+            "frameDuration":700
+          },
+          {
+            "frameSourceImage":null,
+            "frameDuration":700
+          }
+        ]
+      },
+      {
+        "name":"CyberCity/Skocznia/goraskoczni_swiatlo_niebieski.png",
+        "position":{
+          "x":35,
+          "y":-10
+        }
+      },
+      {
+        "name":"CyberCity/Skocznia/skocznia1_swiatlo_fiolet.png",
+        "position":{
+          "x": 168,
+          "y": 85
+        }
+      },
+      {
+        "position":{
+          "x": 173.7,
+          "y": 2
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Skocznia/skocznia2_swiatlo_pomarancz.png",
+            "frameDuration": 700
+          },
+          {
+            "frameSourceImage":null,
+            "frameDuration":700
+          }
+        ]
+      },
+      {
+        "position":{
+          "x": 155,
+          "y": 77
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Skocznia/skocznia1_swiatlo_pomarancz.png",
+            "frameDuration": 700
+          },
+          {
+            "frameSourceImage":null,
+            "frameDuration":700
+          }
+        ]
+      }
     ]
   },
   "cameraTopPath": [
-    {"x":216.0,"y":708.0},
+    {"x":216.0,"y":680.0},
     {"x":1406.0,"y":1400.0},
     {"x":1754.0,"y":1450.0},
     {"x":2400.0,"y":1430.0},
@@ -83,7 +739,7 @@
     {"x": 6254, "y": 3950},
     {"x": 6504, "y": 3980},
     {"x": 6550, "y": 3983},
-    {"x": 7252, "y": 4030}
+    {"x": 7052, "y": 4020}
   ],
   "jumpEndPoint": 1754,
   "jumperPosition": {"x":420.0,"y":700.0}

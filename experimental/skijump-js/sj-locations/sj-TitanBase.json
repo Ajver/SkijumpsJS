@@ -213,6 +213,74 @@
               "y": 800
             },
             "scale": 1.6
+          },
+          {
+            "position":{
+              "x":3000,
+              "y":1300
+            },
+            "keyFrames":[
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 30,
+                "subrect":{
+                  "x":1962,
+                  "y":0,
+                  "w":443,
+                  "h":981
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":40
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 60,
+                "subrect":{
+                  "x":1962,
+                  "y":0,
+                  "w":443,
+                  "h":981
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":500
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 30,
+                "subrect":{
+                  "x":1072,
+                  "y":0,
+                  "w":403,
+                  "h":662
+                },
+                "translate":{
+                  "x":250,
+                  "y":0
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":40
+              },
+              {
+                "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",
+                "frameDuration": 60,
+                "subrect":{
+                  "x":1072,
+                  "y":0,
+                  "w":403,
+                  "h":662
+                }
+              },
+              {
+                "frameSourceImage":null,
+                "frameDuration":500
+              }
+            ]
           }
         ]
       },

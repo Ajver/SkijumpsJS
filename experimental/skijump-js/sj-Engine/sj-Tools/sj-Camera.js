@@ -3,8 +3,8 @@ SJ.Camera =
 class {
   constructor(scaleMod) {
     // this._offset = createVector(
-    //   -8800 * scaleMod,
-    //   -5000 * scaleMod
+    //   -4500 * scaleMod,
+    //   -1500 * scaleMod
     // );
     this._offset = createVector(-200, 0);
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
@@ -22,6 +22,11 @@ class {
 
   restart() {
     const jumperPos = SJ.jumper.body.position;
+    if(SJ.V.minCameraPosition != undefined) {
+      this._minPosition = SJ.V.minCameraPosition;
+    }else {
+      this._minPosition = null;
+    }
     this._currentPosition = createVector(jumperPos.x, jumperPos.y);
     this._targetPosition = createVector(jumperPos.x, jumperPos.y);
     this._setPathIndex();
@@ -44,6 +49,11 @@ class {
     const LERP_SPEED = 0.08;
     this._currentPosition.x = this._targetPosition.x;
     this._currentPosition.y = lerp(this._currentPosition.y, this._targetPosition.y, LERP_SPEED);
+    
+    if(this._minPosition != null) {
+      this._currentPosition.x = max(this._currentPosition.x, this._minPosition.x + SJ.SCREEN_MIDDLE_X);
+      this._currentPosition.y = max(this._currentPosition.y, this._minPosition.y + SJ.SCREEN_MIDDLE_Y);
+    }
   }
 
   transform() {
