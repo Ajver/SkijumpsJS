@@ -132,6 +132,8 @@ class extends SJ.EventHandler {
     SJ.camera.update();
     SJ.airSystem.update();
     SJ.scoreCounter.update();
+
+    console.log(SJ.jumper.body.position.x);
   }
 
   _drawScrenLayer() {
