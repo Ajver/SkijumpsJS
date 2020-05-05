@@ -4,7 +4,7 @@ class {
   constructor() {
     this._layers = [];
     
-    let sc = 0.44;
+    let sc = 0.6;
     let step = 0.2;
     const layersCount = SJ.V.texturesNames.background.length
     for(let i=0; i<layersCount; i++) {
@@ -16,9 +16,8 @@ class {
       const data = SJ.V.texturesNames.background[i];
       const layer = new SJ.ParalaxLayer(sc, pos, data);
       this._layers.push(layer);
-      sc = lerp(sc, 1.0, step);
+      sc = lerp(sc, 0.0, step);
     }
-    console.log(this._layers);
     this._layers.reverse();
   }
 
