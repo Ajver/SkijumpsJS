@@ -98,7 +98,6 @@ class extends SJ.EventHandler {
 
   _fillDrawableObjectsArray() {
     this._drawableObjects = [];
-    this.appendDrawable(SJ.paralaxBackground);
     this.appendDrawable(SJ.pad);
     this.appendDrawable(SJ.jumper);
   }
@@ -115,6 +114,8 @@ class extends SJ.EventHandler {
     background(57, 66, 95);
 
     push();
+      SJ.paralaxBackground.draw();
+      
       SJ.camera.transform();
       this._drawableObjects.forEach((element) => {
         element.draw();

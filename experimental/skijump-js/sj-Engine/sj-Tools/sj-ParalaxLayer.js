@@ -128,6 +128,10 @@ class {
       }else {
         this._prepareImgFromObject(data);
       }
+
+      if(data.followScale !== undefined) {
+        this.camScale *= data.followScale;
+      }
     }else if(typeof data === "string") {
       this.images.push(new SJ.ParalaxImage(data, { x: 0, y: 0 }, 1.0, null));
     }else {
@@ -167,7 +171,8 @@ class {
 
   draw(cameraPos) {
     push();
-      translate(this.x-cameraPos.x*this.camScale, this.y-cameraPos.y*this.camScale);
+      translate(this.x, this.y);
+      translate(cameraPos.x*this.camScale, cameraPos.y*this.camScale);
       this.images.forEach(img => {
         img.draw();
       });
