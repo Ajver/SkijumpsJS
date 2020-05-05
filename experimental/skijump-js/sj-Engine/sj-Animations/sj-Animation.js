@@ -168,7 +168,7 @@ class extends SJ.Timer {
 
 SJ.KeyFramesAnimation = 
 class extends SJ.Timer {
-  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,moveTo,moveDuration,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
     super(duration, autostart, loopMode, resetAtEnd); 
     
     this.frames = frames;
@@ -177,6 +177,14 @@ class extends SJ.Timer {
     this.framesTimesFromBeginOfAnimation = framesTimesFromBeginOfAnimation;
     this.subrect = subrect;
     this.framesScales = framesScales;
+    
+    this.moveTo = moveTo;
+    this.moveDuration = moveDuration;
+
+    if(this.moveDuration && this.moveTo){
+      this.moveTimer = new SJ.Timer(moveDuration,true,true,false);
+    }
+    
 
     this.pointsToTrack = pointsToTrack;
     this.correctScale = 1 / scale;
@@ -223,7 +231,14 @@ class extends SJ.Timer {
           image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY, s.w, s.h, s.x, s.y, s.w, s.h);
         }
         else{
-          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY);
+          if(this.moveDuration){
+            let moveX = this.moveTimer.getProgress() * this.moveTo.x;
+            let moveY = this.moveTimer.getProgress() * this.moveTo.y;
+
+            image(currentFrame, this.framesTranslates[currentFrameIndex].x + moveX, this.framesTranslates[currentFrameIndex].y + moveY);
+          }
+          else
+            image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY);
         }
       }
   }
