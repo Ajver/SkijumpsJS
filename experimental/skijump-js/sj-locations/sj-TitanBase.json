@@ -217,8 +217,9 @@
           {
             "position":{
               "x":3000,
-              "y":1300
+              "y":700
             },
+            "scale":1.2,
             "keyFrames":[
               {
                 "frameSourceImage": "TitanBase/tlo/pioruny-zestaw.png",

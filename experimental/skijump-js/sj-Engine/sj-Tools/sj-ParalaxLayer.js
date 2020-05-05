@@ -59,14 +59,16 @@ class extends SJ.ParalaxObject {
 }
 SJ.ParalaxKeyFrames=
 class extends SJ.ParalaxObject {
-  constructor(keyFrames,pos,subrect,scale,pointsToTrack){
-    super(pos,scale);
+  constructor(keyFrames,pos,subrect,scale,pointsToTrack,moveTo,moveDuration){
+    super(pos,1.0);
 
     const frames = [];
     const framesDurationTimes = [];
     const framesTimesFromBeginOfAnimation = [];
     const framesTranslates = [];
     const subrects = [];
+    const framesScales = [];
+
     let wholeAnimationDuration = 0;
 
     const emptyImage = createImage(1,1);
@@ -86,21 +88,23 @@ class extends SJ.ParalaxObject {
         subrects.push(frameId.subrect);
       else
         subrects.push(null);
-    });
 
-    keyFrames.forEach(frameId => {
       framesDurationTimes.push(frameId.frameDuration);
       framesTimesFromBeginOfAnimation.push(wholeAnimationDuration);
       wholeAnimationDuration+=frameId.frameDuration;
-    });
-    
-    keyFrames.forEach(frameId => {
+
       if(frameId.translate)
         translate = frameId.translate;
       framesTranslates.push(translate);
+
+      if(frameId.scale)
+        framesScales.push(frameId.scale);
+      else
+        framesScales.push(scale);
+        
     });
 
-    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrects,pointsToTrack,wholeAnimationDuration,scale,true,true,true);
+    this.animation = new SJ.KeyFramesAnimation(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrects,framesScales,pointsToTrack,moveTo,moveDuration,wholeAnimationDuration,scale,true,true,true);
     
   }
   _drawSelf() {
@@ -156,11 +160,16 @@ class {
     if(idxBg.spritesheet)
       obj = new SJ.ParalaxSpriteSheet(idxBg.name, imgPos, scale, idxBg.spritesheet);
     else if(idxBg.pointsToTrack && idxBg.keyFrames) {
-      const trackingKeyFrames = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,idxBg.pointsToTrack);
+      const trackingKeyFrames = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,idxBg.pointsToTrack,null,null);
       SJ.main.appendDrawable(trackingKeyFrames);
     }
+    else if(idxBg.moveTo && idxBg.moveDuration && idxBg.keyFrames){
+      // const movingKeyFrames = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,idxBg.move,idxBg.moveDuration);
+      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,idxBg.moveTo,idxBg.moveDuration);
+      // SJ.main.appendDrawable(movingKeyFrames);
+    }
     else if(idxBg.keyFrames)
-      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null);
+      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,null,null);
     else
       obj = new SJ.ParalaxImage(idxBg.name, imgPos, scale, subrect);
 
