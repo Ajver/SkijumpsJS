@@ -184,10 +184,12 @@ class extends SJ.Timer {
     if(this.moveDuration && this.moveTo){
       this.moveTimer = new SJ.Timer(moveDuration,true,true,false);
     }
-    
 
     this.pointsToTrack = pointsToTrack;
     this.correctScale = 1 / scale;
+
+    // if(pointsToTrack)
+    
 
     Object.byString = function(o, s) {
       s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -205,6 +207,15 @@ class extends SJ.Timer {
     }
     if(pointsToTrack){
       this.setPosition();
+
+      this.lerpX = 0;
+      this.lerpY = 0;
+
+      this.lerpSensX = 0.07;
+      this.lerpSensY = 0.05;
+
+      this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
+      this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
     }
   }
 
@@ -216,6 +227,10 @@ class extends SJ.Timer {
       if(this.pointsToTrack){
         this.correctScale = 1 / this.framesScales[currentFrameIndex];   
         this.setPosition();
+
+        this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
+        this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
+      
       }
       else{
         this.trackedX = 0;
@@ -228,7 +243,7 @@ class extends SJ.Timer {
 
         if(this.subrect[currentFrameIndex] != null){
           let s = this.subrect[currentFrameIndex];
-          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY, s.w, s.h, s.x, s.y, s.w, s.h);
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.lerpX, this.framesTranslates[currentFrameIndex].y + this.lerpY, s.w, s.h, s.x, s.y, s.w, s.h);
         }
         else{
           if(this.moveDuration){
@@ -238,7 +253,7 @@ class extends SJ.Timer {
             image(currentFrame, this.framesTranslates[currentFrameIndex].x + moveX, this.framesTranslates[currentFrameIndex].y + moveY);
           }
           else
-            image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY);
+            image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.lerpX, this.framesTranslates[currentFrameIndex].y + this.lerpY);
         }
       }
   }
