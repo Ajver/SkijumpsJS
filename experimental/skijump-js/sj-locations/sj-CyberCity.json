@@ -30,14 +30,14 @@
             "name": "CyberCity/Tło/budynki_warstwa6.png",
             "position":{
               "x":25,
-              "y":-75
+              "y":-58
             }
           },
           {
             "scale":1.35,
             "position":{
               "x":500,
-              "y":400
+              "y":417
             },
             "keyFrames":[
               {
@@ -96,7 +96,7 @@
             "name": "CyberCity/Budynek_4/oswietlenie_niebieski.png",
             "position":{
               "x":25,
-              "y":167
+              "y":181
             }
           },
           {
@@ -104,7 +104,7 @@
             "name": "CyberCity/Budynek_4/oswietlenie_niebieski2.png",
             "position":{
               "x":25,
-              "y":303
+              "y":320
             }
           },
           {
@@ -112,14 +112,14 @@
             "name": "CyberCity/Budynek_4/oswietlenie_pomarancz.png",
             "position":{
               "x":339,
-              "y":118.5
+              "y":135.5
             }
           },
           {
             "scale":1.35,
             "position":{
               "x":40,
-              "y":525
+              "y":542
             },
             "keyFrames":[
               {
@@ -169,14 +169,14 @@
             "name": "CyberCity/Budynek_4/oswietlenie_wejscie.png",
             "position":{
               "x":848,
-              "y":555
+              "y":572
             }
           },
           {
             "scale":1.35,
             "position":{
               "x":805,
-              "y":230
+              "y":247
             },
             "keyFrames":[
               {
@@ -205,7 +205,7 @@
             "scale":1.35,
             "position":{
               "x":1620,
-              "y":700
+              "y":717
             },
             "keyFrames":[
               {
@@ -226,7 +226,7 @@
             "scale":1.35,
             "position":{
               "x":2817,
-              "y":940
+              "y":957
             },
             "keyFrames":[
               {
@@ -260,7 +260,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_baner_serce.png",
             "position":{
               "x":2710,
-              "y":850
+              "y":867
             },
             "keyFrames":[
               {
@@ -278,7 +278,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_lampa.png",
             "position":{
               "x":2003,
-              "y":660
+              "y":677
             }
           },
           {
@@ -286,7 +286,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_niebieski.png",
             "position":{
               "x":1905,
-              "y":845 
+              "y":862
             }
           },
           {
@@ -294,7 +294,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_pomarancz.png",
             "position":{
               "x":1958,
-              "y":742 
+              "y":759 
             }
           },
           {
@@ -302,7 +302,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_pomarancz2.png",
             "position":{
               "x":2050,
-              "y":601
+              "y":618
             }
           },
           {
@@ -310,7 +310,7 @@
             "name":"CyberCity/Budynek_3/oswietlenie_wejscie.png",
             "position":{
               "x":2680,
-              "y":730
+              "y":747
             }
           },
           {
@@ -318,14 +318,14 @@
             "name":"CyberCity/Budynek_3/oswietlenie_zolty.png",
             "position":{
               "x":2044,
-              "y":730
+              "y":747
             }
           },
           {
             "scale":1.35,
             "position":{
               "x":3080,
-              "y":1300
+              "y":1317
             },
             "keyFrames":[
               {
@@ -350,7 +350,7 @@
             "scale":1.50,
             "position":{
               "x":2723,
-              "y":1215
+              "y":1232
             },
             "keyFrames":[
               {
@@ -388,7 +388,7 @@
             "name":"CyberCity/Budynek_3/swiatlo_pomarancz.png",
             "position":{
               "x":2963,
-              "y":1299
+              "y":1316
             }
           },
           {
@@ -396,7 +396,7 @@
             "name": "CyberCity/Budynek_2/oswietlenie_niebieski.png",
             "position":{
               "x":3305,
-              "y":2144
+              "y":2161
             }
           },
           {
@@ -404,7 +404,7 @@
             "name": "CyberCity/Budynek_2/oswietlenie_niebieski_gora.png",
             "position":{
               "x":3513,
-              "y":1705
+              "y":1722
             }
           },
           {
@@ -412,14 +412,14 @@
             "name": "CyberCity/Budynek_2/oswietlenie_pomarancz.png",
             "position":{
               "x":3610,
-              "y":1982.5
+              "y":1999.5
             }
           },
           {
             "scale":1.35,
             "position":{
               "x":3207,
-              "y":1700
+              "y":1717
             },
             "keyFrames":[
               {
@@ -456,7 +456,7 @@
             "scale":1.35,
             "position":{
               "x":3415,
-              "y":1150
+              "y":1167
             },
             "keyFrames":[
               {
@@ -526,7 +526,7 @@
             "name":"CyberCity/Budynek_2/oswietlenie_baner.png",
             "position":{
               "x":3395,
-              "y":1090
+              "y":1107
             }
           }
         ]
@@ -535,7 +535,7 @@
         "scale":1.35,
         "position":{
           "x":2500,
-          "y":650
+          "y":667
         },
         "keyFrames":[
           {
@@ -553,7 +553,7 @@
         "scale":1.35,
         "position":{
           "x":3000,
-          "y":700
+          "y":717
         },
         "keyFrames":[
           {
@@ -571,7 +571,7 @@
         "scale":1.15,
         "position":{
           "x":2300,
-          "y":430
+          "y":447
         },
         "keyFrames":[
           {
@@ -590,7 +590,7 @@
         "name":"CyberCity/Tło/tlo_warstwa5.png",
         "position":{
           "x":-400,
-          "y":100
+          "y":117
         }
       },
       {
@@ -606,7 +606,7 @@
         "name":"CyberCity/Tło/tlo_warstwa3.png",
         "position":{
           "x":0,
-          "y":30
+          "y":47
         }
       },
       {
@@ -614,7 +614,7 @@
         "name":"CyberCity/Tło/tlo_warstwa2.png",
         "position":{
           "x":150,
-          "y":100
+          "y":117
         }
       },
       {
@@ -622,7 +622,7 @@
         "name":"CyberCity/Tło/tlo_warstwa1.png",
         "position":{
           "x":150,
-          "y":-140
+          "y":-157
         }
       }
       
@@ -646,6 +646,10 @@
         "pointsToTrack":{
           "x":"jumper.body.position.x",
           "y":"jumper.body.position.y"
+        },
+        "lerpSens":{
+          "x": 0.05,
+          "y": 0.05
         },
         "keyFrames":[
           {

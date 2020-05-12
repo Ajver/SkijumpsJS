@@ -3,8 +3,8 @@ SJ.Camera =
 class {
   constructor(scaleMod) {
     // this._offset = createVector(
-    //   -1500 * scaleMod,
-    //   -400 * scaleMod
+    //   -8500 * scaleMod,
+    //   -4700 * scaleMod
     // );
     this._offset = createVector(-200, 0);
     this._offset.x += SJ.SCREEN_WIDTH*0.5;

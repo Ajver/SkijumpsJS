@@ -168,7 +168,7 @@ class extends SJ.Timer {
 
 SJ.KeyFramesAnimation = 
 class extends SJ.Timer {
-  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,moveTo,moveDuration,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,lerpSens,moveTo,moveDuration,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
     super(duration, autostart, loopMode, resetAtEnd); 
     
     this.frames = frames;
@@ -205,15 +205,17 @@ class extends SJ.Timer {
       }
       return o;
     }
+
     if(pointsToTrack){
       this.setPosition();
 
       this.lerpX = 0;
       this.lerpY = 0;
 
-      this.lerpSensX = 0.07;
-      this.lerpSensY = 0.05;
+      this.lerpSensX = lerpSens.x;
+      this.lerpSensY = lerpSens.y;
 
+      
       this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
       this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
     }
@@ -230,11 +232,13 @@ class extends SJ.Timer {
 
         this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
         this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
-      
       }
       else{
         this.trackedX = 0;
         this.trackedY = 0;
+
+        this.lerpX = 0;
+        this.lerpY = 0;
       }
 
       if(currentFrame) {
@@ -280,6 +284,10 @@ class extends SJ.Timer {
   setPosition(){
     this.trackedX = Object.byString(SJ, this.pointsToTrack.x)*this.correctScale;
     this.trackedY = Object.byString(SJ, this.pointsToTrack.y)*this.correctScale;
+
+    // console.log(this.trackedX);
+    // console.log(this.trackedY);
+    // console.log('----')
   }
 
 }
