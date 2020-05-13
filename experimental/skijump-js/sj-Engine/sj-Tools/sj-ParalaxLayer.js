@@ -165,7 +165,7 @@ class {
     }
     else if(idxBg.moveTo && idxBg.moveDuration && idxBg.keyFrames){
       // const movingKeyFrames = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,idxBg.move,idxBg.moveDuration);
-      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,idxBg.moveTo,idxBg.moveDuration);
+      obj = new SJ.ParalaxKeyFrames(idxBg.keyFrames,imgPos,idxBg.subrect,scale,null,null,idxBg.moveTo,idxBg.moveDuration);
       // SJ.main.appendDrawable(movingKeyFrames);
     }
     else if(idxBg.keyFrames)

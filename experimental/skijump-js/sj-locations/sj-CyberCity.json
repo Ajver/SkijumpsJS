@@ -534,7 +534,7 @@
       {
         "scale":1.35,
         "position":{
-          "x":2500,
+          "x":2000,
           "y":667
         },
         "keyFrames":[
@@ -545,14 +545,14 @@
         ],
         "moveDuration":5000,
         "moveTo":{
-          "x": -1500,
+          "x": -2000,
           "y": 0
         }
       },
       {
         "scale":1.35,
         "position":{
-          "x":3000,
+          "x":1600,
           "y":717
         },
         "keyFrames":[
@@ -563,14 +563,14 @@
         ],
         "moveDuration":7000,
         "moveTo":{
-          "x": -6000,
+          "x": -2000,
           "y": 0
         }
       },
       {
         "scale":1.15,
         "position":{
-          "x":2300,
+          "x":1450,
           "y":447
         },
         "keyFrames":[
@@ -581,7 +581,61 @@
         ],
         "moveDuration":4000,
         "moveTo":{
-          "x": -4500,
+          "x": -2000,
+          "y": 0
+        }
+      },
+      {
+        "scale":1.15,
+        "position":{
+          "x":3080,
+          "y":800
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Pojazdy/pojazd1.png",
+            "frameDuration": 1
+          }
+        ],
+        "moveDuration":4000,
+        "moveTo":{
+          "x": -2000,
+          "y": 0
+        }
+      },
+      {
+        "scale":1.15,
+        "position":{
+          "x":3080,
+          "y":900
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Pojazdy/pojazd2.png",
+            "frameDuration": 1
+          }
+        ],
+        "moveDuration":3000,
+        "moveTo":{
+          "x": -2000,
+          "y": 0
+        }
+      },
+      {
+        "scale":1.15,
+        "position":{
+          "x":3180,
+          "y":950
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"CyberCity/Pojazdy/pojazd3.png",
+            "frameDuration": 1
+          }
+        ],
+        "moveDuration":2500,
+        "moveTo":{
+          "x": -2000,
           "y": 0
         }
       },
