@@ -430,6 +430,10 @@ class {
     // pop();
 
     // this._drawVelocityVector();
+
+    // console.log(this.body.position.x);
+    // console.log(this.body.position.y);
+    // console.log('=====');
   }
 
   _drawVelocityVector() {

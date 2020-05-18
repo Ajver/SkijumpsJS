@@ -168,7 +168,7 @@ class extends SJ.Timer {
 
 SJ.KeyFramesAnimation = 
 class extends SJ.Timer {
-  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,moveTo,moveDuration,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
+  constructor(frames,framesDurationTimes,framesTranslates,framesTimesFromBeginOfAnimation,subrect,framesScales,pointsToTrack,lerpSens,moveTo,moveDuration,duration,scale,autostart=false, loopMode=false, resetAtEnd=false) {
     super(duration, autostart, loopMode, resetAtEnd); 
     
     this.frames = frames;
@@ -184,10 +184,12 @@ class extends SJ.Timer {
     if(this.moveDuration && this.moveTo){
       this.moveTimer = new SJ.Timer(moveDuration,true,true,false);
     }
-    
 
     this.pointsToTrack = pointsToTrack;
     this.correctScale = 1 / scale;
+
+    // if(pointsToTrack)
+    
 
     Object.byString = function(o, s) {
       s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -203,8 +205,19 @@ class extends SJ.Timer {
       }
       return o;
     }
+
     if(pointsToTrack){
       this.setPosition();
+
+      this.lerpX = 0;
+      this.lerpY = 0;
+
+      this.lerpSensX = lerpSens.x;
+      this.lerpSensY = lerpSens.y;
+
+      
+      this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
+      this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
     }
   }
 
@@ -216,10 +229,16 @@ class extends SJ.Timer {
       if(this.pointsToTrack){
         this.correctScale = 1 / this.framesScales[currentFrameIndex];   
         this.setPosition();
+
+        this.lerpX = lerp(this.lerpX,this.trackedX,this.lerpSensX);
+        this.lerpY = lerp(this.lerpY,this.trackedY,this.lerpSensY);
       }
       else{
         this.trackedX = 0;
         this.trackedY = 0;
+
+        this.lerpX = 0;
+        this.lerpY = 0;
       }
 
       if(currentFrame) {
@@ -228,7 +247,7 @@ class extends SJ.Timer {
 
         if(this.subrect[currentFrameIndex] != null){
           let s = this.subrect[currentFrameIndex];
-          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY, s.w, s.h, s.x, s.y, s.w, s.h);
+          image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.lerpX, this.framesTranslates[currentFrameIndex].y + this.lerpY, s.w, s.h, s.x, s.y, s.w, s.h);
         }
         else{
           if(this.moveDuration){
@@ -238,7 +257,7 @@ class extends SJ.Timer {
             image(currentFrame, this.framesTranslates[currentFrameIndex].x + moveX, this.framesTranslates[currentFrameIndex].y + moveY);
           }
           else
-            image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.trackedX, this.framesTranslates[currentFrameIndex].y + this.trackedY);
+            image(currentFrame, this.framesTranslates[currentFrameIndex].x + this.lerpX, this.framesTranslates[currentFrameIndex].y + this.lerpY);
         }
       }
   }
@@ -265,6 +284,10 @@ class extends SJ.Timer {
   setPosition(){
     this.trackedX = Object.byString(SJ, this.pointsToTrack.x)*this.correctScale;
     this.trackedY = Object.byString(SJ, this.pointsToTrack.y)*this.correctScale;
+
+    // console.log(this.trackedX);
+    // console.log(this.trackedY);
+    // console.log('----')
   }
 
 }
