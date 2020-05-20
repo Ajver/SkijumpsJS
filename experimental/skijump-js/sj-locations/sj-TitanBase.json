@@ -15,8 +15,8 @@
     "y": -310
   },
   "minCameraPosition":{
-    "x":-50,
-    "y":0
+    "x": -50,
+    "y": 320
   },
   "texturesNames": {
     "pad": "TitanBase/Pad/pad.png",
