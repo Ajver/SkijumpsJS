@@ -287,6 +287,14 @@ class {
   
     if(this.body.isStatic) {
       Matter.Body.translate(this.body, this.body.velocity);
+    }else {
+      const collisionPoints = SJ.V.padCollisionPoints;
+      const lastPoint = collisionPoints[collisionPoints.length-1].x - 100;
+      const { x } = this.body.position;
+      if(x >= lastPoint) {
+        this.body.position.x = lastPoint;
+        this.body.velocity.x = 0;
+      }
     }
   }
 
