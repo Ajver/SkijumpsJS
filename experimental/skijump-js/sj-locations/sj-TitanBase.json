@@ -21,6 +21,14 @@
   "texturesNames": {
     "pad": "TitanBase/Pad/pad.png",
     "background": [
+      { 
+        "name":"TitanBase/droga_skaly/skaly-dol.png",
+        "scale":1.0,
+        "position":{
+          "x": 5000,
+          "y": 3370
+        }
+      },
       {
         "name": "TitanBase/droga_skaly/skaly.png",
         "position": {
@@ -189,14 +197,6 @@
               "h": 562
             },
             "scale": 1.2
-          },
-          { 
-            "scale":1.2,
-            "name":"TitanBase/droga_skaly/skaly-dol.png",
-            "position":{
-              "x": 3500,
-              "y": 2070
-            }
           },
           {
             "name": "TitanBase/droga_skaly/antena_przesunieta.png",
