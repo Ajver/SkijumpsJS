@@ -10,13 +10,13 @@
       "y": 708
   }, {
       "x": 900,
-      "y": 1100
-  }, {
-      "x": 1406,
       "y": 1500
   }, {
+      "x": 1406,
+      "y": 1700
+  }, {
       "x": 1754,
-      "y": 1650
+      "y": 1800
   }, {
       "x": 2500,
       "y": 1900
@@ -37,17 +37,21 @@
       "y": 5150
   }, {
       "x": 7600,
-      "y": 5700
+      "y": 4500
   }, {
       "x": 8000,
-      "y": 5800
+      "y": 4500
   }, {
       "x": 9700,
-      "y": 5800
-  }],
+      "y": 4500
+  },{
+      "x":11000,
+      "y":4500
+  }
+],
   "cameraTopPath": [{
       "x": 216,
-      "y": 708
+      "y": 750
   }, {
       "x": 900,
       "y": 1100
@@ -71,106 +75,243 @@
       "y": 3000
   }, {
       "x": 7600,
-      "y": 4300
+      "y": 4000
   }, {
       "x": 9700,
-      "y": 5800
+      "y": 5000
   }],
   "gravity": 0.25,
   "jumpStartPoint": 1642.030518,
   "jumperPosition": {
-      "x": 79.556557,
-      "y": 638.38092
+      "x": -100.00,
+      "y": 560.00
   },
   "locationName": "Star station",
   "maxJumpDistance": 200,
   "minJumpDistance": 20,
-  "padCollisionPoints": [{
-      "x": 2125.486328,
-      "y": 1807.305176
-  }, {
-      "x": 2797.285889,
-      "y": 1824.734131
-  }, {
-      "x": 3453.557617,
-      "y": 1944.361206
-  }, {
-      "x": 4009.547852,
-      "y": 2192.489014
-  }, {
-      "x": 4524.183105,
-      "y": 2500.351563
-  }, {
-      "x": 5002.624512,
-      "y": 2899.752686
-  }, {
-      "x": 5430.628906,
-      "y": 3280.051514
-  }, {
-      "x": 5902.657227,
-      "y": 3626.762695
-  }, {
-      "x": 6403.92627,
-      "y": 3923.346924
-  }, {
-      "x": 6992.91748,
-      "y": 4153.095215
-  }, {
-      "x": 7523.427246,
-      "y": 4282.589844
-  }, {
-      "x": 8308.749023,
-      "y": 4424.616211
-  }, {
-      "x": 9198.500977,
-      "y": 4512.338379
-  }, {
-      "x": 10275.928711,
-      "y": 4557.87793
-  }, {
-      "x": 10895.053711,
-      "y": 4560.730957
-  }],
   "padFriction": 0.0002,
-  "padPullingPoints": [{
-      "x": 50.274754,
-      "y": 661.806396
-  }, {
-      "x": 425.823456,
-      "y": 1003.781006
-  }, {
-      "x": 773.69104,
-      "y": 1266.292114
-  }, {
-      "x": 1167.37561,
-      "y": 1524.155396
-  }, {
-      "x": 1505.140137,
-      "y": 1672.301147
-  }, {
-      "x": 1713.042358,
-      "y": 1715.218994
-  }, {
-      "x": 2075.486572,
-      "y": 1740.305664
-  }],
-  "padScale": 1,
+  "padPullingPoints": [
+      {"x":-100.00,"y":560.00},
+      {"x":100.00,"y":760.00},
+      {"x":200.00,"y":850.00},
+      {"x":300.00,"y":950.00},
+      {"x":500.00,"y":1120.00},
+      {"x":700.00,"y":1275.00},
+      {"x":900.00,"y":1420.00},
+      {"x":1100.00,"y":1550.00},
+      {"x":1200.00,"y":1600.00},
+      {"x":1300.00,"y":1640.00},
+      {"x":1400.00,"y":1675.00},
+      {"x":1500.00,"y":1700.00},
+      {"x":1600.00,"y":1715.00},
+      {"x":1700.00,"y":1725.00},
+      {"x":1800.00,"y":1732.00},
+      {"x":1920.00,"y":1735.00}
+  ],
+  "padCollisionPoints": [
+      {"x":1950.00,"y":1800.00},
+      {"x":2200.00,"y":1805.00},
+      {"x":2400.00,"y":1820.00},
+      {"x":2600.00,"y":1850.00},
+      {"x":2800.00,"y":1890.00},
+      {"x":3000.00,"y":1940.00},
+      {"x":3200.00,"y":2010.00},
+      {"x":3400.00,"y":2100.00},
+      {"x":3600.00,"y":2200.00},
+      {"x":3800.00,"y":2315.00},
+      {"x":4000.00,"y":2435.00},
+      {"x":4200.00,"y":2575.00},
+      {"x":4400.00,"y":2740.00},
+      {"x":4600.00,"y":2920.00},
+      {"x":4800.00,"y":3110.00},
+      {"x":5000.00,"y":3290.00},
+      {"x":5500.00,"y":3695.00},
+      {"x":5700.00,"y":3835.00},
+      {"x":5900.00,"y":3950.00},
+      {"x":6100.00,"y":4060.00},
+      {"x":6300.00,"y":4145.00},
+      {"x":6500.00,"y":4225.00},
+      {"x":6700.00,"y":4300.00},
+      {"x":6900.00,"y":4360.00},
+      {"x":7200.00,"y":4425.00},
+      {"x":7600.00,"y":4500.00},
+      {"x":8000.00,"y":4575.00},
+      {"x":8300.00,"y":4615.00},
+      {"x":8500.00,"y":4630.00},
+      {"x":8800.00,"y":4655.00},
+      {"x":9200.00,"y":4680.00},
+      {"x":9700.00,"y":4700.00}
+  ],
+  "padScale": 2,
   "textureOffset": {
-      "x": 700,
-      "y": 900
+      "x": -520,
+      "y": 130
   },
+  "cameraScale": 0.8,
   "texturesNames": {
+      "pad": "StarStation/Skocznia/skocznia.png",
       "background": [
         {
-          "name": "StarStation/background/planet.png",
-          "position": {
-            "x": -30,
-            "y": -100
-          },
-          "scale": 1.25,
-          "followScale": 0.1
+            "type":"array",
+            "array":[
+                {
+                    "scale": 1.25,
+                    "position":{
+                        "x":300,
+                        "y":0
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Plansza/pole_gora.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Plansza/pole_gora2.png",
+                            "frameDuration":100
+                        }
+                    ]
+                },
+                {
+                    "scale": 1.25,
+                    "position":{
+                        "x":-190,
+                        "y":2100
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Plansza/pole_dol.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Plansza/pole_dol2.png",
+                            "frameDuration":100
+                        }
+                    ]
+                },
+                {
+                    "name":"StarStation/Plansza/plansza.png",
+                    "scale": 1.25,
+                    "position":{
+                        "x": -200,
+                        "y": -20
+                    }
+                },
+                {
+                    "name":"StarStation/Plansza/plansza_swiatlo.png",
+                    "position":{
+                        "x":416,
+                        "y":175
+                    },
+                    "scale":1.25
+                }
+            ]
+        },
+        {
+            "name":"StarStation/Plansza/pole.png",
+            "scale":1.5
+        },
+        {
+            "scale": 0.7,
+            "name":"StarStation/Tlo/tlo.png",
+            "position":{
+                "x":-100,
+                "y":-400
+            },
+            "followScale": 0.5
         }
       ],
-      "pad": "StarStation/Pad/starstationPad.png"
+      "middleground":[
+        {
+            "type":"array",
+            "array":[
+                {
+                    "name":"StarStation/Skocznia/podstawaskoczni.png",
+                    "position":{
+                        "x":0,
+                        "y":412
+                    }
+                },
+                {
+                    "position":{
+                        "x":1125,
+                        "y":865
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Skocznia/podstawaskoczni_swiatlo.png",
+                            "frameDuration": 600
+                        },
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration": 300
+                        }
+                    ]
+                }
+            ]
+            
+        }
+      ],
+      "foreground":[
+          {
+              "name":"StarStation/Skocznia/skocznia2.png",
+              "position":{
+                  "x":0,
+                  "y":0
+              }
+          },
+          {
+              "position":{
+                  "x":319,
+                  "y":68
+              },
+              "keyFrames":[
+                  {
+                      "frameSourceImage":"StarStation/Skocznia/skocznia_swiatlo.png",
+                      "frameDuration": 600
+                  },
+                  {
+                      "frameSourceImage":null,
+                      "frameDuration": 300
+                  }
+              ]
+          },
+          {
+              "position":{
+                  "x": 35,
+                  "y": 68
+              },
+              "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Skocznia/skocznia2_swiatlo.png",
+                    "frameDuration": 600
+                },
+                {
+                    "frameSourceImage":null,
+                    "frameDuration": 300
+                }
+              ]
+          },
+          {
+              "type":"array",
+              "array":[
+                {
+                    "name":"StarStation/Skocznia/szyld.png",
+                    "position":{
+                        "x":125,
+                        "y":305
+                    }
+                },
+                {
+                    "name":"StarStation/Skocznia/szyld_napis.png",
+                    "position":{
+                        "x":145,
+                        "y":325
+                    }
+                }
+              ]
+              
+          }
+
+      ]
   }
 }

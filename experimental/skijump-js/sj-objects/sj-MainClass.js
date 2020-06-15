@@ -28,7 +28,7 @@ class extends SJ.EventHandler {
     });
 
     SJ.camera = new SJ.Camera(SJ.V.cameraScale);
-    // SJ.camera = new SJ.Camera(.2);
+    // SJ.camera = new SJ.Camera(.5);
     this.addEventListener('restart', () => {
       SJ.camera.restart();
     });
