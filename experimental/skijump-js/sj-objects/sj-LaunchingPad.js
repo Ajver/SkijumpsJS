@@ -64,7 +64,7 @@ class {
   startPullingJumper() {
     this._pullingSystem.jumperFrictionMult = 3.0;
     this._pullingSystem.pullingArray = SJ.V.padCollisionPoints;
-    for(let i=0; i<SJ.V.padCollisionPoints.length; i++) {
+    for(let i=1; i<SJ.V.padCollisionPoints.length; i++) {
       const point = SJ.V.padCollisionPoints[i];
       if(point.x >= SJ.jumper.body.position.x) {
         this._pullingSystem.setIndex(i);
