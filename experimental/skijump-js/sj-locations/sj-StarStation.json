@@ -19,34 +19,43 @@
       "y": 1800
   }, {
       "x": 2500,
-      "y": 1900
-  }, {
-      "x": 3300,
       "y": 2500
   }, {
+      "x": 3300,
+      "y": 4100
+  }, {
       "x": 3900,
-      "y": 3000
+      "y": 4100
   }, {
       "x": 4700,
-      "y": 3800
+      "y": 4100
   }, {
       "x": 5300,
-      "y": 4300
+      "y": 4100
   }, {
       "x": 6500,
-      "y": 5150
+      "y": 4100
   }, {
       "x": 7600,
-      "y": 4500
+      "y": 4100
   }, {
       "x": 8000,
-      "y": 4500
+      "y": 4100
   }, {
       "x": 9700,
-      "y": 4500
+      "y": 4100
   },{
       "x":11000,
-      "y":4500
+      "y":4100
+  },{
+    "x":11000,
+    "y":4100
+  },{
+    "x":12000,
+    "y":4100
+  },{
+    "x":13000,
+    "y":4100
   }
 ],
   "cameraTopPath": [{
@@ -142,15 +151,215 @@
       {"x":9200.00,"y":4680.00},
       {"x":9700.00,"y":4700.00}
   ],
-  "padScale": 2,
+  "padScale": 0.8,
   "textureOffset": {
-      "x": -520,
-      "y": 130
+      "x": -550,
+      "y": 100
   },
   "cameraScale": 0.8,
   "texturesNames": {
-      "pad": "StarStation/Skocznia/skocznia.png",
+      "pad": "StarStation/Skocznia/skocznia1.png",
       "background": [
+        
+        {
+            "type":"array",
+            "array":[
+                {
+                    "name":"StarStation/Plansza/Stacja/stacja.png",
+                    "position":{
+                        "x":5100,
+                        "y":2650
+                    }
+                },
+                {
+                    "position":{
+                        "x":5751,
+                        "y":2663
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Plansza/Stacja/stacja_komputer_swiatlo.png",
+                            "frameDuration":200
+                        },
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration":200
+                        }
+                    ]
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja/stacja_porecze_swiatlo2.png",
+                    "position":{
+                        "x":5105,
+                        "y":2650
+                    }
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja/stacja_porecze.png",
+                    "position":{
+                        "x":5360,
+                        "y":2720
+                    }
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja/stacja_porecze_swiatlo.png",
+                    "position":{
+                        "x":5100,
+                        "y":2680
+                    }
+                },
+                {
+                    "position":{
+                        "x":6000,
+                        "y":2600
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/1.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/2.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/3.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/4.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/5.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/spoczynek/6.png",
+                            "frameDuration": 150
+                        }
+                    ]
+                },
+                {
+                    "position":{
+                        "x":5800,
+                        "y":2625
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/1.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/2.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/3.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/4.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/5.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/spoczynek/6.png",
+                            "frameDuration": 150
+                        }
+                    ]
+                },
+                {
+                    "position":{
+                        "x":4900,
+                        "y":2500
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/1.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/2.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/3.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/4.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/5.png",
+                            "frameDuration": 150
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron3/spawanie/6.png",
+                            "frameDuration": 150
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"array",
+            "array":[
+                {
+                    "name":"StarStation/Plansza/Stacja2/stacja2.png",
+                    "position":{
+                        "x":4500,
+                        "y":2250
+                    }
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja2/stacja2_swiatlo.png",
+                    "position":{
+                        "x":4510,
+                        "y":2370
+                    }
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja2/liany_swiatlo.png",
+                    "position":{
+                        "x":5175,
+                        "y":2292
+                    }
+                },
+                {
+                    "name":"StarStation/Animacje/Antena/1.png",
+                    "position":{
+                        "x":4600,
+                        "y":1300
+                    }
+                }
+            ]
+        },
+        {
+            "type":"array",
+            "array":[
+                {
+                    "scale":0.8,
+                    "name":"StarStation/Plansza/statek.png",
+                    "position":{
+                        "x":2600,
+                        "y":1550
+                    }
+                },
+                {
+                    "scale":0.8,
+                    "name":"StarStation/Plansza/statek_swiatlo.png",
+                    "position":{
+                        "x":2667,
+                        "y":1590
+                    }
+                }
+            ]
+        },
         {
             "type":"array",
             "array":[
@@ -211,6 +420,57 @@
             "scale":1.5
         },
         {
+            "name":"StarStation/Animacje/Statekkosmiczny2/1.png",
+            "scale":0.8,
+            "position":{
+                "x":800,
+                "y":300
+            },
+            "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny2/1.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny2/2.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny2/3.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny2/4.png",
+                    "frameDuration":200
+                }
+            ]
+        },
+        {
+            "position":{
+                "x":1500,
+                "y":300
+            },
+            "scale":0.8,
+            "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny1/1.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny1/2.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny1/3.png",
+                    "frameDuration":200
+                },
+                {
+                    "frameSourceImage":"StarStation/Animacje/Statekkosmiczny1/4.png",
+                    "frameDuration":200
+                }
+            ]
+        },
+        {
             "scale": 0.7,
             "name":"StarStation/Tlo/tlo.png",
             "position":{
@@ -222,96 +482,101 @@
       ],
       "middleground":[
         {
-            "type":"array",
-            "array":[
+            "position":{
+                "x":1125,
+                "y":865
+            },
+            "keyFrames":[
                 {
-                    "name":"StarStation/Skocznia/podstawaskoczni.png",
-                    "position":{
-                        "x":0,
-                        "y":412
-                    }
-                },
-                {
-                    "position":{
-                        "x":1125,
-                        "y":865
-                    },
-                    "keyFrames":[
-                        {
-                            "frameSourceImage":"StarStation/Skocznia/podstawaskoczni_swiatlo.png",
-                            "frameDuration": 600
-                        },
-                        {
-                            "frameSourceImage":null,
-                            "frameDuration": 300
-                        }
-                    ]
-                }
-            ]
-            
-        }
-      ],
-      "foreground":[
-          {
-              "name":"StarStation/Skocznia/skocznia2.png",
-              "position":{
-                  "x":0,
-                  "y":0
-              }
-          },
-          {
-              "position":{
-                  "x":319,
-                  "y":68
-              },
-              "keyFrames":[
-                  {
-                      "frameSourceImage":"StarStation/Skocznia/skocznia_swiatlo.png",
-                      "frameDuration": 600
-                  },
-                  {
-                      "frameSourceImage":null,
-                      "frameDuration": 300
-                  }
-              ]
-          },
-          {
-              "position":{
-                  "x": 35,
-                  "y": 68
-              },
-              "keyFrames":[
-                {
-                    "frameSourceImage":"StarStation/Skocznia/skocznia2_swiatlo.png",
+                    "frameSourceImage":"StarStation/Skocznia/podstawaskoczni_swiatlo.png",
                     "frameDuration": 600
                 },
                 {
                     "frameSourceImage":null,
                     "frameDuration": 300
                 }
-              ]
-          },
-          {
-              "type":"array",
-              "array":[
+            ]  
+        },
+        {
+            "name":"StarStation/Skocznia/napis.png",
+            "position":{
+                "x":370,
+                "y":820
+            }
+        }
+      ],
+      "foreground":[
+        {
+            "position":{
+                "x":777,
+                "y":440
+            },
+            "keyFrames":[
                 {
-                    "name":"StarStation/Skocznia/szyld.png",
-                    "position":{
-                        "x":125,
-                        "y":305
-                    }
+                    "frameSourceImage":"StarStation/Skocznia/skocznia1_swiatla2.png",
+                    "frameDuration":500
                 },
                 {
-                    "name":"StarStation/Skocznia/szyld_napis.png",
-                    "position":{
-                        "x":145,
-                        "y":325
-                    }
+                    "frameSourceImage":null,
+                    "frameDuration":300
                 }
-              ]
-              
-          }
-
+            ]
+        },
+        {
+            "name":"StarStation/Skocznia/skocznia2.png",
+            "position":{
+                "x":0,
+                "y":0
+            }
+        },
+        {
+            "position":{
+                "x":600,
+                "y":390
+            },
+            "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Skocznia/skocznia2_swiatla3.png",
+                    "frameDuration":500
+                },
+                {
+                    "frameSourceImage":null,
+                    "frameDuration":300
+                }
+            ]
+        },
+        {
+            "position":{
+                "x":88,
+                "y":172
+            },
+            "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Skocznia/skocznia2_swiatla1.png",
+                    "frameDuration":500
+                },
+                {
+                    "frameSourceImage":null,
+                    "frameDuration":300
+                }
+            ]
+        },
+        {
+            "position":{
+                "x":810,
+                "y":170
+            },
+            "keyFrames":[
+                {
+                    "frameSourceImage":"StarStation/Skocznia/skocznia1_swiatlo1.png",
+                    "frameDuration":500
+                },
+                {
+                    "frameSourceImage":null,
+                    "frameDuration":300
+                }
+            ]
+        }
       ]
   }
 }
