@@ -71,6 +71,108 @@
             }
           ]
         },
+        { 
+          "scale":0.6,
+          "isMoving":"false",
+          "position":{
+            "x":1400,
+            "y":720
+          },
+          "keyFrames":[
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_1.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_2.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_3.png",
+              "frameDuration": 300
+            }
+          ]
+        },
+        {
+          "scale":0.6,
+          "isMoving":"false",
+          "position":{
+            "x":3150,
+            "y":1900
+          },
+          "keyFrames":[
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_1.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_2.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_3.png",
+              "frameDuration": 300
+            }
+          ]
+        },
+        {
+          "scale":0.8,
+          "isMoving":"false",
+          "position":{
+            "x":4500,
+            "y":2930
+          },
+          "keyFrames":[
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_1.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_2.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage": "Szczyrk/Animacje/lampa_3.png",
+              "frameDuration": 300
+            }
+          ]
+        },
+        {
+          "scale":0.7,
+          "isMoving":"false",
+          "position":{
+            "x": 3450,
+            "y": 2200
+          },
+          "keyFrames":[
+            {
+              "frameSourceImage":"Szczyrk/Animacje/megafon_1.png",
+              "frameDuration": 300
+            },
+            {
+              "frameSourceImage":"Szczyrk/Animacje/megafon_2.png",
+              "frameDuration": 300
+            }
+          ]
+        },
+        {
+          "position":{
+            "x":6350,
+            "y":3460
+          },
+          "isMoving":"false",
+          "scale":0.8,
+          "keyFrames":[
+            {
+              "frameSourceImage":"Szczyrk/Animacje/targ_1.png",
+              "frameDuration": 500
+            },
+            {
+              "frameSourceImage":"Szczyrk/Animacje/targ_2.png",
+              "frameDuration": 500
+            }
+          ]
+        },
         {
           "name":"Szczyrk/Warstwy/snieg_2.png",
           "isMoving": "false",
@@ -173,6 +275,181 @@
                   "frameDuration": 250
                 }
               ]
+            },
+            {
+              "scale":0.7,
+              "position":{
+                "x": 1250,
+                "y":770
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/jelonki_1.png",
+                  "frameDuration": 700
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/jelonki_2.png",
+                  "frameDuration": 700
+                }
+              ]
+            },
+            {
+              "scale":0.8,
+              "position":{
+                "x":1050,
+                "y":250
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/sterowiec_1.png",
+                  "frameDuration": 800
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/sterowiec_1.png",
+                  "frameDuration": 800,
+                  "translate":{
+                    "x":2,
+                    "y":2
+                  }
+                }
+              ]
+            },
+            {
+              "scale":0.8,
+              "position":{
+                "x":1600,
+                "y":750
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_1.png",
+                  "frameDuration": 1500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_4.png",
+                  "frameDuration": 1500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_7.png",
+                  "frameDuration": 1500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_10.png",
+                  "frameDuration": 1500
+                }
+              ]
+            },
+            {
+              "scale":0.8,
+              "position":{
+                "x":1850,
+                "y":820
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/s_flagi_1.png",
+                  "frameDuration": 300
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/s_flagi_2.png",
+                  "frameDuration": 300
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/s_flagi_3.png",
+                  "frameDuration": 300
+                }
+              ]
+            },
+            {
+              "scale":0.8,
+              "position":{
+                "x":3900,
+                "y":2600
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_1.png",
+                  "frameDuration": 3500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_2.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_3.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_4.png",
+                  "frameDuration": 3500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_5.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_6.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_7.png",
+                  "frameDuration": 3500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_8.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_9.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_10.png",
+                  "frameDuration": 2500
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_11.png",
+                  "frameDuration": 200
+                },
+                {
+                  "frameSourceImage":"Szczyrk/Animacje/S_billboard_12.png",
+                  "frameDuration": 200
+                }
+              ]
+            },
+            {
+              "position":{
+                "x":4400,
+                "y":2615
+              },
+              "scale":0.6,
+              "keyFrames":[
+                {
+                  "frameSourceImage": "Szczyrk/Animacje/Trybuny/s_swiatlo.png",
+                  "frameDuration": 1000
+                },
+                {
+                  "frameSourceImage": "Szczyrk/Animacje/Trybuny/s_swiatlo.png",
+                  "frameDuration": 1000
+                }
+              ]
+            },
+            {
+              "scale":0.6,
+              "position":{
+                "x":4250,
+                "y":2500
+              },
+              "keyFrames":[
+                {
+                  "frameSourceImage": "Szczyrk/Animacje/s_trybuny_1.png",
+                  "frameDuration": 1000
+                },
+                {
+                  "frameSourceImage": "Szczyrk/Animacje/s_trybuny_2.png",
+                  "frameDuration": 1000
+                }
+              ]
             }
           ]
           
@@ -191,15 +468,15 @@
           "scale": 0.5,
           "position":{
             "x": 20,
-            "y": -160
+            "y": -200
           }
         },
         {
           "name": "Szczyrk/Warstwy/s_gory_2.png",
           "movingStrength":0.4,
-          "scale": 0.4,
+          "scale": 0.45,
           "position":{
-            "x": 140,
+            "x": 180,
             "y": -140
           }
 
@@ -302,6 +579,22 @@
           {
             "frameSourceImage":"Szczyrk/Animacje/balwan_2.png",
             "frameDuration": 300
+          }
+        ]
+      },
+      {
+        "position":{
+          "x":7850,
+          "y":5100
+        },
+        "keyFrames":[
+          {
+            "frameSourceImage":"Szczyrk/Animacje/balwany_1.png",
+            "frameDuration": 500
+          },
+          {
+            "frameSourceImage":"Szczyrk/Animacje/balwany_2.png",
+            "frameDuration": 500
           }
         ]
       }
