@@ -114,11 +114,20 @@ class extends SJ.ParalaxObject {
 SJ.ParalaxLayer =
 class {
   constructor(scale, pos, data) {
-    this.camScale = scale;
+    this.camScale = data.movingStrength || scale;
     this.scale = 1.0;
     this.x = pos.x;
     this.y = pos.y;
     this.images = [];
+
+    this.isMoving = data.isMoving || true;
+    this.translate = data.translate ||  {   
+      "x": 0,
+      "y": 0
+    };
+
+    if(this.isMoving == "false")
+      this.camScale = SJ.V.cameraScale;
 
     this._prepareData(data);
   }
@@ -179,12 +188,15 @@ class {
   }
 
   draw(cameraPos) {
-    push();
-      translate(this.x, this.y);
-      translate(cameraPos.x*this.camScale, cameraPos.y*this.camScale);
-      this.images.forEach(img => {
-        img.draw();
-      });
-    pop();
+      push();
+
+        translate(this.x + this.translate.x, this.y + this.translate.y);
+        translate(cameraPos.x*this.camScale, cameraPos.y*this.camScale);
+      
+        this.images.forEach(img => {
+          img.draw();
+        });
+        
+      pop();
   }
 }

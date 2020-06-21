@@ -83,7 +83,8 @@ SJ.ScreensManager.setup = () => {
       [ "Titan Base", "TitanBase" ],
       [ "Star Station", "StarStation" ],
       [ "Alien Colony", "AlienColony" ],
-      [ "Planeta X", "PlanetX" ],
+      [ "Szczyrk", "Szczyrk" ],
+      [ "Planeta X", "PlanetX" ]
     ]
 
     for(let i=0; i<locations.length; i++) {
@@ -91,9 +92,9 @@ SJ.ScreensManager.setup = () => {
       const btn = SJ.createLocationButton(loc[0], 30+xSeparation*i, 300, loc[1]);
       self.appendDrawable(btn);
       
-      if(i > 2) {
-        btn.disabled = true;
-      }
+      // if(i > 2) {
+      //   btn.disabled = true;
+      // }
     }
 
     self.appendDrawable(
