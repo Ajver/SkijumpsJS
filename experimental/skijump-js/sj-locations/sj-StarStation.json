@@ -5,57 +5,86 @@
   "airMaxForce": 3,
   "airMinForce": 1,
   "airRotateForce": 0.0001,
-  "cameraBottomPath": [{
+  "minCameraPosition": {
+    "x": -600,
+    "y": 40
+  },
+  "cameraBottomPath": [
+    {
       "x": 216,
-      "y": 708
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 900,
-      "y": 1500
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 1406,
-      "y": 1700
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 1754,
-      "y": 1800
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 2500,
-      "y": 2500
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 3300,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 3900,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 4700,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 5300,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 6500,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 7600,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 8000,
-      "y": 4100
-  }, {
+      "y": 3900
+  }, 
+  {
       "x": 9700,
-      "y": 4100
-  },{
-      "x":11000,
-      "y":4100
-  },{
+      "y": 3900
+  },
+  {
+      "x":10000,
+      "y":3900
+  },
+  {
     "x":11000,
-    "y":4100
-  },{
+    "y":3900
+  },
+  {
     "x":12000,
-    "y":4100
-  },{
+    "y":3900
+  },
+  {
     "x":13000,
-    "y":4100
+    "y":3900
+  },
+  {
+    "x":14000,
+    "y":3900
+  },
+  {
+    "x":15000,
+    "y":3900
   }
 ],
   "cameraTopPath": [{
@@ -273,9 +302,250 @@
                     ]
                 },
                 {
+                    "scale":1.4,
                     "position":{
-                        "x":4900,
+                        "x":5370,
+                        "y":2700
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/1.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/2.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/3.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/4.png",
+                            "frameDuration": 200
+                        }
+                    ]
+                },
+                {
+                    "scale":0.5,
+                    "position":{
+                        "x":7000,
+                        "y":2600
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/1.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/2.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/3.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/4.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/5.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron1/lot/6.png",
+                            "frameDuration": 200
+                        }
+                    ],
+                    "moveTo":{
+                        "x":-6000,
+                        "y":-300
+                    },
+                    "moveDuration":14000
+                },
+                {
+                    "scale":0.6,
+                    "position":{
+                        "x":3000,
                         "y":2500
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/1.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/2.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/3.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/4.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/5.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron2/lot/6.png",
+                            "frameDuration": 200
+                        }
+                    ],
+                    "moveTo":{
+                        "x":6000,
+                        "y":0
+                    },
+                    "moveDuration":10000
+                }
+            ]
+        },
+        {
+            "type":"array",
+            "array":[
+                
+                {
+                    "scale":0.8,
+                    "position":{
+                        "x":4700,
+                        "y":1550
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/1.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/2.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/3.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/4.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/5.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/6.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/7.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/8.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/9.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/10.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/11.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/12.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/13.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/14.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/15.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/16.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/17.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/18.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/19.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Antena/21.png",
+                            "frameDuration":100
+                        }
+                    ]
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja2/stacja2.png",
+                    "position":{
+                        "x":4500,
+                        "y":2250
+                    },
+                    "scale":1.2
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja2/stacja2_swiatlo.png",
+                    "position":{
+                        "x":4510,
+                        "y":2390
+                    },
+                    "scale":1.2
+                },
+                {
+                    "name":"StarStation/Plansza/Stacja2/liany_swiatlo.png",
+                    "position":{
+                        "x":5310,
+                        "y":2300
+                    },
+                    "scale":1.2
+                }
+            ]
+        },
+        {
+            "type":"array",
+            "array":[
+                {
+                    "scale":1.2,
+                    "name":"StarStation/Plansza/statek.png",
+                    "position":{
+                        "x":2200,
+                        "y":1400
+                    }
+                },
+                {
+                    "scale":1.2,
+                    "name":"StarStation/Plansza/statek_swiatlo.png",
+                    "position":{
+                        "x":2300,
+                        "y":1460
+                    }
+                },
+                {
+                    "position":{
+                        "x":3300,
+                        "y":1600
                     },
                     "keyFrames":[
                         {
@@ -304,69 +574,130 @@
                         }
                     ]
                 }
-            ]
-        },
-        {
-            "type":"array",
-            "array":[
+                ,
                 {
-                    "name":"StarStation/Plansza/Stacja2/stacja2.png",
+                    "scale":1.2,
                     "position":{
-                        "x":4500,
-                        "y":2250
-                    }
-                },
-                {
-                    "name":"StarStation/Plansza/Stacja2/stacja2_swiatlo.png",
-                    "position":{
-                        "x":4510,
-                        "y":2370
-                    }
-                },
-                {
-                    "name":"StarStation/Plansza/Stacja2/liany_swiatlo.png",
-                    "position":{
-                        "x":5175,
-                        "y":2292
-                    }
-                },
-                {
-                    "name":"StarStation/Animacje/Antena/1.png",
-                    "position":{
-                        "x":4600,
-                        "y":1300
-                    }
+                        "x":3000,
+                        "y":1600
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/1.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/2.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/3.png",
+                            "frameDuration": 200
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Drony/Dron4/spawanie/4.png",
+                            "frameDuration": 200
+                        }
+                    ]
                 }
             ]
         },
         {
             "type":"array",
+            "translate":{
+                "x":0,
+                "y":-50
+            },
             "array":[
                 {
-                    "scale":0.8,
-                    "name":"StarStation/Plansza/statek.png",
                     "position":{
-                        "x":2600,
-                        "y":1550
+                        "x":4000,
+                        "y":300
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Tlo_statki/statek1.png"
+                        }
+                    ],
+                    "moveDuration":8000,
+                    "moveTo":{
+                        "x":-5000,
+                        "y":100
                     }
+
                 },
                 {
-                    "scale":0.8,
-                    "name":"StarStation/Plansza/statek_swiatlo.png",
                     "position":{
-                        "x":2667,
-                        "y":1590
+                        "x":6000,
+                        "y":400
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Tlo_statki/statek4.png"
+                        }
+                    ],
+                    "moveDuration":5000,
+                    "moveTo":{
+                        "x":-7000,
+                        "y":200
                     }
-                }
-            ]
-        },
-        {
-            "type":"array",
-            "array":[
+
+                },
                 {
-                    "scale": 1.25,
                     "position":{
-                        "x":300,
+                        "x":7000,
+                        "y":700
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Tlo_statki/statek5.png"
+                        }
+                    ],
+                    "moveDuration":8000,
+                    "moveTo":{
+                        "x":-8000,
+                        "y":0
+                    }
+
+                },
+                {
+                    "position":{
+                        "x":6000,
+                        "y":800
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Tlo_statki/statek6.png"
+                        }
+                    ],
+                    "moveDuration":10000,
+                    "moveTo":{
+                        "x":-8000,
+                        "y":-50
+                    }
+
+                },
+                {
+                    "position":{
+                        "x":6000,
+                        "y":850
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Tlo_statki/statek2.png"
+                        }
+                    ],
+                    "moveDuration":14000,
+                    "moveTo":{
+                        "x":-6000,
+                        "y":-50
+                    }
+
+                },
+                {
+                    "scale": 0.8,
+                    "position":{
+                        "x":500,
                         "y":0
                     },
                     "keyFrames":[
@@ -399,32 +730,243 @@
                 },
                 {
                     "name":"StarStation/Plansza/plansza.png",
-                    "scale": 1.25,
+                    "scale": 0.8,
+                    "isMoving": "false",
                     "position":{
-                        "x": -200,
-                        "y": -20
+                        "x": 200,
+                        "y": -30
                     }
                 },
                 {
                     "name":"StarStation/Plansza/plansza_swiatlo.png",
                     "position":{
-                        "x":416,
-                        "y":175
+                        "x":595,
+                        "y":95
                     },
-                    "scale":1.25
+                    "scale":0.8
                 }
             ]
         },
         {
             "name":"StarStation/Plansza/pole.png",
-            "scale":1.5
+            "scale":1.5,
+            "position":{
+                "x":0,
+                "y":-50
+            }
+        },
+        {
+            "type":"array",
+            "translate":{
+                "x":200,
+                "y":0
+            },
+            "array":[
+                {
+                    "name":"StarStation/Tlo/asteroidy_baza.png",
+                    "position":{
+                        "x":2400,
+                        "y":900
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida1.png",
+                    "position":{
+                        "x":2500,
+                        "y":920
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida2.png",
+                    "position":{
+                        "x":2450,
+                        "y":940
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida3.png",
+                    "position":{
+                        "x":2380,
+                        "y":1000
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida4.png",
+                    "position":{
+                        "x":2350,
+                        "y":960
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida5.png",
+                    "position":{
+                        "x":2400,
+                        "y":920
+                    },
+                    "scale":0.4
+                },
+                {
+                    "name":"StarStation/Tlo/asteroida6.png",
+                    "position":{
+                        "x":2480,
+                        "y":980
+                    },
+                    "scale":0.4
+                }
+            ]
+        },
+        {   
+            "type":"array",
+            "array":[
+                {
+                    "position":{
+                        "x":400,
+                        "y":200
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/1.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/2.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/3.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/4.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/5.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/6.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/7.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/8.png",
+                            "frameDuration":200
+                        },
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration":2300
+                        }
+                    ]
+                },
+                {
+                    "position":{
+                        "x":500,
+                        "y":100
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration":2300
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/1.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/2.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/3.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/4.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/5.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/6.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/7.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/8.png",
+                            "frameDuration":200
+                        }
+                    ]
+                },
+                {
+                    "position":{
+                        "x":600,
+                        "y":500
+                    },
+                    "keyFrames":[
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration":1000
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/1.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/2.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/3.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/4.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/5.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/6.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/7.png",
+                            "frameDuration":100
+                        },
+                        {
+                            "frameSourceImage":"StarStation/Animacje/Kometa/8.png",
+                            "frameDuration":200
+                        },
+                        {
+                            "frameSourceImage":null,
+                            "frameDuration":1300
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name":"StarStation/Animacje/Statekkosmiczny2/1.png",
-            "scale":0.8,
+            "scale":0.7,
             "position":{
-                "x":800,
-                "y":300
+                "x":600,
+                "y":200
             },
             "keyFrames":[
                 {
@@ -447,10 +989,10 @@
         },
         {
             "position":{
-                "x":1500,
-                "y":300
+                "x":1300,
+                "y":200
             },
-            "scale":0.8,
+            "scale":0.7,
             "keyFrames":[
                 {
                     "frameSourceImage":"StarStation/Animacje/Statekkosmiczny1/1.png",
@@ -474,8 +1016,8 @@
             "scale": 0.7,
             "name":"StarStation/Tlo/tlo.png",
             "position":{
-                "x":-100,
-                "y":-400
+                "x":-1000,
+                "y":-500
             },
             "followScale": 0.5
         }
@@ -483,12 +1025,12 @@
       "middleground":[
         {
             "position":{
-                "x":1125,
-                "y":865
+                "x":2852,
+                "y":2129
             },
             "keyFrames":[
                 {
-                    "frameSourceImage":"StarStation/Skocznia/podstawaskoczni_swiatlo.png",
+                    "frameSourceImage":"StarStation/Skocznia/skocznia2_swiatlo2.png",
                     "frameDuration": 600
                 },
                 {

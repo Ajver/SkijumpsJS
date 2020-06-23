@@ -458,7 +458,7 @@
           "scale":0.8,
           "position":{
             "x":5000,
-            "y":2600
+            "y":2650
           },
           "isMoving":"false",
           "keyFrames":[
@@ -475,9 +475,9 @@
               "frameDuration": 150
             }
           ],
-          "moveDuration":30000,
+          "moveDuration":50000,
           "moveTo":{
-            "x": -2500,
+            "x": -2000,
             "y": 0
           }
         },
