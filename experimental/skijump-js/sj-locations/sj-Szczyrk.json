@@ -191,7 +191,7 @@
           },
           "array":[
             {
-              "name":"Szczyrk/Warstwy/snieg.png",
+              "name":"Szczyrk/Warstwy/snieg_3.png",
               "scale":0.70,
               "position":{
                 "x": -20,
@@ -425,11 +425,11 @@
               "scale":0.6,
               "keyFrames":[
                 {
-                  "frameSourceImage": "Szczyrk/Animacje/Trybuny/s_swiatlo.png",
+                  "frameSourceImage": "Szczyrk/Animacje/s_swiatlo_trybun.png",
                   "frameDuration": 1000
                 },
                 {
-                  "frameSourceImage": "Szczyrk/Animacje/Trybuny/s_swiatlo.png",
+                  "frameSourceImage": "Szczyrk/Animacje/s_swiatlo_trybun.png",
                   "frameDuration": 1000
                 }
               ]
@@ -453,6 +453,33 @@
             }
           ]
           
+        },
+        {
+          "scale":0.8,
+          "position":{
+            "x":5000,
+            "y":2600
+          },
+          "isMoving":"false",
+          "keyFrames":[
+            {
+              "frameSourceImage":"Szczyrk/Animacje/Samolot_1.png",
+              "frameDuration": 150
+            },
+            {
+              "frameSourceImage":"Szczyrk/Animacje/Samolot_2.png",
+              "frameDuration": 150
+            },
+            {
+              "frameSourceImage":"Szczyrk/Animacje/Samolot_3.png",
+              "frameDuration": 150
+            }
+          ],
+          "moveDuration":30000,
+          "moveTo":{
+            "x": -2500,
+            "y": 0
+          }
         },
         {
           "name":"Szczyrk/Warstwy/s_chmury.png",
@@ -483,6 +510,7 @@
         },
         {
           "name":"Szczyrk/Warstwy/s_niebo.png",
+          "followSpeed":0.1,
           "position":{
             "x":0,
             "y":-200
@@ -640,10 +668,10 @@
     {"x":1450.0,"y":1518.0},
     {"x":1500.0,"y":1525.0},
     {"x":1550.0,"y":1527.0},
-    {"x":1590.0,"y":1525.0}
+    {"x":1620.0,"y":1525.0}
   ],
   "padCollisionPoints": [ 
-    {"x": 1630, "y": 1550},
+    {"x": 1650, "y": 1550},
     {"x": 1750, "y": 1560},
     {"x": 1850, "y": 1575},
     {"x": 1950, "y": 1597},
