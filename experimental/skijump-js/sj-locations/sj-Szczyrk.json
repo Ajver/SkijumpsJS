@@ -463,15 +463,15 @@
           "isMoving":"false",
           "keyFrames":[
             {
-              "frameSourceImage":"Szczyrk/Animacje/Samolot_1.png",
+              "frameSourceImage":"Szczyrk/Animacje/samolot_1.png",
               "frameDuration": 150
             },
             {
-              "frameSourceImage":"Szczyrk/Animacje/Samolot_2.png",
+              "frameSourceImage":"Szczyrk/Animacje/samolot_2.png",
               "frameDuration": 150
             },
             {
-              "frameSourceImage":"Szczyrk/Animacje/Samolot_3.png",
+              "frameSourceImage":"Szczyrk/Animacje/samolot_3.png",
               "frameDuration": 150
             }
           ],

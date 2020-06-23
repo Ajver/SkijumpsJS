@@ -1,6 +1,0 @@
-,
-          "moveDuration":5000,
-          "moveTo":{
-            "x": -2000,
-            "y": 0
-          }
