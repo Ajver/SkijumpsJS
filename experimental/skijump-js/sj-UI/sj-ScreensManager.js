@@ -84,6 +84,7 @@ SJ.ScreensManager.setup = () => {
       [ "Star Station", "StarStation" ],
       [ "Alien Colony", "AlienColony" ],
       [ "Szczyrk", "Szczyrk" ],
+      [ "Oberstdorf", "Oberstdorf" ],
       [ "Planeta X", "PlanetX" ]
     ]
 

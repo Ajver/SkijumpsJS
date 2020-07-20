@@ -3,8 +3,8 @@ SJ.Camera =
 class {
   constructor(scaleMod) {
     this._offset = createVector(
-      -8400 * scaleMod,
-      -3800 * scaleMod
+      -20 * scaleMod,
+      -200 * scaleMod
     );
     this._offset = createVector(-200, 0);
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
@@ -16,6 +16,13 @@ class {
 
     this._topPath = new SJ.CameraPath(SJ.V.cameraTopPath);
     this._bottomPath = new SJ.CameraPath(SJ.V.cameraBottomPath);
+
+    this.arrowsOffset = {
+      x:0,
+      y:0
+    }
+
+    this.areArrowsEnabled = false;
 
     this.restart();
   }
@@ -47,13 +54,17 @@ class {
     this._targetPosition.y = targetY; 
 
     const LERP_SPEED = 0.08;
-    this._currentPosition.x = this._targetPosition.x;
+    this._currentPosition.x = lerp(this._currentPosition.x, this._targetPosition.x, LERP_SPEED);
     this._currentPosition.y = lerp(this._currentPosition.y, this._targetPosition.y, LERP_SPEED);
     
     if(this._minPosition != null) {
       this._currentPosition.x = max(this._currentPosition.x, this._minPosition.x + SJ.SCREEN_MIDDLE_X);
       this._currentPosition.y = max(this._currentPosition.y, this._minPosition.y + SJ.SCREEN_MIDDLE_Y);
     }
+
+    this._currentPosition.x += this.arrowsOffset.x;
+    this._currentPosition.y += this.arrowsOffset.y;
+
   }
 
   transform() {
@@ -81,6 +92,37 @@ class {
     screenPoint.div(this._scale);
     screenPoint.add(this._currentPosition);
     return screenPoint;
+  }
+
+  moveWithArrows(keyCode){
+
+    if(this.areArrowsEnabled){
+      switch(keyCode){
+        case 37:
+          this.arrowsOffset.x -= 15;
+        break;
+        case 39:
+          this.arrowsOffset.x += 15;
+        break;
+        case 38:
+          this.arrowsOffset.y -= 15;
+        break;
+        case 40:
+          this.arrowsOffset.y += 15;
+        break;
+      }
+    }
+
+    if(keyCode == 220)
+      this.areArrowsEnabled = !this.areArrowsEnabled;
+
+    if(!this.areArrowsEnabled){
+      this.arrowsOffset.x = 0; 
+      this.arrowsOffset.y = 0;
+    }
+
+    console.log(this.areArrowsEnabled);
+
   }
 
 }
