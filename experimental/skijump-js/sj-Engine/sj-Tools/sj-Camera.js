@@ -3,8 +3,8 @@ SJ.Camera =
 class {
   constructor(scaleMod) {
     this._offset = createVector(
-      -20 * scaleMod,
-      -200 * scaleMod
+      -0 * scaleMod,
+      -0 * scaleMod
     );
     this._offset = createVector(-200, 0);
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
@@ -22,7 +22,17 @@ class {
       y:0
     }
 
-    this.areArrowsEnabled = false;
+    //Steering freewalk camera loading from cookies
+    this.areArrowsEnabled = this._cookieValue('areArrowsEnabled');
+
+    if(this.areArrowsEnabled == 'true'){
+      this.arrowsOffset.x = parseInt(this._cookieValue('arrowsOffsetX')) || 0;
+      this.arrowsOffset.y = parseInt(this._cookieValue('arrowsOffsetY')) || 0;
+
+      this.areArrowsEnabled = true;
+    }
+    else this.areArrowsEnabled = false;
+    //----------------------------------
 
     this.restart();
   }
@@ -34,8 +44,8 @@ class {
     }else {
       this._minPosition = null;
     }
-    this._currentPosition = createVector(jumperPos.x, jumperPos.y);
-    this._targetPosition = createVector(jumperPos.x, jumperPos.y);
+    // this._currentPosition = createVector(jumperPos.x, jumperPos.y);
+    // this._targetPosition = createVector(jumperPos.x, jumperPos.y);
     this._setPathIndex();
   }
 
@@ -64,6 +74,15 @@ class {
 
     this._currentPosition.x += this.arrowsOffset.x;
     this._currentPosition.y += this.arrowsOffset.y;
+
+    //Saving variables in cookies
+    if(this.areArrowsEnabled){
+      document.cookie = "arrowsOffsetX = " + this.arrowsOffset.x;
+      document.cookie = "arrowsOffsetY = " + this.arrowsOffset.y;
+      document.cookie = "areArrowsEnabled = true";
+    }
+    else
+      document.cookie = "areArrowsEnabled = false";
 
   }
 
@@ -113,16 +132,41 @@ class {
       }
     }
 
-    if(keyCode == 220)
+    if(keyCode == 220){
+      this.arrowsOffset.x = parseInt(this._cookieValue('arrowsOffsetX'));
+      this.arrowsOffset.y = parseInt(this._cookieValue('arrowsOffsetY'));
+
       this.areArrowsEnabled = !this.areArrowsEnabled;
+    }
+
+    //Setting cookies to 0
+    if(keyCode == 114 || keyCode == 82 && this.areArrowsEnabled){
+      document.cookie = "arrowsOffsetX = 0";
+      document.cookie = "arrowsOffsetY = 0";
+
+      this.arrowsOffset.x = parseInt(this._cookieValue('arrowsOffsetX'));
+      this.arrowsOffset.y = parseInt(this._cookieValue('arrowsOffsetY'));
+    }
+      
 
     if(!this.areArrowsEnabled){
       this.arrowsOffset.x = 0; 
       this.arrowsOffset.y = 0;
     }
 
-    console.log(this.areArrowsEnabled);
+  }
+  
+  //Function returns cookie value by name
+  _cookieValue(cookieName){
 
+    let cookies = document.cookie.split(';');
+    
+    for(let i = 0; i < cookies.length; i++) {
+      if(cookieName == cookies[i].split('=')[0].split(" ").join(""))
+        return cookies[i].split('=')[1];
+    }
+
+    console.log('cookie ' + cookieName + ' not found.');
   }
 
 }
