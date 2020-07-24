@@ -439,11 +439,11 @@
 							},
 							{
 								"frameSourceImage":"Oberstdorf/balwan/balwan_2_4.png",
-								"frameDuration": 350
+								"frameDuration": 300
 							},
 							{
 								"frameSourceImage":"Oberstdorf/balwan/balwan_3.png",
-								"frameDuration": 350
+								"frameDuration": 300
 							}
 						]
 					}
