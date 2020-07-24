@@ -25,9 +25,15 @@ class {
     //Steering freewalk camera loading from cookies
     this.areArrowsEnabled = this._cookieValue('areArrowsEnabled');
 
+    if(!this._cookieValue('arrowsOffsetX'))
+      document.cookie = "arrowsOffsetX = 0";
+
+    if(!this._cookieValue('arrowsOffsetY'))
+      document.cookie = "arrowsOffsetY = 0";
+
     if(this.areArrowsEnabled == 'true'){
-      this.arrowsOffset.x = parseInt(this._cookieValue('arrowsOffsetX')) || 0;
-      this.arrowsOffset.y = parseInt(this._cookieValue('arrowsOffsetY')) || 0;
+      this.arrowsOffset.x = parseInt(this._cookieValue('arrowsOffsetX'));
+      this.arrowsOffset.y = parseInt(this._cookieValue('arrowsOffsetY'));
 
       this.areArrowsEnabled = true;
     }
@@ -83,6 +89,8 @@ class {
     }
     else
       document.cookie = "areArrowsEnabled = false";
+
+    // console.log(document.cookie);
 
   }
 
@@ -167,6 +175,7 @@ class {
     }
 
     console.log('cookie ' + cookieName + ' not found.');
+    return false;
   }
 
 }
