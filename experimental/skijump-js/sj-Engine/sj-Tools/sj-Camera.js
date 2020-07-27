@@ -2,10 +2,10 @@
 SJ.Camera =
 class {
   constructor(scaleMod) {
-    this._offset = createVector(
-      -0 * scaleMod,
-      -0 * scaleMod
-    );
+    // this._offset = createVector(
+    //   -0 * scaleMod,
+    //   -0 * scaleMod
+    // );
     this._offset = createVector(-200, 0);
     this._offset.x += SJ.SCREEN_WIDTH*0.5;
     this._offset.y += SJ.SCREEN_HEIGHT*0.5;
@@ -39,7 +39,7 @@ class {
     }
     else this.areArrowsEnabled = false;
     //----------------------------------
-
+    
     this.restart();
   }
 
@@ -65,13 +65,24 @@ class {
     const minY = this._topPath.getExpectedY();
     const maxY = this._bottomPath.getExpectedY();
     const targetY = constrain(jumperPos.y, minY, maxY);
+
+    const LERP_SPEED_Y = 0.08;
+    let LERP_SPEED_X = 0.15;
+    
+    //Saving variables in cookies
+    if(this.areArrowsEnabled){
+      LERP_SPEED_X = 0.08;
+      document.cookie = "arrowsOffsetX = " + this.arrowsOffset.x;
+      document.cookie = "arrowsOffsetY = " + this.arrowsOffset.y;
+      document.cookie = "areArrowsEnabled = true";
+    }
+    else document.cookie = "areArrowsEnabled = false";
     
     this._targetPosition.x = jumperPos.x;
-    this._targetPosition.y = targetY; 
+    this._targetPosition.y = targetY;
 
-    const LERP_SPEED = 0.08;
-    this._currentPosition.x = lerp(this._currentPosition.x, this._targetPosition.x, LERP_SPEED);
-    this._currentPosition.y = lerp(this._currentPosition.y, this._targetPosition.y, LERP_SPEED);
+    this._currentPosition.x = lerp(this._currentPosition.x, this._targetPosition.x, LERP_SPEED_X);
+    this._currentPosition.y = lerp(this._currentPosition.y, this._targetPosition.y, LERP_SPEED_Y);
     
     if(this._minPosition != null) {
       this._currentPosition.x = max(this._currentPosition.x, this._minPosition.x + SJ.SCREEN_MIDDLE_X);
@@ -80,17 +91,6 @@ class {
 
     this._currentPosition.x += this.arrowsOffset.x;
     this._currentPosition.y += this.arrowsOffset.y;
-
-    //Saving variables in cookies
-    if(this.areArrowsEnabled){
-      document.cookie = "arrowsOffsetX = " + this.arrowsOffset.x;
-      document.cookie = "arrowsOffsetY = " + this.arrowsOffset.y;
-      document.cookie = "areArrowsEnabled = true";
-    }
-    else
-      document.cookie = "areArrowsEnabled = false";
-
-    // console.log(document.cookie);
 
   }
 

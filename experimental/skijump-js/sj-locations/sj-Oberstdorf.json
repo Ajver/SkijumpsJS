@@ -240,6 +240,33 @@
 		"pad": "Oberstdorf/Warstwy/zjazd.png",
 		"background": [
 			{
+				"name": "Oberstdorf/Warstwy/snieg_2.png",
+				"position": {
+					"x": 0,
+					"y": -100
+				},
+				"scale": 0.8,
+				"isMoving": "false"
+			},
+			{
+				"position":{
+					"x":6600,
+					"y":3430
+				},
+				"movingStrength":0.75,
+				"scale":0.8,
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/tlum/tlum_tyl_1.png",
+						"frameDuration":200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/tlum/tlum_tyl_2.png",
+						"frameDuration":200
+					}
+				]
+			},
+			{
 				"position":{
 					"x":3000,
 					"y":1730
@@ -276,13 +303,22 @@
 				]
 			},
 			{
-				"name": "Oberstdorf/Warstwy/snieg_2.png",
-				"position": {
-					"x": 0,
-					"y": -100
+				"position":{
+					"x":5080,
+					"y":2500
 				},
-				"scale": 0.8,
-				"isMoving": "false"
+				"scale":0.9,
+				"isMoving":"false",
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/lampa/lampa_ob_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/lampa/lampa_ob_2.png",
+						"frameDuration": 200
+					}
+				]
 			},
 			{
 				"type":"array",
@@ -291,10 +327,43 @@
 					{
 						"name": "Oberstdorf/Warstwy/snieg_3.png",
 						"position": {
-							"x": -300,
-							"y": -370
+							"x": 0,
+							"y": -50
 						},
-						"scale": 0.8
+						"scale": 0.7
+					},
+					{
+						"name":"Oberstdorf/Warstwy/gorka_tyl_2.png",
+						"scale":0.8,
+						"position":{
+							"x": 5150,
+							"y": 2880
+						}
+					},
+					{
+						"position":{
+							"x": 5700,
+							"y": 2900
+						},
+						"scale":0.8,
+						"keyFrames":[
+							{
+								"frameSourceImage":"Oberstdorf/kozica/kozica_1.png",
+								"frameDuration":200
+							},
+							{
+								"frameSourceImage":"Oberstdorf/kozica/kozica_2.png",
+								"frameDuration":200
+							},
+							{
+								"frameSourceImage":"Oberstdorf/kozica/kozica_3.png",
+								"frameDuration":700
+							},
+							{
+								"frameSourceImage":"Oberstdorf/kozica/kozica_2.png",
+								"frameDuration":200
+							}
+						]
 					},
 					{
 						"name":"Oberstdorf/Warstwy/warstwa_za_skocznią.png",
@@ -303,6 +372,19 @@
 							"y": -50
 						},
 						"scale":0.7
+					},
+					{
+						"position":{
+							"x": 4150,
+							"y": 2050
+						},
+						"scale":0.5,
+						"keyFrames":[
+							{
+								"frameSourceImage":"Oberstdorf/billboard/billboard_1.png",
+								"frameDuration": 200
+							}
+						]
 					}
 				]
 			},
@@ -448,6 +530,14 @@
 						]
 					}
 				]
+			},
+			{
+				"name":"Oberstdorf/Warstwy/drzewa_przod_2.png",
+				"position":{
+					"x":6200,
+					"y":4550
+				},
+				"scale":0.8
 			}
 			
 		]

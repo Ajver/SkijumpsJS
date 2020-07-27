@@ -28,7 +28,6 @@ class extends SJ.EventHandler {
     });
 
     SJ.camera = new SJ.Camera(SJ.V.cameraScale);
-    // SJ.camera = new SJ.Camera(.5);
     this.addEventListener('restart', () => {
       SJ.camera.restart();
     });
@@ -158,7 +157,7 @@ class extends SJ.EventHandler {
 
     SJ.pad.onReady();
 
-    this.callEvent('restart')
+    this.callEvent('restart');
   }
 
   onJumperPadHit() {
