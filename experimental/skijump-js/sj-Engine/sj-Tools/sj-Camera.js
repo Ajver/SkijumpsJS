@@ -50,8 +50,7 @@ class {
     }else {
       this._minPosition = null;
     }
-    // this._currentPosition = createVector(jumperPos.x, jumperPos.y);
-    // this._targetPosition = createVector(jumperPos.x, jumperPos.y);
+
     this._setPathIndex();
   }
 

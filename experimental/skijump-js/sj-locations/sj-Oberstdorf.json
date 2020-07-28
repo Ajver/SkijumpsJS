@@ -228,11 +228,11 @@
 	"cameraBottomPath": [
 		{
 			"x": 50,
-			"y": 6000
+			"y": 5900
 		},
 		{
 			"x": 15050,
-			"y": 6000
+			"y": 5900
 		}
 	],
 	"cameraScale": 0.8,
@@ -249,6 +249,15 @@
 				"isMoving": "false"
 			},
 			{
+				"name":"Oberstdorf/Warstwy/Auto.png",
+				"movingStrength":0.75,
+				"scale":0.8,
+				"position":{
+					"x": 7600,
+					"y": 3800
+				}
+			},
+			{
 				"position":{
 					"x":6600,
 					"y":3430
@@ -263,6 +272,98 @@
 					{
 						"frameSourceImage":"Oberstdorf/tlum/tlum_tyl_2.png",
 						"frameDuration":200
+					}
+				]
+			},
+			{
+				"position":{
+					"x": 7600,
+					"y": 3550
+				},
+				"movingStrength":0.73,
+				"scale":0.8,
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_1.png",
+						"frameDuration": 2000
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_2.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_3.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_4.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_5.png",
+						"frameDuration": 2000
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_7.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_8.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_9.png",
+						"frameDuration": 2000
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_11.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_12.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_13.png",
+						"frameDuration": 2000
+					},
+					{
+						"frameSourceImage":"Oberstdorf/billboard/billboard_15.png",
+						"frameDuration": 200
+					}
+				]
+			},
+			{
+				"position":{
+					"x": 7500,
+					"y": 3170
+				},
+				"scale":0.8,
+				"movingStrength":0.7,
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_2.png",
+						"frameDuration": 2500
+					},
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_2.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_2.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_1.png",
+						"frameDuration": 200
 					}
 				]
 			},
@@ -316,6 +417,49 @@
 					},
 					{
 						"frameSourceImage":"Oberstdorf/lampa/lampa_ob_2.png",
+						"frameDuration": 200
+					}
+				]
+			},
+			{
+				"position":{
+					"x": 2000,
+					"y": 1500
+				},
+				"isMoving":"false",
+				"keyFrames":[
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_2.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_3.png",
+						"frameDuration": 200
+					}
+				]
+			},
+			{
+				"position":{
+					"x": 5600,
+					"y": 3000
+				},
+				"scale":0.8,
+				"isMoving":"false",
+				"keyFrames":[
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_2.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage": "Oberstdorf/lampa/lampa_3.png",
 						"frameDuration": 200
 					}
 				]
@@ -389,6 +533,15 @@
 				]
 			},
 			{
+				"name":"Oberstdorf/Warstwy/chmury.png",
+				"position":{
+					"x": 1200,
+					"y": 500
+				},
+				"movingStrength":0.75,
+				"scale":0.8
+			},
+			{
 				"name":"Oberstdorf/Warstwy/snieg_1.png",
 				"position":{
 					"x": 0,
@@ -422,6 +575,14 @@
 				}
 			},
 			{
+				"name":"Oberstdorf/Warstwy/ksiezyc.png",
+				"position":{
+					"x": 5000,
+					"y": 3000
+				},
+				"scale": 5
+			},
+			{
 				"name": "Oberstdorf/Warstwy/niebo.jpg",
 				"scale": 0.6,
 				"position": {
@@ -450,6 +611,13 @@
 						"frameDuration": 200
 					}
 				]
+			},
+			{
+				"name":"Oberstdorf/Warstwy/stragan.png",
+				"position":{
+					"x":12800,
+					"y":5450
+				}
 			}
 		],
 		"foreground":[
@@ -532,12 +700,42 @@
 				]
 			},
 			{
+				"position":{
+					"x": 9500,
+					"y": 5000
+				},
+				"scale":0.8,
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/tlum/tlum_przod_1.png",
+						"frameDuration": 200
+					},
+					{
+						"frameSourceImage":"Oberstdorf/tlum/tlum_przod_2.png",
+						"frameDuration": 200
+					}
+				]
+			},
+			{
 				"name":"Oberstdorf/Warstwy/drzewa_przod_2.png",
 				"position":{
 					"x":6200,
 					"y":4550
 				},
 				"scale":0.8
+			},
+			{
+				"position":{
+					"x": 10200,
+					"y": 5650
+				},
+				"scale":0.8,
+				"keyFrames":[
+					{
+						"frameSourceImage":"Oberstdorf/trybuny/trybuna_przod_1.png",
+						"frameDuration": 200
+					}
+				]
 			}
 			
 		]
