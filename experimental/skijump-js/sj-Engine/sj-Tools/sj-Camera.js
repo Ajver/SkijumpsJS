@@ -11,7 +11,6 @@ class {
     this._offset.y += SJ.SCREEN_HEIGHT*0.5;
     this._scale = scaleMod;
 
-    this._currentPosition = createVector(0, 0);
     this._targetPosition = createVector(0, 0);
 
     this._topPath = new SJ.CameraPath(SJ.V.cameraTopPath);
@@ -44,7 +43,8 @@ class {
   }
 
   restart() {
-    const jumperPos = SJ.jumper.body.position;
+    this._currentPosition = createVector(0, 0);
+
     if(SJ.V.minCameraPosition != undefined) {
       this._minPosition = SJ.V.minCameraPosition;
     }else {
