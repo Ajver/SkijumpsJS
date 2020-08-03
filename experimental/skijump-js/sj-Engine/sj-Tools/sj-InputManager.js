@@ -32,6 +32,7 @@ const onKeyPressed = () => {
   SJ.jumper.onKeyPressed();
   SJ.pad.onKeyPressed();
   SJ.itemsManager.onKeyPressed();
+  SJ.camera.moveWithArrows(keyCode);
 
   if (keyCode == CONTROL) {
     const pos = posss();
